@@ -1,0 +1,32 @@
+
+
+
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Welcome to live chat</h1>
+
+<form id="form">
+    <input type="text" name="message"/>
+</form>
+<script type="text/javascript">
+    let url = `ws://${window.location.host}/ws/socket-server/`
+    const chatSocket = new WebSocket(url)
+
+    chatSocket.onmessage = function(e) {
+        let data = JSON.parse(e.data)
+        console.log('Data:', data)
+    }
+
+    let form = document.getElementById('form')
+    form.addEventListener('submit', (e) => {
+        e.preventDefault()
+        let message = e.target.message.value
+        chatSocket.send(JSON.stringify({
+            'message':message
+        }))
+        form.reset()
+    })
+</script>
+
+{% endblock %}
