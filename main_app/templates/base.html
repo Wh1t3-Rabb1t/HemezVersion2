@@ -24,7 +24,7 @@
                     <li><a href="/about">About</a></li>
                     <li><a href="/chatrooms">ChatRooms</a></li>
                     <li><a href="/userpage">Userpage</a></li>
-                    <li><a href={% url 'logout' %}>logout</a></li>
+                    <li><a href="{% url 'logout' %}">logout</a></li>
                     {%else%}
                     <li><a href="{% url 'signup' %}">Sign Up</a></li>
                     <li><a href="{% url 'login' %}">Log In</a></li>
