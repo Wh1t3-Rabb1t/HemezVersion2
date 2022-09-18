@@ -81,6 +81,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'livechat',
+        'USER': 'postgres',
+        'PASSWORD': 'morrison'
     }
 }
 
