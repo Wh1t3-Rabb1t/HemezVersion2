@@ -1,14 +1,24 @@
-
-
-
 {% extends 'base.html' %}
 {% block content %}
+{%if user.is_authenticated%}
+<h1>Welcome to live chat {{user.username}}</h1>
 
-<h1>Welcome to live chat</h1>
-
-<form id="form">
+<div >
+    <div id='messages' ></div>
+</div>
+<form id="form" >
     <input type="text" name="message"/>
+    <input type="hidden" name="user" value={{user.username}}/>
 </form>
+
+
+
+
+{%else%}
+<h1>Wait please</h1>
+{%endif%}
+
+
 <script type="text/javascript">
     let url = `ws://${window.location.host}/ws/socket-server/`
     const chatSocket = new WebSocket(url)
@@ -16,17 +26,24 @@
     chatSocket.onmessage = function(e) {
         let data = JSON.parse(e.data)
         console.log('Data:', data)
+
+        if(data.type === 'chat'){
+            let messages = document.getElementById('messages')
+            messages.insertAdjacentHTML('beforeend', `<div style='display:flex'><p>${data.user} says --> </p><p>${data.message}</p></div>`)
+        }
     }
 
     let form = document.getElementById('form')
     form.addEventListener('submit', (e) => {
         e.preventDefault()
         let message = e.target.message.value
+        let user = e.target.user.value
+        console.log(user)
         chatSocket.send(JSON.stringify({
-            'message':message
+            'message':message,
+            'user':user
         }))
         form.reset()
     })
 </script>
-
 {% endblock %}
