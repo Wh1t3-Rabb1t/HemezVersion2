@@ -1,4 +1,4 @@
-# mysite/asgi.py
+# livechat/asgi.py
 import os
 
 from channels.auth import AuthMiddlewareStack
