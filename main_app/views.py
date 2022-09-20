@@ -92,7 +92,7 @@ def add_profile_pic(request, user_id):
     return redirect('profile')
 
 def signup(request):
-<<<<<<< HEAD
+
   error_message = ''
   if request.method == 'POST':
     # This is how to create a 'user' form object
@@ -111,30 +111,6 @@ def signup(request):
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
-
-
-
-
-
-=======
-    error_message = ''
-    if request.method == 'POST':
-        # This is how to create a 'user' form object
-        # that includes the data from the browser
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            # This will add the user to the database
-            user = form.save()
-            # This is how we log a user in via code
-            login(request, user)
-            return redirect('/')
-        else:
-            print(form.errors)
-            error_message = 'Invalid sign up - try again'
-    # A bad POST or a GET request, so render signup.html with an empty form
-    form = UserCreationForm()
-    context = {'form': form, 'error_message': error_message}
-    return render(request, 'registration/signup.html', context)
 
 
 # CHAT FEATURES CHANNELS
@@ -173,4 +149,4 @@ class ChatConsumer(WebsocketConsumer):
             'user': user,
 
         }))
->>>>>>> 5938eb2b21aad190286b24b3e5ae54e1845a5735
+
