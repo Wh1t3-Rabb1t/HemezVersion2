@@ -12,6 +12,7 @@ urlpatterns = [
     path('chatrooms/', views.chatrooms, name ='chatrooms'),
     path('profile/', views.profile, name ='profile'),
     path('users/<int:user_id>/update/', views.user_update, name='user_update'),
+    path('users/<int:user_id>/add_profile_pic/', views.add_profile_pic, name='add_profile_pic'),
     path('accounts/signup/', views.signup , name='signup'),
 
 ]
