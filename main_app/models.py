@@ -11,7 +11,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     join_date = models.DateField(default = date.today)
     bio = models.TextField(max_length=500)
-    profile_pic = models.CharField(max_length=100)
+    profile_pic = models.CharField(max_length=200, blank=True)
 
     def __str__(self):
         return self.user.username
