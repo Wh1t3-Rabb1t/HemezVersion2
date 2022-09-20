@@ -3,6 +3,11 @@ from django.contrib.auth import login
 
 from django.contrib.auth.forms import UserCreationForm
 
+from django.db import transaction
+from .models import User, Profile
+# Importing instances of ModelForms
+from .forms import UserForm, ProfileForm
+
 # Import the login_required decorator
 from django.contrib.auth.decorators import login_required
 
@@ -28,8 +33,41 @@ def about(request):
 def chatrooms(request):
   return render(request, 'chatrooms.html')
 
-def userpage(request):
-  return render(request, 'userpage.html')
+def profile(request):
+  user = request.user
+  user_form = UserForm()
+  profile_form = ProfileForm()
+  return render(request, 'profile.html', {
+    'user': user,
+    'user_form': user_form,
+    'profile_form': profile_form
+    })
+
+@transaction.atomic
+def user_update(request, user_id):
+  if request.method == "POST":
+    user_form = UserForm(request.POST)
+    profile_form = ProfileForm(request.POST)
+    
+    print('-----------------------', profile_form)
+    
+    # obj=Profile.objects.get(user_id=request.user.id)
+    if user_form.is_valid() and profile_form.is_valid():
+      # obj.bio = profile_form.cleaned_data['bio']
+      # u_update = user_form.save(commit=False)
+      # u_update.user_id = user_id
+      user_form.save()
+      # profile = profile_form.save(commit=False)
+      # profile.user = user
+      profile_form.save()
+      print('-----------------------------------')
+      
+      return redirect('profile')
+    else:
+      print(user_form.errors)
+      print(profile_form.errors)
+  return render(request, '')
+
 
 def signup(request):
   error_message = ''

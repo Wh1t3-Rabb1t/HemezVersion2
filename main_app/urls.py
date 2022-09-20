@@ -10,7 +10,8 @@ urlpatterns = [
     path('chats/', views.lobby, name='lobby'),
     path('about/', views.about, name ='about'),
     path('chatrooms/', views.chatrooms, name ='chatrooms'),
-    path('userpage/', views.userpage, name ='userpage'),
+    path('profile/', views.profile, name ='profile'),
+    path('users/<int:user_id>/update/', views.user_update, name='user_update'),
     path('accounts/signup/', views.signup , name='signup'),
 
 ]
