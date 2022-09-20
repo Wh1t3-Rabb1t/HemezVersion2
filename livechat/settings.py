@@ -20,10 +20,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-tbhty(v_gcdmje4-61f=tdfab6_yof8g-i@a!(2=0t=&lkv5mh'
+SECRET_KEY = 'django-insecure-3ppeie!4y4^lo^mdg)j=sj_5(-y^co&a&8x%mn29y%p^y^t#7y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['djangochat05.herokuapp.com']
 
