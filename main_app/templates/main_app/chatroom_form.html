@@ -3,14 +3,20 @@
 {% block content %}
 <div class='main-form-container'>
 {% if object %}
-
-<h1 >Edit <span class="teal-text">{{object.name}}</span></h1>
+  <h1 >Edit <span class="teal-text">{{object.name}}</span></h1>
 {% else %}
-<h1>Create ChatRoom</h1>
+  <h1>Create ChatRoom</h1>
+{% endif %}
+
+{% if chatroom.chat_pic %}
+
+  <img class="responsive-img card-panel" src="{{ chatroom.chat_pic }}">
+{% else %}
+  <div class="card-panel teal-text center-align">No Chatroom Pic Uploaded</div>
 {% endif %}
   <!-- Leaving the action empty makes the form post to the same url used to display it -->
   <div class='add-container'>
-  <form action="" method="post">
+  <form action="{% url 'create_room' %}" method="post">
     <!-- Django requires the following for security purposes -->
     {% csrf_token %}
     <table>

@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 
 from django.db import transaction
 # Importing instances of ModelForms
-from .forms import UserForm, ProfileForm 
+from .forms import UserForm, ProfileForm, ChatroomForm
 
 # AWS-related imports
 import uuid
@@ -61,6 +61,7 @@ def chatrooms(request):
 @login_required
 def profile(request):
     user = request.user
+    # this should auto-fill in the user_form and profile_form instances with current User's values
     user_form = UserForm(initial = {
         'email': request.user.email,
         'first_name': request.user.first_name,
@@ -168,13 +169,29 @@ class ChatConsumer(WebsocketConsumer):
 
         }))
 
-class CreateRoom(LoginRequiredMixin, CreateView):
-    model= Chatroom
-    fields =['room_name','chat_pic']
+# class CreateRoom(LoginRequiredMixin, CreateView):
+#     model= Chatroom
+#     fields =['room_name','chat_pic']
 
-    def form_valid(self, form):
-        form.instance.host_id = self.request.user
-        return super().form_valid(form)
+#     def form_valid(self, form):
+#         form.instance.host_id = self.request.user
+#         return super().form_valid(form)
+
+def create_room(request, chatroom_pic_url):
+    if request.method == "POST":
+        chatroom_form = ChatroomForm(request.POST, instance=request.user)
+        
+        if chatroom_form.is_valid():
+            new_chatroom = chatroom_form.save(commit=False)
+            new_chatroom
+            
+            return redirect('chatrooms')
+        else:
+            print(chatroom_form.errors)
+    chatroom_form = ChatroomForm()
+    return render(request, 'main_app/chatroom_form.html', {
+        'form': chatroom_form
+        })
 
 class UpdateRoom(UpdateView):
     model= Chatroom
