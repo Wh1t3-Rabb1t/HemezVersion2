@@ -1,26 +1,25 @@
-"""
-ASGI config for livechat project.
-
-It exposes the ASGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/4.1/howto/deployment/asgi/
-"""
-
+# livechat/asgi.py
 import os
 
-from django.core.asgi import get_asgi_application
-from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.auth import AuthMiddlewareStack
-import main_app.urls
+from channels.routing import ProtocolTypeRouter, URLRouter
+from channels.security.websocket import AllowedHostsOriginValidator
+from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'livechat.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "livechat.settings")
+# Initialize Django ASGI application early to ensure the AppRegistry
+# is populated before importing code that may import ORM models.
+django_asgi_app = get_asgi_application()
+
+import main_app.routing
 
 application = ProtocolTypeRouter({
-    'http':get_asgi_application(),
-    'websocket':AuthMiddlewareStack(
-        URLRouter(
-            main_app.urls.websocket_urlpatterns
+  "http": django_asgi_app,
+  "websocket": AllowedHostsOriginValidator(
+        AuthMiddlewareStack(
+            URLRouter(
+                main_app.routing.websocket_urlpatterns
+            )
         )
-    )
+    ),
 })

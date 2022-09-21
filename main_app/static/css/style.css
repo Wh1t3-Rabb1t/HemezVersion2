@@ -1,0 +1,272 @@
+
+:root {
+    --white: white;
+    --black: black;
+
+    --gray0: #f8f8f8;
+    --gray1: #dbe1e8;
+    --gray2: #b2becd;
+    --gray3: #6c7983;
+    --gray4: #454e56;
+    --gray5: #2a2e35;
+    --gray6: #12181b;
+
+    --purple0: #532850;
+    --purlpe1: #452142;
+    --purlpe2: #371B35;
+    --purlpe3: #291428;
+    --purlpe4: #1B0D1B;
+    --purlpe5: #0E070E;
+
+    --yellow0: #746B06;
+    --yellow1: #615905;
+    --yellow2: #4E4704;
+    --yellow3: #4E4704;
+    --yellow4: #272402;
+    --yellow5: #131201;
+
+    --red0: #D64045;
+    --red1: #600C06;
+    --red2: #4D0A05;
+    --red3: #3A0704;
+    --red4: #260403;
+    --red5: #130202;
+
+    --xiketic: #0e070eff;
+    --english-violet: #3f2e56ff;
+    --dark-slate-blue: #453f78ff;
+    --pewter-blue: #759aabff;
+    --black-chocolate: #131201ff;
+    /* LIGHT THEME COLORS  */
+    --uranian-blue: #A1DCF7;
+    --lavendar-floral: #BE81DA;
+    --lilac: #D4A5C7;
+
+    /* DARK THEME COLORS  */
+    --magenta: #7232f2; 
+    --dark-purple: #20115B; 
+    --dark-magenta: #4922A7;
+}
+
+.body {
+    /* background-image: -moz-linear-gradient(to right, var(--white), var(--gray2)); */
+    /* background-image: linear-gradient(to right, var(--white), var(--gray2)); */
+
+    /* background: linear-gradient(to right, #800000 -24%, #000066 100%); */
+
+    /* background: linear-gradient(to right, #336699 -24%, #000066 100%); */
+
+    /* background: linear-gradient(to right, #336699 -24%, #000066 100%); */
+
+    background: linear-gradient(to right, var(--pewter-blue) -24%, var(--black) 100%);
+
+    margin: 0;
+    padding: 0;
+    font-family: 'GFS Neohellenic', sans-serif;
+    color: var(--black);
+}
+
+.navbar {
+    border-bottom: 2px solid white;
+    height: 70px;
+    width: 100%;
+    background: black;
+    color: white;
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100%;
+    transition: all 0.5s ease-in-out;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item:hover {
+    transform: scale(1.3);
+    transition: 0.75s;
+    text-shadow: #FC0 1px 0 10px;
+    color: #FC0;
+    cursor: pointer;
+}
+
+.nav-item:active {
+    transform: scale(0.8);
+    /* transform: left; */
+    /* transform: skewX();
+    transform: skewY(); */
+}
+
+.header {
+    background-image: linear-gradient(to right, var(--gray0), var(--gray4));
+
+    /* background-image: -moz-linear-gradient(to right, var(--gray0), var(--gray4)); */
+
+    padding: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    text-align: center;
+    clip-path: polygon(50% 0%, 100% 0px, 100% 65%, 49.65% 97.72%, 0px 65%, 0px 0px);
+}
+
+.logo {
+    height: 200px;
+}
+
+.logo:hover {
+    animation: color-rotate 1s;
+    animation-iteration-count: infinite; 
+    animation-direction: alternate;
+}
+
+@keyframes color-rotate {
+    from {
+        filter: hue-rotate(0deg);
+    }
+    to {
+        filter: hue-rotate(360deg);
+    }
+}
+
+.color-themes {
+    display: grid;
+    grid-template-areas: 
+        "topbar1 topbar2 topbar3";
+    grid-template-columns: 1fr 4fr 1fr;
+    justify-items: center;
+}
+
+.sun {
+    grid-area: topbar1;
+    max-width: 35px;
+}
+
+.sun:hover {
+    transform: scale(1.3);
+    transition: 0.80s;
+}
+
+.moon {
+    grid-area: topbar3;
+    max-width: 35px;
+}
+
+.moon:hover {
+    transform: scale(1.3);
+    transition: 0.80s;
+}
+
+.chat-window {
+    display: grid;
+    grid-template-columns: 7% 93%;
+    height: 42vh;
+    justify-items: center;
+    margin: 0 0 0% 1%;
+    /* clip-path: polygon(45.11% 0%, 99.8% -120px, 99.22% 103.14%, 1px 102.56%, 0px -102px); */
+}
+
+.vertical-navbar {
+    background-color: azure;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    margin: 25% 18% 25% 18%;
+    width: 98%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+    /* margin-top: 200px; */
+}
+
+.vertical-navbar::-webkit-scrollbar {
+    display:none;
+}
+
+/* .chat-icon-parent {
+    padding-top: clamp(100px, 25vw, 200px);
+} */
+
+.chat-icon{
+    text-align: center;
+    background-color: yellow;
+    border-radius: 50%;
+    height: 5vw;
+    width: 5vw;
+}
+
+.chat-box {
+    background-color: azure;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    margin: 2%;
+    width: 98%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* background: linear-gradient(to right, var(--white) -24%, var(--gray1) 100%); */
+}
+
+.title-bar{
+    text-align: center;
+    margin: 0.5% 0.5% 0 0.5%;
+    padding: .01% 0;
+    border-radius: 15px;
+    background: linear-gradient(to right, var(--white) -50%, var(--dark-purple) 90%);
+
+}
+
+.live-chat{
+    background-color: #c691df;
+    text-align: center;
+    border-radius: 15px;
+    min-height: 70%;
+    margin: 0.5% 0.5% 0.5% 0.5%;
+    height: 69%; 
+    background: linear-gradient(to right, var(--white) -50%, var(--dark-purple) 90%);
+}
+
+.input-box{
+    border-radius: 15px; 
+    background-color: #e496cb;
+    height: 100%;
+    margin: 0% 0.5% 0.5% 0.5%;
+    text-align: center;
+    background: linear-gradient(to right, var(--white) -50%, var(--dark-purple) 90%);
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+}
+
+.message-box{
+    color: rgb(193, 192, 192);
+    border: 3px solid rgb(193, 192, 192); 
+    border-radius: 15px;
+    background-color: var(--dark-magenta);
+    text-align: center;
+    width: 80%;
+    max-height: 30px;
+    /* background-color: black; */
+}
+
+.message-box::placeholder{
+    color: rgb(193, 192, 192);
+    text-align: center;
+}
+
+
+
+
+
+/* .light {
+    --bg: linear-gradient(to right, var(--gray2), var(--gray5)); */
+    /* --bg-nav: linear-gradient(to right, var(--gray2), var(--gray5)); */
+    /* --bg-dropdown: var(--gray0); */
+    /* --text: var(--gray6); */
+    /* --border-color: var(--blue);
+} */
+
