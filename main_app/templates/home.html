@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Home</h1>
+{% if user.is_authenticated%}
+    <h3 style="text-align:center;"> Welcome {{user.username}}</h3>
+{%endif%}
+
 
 
 
