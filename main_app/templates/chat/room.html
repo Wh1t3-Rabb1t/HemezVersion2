@@ -1,15 +1,15 @@
-<!-- chat/templates/chat/room.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <title>Chat Room</title>
-</head>
+
+{% extends 'base.html' %}
+{% block content %}
+
 <body>
+    <h3 style='text-align:center'>{{room_name}}</h3>
     <textarea id="chat-log" cols="100" rows="20"></textarea><br>
     <input id="chat-message-input" type="text" size="100"><br>
     <input id="chat-message-submit" type="button" value="Send">
     {{ room_name|json_script:"room-name" }}
+
+    
     <script>
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
@@ -47,4 +47,7 @@
         };
     </script>
 </body>
-</html>
+
+
+
+{% endblock %}

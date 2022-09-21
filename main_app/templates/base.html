@@ -20,9 +20,8 @@
                 <ul class="right">
                     {% if user.is_authenticated%}
                     <li>Welcome {{user.username}}</li>
-                    <li><a href="{% url 'lobby' %}">liveChat</a></li>
                     <li><a href="{% url 'about' %}">About</a></li>
-                    <li><a href="{% url 'chatrooms' %}">ChatRooms</a></li>
+                    <li><a href="{% url 'create_room' %}">Create Chatroom</a></li>
                     <li><a href="{% url 'profile' %}">User Profile</a></li>
                     <li><a href="{% url 'logout' %}">logout</a></li>
                     {%else%}
@@ -37,6 +36,18 @@
         {% block content %}
         {% endblock %}
     </main>
+    <main2>
+        {% for chatroom in chatrooms %}
+    
+        <div style='display:flex; margin:20px'>
+            <a href ="chat/{{chatroom.room_name}}" >
+            <img style='height:50px;width:50px; border-radius:50%' class='chat-pic' src="{{chatroom.chat_pic}}"/>
+            </a>
+            <li><p>{{ chatroom.room_name }}</p></li>
+           
+        </div>
+        {%endfor%}
+    </main2>
   	<footer class="page-footer">
        <div class="right">All Rights Reserved, &copy; 2022 Hermes Chat App&nbsp;</div>
     </footer>
