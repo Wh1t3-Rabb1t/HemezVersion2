@@ -1,2 +1,5 @@
+/static/**
+!/static/**
 __pycache__/
+.vscode
 livechat/settings.py

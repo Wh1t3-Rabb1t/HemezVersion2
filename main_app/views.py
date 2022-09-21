@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from .models import Profile, Chatroom
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile
-from django.contrib.auth.models import User
+
+from django.contrib.auth.models import User 
 
 from django.db import transaction
 # Importing instances of ModelForms
-from .forms import UserForm, ProfileForm
+from .forms import UserForm, ProfileForm 
 
 # AWS-related imports
 import uuid
@@ -29,11 +31,24 @@ from asgiref.sync import async_to_sync
 
 # Create your views here.
 def lobby(request):
-    return render(request, 'lobby.html')
+    return render(request, 'chat/index.html')
+
+def room(request, room_name):
+    chatrooms = Chatroom.objects.all()
+    return render(request, 'chat/room.html', {
+        'room_name': room_name,
+        'chatrooms':chatrooms
+    })
+
+
 
 
 def home(request):
-    return render(request, 'home.html')
+    chatrooms = Chatroom.objects.all()
+    print(chatrooms)
+    return render(request, 'home.html',{
+        'chatrooms':chatrooms
+    })
 
 
 def about(request):
@@ -93,24 +108,27 @@ def add_profile_pic(request, user_id):
     return redirect('profile')
 
 def signup(request):
-    error_message = ''
-    if request.method == 'POST':
-        # This is how to create a 'user' form object
-        # that includes the data from the browser
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            # This will add the user to the database
-            user = form.save()
-            # This is how we log a user in via code
-            login(request, user)
-            return redirect('/')
-        else:
-            print(form.errors)
-            error_message = 'Invalid sign up - try again'
-    # A bad POST or a GET request, so render signup.html with an empty form
-    form = UserCreationForm()
-    context = {'form': form, 'error_message': error_message}
-    return render(request, 'registration/signup.html', context)
+
+  error_message = ''
+  if request.method == 'POST':
+    # This is how to create a 'user' form object
+    # that includes the data from the browser
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      # This will add the user to the database
+      user = form.save()
+      # This is how we log a user in via code
+      login(request, user)
+      return redirect('/')
+    else:
+      print(form.errors)
+      error_message = 'Invalid sign up - try again'
+  # A bad POST or a GET request, so render signup.html with an empty form
+  form = UserCreationForm()
+  context = {'form': form, 'error_message': error_message}
+  return render(request, 'registration/signup.html', context)
+
+
 
 
 # CHAT FEATURES CHANNELS
@@ -149,3 +167,19 @@ class ChatConsumer(WebsocketConsumer):
             'user': user,
 
         }))
+
+class CreateRoom(LoginRequiredMixin, CreateView):
+    model= Chatroom
+    fields =['room_name','chat_pic']
+
+    def form_valid(self, form):
+        form.instance.host_id = self.request.user
+        return super().form_valid(form)
+
+class UpdateRoom(UpdateView):
+    model= Chatroom
+    fields =['room_name','chat_pic']
+
+class DeleteRoom(DeleteView):
+    model= Chatroom
+    success_url = "/"
