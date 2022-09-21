@@ -18,7 +18,6 @@ urlpatterns = [
     #CHAT URLS
     path('chat/', views.lobby, name='lobby'),
     path('chat/<str:room_name>/', views.room, name='room'),
-    path('chatrooms/', views.chatrooms, name ='chatrooms'),
     path('chatroom/create',views.CreateRoom.as_view(), name='create_room'),
     path('chatroom/<int:pk>/update/', views.UpdateRoom.as_view(), name='pokemon_update'),
     path('chatroom/<int:pk>/delete/', views.DeleteRoom.as_view(), name='pokemon_delete'),
