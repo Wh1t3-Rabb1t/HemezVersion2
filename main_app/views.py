@@ -46,8 +46,14 @@ def chatrooms(request):
 @login_required
 def profile(request):
     user = request.user
-    user_form = UserForm()
-    profile_form = ProfileForm()
+    user_form = UserForm(initial = {
+        'email': request.user.email,
+        'first_name': request.user.first_name,
+        'last_name': request.user.last_name,
+        }, instance = request.user)
+    profile_form = ProfileForm(initial ={
+        'bio': request.user.profile.bio,
+        }, instance = request.user)
     return render(request, 'profile.html', {
         'user': user,
         'user_form': user_form,
