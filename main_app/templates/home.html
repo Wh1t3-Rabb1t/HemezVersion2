@@ -1,8 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Home</h1>
+{% if user.is_authenticated%}
+    <h3 style="text-align:center;"> Welcome {{user.username}}</h3>
+{%endif%}
 
+{% comment %}
+                <!-- Chatroom Nav -->
+                <nav class="chat-box">
+
+                    <div class='title-bar'>
+                        <h1 class="chat-names">Title test</h1>
+                    </div>
+                    
+                    <nav class="live-chat">
+                        <h1>CHATBOX</h1>
+                    </nav>
+
+                    <nav class="input-box">
+                        <input type="text" class="message-box" placeholder="Type Message Here">
+                    </nav>
+                    
+                </nav>
+
+            </div>  {% endcomment %}
 
 
 {% endblock %}
