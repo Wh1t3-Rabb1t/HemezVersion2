@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Create ChatRoom</h1>
+
+<!-- {% if chatroom.chat_pic %}
+
+  <img class="responsive-img card-panel" src="{{ chatroom.chat_pic }}">
+{% else %}
+  <div class="card-panel teal-text center-align">No Chatroom Pic Uploaded</div>
+{% endif %} -->
+
+<!-- <form action="{% url 'add_profile_pic' user.id %}" enctype="multipart/form-data" method="POST">
+  <h4>Add a Profile Picture:</h4>
+  {% csrf_token %}
+  <input type="file" name="photo-file">
+  <br><br>
+  <input type="submit" class="btn" value="Upload Profile Pic">
+</form> -->
+
+  <!-- Leaving the action empty makes the form post to the same url used to display it -->
+  <div class='add-container'>
+  <form action="{% url 'create_room' %}" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    <h4>Add a Profile Picture:</h4>
+    <input type="file" name="photo-file">
+    
+      
+      {{ chatroom_form.as_p }}
+    
+    <input type="submit" value="Create Room" class="btn">
+  </form>
+  <div>
+  </div>
+
+{% endblock %}

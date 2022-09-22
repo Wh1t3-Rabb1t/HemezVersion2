@@ -109,7 +109,6 @@ def add_profile_pic(request, user_id):
     return redirect('profile')
 
 def signup(request):
-
   error_message = ''
   if request.method == 'POST':
     # This is how to create a 'user' form object
@@ -177,21 +176,49 @@ class ChatConsumer(WebsocketConsumer):
 #         form.instance.host_id = self.request.user
 #         return super().form_valid(form)
 
-def create_room(request, chatroom_pic_url):
+@login_required
+def create_room(request):
     if request.method == "POST":
-        chatroom_form = ChatroomForm(request.POST, instance=request.user)
-        
+        chatroom_form = ChatroomForm(request.POST)
+        photo_file = request.FILES.get('photo-file', None)
+        if photo_file:
+            s3 = boto3.client('s3')
+            key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+            try:
+                s3.upload_fileobj(photo_file, BUCKET, key)
+                url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            except:
+                print('An error occurred uploading file to S3')
         if chatroom_form.is_valid():
             new_chatroom = chatroom_form.save(commit=False)
-            new_chatroom
-            
-            return redirect('chatrooms')
+            new_chatroom.host_id = request.user.id
+            new_chatroom.chat_pic = url
+            new_chatroom.save()
+            return redirect('home')
         else:
             print(chatroom_form.errors)
+    # the following is for GET requests        
     chatroom_form = ChatroomForm()
-    return render(request, 'main_app/chatroom_form.html', {
-        'form': chatroom_form
+    return render(request, 'main_app/chatroom_create.html', {
+        'chatroom_form': chatroom_form
         })
+
+@login_required
+def add_chatroom_pic(request, user_id):
+    # photo-file will be the "name" atrribute on the <input type = 'file'>
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            user = User.objects.get(id = user_id)
+            user.profile.profile_pic = url
+            user.save()
+        except:
+            print('An error occurred uploading file to S3')
+    return redirect('profile')
 
 class UpdateRoom(UpdateView):
     model= Chatroom
