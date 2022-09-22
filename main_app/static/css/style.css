@@ -196,10 +196,16 @@ header {
 .live-chat{
     border-radius: 15px;
     min-height: 70%;
-    margin: 0.5% 0.5% 0.5% 0.5%;
+    margin: 1%;
     overflow-y:scroll;
     width: 98%;
-    height:98%;
+    height:80%;
+    background-color: white;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.live-chat::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
 }
 
 .div-chat{
@@ -495,7 +501,7 @@ background-color: var(--dark-purple) ;
 
 
 /*-------------------------------------------------------------------------*/
-/*--------------------------- Signup Page ---------------------------------*/
+/*--------------------------- Chat page ---------------------------------*/
 /*-------------------------------------------------------------------------*/
 
 #user-message {
