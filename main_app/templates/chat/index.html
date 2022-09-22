@@ -2,17 +2,22 @@
 
 {% block content %}
 
-
 <body>
-    {% for chatroom in chatrooms %}
-        <div>
-            <div><img class='chatroom-pic' src="{{chatroom.chat_pic}}"/></div>
-        </div>
-    {% endfor %}
-
-    What chat room would you like to enter?<br>
+    <div class="title-bar">
+        <h1>{{name}}</h1>
+    </div>
+    <div class="chat-box">
+        {% for chatroom in chatrooms %}
+            <div class="img-card">
+                <div class="img-container"><img class="chatroom-pic" src="{{chatroom.chat_pic}}"/>
+                </div>
+                <span>Chatroom name: {{chatroom.room_name}}</span>
+            </div>
+        {% endfor %}
+    </div>
+    <!-- What chat room would you like to enter?<br>
     <input id="room-name-input" type="text" size="100"><br>
-    <input id="room-name-submit" type="button" value="Enter">
+    <input id="room-name-submit" type="button" value="Enter"> -->
 
     <!-- <script>
         document.querySelector('#room-name-input').focus();

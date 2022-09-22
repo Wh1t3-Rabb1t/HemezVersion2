@@ -51,6 +51,7 @@ def lobby(request):
     chatrooms = Chatroom.objects.filter(host = request.user.id)
     return render(request, 'chat/index.html', {
         'chatrooms': chatrooms,
+        'name': 'Your Chatrooms',
     })
 
 
