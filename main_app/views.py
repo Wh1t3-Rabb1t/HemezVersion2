@@ -30,22 +30,8 @@ from asgiref.sync import async_to_sync
 
 
 # Create your views here.
-def lobby(request):
-    return render(request, 'chat/index.html')
-
-def room(request, room_name):
-    chatrooms = Chatroom.objects.all()
-    return render(request, 'chat/room.html', {
-        'room_name': room_name,
-        'chatrooms':chatrooms
-    })
-
-
-
-
 def home(request):
     chatrooms = Chatroom.objects.all()
-    print(chatrooms)
     return render(request, 'home.html',{
         'chatrooms':chatrooms
     })
@@ -55,8 +41,19 @@ def about(request):
     return render(request, 'about.html')
 
 
-def chatrooms(request):
-    return render(request, 'chatrooms.html')
+@login_required
+def lobby(request):
+    return render(request, 'chat/index.html')
+
+
+@login_required
+def room(request, room_name):
+    chatrooms = Chatroom.objects.all()
+    return render(request, 'chat/room.html', {
+        'room_name': room_name,
+        'chatrooms':chatrooms
+    })
+
 
 @login_required
 def profile(request):
@@ -168,13 +165,6 @@ class ChatConsumer(WebsocketConsumer):
 
         }))
 
-# class CreateRoom(LoginRequiredMixin, CreateView):
-#     model= Chatroom
-#     fields =['room_name','chat_pic']
-
-#     def form_valid(self, form):
-#         form.instance.host_id = self.request.user
-#         return super().form_valid(form)
 
 @login_required
 def create_room(request):
@@ -194,7 +184,7 @@ def create_room(request):
             new_chatroom.host_id = request.user.id
             new_chatroom.chat_pic = url
             new_chatroom.save()
-            return redirect('home')
+            return redirect('lobby')
         else:
             print(chatroom_form.errors)
     # the following is for GET requests        

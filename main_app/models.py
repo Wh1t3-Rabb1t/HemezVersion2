@@ -6,7 +6,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
-
 # class Profile extends the User model
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -25,8 +24,6 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
-
-
 
 
 # CHATROOM
@@ -53,5 +50,3 @@ class Message(models.Model):
 
     def __str__(self):
         return self.message_body
-
-
