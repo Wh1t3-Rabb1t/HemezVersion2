@@ -3,18 +3,30 @@
 {% block content2 %}
 
 <body>
-    <h3 style='text-align:center'>{{room_name}}</h3>
-    <textarea id="chat-log" cols="100" rows="20"></textarea><br>
-    <input id="chat-message-input" type="text" size="100"><br>
+
+    {% comment %} <h3 style='text-align:center'>{{room_name}}</h3> {% endcomment %}
+    <div id='chatbox' class="live-chat"  >
+        {%for message in messages %}
+        <p>{{message.message_body}}</p>
+        {%endfor%}
+    </div>
+  <nav class="input-box">
+    <input id="chat-message-input" type="text" size="100" placeholder="Enter chat here"><br>
+    </nav> 
+   
+    <input id='username' type='hidden' name='username' value={{user.username}}>
+    <input id='userid' type='hidden' name='user' value={{user.id}}>
+    <input id='roomid' type='hidden' name='roomid' value={{room_name}}>
     <input id="chat-message-submit" type="button" value="Send">
+
     {{ room_name|json_script:"room-name" }}
 
-    
+
     <script>
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
         const chatSocket = new WebSocket(
-            'wss://'
+            'ws://'
             + window.location.host
             + '/ws/chat/'
             + roomName
@@ -23,7 +35,15 @@
 
         chatSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
-            document.querySelector('#chat-log').value += (data.message + '\n');
+            const username = document.getElementById('username').value
+            //create div element
+            function createMenuItem(match,name,message) {
+                let div = document.createElement('div');
+                div.innerHTML = match === name ?  `<p id='user-message' >${name} says: ${message}</p>` :  `<p id="not-user-message"> ${name} says: ${message}</p>` 
+                return div;
+            }
+            {% comment %} document.querySelector('#chatbox').appendChild(createMenuItem(data.user + data.message + '\n')) {% endcomment %}
+            document.querySelector('#chatbox').appendChild(createMenuItem(username,data.user,data.message))
         };
 
         chatSocket.onclose = function(e) {
@@ -34,14 +54,22 @@
         document.querySelector('#chat-message-input').onkeyup = function(e) {
             if (e.keyCode === 13) {  // enter, return
                 document.querySelector('#chat-message-submit').click();
+       
             }
         };
 
         document.querySelector('#chat-message-submit').onclick = function(e) {
             const messageInputDom = document.querySelector('#chat-message-input');
+            const userInputDom = document.querySelector('#username');
+            const userIdDom = document.querySelector('#userid');
             const message = messageInputDom.value;
+            const user = userInputDom.value;
+            const userid = userIdDom.value;
             chatSocket.send(JSON.stringify({
-                'message': message
+                'message': message,
+                'user':user,
+                'userid':userid,
+                'roomid':roomName
             }));
             messageInputDom.value = '';
         };

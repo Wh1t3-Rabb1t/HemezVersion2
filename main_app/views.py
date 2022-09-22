@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Profile, Chatroom
+from .models import Profile, Chatroom, Message
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 
@@ -8,7 +8,9 @@ from django.contrib.auth.models import User
 
 from django.db import transaction
 # Importing instances of ModelForms
+
 from .forms import UserForm, ProfileForm, ChatroomForm
+
 
 # AWS-related imports
 import uuid
@@ -30,6 +32,18 @@ from asgiref.sync import async_to_sync
 
 
 # Create your views here.
+
+def room(request, room_name):
+    chatrooms = Chatroom.objects.all()
+    chatroom = Chatroom.objects.all().filter(id = room_name)
+    messages = Message.objects.all().filter(chat_id_id = room_name)
+    return render(request, 'chat/room.html', {
+        'room_name': room_name,
+        'chatrooms':chatrooms,
+        'current_room':chatroom,
+        'messages':messages
+    })
+
 def home(request):
     chatrooms = Chatroom.objects.all()
     return render(request, 'home.html',{
@@ -46,6 +60,7 @@ def about(request):
     })
 
 
+
 @login_required
 def lobby(request):
     chatrooms = Chatroom.objects.filter(host = request.user.id)
@@ -53,14 +68,6 @@ def lobby(request):
         'chatrooms': chatrooms,
     })
 
-
-@login_required
-def room(request, room_name):
-    chatrooms = Chatroom.objects.all()
-    return render(request, 'chat/room.html', {
-        'chatrooms':chatrooms,
-        'room_name': room_name,
-    })
 
 
 @login_required
@@ -188,19 +195,19 @@ class ChatConsumer(WebsocketConsumer):
 def create_room(request):
     if request.method == "POST":
         chatroom_form = ChatroomForm(request.POST)
-        photo_file = request.FILES.get('photo-file', None)
-        if photo_file:
-            s3 = boto3.client('s3')
-            key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
-            try:
-                s3.upload_fileobj(photo_file, BUCKET, key)
-                url = f"{S3_BASE_URL}{BUCKET}/{key}"
-            except:
-                print('An error occurred uploading file to S3')
+        # photo_file = request.FILES.get('photo-file', None)
+        # if photo_file:
+        #     s3 = boto3.client('s3')
+        #     key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        #     try:
+        #         s3.upload_fileobj(photo_file, BUCKET, key)
+        #         url = f"{S3_BASE_URL}{BUCKET}/{key}"
+        #     except:
+        #         print('An error occurred uploading file to S3')
         if chatroom_form.is_valid():
             new_chatroom = chatroom_form.save(commit=False)
             new_chatroom.host_id = request.user.id
-            new_chatroom.chat_pic = url
+            new_chatroom.chat_pic = 'https://i.imgur.com/QjMfCGy.jpeg'
             new_chatroom.save()
             return redirect('lobby')
         else:
