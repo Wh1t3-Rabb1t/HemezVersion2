@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Profile, Chatroom
+from .models import Profile, Chatroom, Message
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 
@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 
 from django.db import transaction
 # Importing instances of ModelForms
-from .forms import UserForm, ProfileForm 
+from .forms import UserForm, ProfileForm
 
 # AWS-related imports
 import uuid
@@ -35,9 +35,13 @@ def lobby(request):
 
 def room(request, room_name):
     chatrooms = Chatroom.objects.all()
+    chatroom = Chatroom.objects.all().filter(id = room_name)
+    messages = Message.objects.all().filter(chat_id_id = room_name)
     return render(request, 'chat/room.html', {
         'room_name': room_name,
-        'chatrooms':chatrooms
+        'chatrooms':chatrooms,
+        'current_room':chatroom,
+        'messages':messages
     })
 
 
