@@ -6,13 +6,12 @@
   <h1>{{name}}</h1>
 </div>
 
-<div class="chat-box">
     <div class="profile-card">
       <div class="profile-card-content">
         <span class="card-title">Username: {{ user.username }}</span>
         <span class="card-title">Name: {{ user.first_name }} {{ user.last_name}}</span>
         <span class="card-title">Email: {{ user.email }}</span>
-        <span class="card-title">Bio: {{ user.profile.bio }}</span>
+        <span class="card-title">Bio:  {{ user.profile.bio }}</span>
         <span class="card-title">Date joined: {{ user.profile.join_date }}</span>
         {% if user.profile.profile_pic %}
           <img class="responsive-img card-panel" src="{{ user.profile.profile_pic }}">
@@ -32,12 +31,16 @@
         <form action="{% url 'add_profile_pic' user.id %}" enctype="multipart/form-data" method="POST">
           <h4>Add a Profile Picture:</h4>
           {% csrf_token %}
-          <input type="file" name="photo-file">
+          <label class="custom-file-upload" value>
+            Upload File
+            <input type="file" class="file-button" name="photo-file">
+          </label>
           <br><br>
+          
           <input type="submit" class="btn" value="Upload Profile Pic">
+          
         </form>
       </div>
-    </div>
   
 </div>
 

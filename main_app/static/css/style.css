@@ -1,7 +1,10 @@
+
+/* Praetoria D OTF Font  */
+
 body {
     margin: 0;
     padding: 0;
-    font-family: 'GFS Neohellenic', sans-serif;    
+    font-family: 'Cinzel', serif;   
     color: var(--text);
     background: var(--background);
     transition: background 500ms ease-in-out, color 1000ms ease-in-out;
@@ -45,7 +48,7 @@ header {
     list-style-type: none;
     padding: 0;
     font-size: 120%;
-    margin: 0px;
+    margin: 0px 
 }
 
 .navbar-nav > li {
@@ -60,16 +63,13 @@ header {
 .nav-item:not(:nth-child(2)):hover {
     transform: scale(1.3);
     transition: 0.75s;
-    text-shadow: #FC0 1px 0 10px;
-    color: #FC0;
+    text-shadow: rgb(45, 234, 248) 5px 0 20px;
+    color: rgb(45, 234, 248);
     cursor: pointer;
 }
 
-.nav-item:not(:nth-child(2)):active {
-    transform: scale(0.8);
-    /* transform: left; */
-    /* transform: skewX();
-    transform: skewY(); */
+.nav-item:active {
+    transform: scale(1.3);
 }
 
 .logo {
@@ -107,6 +107,7 @@ header {
 #sun:hover {
     transform: scale(1.3);
     transition: 0.80s;
+    cursor: pointer;
 }
 
 #moon {
@@ -117,6 +118,7 @@ header {
 #moon:hover {
     transform: scale(1.3);
     transition: 0.80s;
+    cursor: pointer;
 }
 
 .chat-window {
@@ -132,7 +134,7 @@ header {
     background-color: azure;
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    margin: 25% 18% 25% 18%;
+    margin: 10% 18% 100% 18%;
     width: 98%;
     height: 100%;
     display: flex;
@@ -193,20 +195,30 @@ header {
 }
 
 .live-chat{
+    border-radius: 15px;
+    min-height: 70%;
+    margin: 0.5% 0.5% 0.5% 0.5%;
+    overflow-y:scroll;
+    width: 98%;
+    height:98%;
+}
+
+.div-chat{
     background-color: #c691df;
     text-align: center;
     border-radius: 15px;
     min-height: 70%;
     margin: 0.5% 0.5% 0.5% 0.5%;
-    height: 69%; 
+    height:50vh; 
     width: 98%;
     background: linear-gradient(to right, var(--white) -50%, var(--dark-purple) 90%);
 }
 
+
 .input-box{
     border-radius: 15px; 
     background-color: #e496cb;
-    height: 100%;
+    height:15%;
     width: 98%;
     margin: 0% 0.5% 0.5% 0.5%;
     text-align: center;
@@ -214,6 +226,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;   
+
 }
 
 .message-box{
@@ -323,7 +336,7 @@ ul.members {
     border-radius: 15px;
     height: 100%;
     width: 99%;
-    margin: 0.5% 0.5% 0.5% 0.5%;
+    margin: 0.5% 2% 0.5% 2%;
     padding-top: 10px;
     background: linear-gradient(to right, var(--white) -50%, var(--dark-purple) 100%);
 }
@@ -346,11 +359,106 @@ ul.members {
     background: linear-gradient(to right, var(--white) -50%, var(--dark-purple) 100%);
 }
 
+
+
+
+#photo-button{
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+
+}
+
+input#id_room_name{
+    background-color: azure;
+    border-radius: 15px;
+    border: none;
+}
+
+input.btn{
+    background-color: azure;
+    width: 25%;
+    border-radius: 15px;
+}
+
+input {
+    background-color: azure;
+    border-radius: 15px;
+    border: none;
+    padding: 10px;
+}
+
+input:active {
+    background-color: azure;
+    border-radius: 15px;
+    border: none;
+    padding: 10px;
+}
+
+#id_bio{
+    border-radius: 15px;
+    background-color: azure;
+}
+
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 1% 4%;
+    cursor: pointer;
+    border-radius: 15px;
+    background-color: azure;
+}
+
+.custom-file-upload:hover{
+    cursor: pointer;
+    background-color: rgb(188, 202, 202);
+}
+
+.btn:hover{
+    cursor: pointer;
+    background-color: rgb(188, 202, 202);
+}
+
+.file-button{
+    display: none;
+}
+
+#id_email, #id_first_name, #id_last_name, #id_bio{
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    color: azure;
+}
+
+.login-btn{
+    background-color: azure;
+    text-align: center;
+}
+
+.login-btn:hover{
+color: white;
+cursor: pointer;
+background-color: var(--dark-purple) ;
+}
+
+.login-nav{
+    text-align: center;
+    width: 98%;
+    height: 98%;
+    margin: 0.5% 0.5% 0.5% 0.5%;
+    border-radius: 15px;
+    background: linear-gradient(to right, var(--white) -50%, var(--dark-purple) 90%);
+    font-size: 20px;
+}
 /*-------------------------------------------------------------------------*/
 /*--------------------------- Login Page ----------------------------------*/
 /*-------------------------------------------------------------------------*/
 
-.login-box {
+/* .login-box {
     text-align: center;
     border-radius: 15px;
     height: 100%;
@@ -358,7 +466,7 @@ ul.members {
     margin: 0.5% 0.5% 0.5% 0.5%;
     padding-top: 20px;
     background: linear-gradient(to right, var(--white) -50%, var(--dark-purple) 100%);
-}
+} */
 
 /*-------------------------------------------------------------------------*/
 /*--------------------------- Signup Page ---------------------------------*/
@@ -422,4 +530,26 @@ ul.members {
     max-width: 100%;
     max-height: 100%;
     width: auto;
+}
+
+.signup-btn {
+    text-align: center;
+}
+
+
+/*-------------------------------------------------------------------------*/
+/*--------------------------- Signup Page ---------------------------------*/
+/*-------------------------------------------------------------------------*/
+
+#user-message {
+    color:white;
+    background-color:green;
+    padding:20px;
+    width:100px;
+    border-radius:15px;
+    font-size:20px;
+    font-weight:bold;
+    text-align:right;
+
+
 }
