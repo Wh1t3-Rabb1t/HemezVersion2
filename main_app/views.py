@@ -47,12 +47,15 @@ def home(request):
     chatrooms = Chatroom.objects.all()
     print(chatrooms)
     return render(request, 'home.html',{
-        'chatrooms':chatrooms
+        'chatrooms':chatrooms,
+        'name': 'Home'
     })
 
 
 def about(request):
-    return render(request, 'about.html')
+    return render(request, 'about.html', {
+        'name': 'About',
+    })
 
 
 def chatrooms(request):
