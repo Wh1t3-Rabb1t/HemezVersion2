@@ -437,3 +437,38 @@ background-color: var(--dark-purple) ;
     background: linear-gradient(to right, var(--white) -50%, var(--dark-purple) 90%);
     font-size: 20px;
 }
+/*-------------------------------------------------------------------------*/
+/*--------------------------- Login Page ----------------------------------*/
+/*-------------------------------------------------------------------------*/
+
+/* .login-box {
+    text-align: center;
+    border-radius: 15px;
+    height: 100%;
+    width: 99%;
+    margin: 0.5% 0.5% 0.5% 0.5%;
+    padding-top: 20px;
+    background: linear-gradient(to right, var(--white) -50%, var(--dark-purple) 100%);
+} */
+
+/*-------------------------------------------------------------------------*/
+/*--------------------------- Signup Page ---------------------------------*/
+/*-------------------------------------------------------------------------*/
+
+.signup-box {
+    display: flex;
+    align-items: flex-start;
+    border-radius: 15px;
+    height: 100%;
+    width: 99%;
+    margin: 0.5% 0.5% 0.5% 0.5%;
+    padding-top: 20px;
+    padding-left: 200px;
+    padding-right: 200px;
+    box-sizing: border-box;
+    background: linear-gradient(to right, var(--white) -50%, var(--dark-purple) 100%);
+}
+
+.signup-box ul {
+    list-style-type: none;
+}
