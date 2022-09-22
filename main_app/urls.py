@@ -3,7 +3,6 @@ from . import views
 
 
 urlpatterns = [
-
     # MAIN URLS
     path('', views.home, name='home'),
     path('about/', views.about, name ='about'),
@@ -15,7 +14,6 @@ urlpatterns = [
     path('accounts/signup/', views.signup , name='signup'),
 
     #CHAT URLS
-    # use 'lobby' as index view, with href links to edit and delete
     path('chat/', views.lobby, name='lobby'),
     path('chat/<str:room_name>/', views.room, name='room'),
     path('chatroom/create',views.create_room, name='create_room'),

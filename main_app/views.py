@@ -11,7 +11,6 @@ from django.db import transaction
 
 from .forms import UserForm, ProfileForm, ChatroomForm
 
-
 # AWS-related imports
 import uuid
 import boto3
@@ -32,7 +31,7 @@ from asgiref.sync import async_to_sync
 
 
 # Create your views here.
-
+@login_required
 def room(request, room_name):
     chatrooms = Chatroom.objects.all()
     chatroom = Chatroom.objects.all().filter(id = room_name)
@@ -43,6 +42,7 @@ def room(request, room_name):
         'current_room':chatroom,
         'messages':messages
     })
+
 
 def home(request):
     chatrooms = Chatroom.objects.all()
@@ -60,7 +60,6 @@ def about(request):
     })
 
 
-
 @login_required
 def lobby(request):
     chatrooms = Chatroom.objects.filter(host = request.user.id)
@@ -68,7 +67,6 @@ def lobby(request):
         'chatrooms': chatrooms,
         'name': 'Your Chatrooms',
     })
-
 
 
 @login_required
@@ -92,6 +90,7 @@ def profile(request):
         'profile_form': profile_form
     })
 
+
 @login_required
 @transaction.atomic
 def user_update(request, user_id):
@@ -110,6 +109,7 @@ def user_update(request, user_id):
         'chatrooms':chatrooms,
     })
 
+
 @login_required
 def add_profile_pic(request, user_id):
     # photo-file will be the "name" atrribute on the <input type = 'file'>
@@ -126,6 +126,7 @@ def add_profile_pic(request, user_id):
         except:
             print('An error occurred uploading file to S3')
     return redirect('profile')
+
 
 def signup(request):
   error_message = ''
@@ -152,9 +153,68 @@ def signup(request):
   return render(request, 'registration/signup.html', context)
 
 
+@login_required
+def create_room(request):
+    if request.method == "POST":
+        chatroom_form = ChatroomForm(request.POST)
+        photo_file = request.FILES.get('photo-file', None)
+        if photo_file:
+            s3 = boto3.client('s3')
+            key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+            try:
+                s3.upload_fileobj(photo_file, BUCKET, key)
+                url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            except:
+                print('An error occurred uploading file to S3')
+        else:
+            url = 'https://i.imgur.com/efLA0Or.jpeg'
+        if chatroom_form.is_valid():
+            new_chatroom = chatroom_form.save(commit=False)
+            new_chatroom.host_id = request.user.id
+            new_chatroom.chat_pic = url
+            new_chatroom.save()
+            return redirect('lobby')
+        else:
+            print(chatroom_form.errors)
+    # the following is for GET requests        
+    chatroom_form = ChatroomForm()
+    chatrooms = Chatroom.objects.all()
+    return render(request, 'main_app/chatroom_create.html', {
+        'chatrooms':chatrooms,
+        'chatroom_form': chatroom_form,
+        'name': 'Create Chatroom'
+        })
 
 
-# CHAT FEATURES CHANNELS
+@login_required
+def add_chatroom_pic(request, user_id):
+    # photo-file will be the "name" atrribute on the <input type = 'file'>
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            user = User.objects.get(id = user_id)
+            user.profile.profile_pic = url
+            user.save()
+        except:
+            print('An error occurred uploading file to S3')
+    return redirect('profile')
+
+
+class UpdateRoom(LoginRequiredMixin, UpdateView):
+    model= Chatroom
+    fields =['room_name',]
+
+
+class DeleteRoom(LoginRequiredMixin, DeleteView):
+    model= Chatroom
+    success_url = '/chat/'
+
+
+    # CHAT FEATURES CHANNELS
 class ChatConsumer(WebsocketConsumer):
     def connect(self):
         self.room_group_name = 'test'
@@ -190,61 +250,3 @@ class ChatConsumer(WebsocketConsumer):
             'user': user,
 
         }))
-
-
-@login_required
-def create_room(request):
-    if request.method == "POST":
-        chatroom_form = ChatroomForm(request.POST)
-        photo_file = request.FILES.get('photo-file', None)
-        if photo_file:
-            s3 = boto3.client('s3')
-            key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
-            try:
-                s3.upload_fileobj(photo_file, BUCKET, key)
-                url = f"{S3_BASE_URL}{BUCKET}/{key}"
-            except:
-                print('An error occurred uploading file to S3')
-        else:
-            url = 'https://imgur.com/t/funny/efLA0Or'
-        if chatroom_form.is_valid():
-            new_chatroom = chatroom_form.save(commit=False)
-            new_chatroom.host_id = request.user.id
-            new_chatroom.chat_pic = url
-            new_chatroom.save()
-            return redirect('lobby')
-        else:
-            print(chatroom_form.errors)
-    # the following is for GET requests        
-    chatroom_form = ChatroomForm()
-    chatrooms = Chatroom.objects.all()
-    return render(request, 'main_app/chatroom_create.html', {
-        'chatrooms':chatrooms,
-        'chatroom_form': chatroom_form,
-        'name': 'Create Chatroom'
-        })
-
-@login_required
-def add_chatroom_pic(request, user_id):
-    # photo-file will be the "name" atrribute on the <input type = 'file'>
-    photo_file = request.FILES.get('photo-file', None)
-    if photo_file:
-        s3 = boto3.client('s3')
-        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
-        try:
-            s3.upload_fileobj(photo_file, BUCKET, key)
-            url = f"{S3_BASE_URL}{BUCKET}/{key}"
-            user = User.objects.get(id = user_id)
-            user.profile.profile_pic = url
-            user.save()
-        except:
-            print('An error occurred uploading file to S3')
-    return redirect('profile')
-
-class UpdateRoom(LoginRequiredMixin, UpdateView):
-    model= Chatroom
-    fields =['room_name',]
-
-class DeleteRoom(LoginRequiredMixin, DeleteView):
-    model= Chatroom
-    success_url = '/chat/'
