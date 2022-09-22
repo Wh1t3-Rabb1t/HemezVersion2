@@ -131,7 +131,7 @@ ASGI_APPLICATION = 'livechat.asgi.application'
 # }
 
 
-# FOR HEROKU FINAL 
+# # FOR HEROKU FINAL 
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',

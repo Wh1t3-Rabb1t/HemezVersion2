@@ -3,13 +3,15 @@
 {% block content %}
 
 <body>
+    <form>
     <h3 style='text-align:center'>{{room_name}}</h3>
     <textarea id="chat-log" cols="100" rows="20"></textarea><br>
     <input id="chat-message-input" type="text" size="100"><br>
-    <input id='username' type='hidden' name='user' value={{user.username}}>
+    <input id='username' type='hidden' name='username' value={{user.username}}>
     <input id='userid' type='hidden' name='user' value={{user.id}}>
+    <input id='roomid' type='hidden' name='roomid' value={{room_name}}>
     <input id="chat-message-submit" type="button" value="Send">
-
+    </form>
     {{ room_name|json_script:"room-name" }}
 
 
@@ -26,7 +28,7 @@
 
         chatSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
-            document.querySelector('#chat-log').value += (data.message + data.user + '\n');
+            document.querySelector('#chat-log').value += (data.user+ data.message + '\n');
         };
 
         chatSocket.onclose = function(e) {
@@ -51,11 +53,10 @@
             chatSocket.send(JSON.stringify({
                 'message': message,
                 'user':user,
-                'userid':userid
+                'userid':userid,
+                'roomid':roomName
             }));
             messageInputDom.value = '';
-            userInputDom.value = '';
-            userIdDom.value = '';
         };
     </script>
 </body>

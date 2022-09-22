@@ -40,7 +40,7 @@
         {% for chatroom in chatrooms %}
     
         <div style='display:flex; margin:20px'>
-            <a href ="/chat/{{chatroom.room_name}}" >
+            <a href ="/chat/{{chatroom.id}}" >
             <img style='height:50px;width:50px; border-radius:50%' class='chat-pic' src="{{chatroom.chat_pic}}"/>
             </a>
             <li><p>{{ chatroom.room_name }}</p></li>
