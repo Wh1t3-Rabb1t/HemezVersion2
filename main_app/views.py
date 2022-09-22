@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 
 from django.db import transaction
 # Importing instances of ModelForms
-from .forms import UserForm, ProfileForm 
+from .forms import UserForm, ProfileForm, ChatroomForm
 
 # AWS-related imports
 import uuid
@@ -61,8 +61,15 @@ def chatrooms(request):
 @login_required
 def profile(request):
     user = request.user
-    user_form = UserForm()
-    profile_form = ProfileForm()
+    # this should auto-fill in the user_form and profile_form instances with current User's values
+    user_form = UserForm(initial = {
+        'email': request.user.email,
+        'first_name': request.user.first_name,
+        'last_name': request.user.last_name,
+        }, instance = request.user)
+    profile_form = ProfileForm(initial ={
+        'bio': request.user.profile.bio,
+        }, instance = request.user)
     return render(request, 'profile.html', {
         'user': user,
         'user_form': user_form,
@@ -102,7 +109,6 @@ def add_profile_pic(request, user_id):
     return redirect('profile')
 
 def signup(request):
-
   error_message = ''
   if request.method == 'POST':
     # This is how to create a 'user' form object
@@ -162,13 +168,57 @@ class ChatConsumer(WebsocketConsumer):
 
         }))
 
-class CreateRoom(LoginRequiredMixin, CreateView):
-    model= Chatroom
-    fields =['room_name','chat_pic']
+# class CreateRoom(LoginRequiredMixin, CreateView):
+#     model= Chatroom
+#     fields =['room_name','chat_pic']
 
-    def form_valid(self, form):
-        form.instance.host_id = self.request.user
-        return super().form_valid(form)
+#     def form_valid(self, form):
+#         form.instance.host_id = self.request.user
+#         return super().form_valid(form)
+
+@login_required
+def create_room(request):
+    if request.method == "POST":
+        chatroom_form = ChatroomForm(request.POST)
+        photo_file = request.FILES.get('photo-file', None)
+        if photo_file:
+            s3 = boto3.client('s3')
+            key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+            try:
+                s3.upload_fileobj(photo_file, BUCKET, key)
+                url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            except:
+                print('An error occurred uploading file to S3')
+        if chatroom_form.is_valid():
+            new_chatroom = chatroom_form.save(commit=False)
+            new_chatroom.host_id = request.user.id
+            new_chatroom.chat_pic = url
+            new_chatroom.save()
+            return redirect('home')
+        else:
+            print(chatroom_form.errors)
+    # the following is for GET requests        
+    chatroom_form = ChatroomForm()
+    return render(request, 'main_app/chatroom_create.html', {
+        'chatroom_form': chatroom_form
+        })
+
+@login_required
+def add_chatroom_pic(request, user_id):
+    # photo-file will be the "name" atrribute on the <input type = 'file'>
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            user = User.objects.get(id = user_id)
+            user.profile.profile_pic = url
+            user.save()
+        except:
+            print('An error occurred uploading file to S3')
+    return redirect('profile')
 
 class UpdateRoom(UpdateView):
     model= Chatroom

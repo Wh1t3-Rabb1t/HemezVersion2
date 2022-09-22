@@ -31,7 +31,7 @@ class Profile(models.Model):
 
 # CHATROOM
 class Chatroom(models.Model):
-    host_id = models.ForeignKey(User, on_delete = models.CASCADE)
+    host = models.ForeignKey(User, on_delete = models.CASCADE)
     room_name = models.CharField(max_length=100)
     chat_pic = models.CharField(max_length=200, blank=True)
 
