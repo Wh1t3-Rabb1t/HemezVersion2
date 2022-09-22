@@ -39,27 +39,33 @@ def home(request):
 
 
 def about(request):
+    chatrooms = Chatroom.objects.all()
     return render(request, 'about.html', {
-        'name': 'About',
+        'chatrooms':chatrooms,
+        'name': 'About Hermes Messenger App',
     })
 
 
 @login_required
 def lobby(request):
-    return render(request, 'chat/index.html')
+    chatrooms = Chatroom.objects.filter(host = request.user.id)
+    return render(request, 'chat/index.html', {
+        'chatrooms': chatrooms,
+    })
 
 
 @login_required
 def room(request, room_name):
     chatrooms = Chatroom.objects.all()
     return render(request, 'chat/room.html', {
+        'chatrooms':chatrooms,
         'room_name': room_name,
-        'chatrooms':chatrooms
     })
 
 
 @login_required
 def profile(request):
+    chatrooms = Chatroom.objects.all()
     user = request.user
     # this should auto-fill in the user_form and profile_form instances with current User's values
     user_form = UserForm(initial = {
@@ -71,6 +77,8 @@ def profile(request):
         'bio': request.user.profile.bio,
         }, instance = request.user)
     return render(request, 'profile.html', {
+        'chatrooms':chatrooms,
+        'name': 'User Profile',
         'user': user,
         'user_form': user_form,
         'profile_form': profile_form
@@ -89,7 +97,10 @@ def user_update(request, user_id):
         else:
             print(user_form.errors)
             print(profile_form.errors)
-    return render(request, '')
+    chatrooms = Chatroom.objects.all()
+    return render(request, '', {
+        'chatrooms':chatrooms,
+    })
 
 @login_required
 def add_profile_pic(request, user_id):
@@ -192,8 +203,11 @@ def create_room(request):
             print(chatroom_form.errors)
     # the following is for GET requests        
     chatroom_form = ChatroomForm()
+    chatrooms = Chatroom.objects.all()
     return render(request, 'main_app/chatroom_create.html', {
-        'chatroom_form': chatroom_form
+        'chatrooms':chatrooms,
+        'chatroom_form': chatroom_form,
+        'name': 'Create Chatroom'
         })
 
 @login_required

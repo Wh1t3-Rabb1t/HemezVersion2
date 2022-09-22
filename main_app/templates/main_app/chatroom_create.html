@@ -1,17 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Create ChatRoom</h1>
+
+<div class="title-bar">
+  <h1 style="text-align: center">{{name}}</h1>
+</div>
  
-  <div class='add-container'>
-  <form action="{% url 'create_room' %}" enctype="multipart/form-data" method="post">
+<div class="chat-box">
+  <div class="create-chatroom-box">
+
+  
+  <form action="{% url 'create_room' %}" enctype="multipart/form-data" method="post" class="create-chatroom-form">
     {% csrf_token %}
     <h4>Add a Profile Picture:</h4>
     <input type="file" name="photo-file">
       {{ chatroom_form.as_p }}
     <input type="submit" value="Create Room" class="btn">
   </form>
-  <div>
-  </div>
+
+</div>
+</div>
 
 {% endblock %}

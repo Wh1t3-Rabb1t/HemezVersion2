@@ -1,32 +1,22 @@
 {% extends 'base.html' %}
+
 {% block content %}
 
 <div class='title-bar'>
-    {% if user.is_authenticated%}
-        <h3 style="text-align:center;"> {{name}}</h3>
-    {%endif%}
+        <!-- change {{name}} to name of chatroom -->
+        <h1> {{name}}</h1>
 </div>
 
+<!-- Chatroom Nav -->
+<nav class="chat-box">
+    <nav class="live-chat">
+        {% block content2 %}
 
-                <!-- Chatroom Nav -->
-                <nav class="chat-box">
-
-                    {% block content2 %}
-
-                    {% endblock %}
-                    <!-- <div class='title-bar'>
-                        <h1 class="chat-names">Home Page</h1>
-                    </div>
-                    
-                    <nav class="live-chat">
-                        <h1>CHATBOX</h1>
-                    </nav>
-
-                    <nav class="input-box">
-                        <input type="text" class="message-box" placeholder="Type Message Here">
-                    </nav> -->
-                    
-                </nav>
-
-            </div>
+        {% endblock %}
+    </nav>
+    <nav class="input-box">
+        <input type="text" class="message-box" placeholder="Type Message Here">
+    </nav>  
+</nav>
+           
 {% endblock %}

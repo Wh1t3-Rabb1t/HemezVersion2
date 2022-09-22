@@ -1,15 +1,20 @@
-<!-- chat/templates/chat/index.html -->
-
 {% extends 'base.html' %}
+
 {% block content %}
 
 
 <body>
+    {% for chatroom in chatrooms %}
+        <div>
+            <div><img class='chatroom-pic' src="{{chatroom.chat_pic}}"/></div>
+        </div>
+    {% endfor %}
+
     What chat room would you like to enter?<br>
     <input id="room-name-input" type="text" size="100"><br>
     <input id="room-name-submit" type="button" value="Enter">
 
-    <script>
+    <!-- <script>
         document.querySelector('#room-name-input').focus();
         document.querySelector('#room-name-input').onkeyup = function(e) {
             if (e.keyCode === 13) {  // enter, return
@@ -21,11 +26,8 @@
             var roomName = document.querySelector('#room-name-input').value;
             window.location.pathname = '/chat/' + roomName + '/';
         };
-    </script>
+    </script> -->
 </body>
 
 
 {% endblock %}
-
-
-
