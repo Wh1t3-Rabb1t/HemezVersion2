@@ -196,19 +196,21 @@ class ChatConsumer(WebsocketConsumer):
 def create_room(request):
     if request.method == "POST":
         chatroom_form = ChatroomForm(request.POST)
-        # photo_file = request.FILES.get('photo-file', None)
-        # if photo_file:
-        #     s3 = boto3.client('s3')
-        #     key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
-        #     try:
-        #         s3.upload_fileobj(photo_file, BUCKET, key)
-        #         url = f"{S3_BASE_URL}{BUCKET}/{key}"
-        #     except:
-        #         print('An error occurred uploading file to S3')
+        photo_file = request.FILES.get('photo-file', None)
+        if photo_file:
+            s3 = boto3.client('s3')
+            key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+            try:
+                s3.upload_fileobj(photo_file, BUCKET, key)
+                url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            except:
+                print('An error occurred uploading file to S3')
+        else:
+            url = 'https://imgur.com/t/funny/efLA0Or'
         if chatroom_form.is_valid():
             new_chatroom = chatroom_form.save(commit=False)
             new_chatroom.host_id = request.user.id
-            new_chatroom.chat_pic = 'https://i.imgur.com/QjMfCGy.jpeg'
+            new_chatroom.chat_pic = url
             new_chatroom.save()
             return redirect('lobby')
         else:
@@ -239,10 +241,10 @@ def add_chatroom_pic(request, user_id):
             print('An error occurred uploading file to S3')
     return redirect('profile')
 
-class UpdateRoom(UpdateView):
+class UpdateRoom(LoginRequiredMixin, UpdateView):
     model= Chatroom
-    fields =['room_name','chat_pic']
+    fields =['room_name',]
 
-class DeleteRoom(DeleteView):
+class DeleteRoom(LoginRequiredMixin, DeleteView):
     model= Chatroom
-    success_url = "/"
+    success_url = '/chat/'
