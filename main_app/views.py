@@ -33,12 +33,15 @@ from asgiref.sync import async_to_sync
 def home(request):
     chatrooms = Chatroom.objects.all()
     return render(request, 'home.html',{
-        'chatrooms':chatrooms
+        'chatrooms':chatrooms,
+        'name': 'Home'
     })
 
 
 def about(request):
-    return render(request, 'about.html')
+    return render(request, 'about.html', {
+        'name': 'About',
+    })
 
 
 @login_required
