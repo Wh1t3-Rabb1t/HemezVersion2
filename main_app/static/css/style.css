@@ -68,7 +68,7 @@ header {
     cursor: pointer;
 }
 
-.nav-item:active {
+.nav-item:not(:nth-child(2)):active {
     transform: scale(1.3);
 }
 
