@@ -2,8 +2,6 @@ from django.urls import path
 from . import views
 
 
-
-
 urlpatterns = [
 
     # MAIN URLS
@@ -17,15 +15,10 @@ urlpatterns = [
     path('accounts/signup/', views.signup , name='signup'),
 
     #CHAT URLS
+    # use 'lobby' as index view, with href links to edit and delete
     path('chat/', views.lobby, name='lobby'),
     path('chat/<str:room_name>/', views.room, name='room'),
-    path('chatrooms/', views.chatrooms, name ='chatrooms'),
-    path('chatroom/create',views.CreateRoom.as_view(), name='create_room'),
+    path('chatroom/create',views.create_room, name='create_room'),
     path('chatroom/<int:pk>/update/', views.UpdateRoom.as_view(), name='pokemon_update'),
     path('chatroom/<int:pk>/delete/', views.DeleteRoom.as_view(), name='pokemon_delete'),
-
 ]
-
-
-
-

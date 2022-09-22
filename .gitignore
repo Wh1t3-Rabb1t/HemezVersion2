@@ -1,5 +1,9 @@
-/static/**
-!/static/**
-__pycache__/
+<<<<<<< HEAD
+=======
+
+>>>>>>> 402c9c78ee3c7b139a36669e1f05e8c696602c7f
+*/__pycache__/
+*/*/__pycache__/
 .vscode
 livechat/settings.py
+

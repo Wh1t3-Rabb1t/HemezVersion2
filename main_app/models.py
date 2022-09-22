@@ -6,7 +6,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
-
 # class Profile extends the User model
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -27,11 +26,9 @@ class Profile(models.Model):
         instance.profile.save()
 
 
-
-
 # CHATROOM
 class Chatroom(models.Model):
-    host_id = models.ForeignKey(User, on_delete = models.CASCADE)
+    host = models.ForeignKey(User, on_delete = models.CASCADE)
     room_name = models.CharField(max_length=100)
     chat_pic = models.CharField(max_length=200, blank=True)
 
@@ -53,5 +50,3 @@ class Message(models.Model):
 
     def __str__(self):
         return self.message_body
-
-
