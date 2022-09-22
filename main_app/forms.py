@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Profile
+from .models import Profile, Chatroom
 from django.contrib.auth.models import User
 
 class UserForm(ModelForm):
@@ -11,3 +11,8 @@ class ProfileForm(ModelForm):
     class Meta:
         model = Profile
         fields = ('bio',)
+
+class ChatroomForm(ModelForm):
+    class Meta:
+        model = Chatroom
+        fields = ('room_name',)
