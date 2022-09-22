@@ -1,7 +1,13 @@
+/* Praetoria D OTF Font  */
+@font-face {
+    font-family: PraetoriaD;
+    src: url(main_app\static\css\style.css) format('opentype');
+}
+
 body {
     margin: 0;
     padding: 0;
-    font-family: 'GFS Neohellenic', sans-serif;    
+    font-family: 'Cinzel', serif;   
     color: var(--text);
     background: var(--background);
     transition: background 500ms ease-in-out, color 1000ms ease-in-out;
@@ -104,6 +110,7 @@ header {
 #sun:hover {
     transform: scale(1.3);
     transition: 0.80s;
+    cursor: pointer;
 }
 
 #moon {
@@ -114,6 +121,7 @@ header {
 #moon:hover {
     transform: scale(1.3);
     transition: 0.80s;
+    cursor: pointer;
 }
 
 .chat-window {
@@ -418,7 +426,7 @@ a{
 }
 
 .login-btn{
-    background-color: var(--dark-magenta);
+    background-color: azure;
     text-align: center;
 }
 
@@ -431,8 +439,8 @@ background-color: var(--dark-purple) ;
 .login-nav{
     text-align: center;
     width: 98%;
-    margin: 0.5% 0.5% 0 0.5%;
-    padding: 36% 0;
+    height: 98%;
+    margin: 0.5% 0.5% 0.5% 0.5%;
     border-radius: 15px;
     background: linear-gradient(to right, var(--white) -50%, var(--dark-purple) 90%);
     font-size: 20px;
@@ -471,4 +479,8 @@ background-color: var(--dark-purple) ;
 
 .signup-box ul {
     list-style-type: none;
+}
+
+.signup-btn {
+    text-align: center;
 }
