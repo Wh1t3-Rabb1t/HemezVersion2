@@ -4,16 +4,16 @@
 
 <body>
 
-    <h3 style='text-align:center'>{{room_name}}</h3>
-    <div>
-
-    </div>
-    <div id='chatbox' style="overflow-y:scroll; height:400px; border: solid 2px red">
+    {% comment %} <h3 style='text-align:center'>{{room_name}}</h3> {% endcomment %}
+    <div id='chatbox' class="live-chat"  >
         {%for message in messages %}
         <p>{{message.message_body}}</p>
         {%endfor%}
     </div>
-    <input id="chat-message-input" type="text" size="100"><br>
+  <nav class="input-box">
+    <input id="chat-message-input" type="text" size="100" placeholder="Enter chat here"><br>
+    </nav> 
+   
     <input id='username' type='hidden' name='username' value={{user.username}}>
     <input id='userid' type='hidden' name='user' value={{user.id}}>
     <input id='roomid' type='hidden' name='roomid' value={{room_name}}>
@@ -39,7 +39,7 @@
             //create div element
             function createMenuItem(match,name,message) {
                 let div = document.createElement('div');
-                div.innerHTML = match === name ?  `<p id='user-message' >${name} says: ${message}</p>` :  `<p id=not-user-message> ${name} says: ${message}</p>` 
+                div.innerHTML = match === name ?  `<p id='user-message' >${name} says: ${message}</p>` :  `<p id="not-user-message"> ${name} says: ${message}</p>` 
                 return div;
             }
             {% comment %} document.querySelector('#chatbox').appendChild(createMenuItem(data.user + data.message + '\n')) {% endcomment %}
