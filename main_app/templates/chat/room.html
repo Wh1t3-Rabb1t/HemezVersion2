@@ -3,7 +3,7 @@
 {% block content %}
 
 <body>
-    <form>
+
     <h3 style='text-align:center'>{{room_name}}</h3>
     <textarea id="chat-log" cols="100" rows="20"></textarea><br>
     <input id="chat-message-input" type="text" size="100"><br>
@@ -11,7 +11,7 @@
     <input id='userid' type='hidden' name='user' value={{user.id}}>
     <input id='roomid' type='hidden' name='roomid' value={{room_name}}>
     <input id="chat-message-submit" type="button" value="Send">
-    </form>
+
     {{ room_name|json_script:"room-name" }}
 
 
@@ -19,7 +19,7 @@
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
         const chatSocket = new WebSocket(
-            'wss://'
+            'ws://'
             + window.location.host
             + '/ws/chat/'
             + roomName
