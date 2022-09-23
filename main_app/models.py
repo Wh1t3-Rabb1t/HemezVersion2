@@ -45,8 +45,11 @@ class Chatroom(models.Model):
 # MESSAGE
 class Message(models.Model):
     user_id = models.ForeignKey(User, on_delete = models.CASCADE)
+    username = models.CharField(max_length=100)
     chat_id = models.ForeignKey(Chatroom, on_delete=models.CASCADE)
     message_body = models.TextField(max_length=255)
 
     def __str__(self):
         return self.message_body
+
+    

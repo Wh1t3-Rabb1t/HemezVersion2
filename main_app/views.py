@@ -33,9 +33,11 @@ from asgiref.sync import async_to_sync
 
 # Create your views here.
 
+@login_required
 def room(request, room_name):
     chatrooms = Chatroom.objects.all()
     chatroom = Chatroom.objects.all().filter(id = room_name)
+
     messages = Message.objects.all().filter(chat_id_id = room_name)
     return render(request, 'chat/room.html', {
         'room_name': room_name,
@@ -44,6 +46,7 @@ def room(request, room_name):
         'messages':messages
     })
 
+@login_required
 def home(request):
     chatrooms = Chatroom.objects.all()
     return render(request, 'home.html',{

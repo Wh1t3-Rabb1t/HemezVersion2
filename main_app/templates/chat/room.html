@@ -7,22 +7,37 @@
     {% comment %} <h3 style='text-align:center'>{{room_name}}</h3> {% endcomment %}
     <div id='chatbox' class="live-chat"  >
         {%for message in messages %}
-        <p>{{message.message_body}}</p>
+        {%if message.username == user.username %}
+        <p id='user-message'>{{message.username}} says: {{message.message_body}}</p>
+        {%else%}
+        <p id='not-user-message'>{{message.username}}  says: {{message.message_body}}</p>
+        {%endif%}
+        
+        
         {%endfor%}
     </div>
-  <nav class="input-box">
-    <input id="chat-message-input" type="text" size="100" placeholder="Enter chat here"><br>
-    </nav> 
+  <div class="input-box">
+    <input id="chat-message-input" type="text" size=40 placeholder="Enter chat here"><br>
+    <input id="chat-message-submit" type="button" value="Send">
+    </div> 
    
     <input id='username' type='hidden' name='username' value={{user.username}}>
     <input id='userid' type='hidden' name='user' value={{user.id}}>
     <input id='roomid' type='hidden' name='roomid' value={{room_name}}>
-    <input id="chat-message-submit" type="button" value="Send">
+    
 
     {{ room_name|json_script:"room-name" }}
 
 
     <script>
+        function scrollToBottom() {
+            let objDiv = document.getElementById("chatbox");
+            objDiv.scrollTop = objDiv.scrollHeight;
+            console.log('fired up')
+        }
+        
+        // Add this below the function to trigger the scroll on load.
+       
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
         const chatSocket = new WebSocket(
@@ -39,11 +54,16 @@
             //create div element
             function createMenuItem(match,name,message) {
                 let div = document.createElement('div');
-                div.innerHTML = match === name ?  `<div id='user-message' ><p style='text-align: right' >${name} says: ${message}</p></div>` :  `<p id="not-user-message"> ${name} says: ${message}</p>` 
+                div.style.margin='20px'
+                div.style.display='flex'
+                div.width ='100%'
+                div.innerHTML = match === name ?  `<p id='user-message'>${name} says: ${message}</p>` :  `<p id="not-user-message"> ${name} says: ${message}</p>` 
                 return div;
+                
             }
             {% comment %} document.querySelector('#chatbox').appendChild(createMenuItem(data.user + data.message + '\n')) {% endcomment %}
             document.querySelector('#chatbox').appendChild(createMenuItem(username,data.user,data.message))
+            scrollToBottom();
         };
 
         chatSocket.onclose = function(e) {
