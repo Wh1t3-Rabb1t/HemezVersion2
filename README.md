@@ -5,16 +5,14 @@
 ###### This is a radical new solution for all of your instant messaging needs. Hermes aspires to bring the functionality and accessibility of applications like Discord and What's App to the public.
 #### Screenshots  
 
-<p align="center" width="100%">  
-<a href="[https://imgur.com/ChgLGGA](https://imgur.com/ChgLGGA)"><img src="[https://i.imgur.com/ChgLGGA.png](https://i.imgur.com/ChgLGGA.png)" title="source: [imgur.com](http://imgur.com/)" /></a></p>
+![logo](https://i.imgur.com/ChgLGGA.png)
 
-<p align="center" >  
+![lightmode](https://i.imgur.com/jcLVGmq.png)
 
-<a href="[https://imgur.com/jcLVGmq](https://imgur.com/jcLVGmq)"><img src="[https://i.imgur.com/jcLVGmq.png](https://i.imgur.com/jcLVGmq.png)" title="source: [imgur.com](http://imgur.com/)" /></a>  
-</p><p align="center" >  
-<<a href="[https://imgur.com/rSPFudZ](https://imgur.com/rSPFudZ)"><img src="[https://i.imgur.com/rSPFudZ.png](https://i.imgur.com/rSPFudZ.png)" title="source: [imgur.com](http://imgur.com/)" /></a></p><p align="center" >  
-<a href="[https://imgur.com/J00LEFN](https://imgur.com/J00LEFN)"><img src="[https://i.imgur.com/J00LEFN.png](https://i.imgur.com/J00LEFN.png)" title="source: [imgur.com](http://imgur.com/)" /></a>  
-</p>
+![messaging](https://i.imgur.com/rSPFudZ.png)
+
+![fullpage](https://i.imgur.com/J00LEFN.png)
+
 
 ###### In the interest of curating a feature rich, captivating user experience we have implemented a toggle switch for light and dark mode, the ability to login, add friends to chatrooms, and upload pictures.  
 
