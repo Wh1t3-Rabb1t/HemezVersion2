@@ -1,8 +1,17 @@
 {% extends 'base.html' %}
+
 {% block content %}
 
-<h1>Home</h1>
+<div class='title-bar'>
+  <!-- change {{name}} to name of chatroom -->
+  <h1> {{name}}</h1>
+</div>
 
+<!-- Chatroom Nav -->
+  <div class="div-chat">
+    {% block content2 %}
 
-
+    {% endblock %}
+  </div>
+        
 {% endblock %}

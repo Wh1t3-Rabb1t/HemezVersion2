@@ -1,16 +1,43 @@
-<!-- chat/templates/chat/room.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <title>Chat Room</title>
-</head>
+{% extends 'home.html' %}
+
+{% block content2 %}
+
 <body>
-    <textarea id="chat-log" cols="100" rows="20"></textarea><br>
-    <input id="chat-message-input" type="text" size="100"><br>
+
+    {% comment %} <h3 style='text-align:center'>{{room_name}}</h3> {% endcomment %}
+    <div id='chatbox' class="live-chat"  >
+        {%for message in messages %}
+        {%if message.username == user.username %}
+        <p id='user-message'>{{message.username}} says: {{message.message_body}}</p>
+        {%else%}
+        <p id='not-user-message'>{{message.username}}  says: {{message.message_body}}</p>
+        {%endif%}
+        
+        
+        {%endfor%}
+    </div>
+  <div class="input-box">
+    <input id="chat-message-input" type="text" size=40 placeholder="Enter chat here"><br>
     <input id="chat-message-submit" type="button" value="Send">
+    </div> 
+   
+    <input id='username' type='hidden' name='username' value={{user.username}}>
+    <input id='userid' type='hidden' name='user' value={{user.id}}>
+    <input id='roomid' type='hidden' name='roomid' value={{room_name}}>
+    
+
     {{ room_name|json_script:"room-name" }}
+
+
     <script>
+        function scrollToBottom() {
+            let objDiv = document.getElementById("chatbox");
+            objDiv.scrollTop = objDiv.scrollHeight;
+            console.log('fired up')
+        }
+        
+        // Add this below the function to trigger the scroll on load.
+       
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
         const chatSocket = new WebSocket(
@@ -23,7 +50,20 @@
 
         chatSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
-            document.querySelector('#chat-log').value += (data.message + '\n');
+            const username = document.getElementById('username').value
+            //create div element
+            function createMenuItem(match,name,message) {
+                let div = document.createElement('div');
+                div.style.margin='20px'
+                div.style.display='flex'
+                div.width ='100%'
+                div.innerHTML = match === name ?  `<p id='user-message'>${name} says: ${message}</p>` :  `<p id="not-user-message"> ${name} says: ${message}</p>` 
+                return div;
+                
+            }
+            {% comment %} document.querySelector('#chatbox').appendChild(createMenuItem(data.user + data.message + '\n')) {% endcomment %}
+            document.querySelector('#chatbox').appendChild(createMenuItem(username,data.user,data.message))
+            scrollToBottom();
         };
 
         chatSocket.onclose = function(e) {
@@ -34,17 +74,26 @@
         document.querySelector('#chat-message-input').onkeyup = function(e) {
             if (e.keyCode === 13) {  // enter, return
                 document.querySelector('#chat-message-submit').click();
+       
             }
         };
 
         document.querySelector('#chat-message-submit').onclick = function(e) {
             const messageInputDom = document.querySelector('#chat-message-input');
+            const userInputDom = document.querySelector('#username');
+            const userIdDom = document.querySelector('#userid');
             const message = messageInputDom.value;
+            const user = userInputDom.value;
+            const userid = userIdDom.value;
             chatSocket.send(JSON.stringify({
-                'message': message
+                'message': message,
+                'user':user,
+                'userid':userid,
+                'roomid':roomName
             }));
             messageInputDom.value = '';
         };
     </script>
 </body>
-</html>
+
+{% endblock %}

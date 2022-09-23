@@ -1,16 +1,29 @@
-<!-- chat/templates/chat/index.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <title>Chat Rooms</title>
-</head>
-<body>
-    What chat room would you like to enter?<br>
-    <input id="room-name-input" type="text" size="100"><br>
-    <input id="room-name-submit" type="button" value="Enter">
+{% extends 'base.html' %}
 
-    <script>
+{% block content %}
+
+<body>
+  <div class="title-bar">
+    <h1>{{name}}</h1>
+  </div>
+  <div class="chatroom-box">
+    {% for chatroom in chatrooms %}
+      <div class="img-card">
+        <div class="img-container"><img class="chatroom-pic" src="{{chatroom.chat_pic}}"/>
+        </div>
+          <span>Chatroom name: {{chatroom.room_name}}</span>
+        <div>
+
+          <a href="{% url 'chatroom_delete' chatroom.id %}">Delete</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+    <!-- What chat room would you like to enter?<br>
+    <input id="room-name-input" type="text" size="100"><br>
+    <input id="room-name-submit" type="button" value="Enter"> -->
+
+    <!-- <script>
         document.querySelector('#room-name-input').focus();
         document.querySelector('#room-name-input').onkeyup = function(e) {
             if (e.keyCode === 13) {  // enter, return
@@ -22,6 +35,7 @@
             var roomName = document.querySelector('#room-name-input').value;
             window.location.pathname = '/chat/' + roomName + '/';
         };
-    </script>
+    </script> -->
 </body>
-</html>
+
+{% endblock %}
