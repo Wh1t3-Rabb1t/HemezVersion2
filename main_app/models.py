@@ -39,7 +39,8 @@ class Chatroom(models.Model):
         ordering =['room_name']
     
     def get_absolute_url(self):
-        return reverse('room', kwargs={'room_name': self.room_name})
+        return reverse('lobby')
+        # return reverse('lobby', kwargs={'room_name': self.room_name})
 
 
 # MESSAGE

@@ -1,3 +1,4 @@
+
 /* Praetoria D OTF Font  */
 
 body {
@@ -62,8 +63,11 @@ header {
 }
 
 .navbar-nav > li:first-child {
-  margin-right: auto;
   margin-left: 40px;
+}
+
+.navbar-nav > li:nth-child(2) {
+  margin-right: auto;
 }
 
 .nav-item:not(:nth-child(2)):hover {
@@ -74,8 +78,10 @@ header {
   cursor: pointer;
 }
 
-.nav-item:active {
-  transform: scale(1.3);
+
+.nav-item:not(:nth-child(2)):active {
+    transform: scale(1.3);
+
 }
 
 .logo {
@@ -127,12 +133,13 @@ header {
 }
 
 .chat-window {
-  display: grid;
-  grid-template-columns: 7% 93%;
-  height: 42vh;
-  justify-items: center;
-  margin: 0 0 0% 1%;
-  /* clip-path: polygon(45.11% 0%, 99.8% -120px, 99.22% 103.14%, 1px 102.56%, 0px -102px); */
+
+display: grid;
+grid-template-columns: 7% 93%;
+/* height: 42vh; */
+justify-items: center;
+margin: 0 0 20% 1%;
+
 }
 
 .vertical-navbar {
@@ -150,6 +157,23 @@ header {
   align-items: center;
   overflow: scroll;
   /* margin-top: 200px; */
+
+}
+
+.vertical-navbar {
+    background-color: azure;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    margin: 10% 18% 100% 18%;
+    width: 98%;
+    height: 96%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+    /* margin-top: 200px; */
+
 }
 
 .vertical-navbar::-webkit-scrollbar {
@@ -164,32 +188,30 @@ header {
   }
 }
 
-.chat-icon {
-  text-align: center;
-  border-radius: 50%;
-  height: 5vw;
-  width: 5vw;
-  transition-duration: 0.5s;
-  margin-top: 5px;
+.chat-icon img {
+    text-align: center;
+    border-radius: 50%;
+    height: 5vw;
+    width: 5vw;
+    transition-duration: 0.5s;
+    margin-top: 5px;
 }
 
-.chat-icon:hover {
-  border-radius: 25%;
+.chat-icon:hover img {
+    border-radius: 25%;
 }
 
-.chat-box {
-  background-color: azure;
-  border-radius: 15px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-  margin: 0.5%;
-  width: 98%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* background: linear-gradient(to right, var(--white) -24%, var(--gray1) 100%); */
+.chatroom-box {
+    background-color: azure;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    margin: 0.5%;
+    width: 98%;
+    height: 97%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 
 .title-bar {
@@ -318,9 +340,6 @@ header {
   --dark-purple: #20115b;
   --dark-magenta: #4922a7;
 
-  /* --bgcolor: linear-gradient(to right, var(--magenta), var(--dark-purple));
-
-    --headboxcolor: linear-gradient(to right, var(--white) -50%, var(--dark-purple) 90%); */
 }
 
 /*-------------------------------------------------------------------------*/
@@ -380,7 +399,8 @@ ul.members {
 /*-------------------------------------------------------------------------*/
 
 .profile-card {
-  text-align: center;
+
+  /* text-align: center;
   border-radius: 15px;
   height: 100%;
   width: 99%;
@@ -390,7 +410,16 @@ ul.members {
     to right,
     var(--white) -50%,
     var(--dark-purple) 100%
-  );
+  ); */
+
+    text-align: center;
+    border-radius: 15px;
+    height: 93%;
+    width: 99%;
+    margin: 0.5% 0.5% 0.5% 0.5%;
+    padding-top: 10px;
+    background: linear-gradient(to right, var(--white) -50%, var(--dark-purple) 100%);
+
 }
 
 #photo-button {
@@ -534,6 +563,7 @@ a {
   text-align: center;
 }
 
+
 /*-------------------------------------------------------------------------*/
 /*--------------------------- Chat page ---------------------------------*/
 /*-------------------------------------------------------------------------*/
@@ -588,3 +618,107 @@ a {
   transform: scale(0.98);
   font-size: 15px;
 }
+
+/*-------------------------------------------------------------------------*/
+/*----------------- View Chatrooms Page (index.html) ----------------------*/
+/*-------------------------------------------------------------------------*/
+
+.img-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 15px;
+    height: 100%;
+    width: 99%;
+    margin: 0.5% 0.5% 0.5% 0.5%;
+    padding-top: 20px;
+    padding-left: 200px;
+    padding-right: 200px;
+    box-sizing: border-box;
+    background: linear-gradient(to right, var(--white) -50%, var(--dark-purple) 100%);
+    font-size: 120%;
+}
+
+.img-card a {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.img-card > span {
+    font-weight: bold;
+}
+
+.img-container {
+    height: 140px;
+    width: 30%;
+}
+
+.img-container > img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+}
+
+.chat-box {
+    background-color: azure;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    margin: 0.5%;
+    width: 98%;
+    height: 100%;
+    /* max-height: 350px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background: linear-gradient(to right, var(--white) -24%, var(--gray1) 100%); */
+}
+
+
+/*-------------------------------------------------------------------------*/
+/*--------------------------- Message Page ---------------------------------*/
+/*-------------------------------------------------------------------------*/
+
+#user-message {
+    color:white;
+    background-color:green;
+    padding:20px;
+    width:100px;
+    border-radius:15px;
+    font-size:20px;
+    font-weight:bold;
+    text-align:right;
+}
+
+#filler{
+    margin: 5px;
+    color: azure;
+
+}
+
+/* SMALL SCREEN MEDIA QUERY  */
+@media screen and (max-width: 800px) {
+    .navbar-nav{
+        font-size: 10px;
+    }
+    #welcome-user{
+        display: none;
+    }
+    #home{
+        margin: 0 5%;
+    }
+}
+
+/*-------------------------------------------------------------------------*/
+/*----------------------- Delete Chatroom Page ----------------------------*/
+/*-------------------------------------------------------------------------*/
+
+.delete-chatroom-card {
+    text-align: center;
+    border-radius: 15px;
+    height: 100%;
+    width: 99%;
+    margin: 0.5% 0.5% 0.5% 0.5%;
+    padding-top: 10px;
+    background: linear-gradient(to right, var(--white) -50%, var(--dark-purple) 100%);
+}
+
