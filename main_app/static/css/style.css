@@ -678,16 +678,6 @@ a {
 /*--------------------------- Message Page ---------------------------------*/
 /*-------------------------------------------------------------------------*/
 
-#user-message {
-    color:white;
-    background-color:green;
-    padding:20px;
-    width:100px;
-    border-radius:15px;
-    font-size:20px;
-    font-weight:bold;
-    text-align:right;
-}
 
 #filler{
     margin: 5px;
