@@ -1,22 +1,22 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
 <div class="title-bar">
   <h1 style="text-align: center">{{name}}</h1>
 </div>
- 
-  <div class="create-chatroom-box">
 
-  
-  <form action="{% url 'create_room' %}" enctype="multipart/form-data" method="post" class="create-chatroom-form">
+<div class="create-chatroom-box">
+  <form
+    action="{% url 'create_room' %}"
+    enctype="multipart/form-data"
+    method="post"
+    class="create-chatroom-form"
+  >
     {% csrf_token %}
     <h4>Add a Profile Picture:</h4>
-    <input type="file" id="photo-button" name="photo-file">
-      {{ chatroom_form.as_p }}
-    <input type="submit" value="Create Room" class="btn">
+    <input type="file" id="photo-button" name="photo-file" />
+    {{ chatroom_form.as_p }}
+    <input type="submit" value="Create Room" class="btn" />
   </form>
-
 </div>
 
 {% endblock %}

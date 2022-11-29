@@ -1,4 +1,3 @@
-
 /* Praetoria D OTF Font  */
 
 body {
@@ -6,11 +5,11 @@ body {
   padding: 0;
   font-family: "Cinzel", serif;
   color: var(--text);
-  background: var(--background);
+  background: white;
   transition: background 500ms ease-in-out, color 1000ms ease-in-out;
 }
 
-header {
+/* header {
   padding: 1em;
   clip-path: polygon(
     50% 0%,
@@ -24,9 +23,9 @@ header {
   margin-bottom: 1em;
   padding-bottom: 1em;
   text-align: center;
-}
+} */
 
-.lightMode {
+/* .lightMode {
   --background: var(--gray0);
   --bg-nav: linear-gradient(to right, var(--gray1), var(--gray3));
   --text: var(--gray6);
@@ -36,26 +35,34 @@ header {
   --background: var(--gray5);
   --bg-nav: linear-gradient(to right, var(--gray5), var(--gray6));
   --text: var(--gray0);
-}
+} */
 
 .navbar {
   border-bottom: 2px solid white;
   height: 70px;
   width: 100%;
-  background: black;
-  color: white;
+  background: white;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.4);
 }
+
 
 .navbar-nav {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   height: 100%;
   transition: all 0.5s ease-in-out;
   list-style-type: none;
   padding: 0;
   font-size: 120%;
   margin: 0px;
+}
+#home-nav-signup{
+  display:flex;
+  gap:10px;
+  font-size: 15px;
+  margin:40px;
+  font-size: 10px;
 }
 
 .navbar-nav > li {
@@ -78,21 +85,24 @@ header {
   cursor: pointer;
 }
 
-
 .nav-item:not(:nth-child(2)):active {
-    transform: scale(1.3);
+  transform: scale(1.3);
+}
+.logo-container{
+  display:flex;
+  align-items:center;
 
 }
 
 .logo {
-  height: 200px;
-}
-
-.logo:hover {
-  animation: color-rotate 1s;
+  height: 50px;
+  animation: color-rotate .3s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
+  transition: all 0.5s ease;
 }
+
+
 
 @keyframes color-rotate {
   from {
@@ -110,7 +120,7 @@ header {
   justify-items: center;
 }
 
-#sun {
+/* #sun {
   grid-area: topbar1;
   max-width: 35px;
 }
@@ -130,16 +140,14 @@ header {
   transform: scale(1.3);
   transition: 0.8s;
   cursor: pointer;
-}
+} */
 
 .chat-window {
-
-display: grid;
-grid-template-columns: 7% 93%;
-/* height: 42vh; */
-justify-items: center;
-margin: 0 0 20% 1%;
-
+  display: grid;
+  grid-template-columns: 7% 93%;
+  /* height: 42vh; */
+  justify-items: center;
+  margin: 0 0 20% 1%;
 }
 
 .vertical-navbar {
@@ -157,23 +165,23 @@ margin: 0 0 20% 1%;
   align-items: center;
   overflow: scroll;
   /* margin-top: 200px; */
-
 }
 
 .vertical-navbar {
-    background-color: azure;
-    border-radius: 20px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    margin: 10% 18% 100% 18%;
-    width: 98%;
-    height: 96%;
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    align-items: center;
-    overflow: scroll;
-    /* margin-top: 200px; */
-
+  background-color: azure;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  margin: 10% 18% 100% 18%;
+  width: 98%;
+  height: 96%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+  /* margin-top: 200px; */
 }
 
 .vertical-navbar::-webkit-scrollbar {
@@ -182,36 +190,37 @@ margin: 0 0 20% 1%;
   scrollbar-width: -moz-scrollbars-none;
 }
 
-@-moz-document url-prefix() {
+/* @-moz-document url-prefix() {
   .vertical-navbar {
     scrollbar-width: none;
   }
 }
 
 .chat-icon img {
-    text-align: center;
-    border-radius: 50%;
-    height: 5vw;
-    width: 5vw;
-    transition-duration: 0.5s;
-    margin-top: 5px;
+  text-align: center;
+  border-radius: 50%;
+  height: 5vw;
+  width: 5vw;
+  transition-duration: 0.5s;
+  margin-top: 5px;
 }
 
 .chat-icon:hover img {
-    border-radius: 25%;
+  border-radius: 25%;
 }
 
 .chatroom-box {
-    background-color: azure;
-    border-radius: 15px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    margin: 0.5%;
-    width: 98%;
-    height: 97%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
+  background-color: azure;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  margin: 0.5%;
+  width: 98%;
+  height: 97%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .title-bar {
@@ -226,7 +235,7 @@ margin: 0 0 20% 1%;
     var(--dark-purple) 90%
   );
   font-size: 20px;
-}
+} */
 
 .live-chat {
   border-radius: 15px;
@@ -242,7 +251,7 @@ margin: 0 0 20% 1%;
 .live-chat::-webkit-scrollbar {
   display: none; /* Safari and Chrome */
 }
-
+/* 
 .div-chat {
   background-color: #c691df;
   text-align: center;
@@ -289,7 +298,7 @@ margin: 0 0 20% 1%;
 .message-box::placeholder {
   color: rgb(193, 192, 192);
   text-align: center;
-}
+} */
 
 :root {
   --white: white;
@@ -339,14 +348,13 @@ margin: 0 0 20% 1%;
   --magenta: #7232f2;
   --dark-purple: #20115b;
   --dark-magenta: #4922a7;
-
 }
 
 /*-------------------------------------------------------------------------*/
 /*-------------------------- About Page -----------------------------------*/
 /*-------------------------------------------------------------------------*/
 
-ul.members {
+/* ul.members {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -370,13 +378,13 @@ ul.members {
 .about-box > p,
 .about-box > ul {
   font-size: 150%;
-}
+} */
 
 /*-------------------------------------------------------------------------*/
 /*--------------------- Create Chatroom Page ------------------------------*/
 /*-------------------------------------------------------------------------*/
 
-.create-chatroom-box {
+/* .create-chatroom-box {
   text-align: center;
   border-radius: 15px;
   height: 100%;
@@ -392,14 +400,13 @@ ul.members {
 
 .create-chatroom-box form {
   font-size: 150%;
-}
+} */
 
 /*-------------------------------------------------------------------------*/
 /*----------------------- User Profile Page -------------------------------*/
 /*-------------------------------------------------------------------------*/
 
-.profile-card {
-
+/* .profile-card { */
   /* text-align: center;
   border-radius: 15px;
   height: 100%;
@@ -412,14 +419,17 @@ ul.members {
     var(--dark-purple) 100%
   ); */
 
-    text-align: center;
-    border-radius: 15px;
-    height: 93%;
-    width: 99%;
-    margin: 0.5% 0.5% 0.5% 0.5%;
-    padding-top: 10px;
-    background: linear-gradient(to right, var(--white) -50%, var(--dark-purple) 100%);
-
+  /* text-align: center;
+  border-radius: 15px;
+  height: 93%;
+  width: 99%;
+  margin: 0.5% 0.5% 0.5% 0.5%;
+  padding-top: 10px;
+  background: linear-gradient(
+    to right,
+    var(--white) -50%,
+    var(--dark-purple) 100%
+  );
 }
 
 #photo-button {
@@ -518,7 +528,7 @@ a {
     var(--dark-purple) 90%
   );
   font-size: 20px;
-}
+} */
 /*-------------------------------------------------------------------------*/
 /*--------------------------- Login Page ----------------------------------*/
 /*-------------------------------------------------------------------------*/
@@ -537,7 +547,7 @@ a {
 /*--------------------------- Signup Page ---------------------------------*/
 /*-------------------------------------------------------------------------*/
 
-.signup-box {
+/* .signup-box {
   display: flex;
   align-items: flex-start;
   border-radius: 15px;
@@ -561,14 +571,13 @@ a {
 
 .signup-btn {
   text-align: center;
-}
-
+} */
 
 /*-------------------------------------------------------------------------*/
 /*--------------------------- Chat page ---------------------------------*/
 /*-------------------------------------------------------------------------*/
 
-#user-message {
+/* #user-message {
   background-color: #c79ce0;
   border: 1px solid #e5e5ea;
   color: white;
@@ -610,105 +619,184 @@ a {
 }
 
 #chat-message-submit:hover {
-    padding: 15px;
-    transform: scale(1.05);
-    font-size: 20px;
+  padding: 15px;
+  transform: scale(1.05);
+  font-size: 20px;
 }
 #chat-message-submit:active {
   transform: scale(0.98);
   font-size: 15px;
-}
+} */
 
 /*-------------------------------------------------------------------------*/
 /*----------------- View Chatrooms Page (index.html) ----------------------*/
 /*-------------------------------------------------------------------------*/
 
-.img-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    border-radius: 15px;
-    height: 100%;
-    width: 99%;
-    margin: 0.5% 0.5% 0.5% 0.5%;
-    padding-top: 20px;
-    padding-left: 200px;
-    padding-right: 200px;
-    box-sizing: border-box;
-    background: linear-gradient(to right, var(--white) -50%, var(--dark-purple) 100%);
-    font-size: 120%;
+/* .img-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 15px;
+  height: 100%;
+  width: 99%;
+  margin: 0.5% 0.5% 0.5% 0.5%;
+  padding-top: 20px;
+  padding-left: 200px;
+  padding-right: 200px;
+  box-sizing: border-box;
+  background: linear-gradient(
+    to right,
+    var(--white) -50%,
+    var(--dark-purple) 100%
+  );
+  font-size: 120%;
 }
 
 .img-card a {
-    margin-left: 10px;
-    margin-right: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .img-card > span {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .img-container {
-    height: 140px;
-    width: 30%;
+  height: 140px;
+  width: 30%;
 }
 
 .img-container > img {
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
 }
 
 .chat-box {
-    background-color: azure;
-    border-radius: 15px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    margin: 0.5%;
-    width: 98%;
-    height: 100%;
-    /* max-height: 350px; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* background: linear-gradient(to right, var(--white) -24%, var(--gray1) 100%); */
-}
-
+  background-color: azure;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  margin: 0.5%;
+  width: 98%;
+  height: 100%;
+  max-height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(to right, var(--white) -24%, var(--gray1) 100%);
+} */
 
 /*-------------------------------------------------------------------------*/
 /*--------------------------- Message Page ---------------------------------*/
 /*-------------------------------------------------------------------------*/
 
-
-#filler{
-    margin: 5px;
-    color: azure;
-
+#filler {
+  margin: 5px;
+  color: azure;
 }
 
 /* SMALL SCREEN MEDIA QUERY  */
-@media screen and (max-width: 800px) {
-    .navbar-nav{
-        font-size: 10px;
-    }
-    #welcome-user{
-        display: none;
-    }
-    #home{
-        margin: 0 5%;
-    }
-}
+/* @media screen and (max-width: 800px) {
+  .navbar-nav {
+    font-size: 10px;
+  }
+  #welcome-user {
+    display: none;
+  }
+  #home {
+    margin: 0 5%;
+  }
+} */
 
 /*-------------------------------------------------------------------------*/
 /*----------------------- Delete Chatroom Page ----------------------------*/
 /*-------------------------------------------------------------------------*/
 
-.delete-chatroom-card {
-    text-align: center;
-    border-radius: 15px;
-    height: 100%;
-    width: 99%;
-    margin: 0.5% 0.5% 0.5% 0.5%;
-    padding-top: 10px;
-    background: linear-gradient(to right, var(--white) -50%, var(--dark-purple) 100%);
+/* .delete-chatroom-card {
+  text-align: center;
+  border-radius: 15px;
+  height: 100%;
+  width: 99%;
+  margin: 0.5% 0.5% 0.5% 0.5%;
+  padding-top: 10px;
+  background: linear-gradient(
+    to right,
+    var(--white) -50%,
+    var(--dark-purple) 100%
+  );
 }
 
+
+a{
+  color:black;
+} */
+
+
+
+/* NEW CSS CODE FOR TEMPLATE REDESIGN TEMPLATE */
+
+
+main{
+display:flex;
+justify-content:center;
+height:92vh;
+width:100vw;
+overflow:hidden;
+
+}
+
+.left-main{
+  height:100%;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+
+.right-main{
+  height:100%;
+  width: 100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+}
+
+#blue-circ{
+  position:absolute;
+  background: rgb(2,0,36);
+  background: linear-gradient(140deg, rgba(2,0,36,1) 0%, rgba(107,207,255,0.8295693277310925) 0%, rgba(255,255,255,1) 100%);deg, rgba(2,0,36,1) 0%, rgba(209,247,255,1) 0%, rgba(255,255,255,1) 100%);
+  height:35vw;
+  width:35vw;
+  border-radius:50%;
+  bottom: -10vh;
+right:11vw;
+
+}
+
+#pink-circ{
+  position:absolute;
+  background: rgb(2,0,36);
+  background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(245,175,239,1) 0%, rgba(255,255,255,1) 100%);
+  height:35vw;
+  width:35vw;
+  border-radius:50%;
+  left:30vw;
+  top:40px;
+
+}
+
+#purple-circ{
+  position:absolute;
+  background: rgb(2,0,36);
+background: linear-gradient(140deg, rgba(2,0,36,1) 0%, rgba(196,107,255,0.8295693277310925) 0%, rgba(255,255,255,1) 100%);
+  height:35vw;
+  width:35vw;
+  border-radius:50%;
+  bottom: -20vh;
+  left:20vw;
+
+}
