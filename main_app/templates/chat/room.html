@@ -1,9 +1,39 @@
-{% extends 'home.html' %} {% block content2 %}
+{% extends 'home.html' %} {% block content %}
 
-<body>
-  {% comment %}
-  <h3 style="text-align: center">{{room_name}}</h3>
-  {% endcomment %}
+
+<div class='newchat'>
+<div class='left-chat-bar'> <div >
+ <!-- Left Verti Bar Nav -->
+  {% comment %} <nav class="vertical-navbar">
+    <div class="chat-icon-parent">
+      {% for chatroom in chatrooms %}
+      <div></div>
+        <a class="chat-icon" href="/chat/{{chatroom.id}}">
+          <img src="{{chatroom.chat_pic}}" />
+         {{chatroom.room_name}}
+        </a>
+      {% endfor %}
+
+  
+    </div>
+  </nav>  {% endcomment %}
+  <!-- Chatroom Nav -->  
+  
+</div>  
+</div>
+<div class='top-chat-bar'>
+ <img style='height:10px' src={{current_room.chat_pic}}/>
+  <h3 >{{current_room}}</h3>
+  </h3> 
+</div>
+
+
+
+
+{% comment %} CHAT PART START {% endcomment %}
+<div class='chat-bar'>
+
+{% comment %}----------------------- CHAT BOX PART START -------------------------{% endcomment %}
   <div id="chatbox" class="live-chat">
     {%for message in messages %} {%if message.username == user.username %}
     <p id="user-message">{{message.username}} says: {{message.message_body}}</p>
@@ -13,15 +43,31 @@
     </p>
     {%endif%} {%endfor%}
   </div>
+{% comment %}--------------------------- CHAT BOX PART END--------------------------- {% endcomment %}
+
+
+
+
+
+{% comment %}--------------------------- CHAT INPUT BOX START--------------------------- {% endcomment %}
   <div class="input-box">
     <input
       id="chat-message-input"
       type="text"
       size="40"
-      placeholder="Enter chat here"
+      placeholder="Type your message"
     /><br />
     <input id="chat-message-submit" type="button" value="Send" />
-  </div>
+  </div>  
+{% comment %}--------------------------- CHAT INPUT BOX END--------------------------- {% endcomment %}
+
+
+
+
+
+
+
+
 
   <input
     id="username"
@@ -99,6 +145,10 @@
         messageInputDom.value = '';
     };
   </script>
-</body>
+</div>
+ {% comment %} CHAT PART END {% endcomment %}
+</div>
+ 
+
 
 {% endblock %}

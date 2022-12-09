@@ -35,9 +35,11 @@ BUCKET = 'hermes-messenger'
 @login_required
 def room(request, room_name):
     chatrooms = Chatroom.objects.all()
-    chatroom = Chatroom.objects.all().filter(id=room_name)
+    chatroom = Chatroom.objects.all().filter(id = room_name)[0]
 
+    print(chatroom.id)
     messages = Message.objects.all().filter(chat_id_id=room_name)
+
     return render(request, 'chat/room.html', {
         'room_name': room_name,
         'chatrooms': chatrooms,
@@ -47,17 +49,13 @@ def room(request, room_name):
 
 
 def home(request):
-    chatrooms = Chatroom.objects.all()
     return render(request, 'home.html', {
-        'chatrooms': chatrooms,
         'name': 'Home'
     })
 
 
 def about(request):
-    chatrooms = Chatroom.objects.all()
     return render(request, 'about.html', {
-        'chatrooms': chatrooms,
         'name': 'About Hermes Messenger App',
     })
 

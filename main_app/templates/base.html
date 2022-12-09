@@ -57,13 +57,12 @@
       </ul>
     </nav>
 
-    {% comment %} <header>
+{% comment %} <header>
       <img src="https://i.imgur.com/ChgLGGA.png" class="logo" />
       <h1>HERMES</h1>
       <h3>Instant Messaging<br />Electrified!</h3>
-    </header> {% endcomment %}
-
-    {% comment %} <div class="color-themes">
+    </header>  {% endcomment %}
+ {% comment %} <div class="color-themes">
       <svg
         id="sun"
         xmlns="http://www.w3.org/2000/svg"
@@ -94,37 +93,15 @@
           stroke-linejoin="round"
           d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
         />
-      </svg>
-    </div> {% endcomment %}
+      </svg> {% endcomment %}
+    </div> 
 
-    {% comment %} <main>
-      <div class="chat-window">
-        <!-- Left Verti Bar Nav -->
-        <nav class="vertical-navbar">
-          <div class="chat-icon-parent">
-            {% for chatroom in chatrooms %}
-            <div class="chat-icon">
-              <a href="/chat/{{chatroom.id}}">
-                <img src="{{chatroom.chat_pic}}" />
-              </a>
-            </div>
-            {% endfor %}
-          </div>
-        </nav>
-        <!-- Chatroom Nav -->
-        <div class="chat-box">{% block content %} {% endblock %}</div>
-      </div>
-      <h1 id="filler">.</h1>
-    </main> {% endcomment %}
-    <main>
-      <div class='left-main'><h1>LEFT SIDE</h1></div>
-      <div class='right-main'>
-        <div id='pink-circ'></div>
-        <div id='blue-circ'></div>
+  <main>
 
-        <div id='purple-circ'></div>
-      </div>
-    </main>
+
+      <div class="chat-box">{% block content %} {% endblock %}</div>
+    </main> 
+    
   </body>
 
   <script>
