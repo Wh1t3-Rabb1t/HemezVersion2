@@ -1,33 +1,46 @@
 {% extends 'base.html' %} {% block content %}
 
-<div class="title-bar">
+{% comment %} <div class="title-bar">
   <h1>{{name}}</h1>
+</div> {% endcomment %}
+<div id='about-main'>
+  <div id='about-top'>
+    <div id='about-top-left'>
+      <h1 id='about-title'>HERMES MESSENGER</h1>
+      <p id='about-page'>Hermes Messenger app allows users to chat with friends in real-time by joining chatrooms, made possible with Django Channels. Start by signing up, then freely create and join chatrooms to talk or just listen in.</p>
+    </div>
+    <div id='about-top-right'></div>
+  </div>
+  <div id='about-bot'>
+    <p class="about-text" style="font-size: 20px">
+      This project was a collboration between the following members:
+    </p>
+    <ul class="members">
+      <li style="font-size: 20px">Gobi Shanthan</li>
+      <li style="font-size: 20px">Chris Morrison</li>
+      <li style="font-size: 20px">Till Cappel</li>
+      <li style="font-size: 20px">Louis Cheung</li>
+    </ul>
+    <p style="font-size: 20px">
+      Github link:
+      <a
+        style="font-size: 20px"
+        href="https://github.com/louischeung1990/Hermes-Messenger-App"
+        target="_blank"
+        >Click here</a
+      >
+    </p> 
+  </div>
 </div>
 
-<div class="about-box">
+ {% comment %} <div class="about-box">
   <p class="about-text" style="font-size: 20px">
     Hermes Messenger app allows users to chat with friends in real-time by
     joining chatrooms, made possible with Django Channels. Start by signing up,
     then freely create and join chatrooms to talk or just listen in.
   </p>
-  <p class="about-text" style="font-size: 20px">
-    This project was a collboration between the following members:
-  </p>
-  <ul class="members">
-    <li style="font-size: 20px">Gobi Shanthan</li>
-    <li style="font-size: 20px">Chris Morrison</li>
-    <li style="font-size: 20px">Till Cappel</li>
-    <li style="font-size: 20px">Louis Cheung</li>
-  </ul>
-  <p style="font-size: 20px">
-    Github link:
-    <a
-      style="font-size: 20px"
-      href="https://github.com/louischeung1990/Hermes-Messenger-App"
-      target="_blank"
-      >Click here</a
-    >
-  </p>
-</div>
+
+</div> {% endcomment %}
+
 
 {% endblock %}
