@@ -80,42 +80,51 @@
                 const imgElement = document.createElement('img');
                 imgElement.src = 'https://i.imgur.com/rN7m1gM.png';
                 
-                // Set the position of the img element.
+                // Retrieve the width and height of the browser window.
+                let viewportHeight = window.innerHeight + 420;
                 let viewportWidth = window.innerWidth - 100;
+                
+                // Set the starting position of the img element.
                 imgElement.style.position = 'absolute';
                 imgElement.style.left = `calc(${Math.random() * viewportWidth}px)`;
                 imgElement.style.bottom = '50px';
-
-                // Randomize the img size and velocity.
-                let imgSize = Math.floor(Math.random() * 220) + 80;
-                let velocity = Math.floor(Math.random() * 8) + 1;
+                
+                // Generate random integers, either negative or positive.
+                function getRandomInteger(min, max) {
+                    return Math.floor(Math.random() * (max - min + 1)) + min;
+                };
+                
+                // Randomize the img size, velocity and angle.
+                let imgSize = getRandomInteger(1, 220) + 80;
+                let velocity = getRandomInteger(1, 8);
+                let angle = getRandomInteger(-30, 10);
                 imgElement.style.width = imgSize + 'px';
                 imgElement.style.height = imgSize + 'px';
                 imgElement.style.borderRadius = '50%';
                 
-                // Generate random value to set the angle of the img.
-                function getRandomInteger(min, max) {
-                    return Math.floor(Math.random() * (max - min + 1)) + min;
-                };
-                let angle = getRandomInteger(-30, 10);
-
                 // Append the img element to the container.
                 const divElement = document.querySelector('.about-box-bottom');
                 divElement.appendChild(imgElement);
-                
-                // Img specific animation.
-                setInterval(function animateImg() {
+
+                // Img element animation loop.
+                var animationTimer = setInterval(function animateImg() {
                     const imgTop = parseInt(imgElement.style.bottom); // Get the current position of the img element.
-                    imgElement.style.rotate = angle + 'deg';          // Set the img angle.
+                    imgElement.style.rotate = angle + 'deg';          // Set the angle of the img.
                     let newImgTop = imgTop + velocity;                // Calculate the new position of the img element.
                     imgElement.style.bottom = newImgTop + 'px';       // Set the new position of the img element.
+
+                    if (newImgTop > viewportHeight) {
+                        divElement.removeChild(imgElement);
+                        clearInterval(animationTimer);
+                    };
+
                 }, 16.8);                                             // 16 millisecond intervals is roughly 60 frames per second.
             };
 
             // This prevents a bug causing the function to overload when the browser is active but tab is unfocused.
             var timer;
             window.onfocus = function() {
-                timer = setInterval(function() { risingLogo() }, 2000);
+                timer = setInterval(function() {risingLogo()}, 2000);
             };
 
             // Stops the animation timer when the tab is unfocused.
