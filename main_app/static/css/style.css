@@ -7,6 +7,7 @@ body {
   color: var(--text);
   background: #F5F5F5;
   transition: background 500ms ease-in-out, color 1000ms ease-in-out;
+  overflow-x: hidden;
 }
 
 header {
@@ -357,7 +358,188 @@ color: #000000;
 /*-------------------------- About Page -----------------------------------*/
 /*-------------------------------------------------------------------------*/
 
-ul.members {
+.about-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.about-box-top {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.top-left-box {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 55%;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  padding: 0% 8% 0% 8%;
+  box-sizing: border-box;
+}
+
+#about-header {
+  font-style: normal;
+  font-family: 'Helvetica Neue';
+  font-weight: 700;
+  font-size: 52px;
+  line-height: 63px;
+  color: #C79CE0;
+  z-index: 1;
+}
+
+#about-text {
+  font-style: normal;
+  font-family: 'Helvetica Neue';
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;  
+  color: #000000;
+  z-index: 1;
+}
+
+.top-right-box {
+  display: flex;
+  flex: 0 0 45%;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+}
+
+.about-box-bottom {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  justify-content: space-evenly;
+  padding: 0% 8% 0% 8%;
+  box-sizing: border-box;
+}
+
+#team-header {
+  font-style: normal;
+  font-family: 'Helvetica Neue';
+  font-weight: 700;
+  font-size: 52px;
+  line-height: 63px;
+  color: #C79CE0;
+  z-index: 1;
+}
+
+#team-text {
+  font-style: normal;
+  font-family: 'Helvetica Neue';
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;  
+  color: #000000;
+  z-index: 1;
+}
+
+#members {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex: 0 0 65%;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.profile-pic {
+  border: 2px solid #C79CE0;;
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.members-container {
+  display: flex;
+  flex-direction: column;
+  margin: 1%;
+}
+
+.member-links {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  border: 2px solid #C79CE0;;
+  border-radius: 10px;
+  padding: 3%;
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-size: 19.3768px;
+  line-height: 24px;
+}
+
+.member-links span {
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 19.3768px;
+  line-height: 24px;
+  color: #C79CE0;
+}
+
+#links {
+  justify-content: center;
+  align-items: center;  
+}
+
+#blue-circle {
+  position: absolute;
+  width: 729px;
+  height: 688px;
+  border-radius: 50%;
+  left: 15vw;
+  top: calc( 12vh - 70px);
+  background: linear-gradient(182.16deg, #D0EBFD 1.82%, rgba(208, 235, 253, 0) 98.3%);
+  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.25);
+  z-index: 0;
+}
+
+#pink-circle {
+  position: absolute;
+  width: 808px;
+  height: 842px;
+  border-radius:50%;
+  left: 5vw;
+  top: calc( -35vh - 70px);
+  background: linear-gradient(180deg, #EBA0C9 0%, rgba(235, 160, 201, 0.765543) 2.48%, rgba(235, 160, 201, 0) 77.43%);
+  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.25);
+  z-index: 0;
+}
+
+#purple-circle {
+  position: absolute;
+  width: 808px;
+  height: 813px;
+  border-radius: 50%;
+  left: 25vw;
+  top: calc( -40vh - 70px);
+  background: linear-gradient(220.89deg, #C79CE0 23.2%, rgba(199, 156, 224, 0.458333) 49.34%, rgba(199, 156, 224, 0) 89.82%);
+  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.25);
+  z-index: 0;
+}
+
+#cartoon-phone {
+  position: relative;
+  left: -3vw;
+  top: 3vh;
+  z-index: 1;
+}
+
+
+
+/* ul.members {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -381,7 +563,7 @@ ul.members {
 .about-box > p,
 .about-box > ul {
   font-size: 150%;
-}
+} */
 
 /*-------------------------------------------------------------------------*/
 /*--------------------- Create Chatroom Page ------------------------------*/
