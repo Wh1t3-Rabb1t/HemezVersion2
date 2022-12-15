@@ -74,7 +74,6 @@
         </div>
         <!--------------------------------------------------------------------------------->
         <script>
-
             // Generate random integers, either negative or positive.
             function getRandomInteger(min, max) {
                 return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -134,11 +133,66 @@
             };
 
             //---------------------------------------------------------------------------------------//
+
+            // Define the bubbles and set movement distance values.
             const purpleBubble = document.getElementById('purple-circle');
             const pinkBubble = document.getElementById('pink-circle');
             const blueBubble = document.getElementById('blue-circle');
+            var dx = 0.25, dy = 0.25;
+            let x = 1;
+            let y = 1;
+            let z = -1;
+            let count = 0;
 
-            // function bubbleAnimationLoop() {
+            // Animate bubbles with a subtle floating effect.
+            function bubbleAnimationLoop() {
+                // Increment the counter by one until it reaches 160 then reset back to 0 and repeat.
+                if (count < 160) {
+                    count += 1;
+                } else if (count >= 160) {
+                    count = 0;
+                };
+
+                // Change the purple bubbles direction when counter is within a certain range.
+                if (count < 80) {
+                    x += dx;
+                } else if (count > 80) {
+                    x -= dx;
+                };
+
+                // Change the blue bubbles direction when counter is within a certain range.
+                if (count < 50 || count > 130) {
+                    y += dy;
+                } else if (count > 50 && count < 130) {
+                    y -= dy;
+                };
+
+                // Change the pink bubbles direction when counter is within a certain range.
+                if (count < 30 || count > 110) {
+                    z -= dy;
+                } else if (count > 30 && count < 110) {
+                    z += dy;
+                };
+
+                // Update the bubbles location on the respective axis.
+                purpleBubble.style.transform = `translateX(${x}px)`;
+                blueBubble.style.transform = `translateY(${y}px)`;
+                pinkBubble.style.transform = `translateX(${z}px)`;
+
+                // Call the function repeatedly on a loop.
+                requestAnimationFrame(bubbleAnimationLoop);
+            };
+            bubbleAnimationLoop();
+        </script>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+</div>
+
+{% endblock %}
+
+<!-- 
+    
+                // function bubbleAnimationLoop() {
                 //     x += dx;
                 //     y += dy;
                 //     if (x < 0 || x > 30) dx = -dx;
@@ -149,56 +203,6 @@
                 //     requestAnimationFrame(bubbleAnimationLoop);
                 // };
                 // bubbleAnimationLoop();
-    
-            var dx = 0.25, dy = 0.25;
-            let x = 1;
-            let y = 1;
-            let z = -1;
-            let count = 0;
-
-            function bubbleAnimationLoop() {
-              
-                if (count < 160) {
-                    count += 1;
-                } else if (count >= 160) {
-                    count = 0;
-                };
-
-                if (count < 80) {
-                    x += dx;
-                } else if (count > 80) {
-                    x -= dx;
-                };
-
-                if (count < 50 || count > 130) {
-                    y += dy;
-                } else if (count > 50 && count < 130) {
-                    y -= dy;
-                };
-
-                if (count < 30 || count > 110) {
-                    z -= dy;
-                } else if (count > 30 && count < 110) {
-                    z += dy;
-                };
-
-                purpleBubble.style.transform = `translateX(${x}px)`;
-                pinkBubble.style.transform = `translateX(${z}px)`;
-                blueBubble.style.transform = `translateY(${y}px)`;
-
-                requestAnimationFrame(bubbleAnimationLoop);
-            };
-            bubbleAnimationLoop();
-
-            </script>
-    </div>
-    <!------------------------------------------------------------------------------------------------->
-</div>
-
-{% endblock %}
-
-<!-- 
-    
     // purpleBubble.style.transform = `translate(${y+'px', x+'px'})`;
     // purpleBubble.style.transform = `translate(${y+'px', x+'px'})`;
                 // `${bubble}.style.transform = translateY(${y}+"px")`;
