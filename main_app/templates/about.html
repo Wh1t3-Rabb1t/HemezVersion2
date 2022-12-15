@@ -150,7 +150,7 @@
                 // };
                 // bubbleAnimationLoop();
     
-            var dx = 1, dy = 1;
+            var dx = 0.25, dy = 0.25;
             let x = 1;
             let y = 1;
             let z = -1;
@@ -166,9 +166,13 @@
 
                 if (count < 80) {
                     x += dx;
-                    y += dy;
                 } else if (count > 80) {
                     x -= dx;
+                };
+
+                if (count < 50 || count > 130) {
+                    y += dy;
+                } else if (count > 50 && count < 130) {
                     y -= dy;
                 };
 
@@ -176,7 +180,7 @@
                     z -= dy;
                 } else if (count > 30 && count < 110) {
                     z += dy;
-                }
+                };
 
                 purpleBubble.style.transform = `translateX(${x}px)`;
                 pinkBubble.style.transform = `translateX(${z}px)`;
