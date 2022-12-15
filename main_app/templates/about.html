@@ -68,7 +68,7 @@
         </div>
 
         <script>
-            // Generate random integers, either negative or positive.
+            // Generate random integers, either positive or negative.
             function getRandomInteger(min, max) {
                 return Math.floor(Math.random() * (max - min + 1)) + min;
             };
@@ -88,7 +88,7 @@
                 imgElement.style.left = `calc(${Math.random() * viewportWidth}px)`;
                 imgElement.style.bottom = '50px';
                 
-                // Randomize the img size, velocity and angle.
+                // Randomize the img size, velocity, and angle.
                 let imgSize = getRandomInteger(1, 220) + 80;
                 let velocity = getRandomInteger(1, 8);
                 let angle = getRandomInteger(-30, 10);
@@ -107,7 +107,7 @@
                     let newImgTop = imgTop + velocity;                  // Calculate the new position of the img element.
                     imgElement.style.bottom = newImgTop + 'px';         // Set the new position of the img element.
                     
-                    // Once the img element travels offscreen, delete it and stop the animation loop.
+                    // Once the img element travels off the screen, delete it and stop the animation loop.
                     if (newImgTop > viewportHeight) {
                         divElement.removeChild(imgElement);
                         return
@@ -134,8 +134,8 @@
 
             // Floating bubble animation loop setup.
             const purpleBubble = document.getElementById('purple-circle');
-            const pinkBubble = document.getElementById('pink-circle');
             const blueBubble = document.getElementById('blue-circle');
+            const pinkBubble = document.getElementById('pink-circle');
             var dx = 0.25, dy = 0.25;
             let x = 1;
             let y = 1;
@@ -145,30 +145,30 @@
             // Animate bubbles with a subtle floating effect.
             function bubbleAnimationLoop() {
                 // Increment the counter by one until it reaches 160 then reset back to 0 and repeat.
-                if (count < 160) {
+                if (count < 180) {
                     count += 1;
-                } else if (count >= 160) {
+                } else if (count >= 180) {
                     count = 0;
                 };
 
                 // Change the purple bubbles direction when counter is within a certain range.
-                if (count < 80) {
+                if (count < 90) {
                     x += dx;
-                } else if (count > 80) {
+                } else if (count > 90) {
                     x -= dx;
                 };
 
                 // Change the blue bubbles direction when counter is within a certain range.
-                if (count < 50 || count > 130) {
+                if (count < 40 || count > 130) {
                     y += dy;
-                } else if (count > 50 && count < 130) {
+                } else if (count > 40 && count < 130) {
                     y -= dy;
                 };
 
                 // Change the pink bubbles direction when counter is within a certain range.
-                if (count < 30 || count > 110) {
+                if (count < 20 || count > 110) {
                     z -= dy;
-                } else if (count > 30 && count < 110) {
+                } else if (count > 20 && count < 110) {
                     z += dy;
                 };
 
