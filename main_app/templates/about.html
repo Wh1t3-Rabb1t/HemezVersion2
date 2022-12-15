@@ -1,9 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="about-container">
-    <!------------------------------------------------------------------------------------------------->
     <div class="about-box-top">
-        <!--------------------------------------------------------------------------------->
         <div class="top-left-box">
             <span id="about-header">Hermes Messenger</span>
             <p id="about-text">
@@ -12,25 +10,22 @@
                 then freely create and join chatrooms to talk or just listen in.
             </p>
         </div>
-        <!--------------------------------------------------------------------------------->
+        
         <div class="top-right-box">
             <img id="cartoon-phone" src="https://i.imgur.com/PhLBWAj.png">
             <div id='pink-circle'></div>
             <div id='blue-circle'></div>
             <div id='purple-circle'></div>
         </div>
-        <!--------------------------------------------------------------------------------->
     </div>
-    <!------------------------------------------------------------------------------------------------->
+    
     <div class="about-box-bottom">
-        <!--------------------------------------------------------------------------------->
         <div class="bottom-text-box">
             <nav id="team-header">Meet Our Team</nav>
             <p id="team-text">This project was a collboration between the following members:</p>
         </div>
-        <!--------------------------------------------------------------------------------->
+
         <div id="members">
-            <!------------------------------------------------------------------------->
             <div class="members-container">
                 <img class="profile-pic" src="https://i.imgur.com/ae2rHG7.png">
                 <nav class="member-links">
@@ -38,7 +33,7 @@
                     <img src="https://i.imgur.com/WPyPfuY.png">
                 </nav>
             </div>
-            <!------------------------------------------------------------------------->
+
             <div class="members-container">
                 <img class="profile-pic" src="https://i.imgur.com/ae2rHG7.png">
                 <nav class="member-links">
@@ -46,7 +41,7 @@
                     <img src="https://i.imgur.com/WPyPfuY.png">
                 </nav>
             </div>
-            <!------------------------------------------------------------------------->
+
             <div class="members-container">
                 <img class="profile-pic" src="https://i.imgur.com/ae2rHG7.png">
                 <nav class="member-links">
@@ -54,7 +49,7 @@
                     <img src="https://i.imgur.com/WPyPfuY.png">
                 </nav>
             </div>
-            <!------------------------------------------------------------------------->
+
             <div class="members-container">
                 <img class="profile-pic" src="https://i.imgur.com/ae2rHG7.png">
                 <nav class="member-links">
@@ -62,7 +57,7 @@
                     <img src="https://i.imgur.com/WPyPfuY.png">
                 </nav>
             </div>
-            <!------------------------------------------------------------------------->
+
             <div class="members-container">
                 <img class="profile-pic" src="https://i.imgur.com/SBdTgSs.png">
                 <nav class="member-links">
@@ -70,9 +65,8 @@
                     <img src="https://i.imgur.com/WPyPfuY.png">
                 </nav>
             </div>
-            <!------------------------------------------------------------------------->
         </div>
-        <!--------------------------------------------------------------------------------->
+
         <script>
             // Generate random integers, either negative or positive.
             function getRandomInteger(min, max) {
@@ -107,18 +101,22 @@
                 divElement.appendChild(imgElement);
 
                 // Img element animation loop.
-                var animationTimer = setInterval(function animateImg() {
+                function animateImg() {
                     imgElement.style.rotate = angle + 'deg';            // Set the angle of the img.
                     const imgTop = parseInt(imgElement.style.bottom);   // Get the current position of the img element.
                     let newImgTop = imgTop + velocity;                  // Calculate the new position of the img element.
                     imgElement.style.bottom = newImgTop + 'px';         // Set the new position of the img element.
-
+                    
                     // Once the img element travels offscreen, delete it and stop the animation loop.
                     if (newImgTop > viewportHeight) {
                         divElement.removeChild(imgElement);
-                        clearInterval(animationTimer);
+                        return
                     };
-                }, 16.8); // 16 millisecond intervals is roughly equivalent to 60 frames per second.
+
+                    // Call the function repeatedly on a loop.
+                    requestAnimationFrame(animateImg);
+                };
+                animateImg();
             };
 
             // This prevents a bug causing the function to overload when the browser is active but tab is unfocused.
@@ -132,9 +130,9 @@
                 clearInterval(timer);
             };
 
-            //---------------------------------------------------------------------------------------//
+            //---------------------------------------------------------------------------------------------------------//
 
-            // Define the bubbles and set movement distance values.
+            // Floating bubble animation loop setup.
             const purpleBubble = document.getElementById('purple-circle');
             const pinkBubble = document.getElementById('pink-circle');
             const blueBubble = document.getElementById('blue-circle');
@@ -185,82 +183,26 @@
             bubbleAnimationLoop();
         </script>
     </div>
-    <!------------------------------------------------------------------------------------------------->
 </div>
 
 {% endblock %}
 
+
 <!-- 
-    
-                // function bubbleAnimationLoop() {
-                //     x += dx;
-                //     y += dy;
-                //     if (x < 0 || x > 30) dx = -dx;
-                //     if (y < 0 || y > 30) dy = -dy;
-                //     purpleBubble.style.transform = `translateX(${x}px)`;
-                //     pinkBubble.style.transform = `translateY(${y}px)`;
-                //     blueBubble.style.transform = `translateY(${y}px)`;
-                //     requestAnimationFrame(bubbleAnimationLoop);
-                // };
-                // bubbleAnimationLoop();
-    // purpleBubble.style.transform = `translate(${y+'px', x+'px'})`;
-    // purpleBubble.style.transform = `translate(${y+'px', x+'px'})`;
-                // `${bubble}.style.transform = translateY(${y}+"px")`;
-                // purpleBubble.style.transform = `translateX(${x}px)`;
+// Img element animation loop.
+// var animationTimer = setInterval(function animateImg() {
+//     imgElement.style.rotate = angle + 'deg';            // Set the angle of the img.
+//     const imgTop = parseInt(imgElement.style.bottom);   // Get the current position of the img element.
+//     let newImgTop = imgTop + velocity;                  // Calculate the new position of the img element.
+//     imgElement.style.bottom = newImgTop + 'px';         // Set the new position of the img element.
 
+//     num += 1;
 
-                    // if (num < 50) {
-                //     direction = -1;
-                // } else if (num > 50) {
-                //     direction = 1;
-                // };
-
-                // if (count < 80) {
-                //     count += 1;
-                // } else if (count >= 80) {
-                //     count = 0;
-                // };
-
-                // if (count < 40) {
-                //     posX += direction;
-                //     posY += direction;
-                // } else if (count > 40) {
-                //     posX -= direction;
-                //     posY -= direction;
-                //     // speedRandomizer -= 0.09;
-                // };
-                // purpleBubble.style.transform = `translate(${posY+'px', posX+'px'})`;
-                // purpleBubble.style.transform = `translate(${posX+'px', posY+'px'})`;
-                // purpleBubble.style.transform = `translateX(${posX}px)`;
-                // purpleBubble.style.transform = `translateY(${posY}px)`;
-                // console.log(direction); 
-                // console.log(posX);
-
-
-
-// let num = getRandomInteger(1, 100);
-// if (num < 50) {
-//     direction = -1;
-// } else if (num > 50) {
-//     direction = 1;
-// };
-
-// if (count < 80) {
-//     count += 1;
-// } else if (count >= 80) {
-//     count = 0;
-// };
-
-// if (count < 20) {
-//     posX += direction;
-//     posY -= direction;
-// } else if (count < 40) {
-//     posX += direction;
-//     posY += direction;
-//     // speedRandomizer -= 0.09;
-// };
-// purpleBubble.style.transform = `translateX(${posX}px)`;
-// purpleBubble.style.transform = `translateY(${posY}px)`;
-// console.log(posX);
-// // console.log(direction); 
+//     // Once the img element travels offscreen, delete it and stop the animation loop.
+//     if (newImgTop > viewportHeight) {
+//         divElement.removeChild(imgElement);
+//         clearInterval(animationTimer);
+//     };
+// }, 16.8); // 16 millisecond intervals is roughly equivalent to 60 frames per second. 
 -->
+
