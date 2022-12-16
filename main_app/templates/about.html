@@ -67,7 +67,7 @@
             </div>
         </div>
 
-        <script>
+        <script defer>
             // Generate random integers, either positive or negative.
             function getRandomInteger(min, max) {
                 return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -100,7 +100,7 @@
                 const divElement = document.querySelector('.about-box-bottom');
                 divElement.appendChild(imgElement);
 
-                // Img element animation loop.
+                // Begin img element animation loop.
                 function animateImg() {
                     imgElement.style.rotate = angle + 'deg';            // Set the angle of the img.
                     const imgTop = parseInt(imgElement.style.bottom);   // Get the current position of the img element.
@@ -136,39 +136,39 @@
             const purpleBubble = document.getElementById('purple-circle');
             const blueBubble = document.getElementById('blue-circle');
             const pinkBubble = document.getElementById('pink-circle');
-            var dx = 0.25, dy = 0.25;
+            var dx = 0.3, dy = 0.3;
             let x = 1;
             let y = 1;
             let z = -1;
-            let count = 0;
+            let count = 1;
 
             // Animate bubbles with a subtle floating effect.
             function bubbleAnimationLoop() {
-                // Increment the counter by one until it reaches 160 then reset back to 0 and repeat.
+                // Increment the counter by one until it reaches 160 then reset back to 1 and repeat.
                 if (count < 180) {
                     count += 1;
-                } else if (count >= 180) {
-                    count = 0;
+                } else if (count == 180) {
+                    count = 1;
                 };
-
+                
                 // Change the purple bubbles direction when counter is within a certain range.
-                if (count < 90) {
+                if (count <= 90) {
                     x += dx;
                 } else if (count > 90) {
                     x -= dx;
                 };
 
                 // Change the blue bubbles direction when counter is within a certain range.
-                if (count < 40 || count > 130) {
+                if (count < 40 || count >= 130) {
                     y += dy;
-                } else if (count > 40 && count < 130) {
+                } else if (count >= 40 && count < 130) {
                     y -= dy;
                 };
 
                 // Change the pink bubbles direction when counter is within a certain range.
-                if (count < 20 || count > 110) {
+                if (count < 20 || count >= 110) {
                     z -= dy;
-                } else if (count > 20 && count < 110) {
+                } else if (count >= 20 && count < 110) {
                     z += dy;
                 };
 
