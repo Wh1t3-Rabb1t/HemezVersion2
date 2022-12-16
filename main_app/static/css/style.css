@@ -239,7 +239,7 @@ color: #000000;
     var(--dark-purple) 90%
   );
   font-size: 20px;
-} */
+}
 
 .live-chat {
   border-radius: 15px;
@@ -732,33 +732,93 @@ a {
 /*--------------------------- Signup Page ---------------------------------*/
 /*-------------------------------------------------------------------------*/
 
-/* .signup-box {
+.chat-box {
   display: flex;
-  align-items: flex-start;
-  border-radius: 15px;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100vw;
+  /* height: 100vh; */
+}
+
+.signup-main-container {
+  display: flex;
+  flex-direction: row;
   height: 100%;
-  width: 99%;
-  margin: 0.5% 0.5% 0.5% 0.5%;
-  padding-top: 20px;
-  padding-left: 200px;
-  padding-right: 200px;
+  width: 100%;
+
+  /* background-color: red; */
+}
+
+.left-signup-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  flex: 0 0 55%;
+  align-items:center;
+  justify-content: center;
+
+  background-color: blue;
+}
+
+.right-signup-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-color: green;
+}
+
+.signup-box {
+  display: flex;
+  flex-direction: column;
+  margin: 0% 8% 0% 16%;
+  padding: 4% 4% 4% 4%;
   box-sizing: border-box;
-  background: linear-gradient(
-    to right,
-    var(--white) -50%,
-    var(--dark-purple) 100%
-  );
+  position:relative;
+  
+  background-color: red;
 }
+/* justify-content: center; */
+/* align-items:center; */
+/* align-self: center; */
+/* flex: 0 0 55%; */
 
-.signup-box ul {
+.third-party-signup-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: purple;
+}
+/* justify-content: center; */
+
+
+
+
+/* display: flex;
+align-items: flex-start;
+border-radius: 15px;
+height: 100%;
+width: 99%;
+margin: 0.5% 0.5% 0.5% 0.5%;
+padding-top: 20px;
+padding-left: 200px;
+padding-right: 200px;
+box-sizing: border-box;
+background: linear-gradient(
+  to right,
+  var(--white) -50%,
+  var(--dark-purple) 100%
+); */
+
+/* .signup-box ul {
   list-style-type: none;
-}
-
-.signup-btn {
-  text-align: center;
 } */
 
-
+/* .signup-btn {
+  text-align: center;
+} */
 
 /* .img-card {
   display: flex;
