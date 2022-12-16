@@ -753,6 +753,7 @@ a {
   height: 100%;
   width: 100%;
   flex: 0 0 55%;
+  justify-content: center;
   
   background-color: blue;
 }
@@ -762,8 +763,10 @@ a {
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background-color: green;
+
+  background-color: maroon;
 }
+/* flex: 0 0 60%; */
 
 .signup-box {
   display: flex;
@@ -773,13 +776,16 @@ a {
   border: solid wheat 5px;
   border-radius: 25px;
   position: relative;
-  width: 30rem;
-  height: 30rem;
-  min-width: 90%;
   justify-content: center;
+  
+  height: 70%;
+  width: 100%;
+
+  box-sizing: border-box;
   
   background-color: red;
 }
+/* flex-flow: row-wrap; */
 
 .third-party-signup-box {
   display: flex;
@@ -789,6 +795,8 @@ a {
   box-sizing: border-box;
   height: 100%;
   margin-bottom: 3%;
+
+  flex: 0 0 40%;
 
   background-color: purple;
 }
@@ -817,6 +825,8 @@ a {
   box-sizing: border-box;
   height: 100%;
 
+  justify-content: center;
+  
   background-color: green;
 }
 /* flex: 0 0 55%; */
@@ -856,6 +866,8 @@ a {
 .signup-icons > img {
   margin: 0% 3% 0% 3%;
 }
+
+
 
 
 /* display: flex;
