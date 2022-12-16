@@ -781,16 +781,34 @@ a {
   background-color: red;
 }
 
-.third-party-signup-box{
+.third-party-signup-box {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   box-sizing: border-box;
   height: 100%;
+  margin-bottom: 3%;
 
   background-color: purple;
 }
+
+.third-party-signup-box > div {
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 36px;
+}
+
+#signup-header {
+  font-weight: 700;
+  font-size: 24px;
+}
+
+/* #enclosed-signup-text {
+  
+} */
 
 .email-signup-box {
   display: flex;
@@ -804,7 +822,7 @@ a {
 /* flex: 0 0 55%; */
 
 .email-signup-box > input {
-  padding: 2.5%;
+  padding: 1.5%;
   margin: 0.5%;
   border-radius: 25px;
   width: 50%;
@@ -817,15 +835,27 @@ a {
   width: 30%;
 }
 
+.email-signup-box > input {
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+}
+
 .signup-icons {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
+  padding: 0% 2% 0% 2%;
 
   background-color: blue;
 }
 
-
+.signup-icons > img {
+  margin: 0% 3% 0% 3%;
+}
 
 
 /* display: flex;
