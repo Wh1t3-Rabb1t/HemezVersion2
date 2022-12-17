@@ -744,8 +744,9 @@ a {
   flex-direction: row;
   height: 100%;
   width: 100%;
-  
-  /* position: relative; */
+
+  overflow: hidden;
+  position: relative;
 }
 
 .left-signup-container {
@@ -756,26 +757,28 @@ a {
   width: 100%;
   flex: 0 0 55%;
   z-index: 4;
-  
+
+  /* position: relative; */
+  /* overflow: hidden; */
+
   /* background-color: blue; */
 }
 
-.right-signup-container {
+/* .right-signup-container {
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
-
   position: relative;
   overflow: hidden;
-
-  /* background-color: maroon; */
-}
+} */
+/* background-color: maroon; */
 
 .signup-box {
   display: flex;
   flex-direction: column;
-  margin: 8% 4% 24% 16%;
+  /* margin: 8% 4% 24% 16%; */
+  margin: 8% 4% 16% 16%;
   padding: 1%;
   border: solid wheat 5px;
   border-radius: 25px;
@@ -1044,20 +1047,15 @@ min-height: calc( 100vh - 70px);
   position:relative;
 }
 
-#blue-circ {
+/* #blue-circ {
   width: 729px;
   height: 688px;
   left: -8vw;
   top: calc( 40vh - 70px);
   background: linear-gradient(182.16deg, #D0EBFD 1.82%, rgba(208, 235, 253, 0) 98.3%);
   box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.25);
-  border-radius: 50%;
-  
+  border-radius: 50%; 
   position: absolute;
-  z-index: 3;
-
-  /* max-height: 100%; */
-  /* max-width: 100%; */
 }
 
 #pink-circ {
@@ -1068,12 +1066,7 @@ min-height: calc( 100vh - 70px);
   top: calc( 10vh - 70px);
   background: linear-gradient(180deg, #EBA0C9 0%, rgba(235, 160, 201, 0.765543) 2.48%, rgba(235, 160, 201, 0) 77.43%);
   box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.25);
-
   position: absolute;
-  z-index: 3;
-
-  /* max-height: 100%; */
-  /* max-width: 100%; */
 }
 
 #purple-circ {
@@ -1084,13 +1077,45 @@ min-height: calc( 100vh - 70px);
   border-radius: 50%;
   background: linear-gradient(220.89deg, #C79CE0 23.2%, rgba(199, 156, 224, 0.458333) 49.34%, rgba(199, 156, 224, 0) 89.82%);
   box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.25);
-
   position: absolute;
-  z-index: 3;
+} */
 
-  /* max-height: 100%; */
-  /* max-width: 100%; */
+#blue-circ {
+  width: 44rem;
+  height: 44rem;
+  left: 55%;
+  top: 35%;
+  background: linear-gradient(182.16deg, #D0EBFD 1.82%, rgba(208, 235, 253, 0) 98.3%);
+  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 50%; 
+  position: absolute;
 }
+
+#pink-circ {
+  width: 44rem;
+  height: 44rem;
+  left: 75%;
+  top: 10%;
+  background: linear-gradient(180deg, #EBA0C9 0%, rgba(235, 160, 201, 0.765543) 2.48%, rgba(235, 160, 201, 0) 77.43%);
+  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.25);
+  border-radius:50%;
+  position: absolute;
+}
+
+#purple-circ {
+  width: 44rem;
+  height: 44rem;
+  left: 65%;
+  top: 50%;
+  background: linear-gradient(220.89deg, #C79CE0 23.2%, rgba(199, 156, 224, 0.458333) 49.34%, rgba(199, 156, 224, 0) 89.82%);
+  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+  position: absolute;
+}
+
+/* z-index: 3; */
+/* max-height: 100%; */
+/* max-width: 100%; */
 
 
 
