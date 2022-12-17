@@ -736,7 +736,7 @@ a {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  width: 100vw;
+  width: 100%;
 }
 
 .signup-main-container {
@@ -744,17 +744,20 @@ a {
   flex-direction: row;
   height: 100%;
   width: 100%;
+  
+  /* position: relative; */
 }
 
 .left-signup-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   height: 100%;
   width: 100%;
   flex: 0 0 55%;
-  justify-content: center;
+  z-index: 4;
   
-  background-color: blue;
+  /* background-color: blue; */
 }
 
 .right-signup-container {
@@ -763,7 +766,10 @@ a {
   height: 100%;
   width: 100%;
 
-  background-color: maroon;
+  position: relative;
+  overflow: hidden;
+
+  /* background-color: maroon; */
 }
 
 .signup-box {
@@ -777,8 +783,12 @@ a {
   box-sizing: border-box;
   height: 100%;
   width: 90%;
+  
+  /* height: 75%; */
+  /* width: 55%; */
+  /* margin: 4% 4% 8% 8%; */
 
-  background-color: red;
+  /* background-color: red; */
 }
 
 .third-party-signup-box {
@@ -790,7 +800,7 @@ a {
   padding: 1% 1% 1% 1%;
   height: 100%;
 
-  background-color: purple;
+  /* background-color: purple; */
 }
 
 .third-party-signup-box > div {
@@ -823,7 +833,7 @@ a {
 
   flex: 0 0 60%;
   
-  background-color: green;
+  /* background-color: green; */
 }
 
 .email-signup-box > input {
@@ -866,7 +876,7 @@ a {
   justify-content: center;
   padding: 0% 2% 0% 2%;
 
-  background-color: blue;
+  /* background-color: blue; */
 }
 
 .signup-icons > img {
@@ -1034,41 +1044,57 @@ min-height: calc( 100vh - 70px);
   position:relative;
 }
 
-#blue-circ{
-position: absolute;
-width: 729px;
-height: 688px;
-left: -8vw;
-top: calc( 40vh - 70px);
-background: linear-gradient(182.16deg, #D0EBFD 1.82%, rgba(208, 235, 253, 0) 98.3%);
-box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.25);
-border-radius: 50%;
+#blue-circ {
+  width: 729px;
+  height: 688px;
+  left: -8vw;
+  top: calc( 40vh - 70px);
+  background: linear-gradient(182.16deg, #D0EBFD 1.82%, rgba(208, 235, 253, 0) 98.3%);
+  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+  
+  position: absolute;
+  z-index: 3;
 
+  /* max-height: 100%; */
+  /* max-width: 100%; */
 }
 
-#pink-circ{
-border-radius:50%;
-position: absolute;
-width: 808px;
-height: 842px;
-left: 21vw;
-top: calc( 10vh - 70px);
-background: linear-gradient(180deg, #EBA0C9 0%, rgba(235, 160, 201, 0.765543) 2.48%, rgba(235, 160, 201, 0) 77.43%);
-box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.25);
+#pink-circ {
+  border-radius:50%;
+  width: 808px;
+  height: 842px;
+  left: 21vw;
+  top: calc( 10vh - 70px);
+  background: linear-gradient(180deg, #EBA0C9 0%, rgba(235, 160, 201, 0.765543) 2.48%, rgba(235, 160, 201, 0) 77.43%);
+  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.25);
 
+  position: absolute;
+  z-index: 3;
+
+  /* max-height: 100%; */
+  /* max-width: 100%; */
 }
 
-#purple-circ{
-position: absolute;
-width: 808px;
-height: 813px;
-left: 15vw;
-top: calc( 50vh - 70px);
-border-radius: 50%;
-background: linear-gradient(220.89deg, #C79CE0 23.2%, rgba(199, 156, 224, 0.458333) 49.34%, rgba(199, 156, 224, 0) 89.82%);
-box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.25);
+#purple-circ {
+  width: 808px;
+  height: 813px;
+  left: 15vw;
+  top: calc( 50vh - 70px);
+  border-radius: 50%;
+  background: linear-gradient(220.89deg, #C79CE0 23.2%, rgba(199, 156, 224, 0.458333) 49.34%, rgba(199, 156, 224, 0) 89.82%);
+  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.25);
 
+  position: absolute;
+  z-index: 3;
+
+  /* max-height: 100%; */
+  /* max-width: 100%; */
 }
+
+
+
+
 
 #phone-case{
   position: absolute;
