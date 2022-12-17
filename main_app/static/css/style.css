@@ -417,11 +417,11 @@ color: #000000;
 .about-box-bottom {
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
   height: 100%;
   width: 100%;
   justify-content: space-evenly;
   padding: 0% 8% 0% 8%;
-  box-sizing: border-box;
 }
 
 #team-header {
@@ -745,7 +745,6 @@ a {
   height: 100%;
   width: 100%;
 }
-/* background-color: red; */
 
 .left-signup-container {
   display: flex;
@@ -766,26 +765,22 @@ a {
 
   background-color: maroon;
 }
-/* flex: 0 0 60%; */
 
 .signup-box {
   display: flex;
   flex-direction: column;
-  margin: 8% 4% 12% 16%;
-  padding: 4%;
+  margin: 8% 4% 24% 16%;
+  padding: 1%;
   border: solid wheat 5px;
   border-radius: 25px;
   position: relative;
   justify-content: center;
-  
-  height: 70%;
+  height: 100%;
   width: 100%;
-
   box-sizing: border-box;
-  
+
   background-color: red;
 }
-/* flex-flow: row-wrap; */
 
 .third-party-signup-box {
   display: flex;
@@ -794,10 +789,11 @@ a {
   justify-content: space-evenly;
   box-sizing: border-box;
   height: 100%;
-  margin-bottom: 3%;
+  flex: 0 0 35%;
+  /* margin-bottom: 3%; */
+  /* padding-bottom: 3%; */
 
-  flex: 0 0 40%;
-
+  padding: 1% 1% 1% 1%;
   background-color: purple;
 }
 
@@ -815,7 +811,6 @@ a {
 }
 
 /* #enclosed-signup-text {
-  
 } */
 
 .email-signup-box {
@@ -824,8 +819,8 @@ a {
   align-items: center;
   box-sizing: border-box;
   height: 100%;
-
   justify-content: center;
+  padding: 1%;
   
   background-color: green;
 }
@@ -834,18 +829,21 @@ a {
 .email-signup-box > input {
   padding: 1.5%;
   margin: 0.5%;
-  border-radius: 25px;
-  width: 50%;
+  border-radius: 28px;
+  width: 65%;
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
 }
 
 .email-signup-box > button {
   padding: 2.5%;
   margin: 3% 0% 3% 0%;
-  border-radius: 25px;
+  border-radius: 35px;
   width: 30%;
-}
 
-.email-signup-box > input {
   font-family: 'Helvetica Neue';
   font-style: normal;
   font-weight: 700;
