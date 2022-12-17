@@ -1083,8 +1083,12 @@ min-height: calc( 100vh - 70px);
 #blue-circ {
   width: 44rem;
   height: 44rem;
-  left: 55%;
-  top: 35%;
+  /* left: 55%;
+  top: 35%; */
+
+  left: 40rem;
+  top: 20rem;
+
   background: linear-gradient(182.16deg, #D0EBFD 1.82%, rgba(208, 235, 253, 0) 98.3%);
   box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.25);
   border-radius: 50%; 
