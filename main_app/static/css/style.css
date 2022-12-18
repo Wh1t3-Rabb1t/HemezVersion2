@@ -888,8 +888,8 @@ a {
 }
 
 #blue-circ {
-  width: 45rem;
-  height: 45rem;
+  width: 40rem;
+  height: 40rem;
   left: 40%;
   top: 50%;
 
@@ -928,7 +928,36 @@ a {
   }
 }
 
+#phone-base {
+  width: 34rem;
+  height: 28rem;
+  position: absolute;
+  left: 50%;
+  top: 20%;
 
+  transform: skewX(-15deg);
+  transform: skewY(-15deg);
+}
+
+/* 
+.rectangle {
+  transform: matrix3d(
+    cos(45deg), sin(45deg), 0, 0,
+    -sin(45deg), cos(45deg), 0, 0,
+    0, 0, 1, 0,
+    100px, 100px, 0, 1
+  );
+} */
+
+
+/* .rectangle {
+  transform: matrix3d(
+    1, 0, 0, 0,
+    0, cos(45deg), sin(45deg), 0,
+    0, -sin(45deg), cos(45deg), 0,
+    0, 0, 0, 1
+  );
+} */
 
 
 
