@@ -934,20 +934,44 @@ a {
   position: absolute;
   left: 50%;
   top: 20%;
-
   transform: skewX(-15deg);
   transform: skewY(-15deg);
 }
 
-/* 
-.rectangle {
-  transform: matrix3d(
-    cos(45deg), sin(45deg), 0, 0,
-    -sin(45deg), cos(45deg), 0, 0,
-    0, 0, 1, 0,
-    100px, 100px, 0, 1
-  );
-} */
+#phone-screen {
+  width: 33rem;
+  height: 27rem;
+  position: absolute;
+  left: 50.5%;
+  top: 20.5%;
+  z-index: 1;
+  transform: skewX(-15deg);
+  transform: skewY(-15deg);
+}
+
+#phone-notifications-1 {
+  width: 26rem;
+  height: 20rem;
+  position: absolute;
+  left: 57%;
+  top: 14%;
+  z-index: 2;
+  transform: skewX(-15deg);
+  transform: skewY(-15deg);
+}
+
+#phone-notifications-2 {
+  width: 26rem;
+  height: 20rem;
+  position: absolute;
+  left: 46.5%;
+  top: 39%;
+  z-index: 2;
+  transform: skewX(-15deg);
+  transform: skewY(-15deg);
+}
+
+
 
 
 /* .rectangle {
