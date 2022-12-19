@@ -963,8 +963,8 @@ a {
   height: 20rem;
   left: 57%;
   top: 14%;
-  z-index: 3;
   transform: skewY(-15deg);
+  z-index: 3;
 }
 
 #phone-notifications-2 {
@@ -973,8 +973,8 @@ a {
   height: 20rem;
   left: 46.5%;
   top: 39%;
-  z-index: 3;
   transform: skewY(-15deg);
+  z-index: 3;
 }
 
 
