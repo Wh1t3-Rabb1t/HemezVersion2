@@ -44,31 +44,25 @@
     
     <!-- Truly responsive design module. -->
     <script defer>
-        // Full screen values are + 8 px.
         // const baseWidth = 1432;
         // const baseHeight = 815;
         // let monW = 2552;
         // let monH = 1355;
         // let rootRem = 10;
-        const root = document.querySelector(':root');
-
+        
         function calculatePercentageDifference(oldValue, newValue) {
             return (newValue - oldValue) / oldValue * 100;
         };
         // console.log(calculatePercentageDifference(100, 150)); // Output: 50
+        
+        const root = document.querySelector(':root');
 
         function smartResizing() {
             const baseWidth = 1432;
             const baseHeight = 815;
-
-            let rootRem = 10;
-
             let viewportWidth = window.innerWidth;
             let viewportHeight = window.innerHeight;
-            // let widthDifference = 0;
-            // let heightDifference = 0;
-            // let sum = 0;
-            // let finalSum = 0;
+            let rootRem = 10;
 
             // Determine the difference in width of viewport and base value.
             if (viewportWidth != baseWidth) {
@@ -82,8 +76,14 @@
                 console.log(heightDifference);
             };
 
-            // Determine which difference is greater to apply the smaller value on both sides.
+            // if (viewportHeight != baseHeight || viewportWidth != baseWidth) {
+            //     heightDifference = calculatePercentageDifference(baseHeight, viewportHeight);
+            //     widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
+            //     console.log(heightDifference);
+            //     console.log(widthDifference);
+            // };
 
+            // Determine which difference is greater to apply the smaller value on both sides.
             // INCORPORATE NUMBER ROUNDING BOTH UP AND DOWN FOR ACCURACY!
             if (heightDifference > widthDifference) {
                 sum = widthDifference;
@@ -93,31 +93,44 @@
 
             rootRem += (sum / 10);
             root.style.fontSize = rootRem + 'px';
-
             console.log(rootRem);
 
-            // if (heightDifference > widthDifference) {
-            //     sum = widthDifference;
-            //     finalSum = calculatePercentageDifference(baseWidth, viewportWidth);
-            // } else if (heightDifference < widthDifference) {
-            //     sum = heightDifference;
-            //     finalSum = calculatePercentageDifference(baseHeight, viewportHeight);
-            // };
-            
-            // num = calculatePercentageDifference(1440, 2560);
-            // console.log(num);
-
-            // if (viewportWidth >= monW) {
-            //     rootRem = 16.6;
-            //     root.style.fontSize = '16.6px';
-            // } else if (viewportWidth <= monW) {
-            //     rootRem = 10;
-            //     root.style.fontSize = '10px';
-            // };
+            // rootRem = 10;
         };
-
+        
         window.addEventListener('load', smartResizing);
         window.addEventListener('resize', smartResizing);
+
+        //---------------------------------------------------//
+        // Non full screen values are - 8 px.
+        // laptop width = 1440
+        // laptop height = 815
+        // monitor width = 2560
+        // monitor height = 1355
+        // monitor width is roughly 1.77 x laptop width
+        // monitor height is roughtly 1.66 x laptop height
+        //---------------------------------------------------//
+        
+
+
+        // if (heightDifference > widthDifference) {
+        //     sum = widthDifference;
+        //     finalSum = calculatePercentageDifference(baseWidth, viewportWidth);
+        // } else if (heightDifference < widthDifference) {
+        //     sum = heightDifference;
+        //     finalSum = calculatePercentageDifference(baseHeight, viewportHeight);
+        // };
+        
+        // num = calculatePercentageDifference(1440, 2560);
+        // console.log(num);
+
+        // if (viewportWidth >= monW) {
+        //     rootRem = 16.6;
+        //     root.style.fontSize = '16.6px';
+        // } else if (viewportWidth <= monW) {
+        //     rootRem = 10;
+        //     root.style.fontSize = '10px';
+        // };
 
         // window.onresize = function() {
         //     smartResizing();
@@ -139,18 +152,6 @@
 </div>
 
 {% endblock %}
-
-
-<!--
-    // laptop width = 1440
-    // laptop height = 815
-    
-    // monitor width = 2560
-    // monitor height = 1355
-
-    // monitor width is roughly 1.77 x laptop width
-    // monitor height is roughtly 1.66 x laptop height
--->
 
 
 
