@@ -915,9 +915,8 @@ a {
   position: absolute;
 }
 
-/* z-index: 3; */
-/* max-height: 100%; */
-/* max-width: 100%; */
+
+
 
 @media screen and (min-width: 10%) {
   /* Styles to apply when the screen width is at least 50% larger than the default width */
@@ -928,14 +927,15 @@ a {
   }
 }
 
-#phone-base {
+/* #phone-base {
   position: absolute;
   width: 34rem;
   height: 28rem;
   left: 50%;
   top: 20%;
   transform: skewY(-15deg);
-}
+  z-index: 1;
+} */
 
 #phone-template {
   position: absolute;
@@ -944,9 +944,18 @@ a {
   left: 26.75%;
   top: 1.25%;
   transform: skew(-1deg, -15deg);
-  z-index: 1;
+  z-index: 2;
 }
 
+#phone-template-effects {
+  position: absolute;
+  width: 35.5rem;
+  height: 29.5rem;
+  left: 49%;
+  top: 18.5%;
+  transform: skew(-1deg, -15deg);
+  z-index: 0;
+}
 
 /* #phone-screen {
   width: 33rem;
@@ -954,7 +963,7 @@ a {
   position: absolute;
   left: 50.5%;
   top: 20.5%;
-  z-index: 1;
+  z-index: 0;
   transform: skewX(-15deg);
   transform: skewY(-15deg);
 } */
@@ -966,7 +975,6 @@ a {
   left: 57%;
   top: 14%;
   z-index: 2;
-  transform: skewX(-15deg);
   transform: skewY(-15deg);
 }
 
@@ -977,7 +985,6 @@ a {
   left: 46.5%;
   top: 39%;
   z-index: 2;
-  transform: skewX(-15deg);
   transform: skewY(-15deg);
 }
 
