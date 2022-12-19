@@ -46,8 +46,24 @@
     <script defer>
         let viewportHeight = window.innerHeight;
         let viewportWidth = window.innerWidth;
-        
-        console.log(viewportHeight);
+        let ltW = 1440;
+        let ltH = 815;
+        let monW = 2560;
+        let monH = 1355;
+        let rootRem = 10;
+        const root = document.querySelector(':root');
+
+        window.onresize = function() {
+            if (viewportWidth == monW) {
+                rootRem = 16.6;
+                root.style.fontSize = '16.6px'
+            } else {
+                rootRem = 10;
+                root.style.fontSize = '10px'
+            };
+        };
+
+        // console.log(viewportHeight);
     </script>
     
 </div>
@@ -56,14 +72,14 @@
 
 
 <!--
-// laptop width = 1440
-// monitor width = 2560
+    // laptop width = 1440
+    // laptop height = 815
+    
+    // monitor width = 2560
+    // monitor height = 1355
 
-// laptop height = 815
-// monitor height = 1355
-
-// monitor width is roughly 1.78 x laptop width
-// monitor height is roughtly 1.66 x laptop height
+    // monitor width is roughly 1.78 x laptop width
+    // monitor height is roughtly 1.66 x laptop height
 -->
 
 
