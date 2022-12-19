@@ -832,13 +832,18 @@ a {
   font-family: 'Helvetica Neue';
   font-style: normal;
   font-weight: 500;
-  font-size: 1.25rem;
-  line-height: 2.25rem;
+
+  /* font-size: 1.25rem;  */
+  /* line-height: 2.25rem; */
+  font-size: 2rem;
+  line-height: 3.6rem;
 }
 
 #signup-header {
   font-weight: 700;
-  font-size: 1.5rem;
+
+  /* font-size: 1.5rem; */
+  font-size: 2.4rem;
 }
 
 /* #enclosed-signup-text {
@@ -860,17 +865,19 @@ a {
 .email-signup-box > input {
   padding: 1.5%;
   margin: 0.5%;
-  /* border-radius: 28px; */
-  border-radius: 1.75rem;
   width: 65%;
-
   height: 30%;
-
   font-family: 'Helvetica Neue';
   font-style: normal;
   font-weight: 700;
-  line-height: 2.25rem;
-  font-size: 1.5rem;
+
+  /* line-height: 2.25rem; */
+  /* font-size: 1.5rem; */
+  /* border-radius: 28px; */
+  /* border-radius: 1.75rem; */
+  font-size: 2.4rem;
+  line-height: 3.6rem;
+  border-radius: 2.8rem;
 }
 
 .email-signup-box > button {
@@ -879,12 +886,14 @@ a {
   border-radius: 35px;
   width: 30%;
   /* height: 30%; */
-
   font-family: 'Helvetica Neue';
   font-style: normal;
   font-weight: 700;
-  line-height: 2.25rem;
-  font-size: 1.5rem;
+
+  /* line-height: 2.25rem;
+  font-size: 1.5rem; */
+  font-size: 2.4rem;
+  line-height: 3.6rem;
 }
 
 .signup-icons {
@@ -902,8 +911,11 @@ a {
 }
 
 #pink-circ {
-  width: 45rem;
-  height: 45rem;
+  /* width: 45rem;
+  height: 45rem; */
+  width: 72rem;
+  height: 72rem;
+
   left: 65%;
   top: 8%;
   background: linear-gradient(180deg, #EBA0C9 0%, rgba(235, 160, 201, 0.765543) 2.48%, rgba(235, 160, 201, 0) 77.43%);
@@ -913,8 +925,11 @@ a {
 }
 
 #blue-circ {
-  width: 40rem;
-  height: 40rem;
+  /* width: 40rem;
+  height: 40rem; */
+  width: 64rem;
+  height: 64rem;
+
   left: 40%;
   top: 50%;
 
@@ -930,8 +945,11 @@ a {
 }
 
 #purple-circ {
-  width: 45rem;
-  height: 45rem;
+  /* width: 45rem;
+  height: 45rem; */
+  width: 72rem;
+  height: 72rem;
+
   left: 55%;
   top: 58%;
   background: linear-gradient(220.89deg, #C79CE0 23.2%, rgba(199, 156, 224, 0.458333) 49.34%, rgba(199, 156, 224, 0) 89.82%);
@@ -954,52 +972,67 @@ a {
 
 #phone-template-effects {
   position: absolute;
-  width: 35.5rem;
-  height: 29.5rem;
   left: 49%;
   top: 18.5%;
   transform: skew(-1deg, -15deg);
   z-index: 0;
+
+  /* width: 35.5rem;
+  height: 29.5rem; */
+  width: 56.8rem;
+  height: 47.2rem;
 }
 
 #phone-template {
   position: absolute;
-  width: 55.5rem;
-  height: 44.5rem; 
   left: 26.75%;
   top: 1.25%;
   transform: skew(-1deg, -15deg);
   z-index: 1;
+
+  /* width: 55.5rem;
+  height: 44.5rem;  */
+  width: 88.8rem;
+  height: 71.2rem;
 }
 
 #phone-screen {
   position: absolute;
-  width: 34rem;
-  height: 28rem;
   left: 49.8%;
   top: 19.5%;
   transform: skew(-1deg, -15deg);
   z-index: 2;
+
+  /* width: 34rem;
+  height: 28rem; */
+  width: 54.4rem;
+  height: 44.8rem;
 }
 
 #phone-notifications-1 {
   position: absolute;
-  width: 26rem;
-  height: 20rem;
   left: 57%;
   top: 14%;
   transform: skewY(-15deg);
   z-index: 3;
+
+  /* width: 26rem;
+  height: 20rem; */
+  width: 41.6rem;
+  height: 32rem;
 }
 
 #phone-notifications-2 {
   position: absolute;
-  width: 26rem;
-  height: 20rem;
   left: 46.5%;
   top: 39%;
   transform: skewY(-15deg);
   z-index: 3;
+
+  /* width: 26rem;
+  height: 20rem; */
+  width: 41.6rem;
+  height: 32rem;
 }
 
 
