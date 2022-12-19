@@ -961,14 +961,11 @@ a {
 
 
 
-@media screen and (min-width: 10%) {
-  /* Styles to apply when the screen width is at least 50% larger than the default width */
-
+/* @media screen and (min-width: 10%) {
   :root {
-    /* font-size: 24px; */
     font-size: 44px;
   }
-}
+} */
 
 #phone-template-effects {
   position: absolute;

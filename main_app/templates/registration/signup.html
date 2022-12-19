@@ -44,26 +44,67 @@
     
     <!-- Truly responsive design module. -->
     <script defer>
-        let viewportHeight = window.innerHeight;
-        let viewportWidth = window.innerWidth;
-        let ltW = 1440;
-        let ltH = 815;
-        let monW = 2560;
-        let monH = 1355;
+        // Full screen values are + 8 px.
+        let baseWidth = 1432;
+        let baseHeight = 815;
+        // let monW = 2552;
+        // let monH = 1355;
         let rootRem = 10;
         const root = document.querySelector(':root');
 
-        window.onresize = function() {
-            if (viewportWidth == monW) {
-                rootRem = 16.6;
-                root.style.fontSize = '16.6px'
-            } else {
-                rootRem = 10;
-                root.style.fontSize = '10px'
+        function smartResizing() {
+            let viewportWidth = window.innerWidth;
+            let viewportHeight = window.innerHeight;
+            let widthDifference = 0;
+            let heightDifference = 0;
+            let sum = 0;
+            
+            // Determine the difference in width of viewport and base value.
+            if (viewportWidth != baseWidth) {
+                widthDifference = viewportWidth - baseWidth;
             };
+
+            // Determine the difference in height of viewport and base value.
+            if (viewportHeight != baseHeight) {
+                heightDifference = viewportHeight - baseHeight;
+            };
+
+            // Determine which difference is greater to apply the smaller value on both sides.
+            if (heightDifference > widthDifference) {
+                sum = widthDifference;
+            } else if (heightDifference < widthDifference) {
+                sum = heightDifference;
+            };
+            
+            
+
+            // if (viewportWidth >= monW) {
+            //     rootRem = 16.6;
+            //     root.style.fontSize = '16.6px';
+            // } else if (viewportWidth <= monW) {
+            //     rootRem = 10;
+            //     root.style.fontSize = '10px';
+            // };
         };
 
-        // console.log(viewportHeight);
+        window.addEventListener('load', smartResizing);
+        window.addEventListener('resize', smartResizing);
+
+        // window.onresize = function() {
+        //     smartResizing();
+        //     console.log('onresize');
+        // };
+
+        // window.onload = function() {
+        //     smartResizing();
+        // };
+
+        // window.addEventListener('resize', function() {
+        //     smartResizing();
+        //     console.log('event listener');
+        // });
+
+        // console.log(viewportWidth);
     </script>
     
 </div>
