@@ -306,7 +306,8 @@ color: #000000;
 
 :root {
 
-  font-size: 16px;
+  /* font-size: 16px; */
+  font-size: 10px;
 
   --white: white;
   --black: black;
@@ -390,20 +391,26 @@ color: #000000;
   font-style: normal;
   font-family: 'Helvetica Neue';
   font-weight: 700;
-  font-size: 52px;
-  line-height: 63px;
   color: #C79CE0;
   z-index: 1;
+
+  /* font-size: 52px;
+  line-height: 63px; */
+  font-size: 5.2rem;
+  line-height: 6.3rem;
 }
 
 #about-text {
   font-style: normal;
   font-family: 'Helvetica Neue';
   font-weight: 400;
-  font-size: 24px;
-  line-height: 29px;  
   color: #000000;
   z-index: 1;
+
+  /* font-size: 24px;
+  line-height: 29px;  */
+  font-size: 2.4rem;
+  line-height: 2.9rem;
 }
 
 .top-right-box {
@@ -431,20 +438,26 @@ color: #000000;
   font-style: normal;
   font-family: 'Helvetica Neue';
   font-weight: 700;
-  font-size: 52px;
-  line-height: 63px;
   color: #C79CE0;
   z-index: 1;
+
+  /* font-size: 52px;
+  line-height: 63px; */
+  font-size: 5.2rem;
+  line-height: 6.3rem;
 }
 
 #team-text {
   font-style: normal;
   font-family: 'Helvetica Neue';
   font-weight: 400;
-  font-size: 24px;
-  line-height: 29px;  
   color: #000000;
   z-index: 1;
+
+  /* font-size: 24px;
+  line-height: 29px; */
+  font-size: 2.4rem;
+  line-height: 2.9rem;
 }
 
 #members {
@@ -458,9 +471,12 @@ color: #000000;
 }
 
 .profile-pic {
-  border: 2px solid #C79CE0;;
-  border-radius: 10px;
   z-index: 1;
+
+  /* border: 2px solid #C79CE0;;
+  border-radius: 10px; */
+  border: 0.2rem solid #C79CE0;;
+  border-radius: 1rem;
 }
 
 .members-container {
@@ -474,22 +490,31 @@ color: #000000;
   align-items: center;
   display: flex;
   flex-direction: row;
-  border: 2px solid #C79CE0;;
-  border-radius: 10px;
   padding: 3%;
   font-family: 'Helvetica Neue';
   font-style: normal;
-  font-size: 19.3768px;
-  line-height: 24px;
+  
+  /* border: 2px solid #C79CE0;; */
+  /* border-radius: 10px; */
+  border: 0.2rem solid #C79CE0;;
+  border-radius: 1rem;
+
+  /* font-size: 19.3768px;
+  line-height: 24px; */
+  font-size: 1.94rem;
+  line-height: 2.4rem;
 }
 
 .member-links span {
   font-family: 'Helvetica Neue';
   font-style: normal;
   font-weight: 700;
-  font-size: 19.3768px;
-  line-height: 24px;
   color: #C79CE0;
+
+  /* font-size: 19.3768px;
+  line-height: 24px; */
+  font-size: 1.94rem;
+  line-height: 2.4rem;
 }
 
 #links {
@@ -499,37 +524,37 @@ color: #000000;
 
 #blue-circle {
   position: absolute;
-  width: 729px;
-  height: 688px;
+  width: 72.9rem;
+  height: 68.8rem;
   border-radius: 50%;
   left: 15vw;
   top: calc( 12vh - 70px);
   background: linear-gradient(182.16deg, #D0EBFD 1.82%, rgba(208, 235, 253, 0) 98.3%);
-  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: inset 1rem 1rem 1rem rgba(0, 0, 0, 0.25);
   z-index: 0;
 }
 
 #pink-circle {
   position: absolute;
-  width: 808px;
-  height: 842px;
+  width: 80.8rem;
+  height: 84.2rem;
   border-radius:50%;
   left: 5vw;
   top: calc( -35vh - 70px);
   background: linear-gradient(180deg, #EBA0C9 0%, rgba(235, 160, 201, 0.765543) 2.48%, rgba(235, 160, 201, 0) 77.43%);
-  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: inset 1rem 1rem 1rem rgba(0, 0, 0, 0.25);
   z-index: 0;
 }
 
 #purple-circle {
   position: absolute;
-  width: 808px;
-  height: 813px;
+  width: 80.8rem;
+  height: 81.3rem;
   border-radius: 50%;
   left: 25vw;
   top: calc( -40vh - 70px);
   background: linear-gradient(220.89deg, #C79CE0 23.2%, rgba(199, 156, 224, 0.458333) 49.34%, rgba(199, 156, 224, 0) 89.82%);
-  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: inset 1rem 1rem 1rem rgba(0, 0, 0, 0.25);
   z-index: 0;
 }
 
@@ -927,16 +952,6 @@ a {
   }
 }
 
-#phone-template {
-  position: absolute;
-  width: 55.5rem;
-  height: 44.5rem; 
-  left: 26.75%;
-  top: 1.25%;
-  transform: skew(-1deg, -15deg);
-  z-index: 1;
-}
-
 #phone-template-effects {
   position: absolute;
   width: 35.5rem;
@@ -945,6 +960,16 @@ a {
   top: 18.5%;
   transform: skew(-1deg, -15deg);
   z-index: 0;
+}
+
+#phone-template {
+  position: absolute;
+  width: 55.5rem;
+  height: 44.5rem; 
+  left: 26.75%;
+  top: 1.25%;
+  transform: skew(-1deg, -15deg);
+  z-index: 1;
 }
 
 #phone-screen {
