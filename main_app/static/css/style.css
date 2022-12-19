@@ -929,16 +929,26 @@ a {
 }
 
 #phone-base {
+  position: absolute;
   width: 34rem;
   height: 28rem;
-  position: absolute;
   left: 50%;
   top: 20%;
-  transform: skewX(-15deg);
   transform: skewY(-15deg);
 }
 
-#phone-screen {
+#phone-template {
+  position: absolute;
+  width: 55.5rem;
+  height: 44.5rem; 
+  left: 26.75%;
+  top: 1.25%;
+  transform: skew(-1deg, -15deg);
+  z-index: 1;
+}
+
+
+/* #phone-screen {
   width: 33rem;
   height: 27rem;
   position: absolute;
@@ -947,7 +957,7 @@ a {
   z-index: 1;
   transform: skewX(-15deg);
   transform: skewY(-15deg);
-}
+} */
 
 #phone-notifications-1 {
   width: 26rem;
