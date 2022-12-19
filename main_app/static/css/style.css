@@ -927,16 +927,6 @@ a {
   }
 }
 
-/* #phone-base {
-  position: absolute;
-  width: 34rem;
-  height: 28rem;
-  left: 50%;
-  top: 20%;
-  transform: skewY(-15deg);
-  z-index: 1;
-} */
-
 #phone-template {
   position: absolute;
   width: 55.5rem;
@@ -944,7 +934,7 @@ a {
   left: 26.75%;
   top: 1.25%;
   transform: skew(-1deg, -15deg);
-  z-index: 2;
+  z-index: 1;
 }
 
 #phone-template-effects {
@@ -957,34 +947,33 @@ a {
   z-index: 0;
 }
 
-/* #phone-screen {
-  width: 33rem;
-  height: 27rem;
+#phone-screen {
   position: absolute;
-  left: 50.5%;
-  top: 20.5%;
-  z-index: 0;
-  transform: skewX(-15deg);
-  transform: skewY(-15deg);
-} */
+  width: 34rem;
+  height: 28rem;
+  left: 49.8%;
+  top: 19.5%;
+  transform: skew(-1deg, -15deg);
+  z-index: 2;
+}
 
 #phone-notifications-1 {
+  position: absolute;
   width: 26rem;
   height: 20rem;
-  position: absolute;
   left: 57%;
   top: 14%;
-  z-index: 2;
+  z-index: 3;
   transform: skewY(-15deg);
 }
 
 #phone-notifications-2 {
+  position: absolute;
   width: 26rem;
   height: 20rem;
-  position: absolute;
   left: 46.5%;
   top: 39%;
-  z-index: 2;
+  z-index: 3;
   transform: skewY(-15deg);
 }
 
