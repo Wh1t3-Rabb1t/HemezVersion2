@@ -44,8 +44,6 @@
     
     <!-- Truly responsive design module. -->
     <script defer>
-        // const baseWidth = 1432;
-        // const baseHeight = 815;
         // let monW = 2552;
         // let monH = 1355;
         // let rootRem = 10;
@@ -55,42 +53,34 @@
         };
         // console.log(calculatePercentageDifference(100, 150)); // Output: 50
         
-        const root = document.querySelector(':root');
-
+        // Dynamic page scaling function.
         function smartResizing() {
+            const root = document.querySelector(':root');
             const baseWidth = 1432;
             const baseHeight = 815;
             let viewportWidth = window.innerWidth;
             let viewportHeight = window.innerHeight;
             let rootRem = 10;
 
-            // Determine the difference in width of viewport and base value.
-            if (viewportWidth != baseWidth) {
+            // If the current viewport dimensions don't match the base value, calculate the percentage difference.
+            if (viewportWidth != baseWidth || viewportHeight != baseHeight) {
                 widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
-                console.log(widthDifference);
-            };
-
-            // Determine the difference in height of viewport and base value.
-            if (viewportHeight != baseHeight) {
                 heightDifference = calculatePercentageDifference(baseHeight, viewportHeight);
-                console.log(heightDifference);
+                // console.log(widthDifference);
+                // console.log(heightDifference);
             };
 
-            // if (viewportHeight != baseHeight || viewportWidth != baseWidth) {
-            //     heightDifference = calculatePercentageDifference(baseHeight, viewportHeight);
-            //     widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
-            //     console.log(heightDifference);
-            //     console.log(widthDifference);
-            // };
-
-            // Determine which difference is greater to apply the smaller value on both sides.
             // INCORPORATE NUMBER ROUNDING BOTH UP AND DOWN FOR ACCURACY!
+            // Determine which difference is greater to apply the smaller value on both sides.
             if (heightDifference > widthDifference) {
                 sum = widthDifference;
             } else if (heightDifference < widthDifference) {
                 sum = heightDifference;
+            } else {
+                sum = widthDifference;
             };
 
+            // Update the :root font size to scale all elements using rem.
             rootRem += (sum / 10);
             root.style.fontSize = rootRem + 'px';
             console.log(rootRem);
@@ -98,6 +88,7 @@
             // rootRem = 10;
         };
         
+        // FIND A WAY OF TRIGGERING RESIZE WHEN USING RECTANGLE APP!
         window.addEventListener('load', smartResizing);
         window.addEventListener('resize', smartResizing);
 
@@ -112,6 +103,17 @@
         //---------------------------------------------------//
         
 
+        // // Determine the difference in width of viewport and base value.
+            // if (viewportWidth != baseWidth) {
+            //     widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
+            //     console.log(widthDifference);
+            // };
+
+            // // Determine the difference in height of viewport and base value.
+            // if (viewportHeight != baseHeight) {
+            //     heightDifference = calculatePercentageDifference(baseHeight, viewportHeight);
+            //     console.log(heightDifference);
+            // };
 
         // if (heightDifference > widthDifference) {
         //     sum = widthDifference;
