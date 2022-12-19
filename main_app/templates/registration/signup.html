@@ -49,54 +49,63 @@
         // const baseHeight = 815;
         // let monW = 2552;
         // let monH = 1355;
-        let rootRem = 10;
+        // let rootRem = 10;
         const root = document.querySelector(':root');
 
-        function calculatePercentageIncrease(oldValue, newValue) {
+        function calculatePercentageDifference(oldValue, newValue) {
             return (newValue - oldValue) / oldValue * 100;
         };
-        // console.log(calculatePercentageIncrease(100, 150)); // Output: 50
+        // console.log(calculatePercentageDifference(100, 150)); // Output: 50
 
         function smartResizing() {
             const baseWidth = 1432;
             const baseHeight = 815;
+
+            let rootRem = 10;
+
             let viewportWidth = window.innerWidth;
             let viewportHeight = window.innerHeight;
-            let widthDifference = 0;
-            let heightDifference = 0;
-            let sum = 0;
-            let finalSum = 0;
-            
-            let bW = 0;
-            let bH = 0;
+            // let widthDifference = 0;
+            // let heightDifference = 0;
+            // let sum = 0;
+            // let finalSum = 0;
 
             // Determine the difference in width of viewport and base value.
             if (viewportWidth != baseWidth) {
-                widthDifference = viewportWidth - baseWidth;
-                // console.log(widthDifference);
+                widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
+                console.log(widthDifference);
             };
 
             // Determine the difference in height of viewport and base value.
             if (viewportHeight != baseHeight) {
-                heightDifference = viewportHeight - baseHeight;
-                // console.log(heightDifference);
+                heightDifference = calculatePercentageDifference(baseHeight, viewportHeight);
+                console.log(heightDifference);
             };
 
             // Determine which difference is greater to apply the smaller value on both sides.
+
+            // INCORPORATE NUMBER ROUNDING BOTH UP AND DOWN FOR ACCURACY!
             if (heightDifference > widthDifference) {
                 sum = widthDifference;
-                // bW = baseWidth / 100;
-
-                // finalSum = calculatePercentageIncrease(baseWidth, sum);
-                finalSum = calculatePercentageIncrease(baseWidth, viewportWidth);
             } else if (heightDifference < widthDifference) {
                 sum = heightDifference;
-                // bH = baseHeight / 100;
-
-                finalSum = calculatePercentageIncrease(baseHeight, viewportHeight);
             };
+
+            rootRem += (sum / 10);
+            root.style.fontSize = rootRem + 'px';
+
+            console.log(rootRem);
+
+            // if (heightDifference > widthDifference) {
+            //     sum = widthDifference;
+            //     finalSum = calculatePercentageDifference(baseWidth, viewportWidth);
+            // } else if (heightDifference < widthDifference) {
+            //     sum = heightDifference;
+            //     finalSum = calculatePercentageDifference(baseHeight, viewportHeight);
+            // };
             
-            console.log(finalSum);
+            // num = calculatePercentageDifference(1440, 2560);
+            // console.log(num);
 
             // if (viewportWidth >= monW) {
             //     rootRem = 16.6;
@@ -139,7 +148,7 @@
     // monitor width = 2560
     // monitor height = 1355
 
-    // monitor width is roughly 1.78 x laptop width
+    // monitor width is roughly 1.77 x laptop width
     // monitor height is roughtly 1.66 x laptop height
 -->
 
