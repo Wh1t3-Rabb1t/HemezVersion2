@@ -44,14 +44,10 @@
     
     <!-- Truly responsive design module. -->
     <script defer>
-        // let monW = 2552;
-        // let monH = 1355;
-        // let rootRem = 10;
         
         function calculatePercentageDifference(oldValue, newValue) {
             return (newValue - oldValue) / oldValue * 100;
         };
-        // console.log(calculatePercentageDifference(100, 150)); // Output: 50
         
         // Dynamic page scaling function.
         function smartResizing() {
@@ -60,17 +56,14 @@
             const baseHeight = 815;
             let viewportWidth = window.innerWidth;
             let viewportHeight = window.innerHeight;
-            let rootRem = 10;
+            let rootFontSize = 10;
 
             // If the current viewport dimensions don't match the base value, calculate the percentage difference.
             if (viewportWidth != baseWidth || viewportHeight != baseHeight) {
                 widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
                 heightDifference = calculatePercentageDifference(baseHeight, viewportHeight);
-                // console.log(widthDifference);
-                // console.log(heightDifference);
             };
 
-            // INCORPORATE NUMBER ROUNDING BOTH UP AND DOWN FOR ACCURACY!
             // Determine which difference is greater to apply the smaller value on both sides.
             if (heightDifference > widthDifference) {
                 sum = widthDifference;
@@ -81,14 +74,10 @@
             };
 
             // Update the :root font size to scale all elements using rem.
-            rootRem += (sum / 10);
-            root.style.fontSize = rootRem + 'px';
-            console.log(rootRem);
-
-            // rootRem = 10;
+            rootFontSize += Math.round((sum / 10));
+            root.style.fontSize = rootFontSize + 'px';        
         };
         
-        // FIND A WAY OF TRIGGERING RESIZE WHEN USING RECTANGLE APP!
         window.addEventListener('load', smartResizing);
         window.addEventListener('resize', smartResizing);
 
@@ -127,10 +116,10 @@
         // console.log(num);
 
         // if (viewportWidth >= monW) {
-        //     rootRem = 16.6;
+        //     rootFontSize = 16.6;
         //     root.style.fontSize = '16.6px';
         // } else if (viewportWidth <= monW) {
-        //     rootRem = 10;
+        //     rootFontSize = 10;
         //     root.style.fontSize = '10px';
         // };
 
