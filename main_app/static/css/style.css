@@ -883,7 +883,8 @@ a {
 .email-signup-box > button {
   padding: 2.5%;
   margin: 3% 0% 3% 0%;
-  border-radius: 35px;
+  /* border-radius: 35px; */
+  border-radius: 3.5rem;
   width: 30%;
   /* height: 30%; */
   font-family: 'Helvetica Neue';

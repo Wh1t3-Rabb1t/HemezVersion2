@@ -70,12 +70,29 @@
             } else if (heightDifference < widthDifference) {
                 sum = heightDifference;
             } else {
-                sum = widthDifference;
+                sum = heightDifference;
             };
 
             // Update the :root font size to scale all elements using rem.
-            rootFontSize += Math.round((sum / 10));
-            root.style.fontSize = rootFontSize + 'px';        
+            rootFontSize += Math.round(sum / 10);
+            root.style.fontSize = rootFontSize + 'px';
+
+            //-- V2 additions in production. --------------------------------------------//
+
+            // Construct an if else logic block to scale body width up to the viewport.
+            // const bodyElement = document.querySelector('body');
+            // bodyElement.style.width = viewportWidth + 'px';
+
+            // Detect a manual change in zoom level by the user.
+            let previousRatio = window.devicePixelRatio;
+            window.addEventListener('resize', function() {
+            const currentRatio = window.devicePixelRatio;
+            if (currentRatio !== previousRatio) {
+                console.log(window.devicePixelRatio);
+                // console.log('The zoom level has changed');
+                // previousRatio = currentRatio;
+            };
+            });
         };
         
         window.addEventListener('load', smartResizing);
