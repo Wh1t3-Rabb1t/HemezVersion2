@@ -45,6 +45,8 @@
     <!-- Truly responsive design module. -->
     <script defer>
         
+        let manualZoomEvent = false;
+
         function calculatePercentageDifference(oldValue, newValue) {
             return (newValue - oldValue) / oldValue * 100;
         };
@@ -57,6 +59,13 @@
             let viewportWidth = window.innerWidth;
             let viewportHeight = window.innerHeight;
             let rootFontSize = 10;
+
+            // If a zoom event is initiated manually cancel out of smartResizing to enable zoom.
+            if (manualZoomEvent == true) {
+                // manualZoomEvent = false;
+                // console.log(manualZoomEvent);
+                return
+            };
 
             // If the current viewport dimensions don't match the base value, calculate the % difference.
             if (viewportWidth != baseWidth || viewportHeight != baseHeight) {
@@ -74,28 +83,16 @@
             };
 
             // Update the :root font size to scale all elements using rem.
-            // rootFontSize += Math.round(lesserDifference / 10);
-            total = Math.round(lesserDifference / 10);
-            rootFontSize += total;
+            rootFontSize += Math.round(lesserDifference / 10);
             root.style.fontSize = rootFontSize + 'px';
 
-
-            // bw = baseWidth;
-            // wd = lesserDifference / 100;
-
-            // console.log(wd);
-            // console.log(total);
-
-            //-- V2 additions in production. --------------------------------------------//
-
-            // Construct an if else logic block to scale body width up to the viewport.
-            // const container = document.querySelector('body');
-            // container.style.width = (viewportWidth *= wd) + 'px';
-            // container.style.width = (viewportWidth *= wd) + 'px';
+            // Write some conditionals to be applied if the view hieght is > the width.
         };
         
         window.addEventListener('load', smartResizing);
         window.addEventListener('resize', smartResizing);
+
+        // window.addEventListener('resize', () => smartResizing());
 
         //-- Experimental zoom detection module. ----------------------------------------//
         
@@ -103,9 +100,11 @@
         window.addEventListener('wheel', function(event) {
             if (event.metaKey) { // If cmd is held down (metaKey is the cmd key on Mac).
                 if (event.deltaY > 0) { // User has zoomed out.
-                    console.log('Scroll wheel zoom out event detected.');
+                    manualZoomEvent = true;
+                    // console.log('Scroll wheel zoom out event detected.');
                 } else { // User has zoomed in.
-                    console.log('Scroll wheel zoom in event detected.');
+                    manualZoomEvent = true;
+                    // console.log('Scroll wheel zoom in event detected.');
                 };
             };
         });
@@ -113,12 +112,24 @@
         // Detect a user initiated zoom event using keyboard shortcuts.
         window.addEventListener('keydown', function(event) {
             if (event.metaKey && event.code === 'Equal') { // User has pressed cmd +.
-                console.log('Cmd + zoom in event detected.');
+                manualZoomEvent = true;
+                // console.log('Cmd + zoom in event detected.');
             } else if (event.metaKey && event.code === 'Minus') { // User has pressed cmd -.
-                console.log('Cmd - zoom out event detected.');
+                manualZoomEvent = true;
+                // console.log('Cmd - zoom out event detected.');
             };
         });
         
+        // Detect a user initiated zoom event using a touch screen.
+        window.addEventListener('touchmove', function(event) {
+            if (event.scale < 1) {
+                // Zoom out
+            } else {
+                // Zoom in
+            };
+        });
+
+
         //-------------------------------------------------------------------------------//
         // Non full screen values are - 8 px.
         // laptop width = 1440
@@ -128,8 +139,47 @@
         // monitor width is roughly 1.77 x laptop width
         // monitor height is roughtly 1.66 x laptop height
         //-------------------------------------------------------------------------------//
-        
-        // window.addEventListener('wheel', function(event) {
+
+    </script>
+    
+</div>
+
+{% endblock %}
+
+
+
+
+<!--
+<div class="right-signup-container">
+    <div id='pink-circ'></div>
+    <div id='blue-circ'></div>
+    <div id='purple-circ'></div>
+</div>
+-->
+
+
+<!--
+<div class="title-bar">
+    <h1>{{name}}</h1>
+</div>
+
+<div class="signup-box">
+    {% if error_message %}
+        <p class="red-text">{{ error_message }}</p>
+    {% endif %}
+
+    <form method="post" action="{% url 'signup' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="signup-btn">
+            <input type="submit" class="btn" value="Sign Up">
+        </div>
+    </form>
+</div>
+-->
+
+<!-- 
+    // window.addEventListener('wheel', function(event) {
         //     if (event.deltaY > 0) { // User has zoomed out.
         //         console.log('Scroll wheel zoom out event detected.');
         //     } else { // User has zoomed in.
@@ -194,41 +244,4 @@
         // });
 
         // console.log(viewportWidth);
-    </script>
-    
-</div>
-
-{% endblock %}
-
-
-
-
-<!--
-<div class="right-signup-container">
-    <div id='pink-circ'></div>
-    <div id='blue-circ'></div>
-    <div id='purple-circ'></div>
-</div>
--->
-
-
-
-<!--
-<div class="title-bar">
-    <h1>{{name}}</h1>
-</div>
-
-<div class="signup-box">
-    {% if error_message %}
-        <p class="red-text">{{ error_message }}</p>
-    {% endif %}
-
-    <form method="post" action="{% url 'signup' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <div class="signup-btn">
-            <input type="submit" class="btn" value="Sign Up">
-        </div>
-    </form>
-</div>
--->
+ -->
