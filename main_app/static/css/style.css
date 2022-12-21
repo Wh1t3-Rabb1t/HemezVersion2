@@ -8,6 +8,12 @@ body {
   background: #F5F5F5;
   transition: background 500ms ease-in-out, color 1000ms ease-in-out;
   overflow-x: hidden;
+
+  /* margin: auto;
+  width: 143.2rem;
+  height: 81.5 rem;
+  border: solid 10px red; */
+  /* display: block; */
 }
 
 header {
@@ -775,6 +781,11 @@ a {
 
   overflow: hidden;
   position: relative;
+
+  margin: auto;
+  width: 143.2rem;
+  height: 81.5 rem;
+  border: solid 10px red;
 }
 
 .left-signup-container {
