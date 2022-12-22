@@ -8,12 +8,13 @@ body {
   background: #F5F5F5;
   transition: background 500ms ease-in-out, color 1000ms ease-in-out;
   overflow-x: hidden;
-
+  /* display: block; */
+  
   /* margin: auto;
   width: 143.2rem;
   height: 81.5 rem;
-  border: solid 10px red; */
-  /* display: block; */
+  border: solid 10px red;
+  box-sizing: border-box; */
 }
 
 header {
@@ -776,8 +777,8 @@ a {
 .signup-main-container {
   display: flex;
   flex-direction: row;
-  /* height: 100%; */
-  /* width: 100%; */
+  height: 100%;
+  width: 100%;
   overflow: hidden;
   position: relative;
   /* position: absolute; */
@@ -787,7 +788,7 @@ a {
   width: 143.2rem;
   height: 71.2rem;
   box-sizing: border-box;
-  border: solid 10px red;
+  border: solid 5px red;
 }
 /* margin: 1%; */
 /* width: 143.2rem;

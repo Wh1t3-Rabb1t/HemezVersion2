@@ -44,9 +44,7 @@
     
     <!-- Truly responsive design module. -->
     <script defer>
-        
-        // const baseWidth = 1432;
-        // const baseHeight = 782;
+
         let manualZoomEvent = false;
         
         function calculatePercentageDifference(oldValue, newValue) {
@@ -56,8 +54,6 @@
         // Dynamic page scaling function.
         function smartResizing() {
             const root = document.querySelector(':root');
-            // const baseWidth = 1432;
-            // const baseHeight = 815;
             const baseWidth = 1432; // Container width.
             const baseHeight = 712; // Container height excluding the menu bar.
             let rootFontSize = 10;
@@ -66,52 +62,31 @@
             let lesserDifference = 0;
             let widthDifference = 0;
             let heightDifference = 0;
-            
-            // Get the height and width of the div element, including margin.
-            var div = document.getElementById('signup-box');
-            var rect = div.getBoundingClientRect();
-            var width = Math.round(rect.width);
-            var height = Math.round(rect.height);
-
-            // let vpw = window.innerWidth;
-            // let vph = window.innerHeight;
-            // let hDiff = vph - height;
-
-            // let viewportHeight = (window.innerHeight - hDiff);
-            // let viewportWidth = window.innerWidth;
-
-            console.log(width);
-            console.log(height);
-            // console.log(viewportHeight);
 
             // If a zoom event is initiated manually, cancel out of smartResizing to enable zoom.
-            // if (manualZoomEvent == true) {
-                // manualZoomEvent = false;
-                // console.log(manualZoomEvent);
-                // return
-            // };
-
-            // If the current viewport dimensions don't match the base value, calculate the % difference.
-            if (viewportWidth != baseWidth || viewportHeight != baseHeight) {
-                widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
-                heightDifference = calculatePercentageDifference(baseHeight, viewportHeight);
-                // widthDifference = calculatePercentageDifference(baseWidth, width);
-                // heightDifference = calculatePercentageDifference(baseHeight, height);
-            };
-
-            // Determine which difference is greater to apply the smaller value on both sides.
-            if (heightDifference > widthDifference) {
-                lesserDifference = widthDifference;
-            } else if (heightDifference < widthDifference) {
-                lesserDifference = heightDifference;
+            if (manualZoomEvent == true) {
+                manualZoomEvent = false;
+                return;
             } else {
-                lesserDifference = heightDifference;
+                // If the current viewport dimensions don't match the base value, calculate the % difference.
+                if (viewportWidth != baseWidth || viewportHeight != baseHeight) {
+                    widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
+                    heightDifference = calculatePercentageDifference(baseHeight, viewportHeight);
+                };
+
+                // Determine which difference is greater to apply the smaller value on both sides.
+                if (heightDifference > widthDifference) {
+                    lesserDifference = widthDifference;
+                } else if (heightDifference < widthDifference) {
+                    lesserDifference = heightDifference;
+                } else {
+                    lesserDifference = heightDifference;
+                };
+
+                // Update the :root font size to scale all elements using rem.
+                rootFontSize += Math.round(lesserDifference / 10);
+                root.style.fontSize = rootFontSize + 'px';
             };
-
-            // Update the :root font size to scale all elements using rem.
-            rootFontSize += Math.round(lesserDifference / 10);
-            root.style.fontSize = rootFontSize + 'px';
-
             // Write some conditionals to be applied if the view hieght is > the width.
         };
         window.addEventListener('load', smartResizing);
@@ -120,11 +95,11 @@
         function checkDivDimensions() {
 	        // Get a reference to the div element
 	        var div = document.getElementById('signup-box');
-	    
+            
             // Get the height and width of the div element, including margin
             var rect = div.getBoundingClientRect();
-            var height = rect.height;
-            var width = rect.width;
+            var width = Math.round(rect.width);
+            var height = Math.round(rect.height);
             
 	        // Output the height and width
 	        console.log(width);
@@ -134,6 +109,17 @@
         // window.addEventListener('resize', checkDivDimensions);
 
         // window.addEventListener('resize', () => smartResizing());
+
+        // const baseWidth = 1432;
+        // const baseHeight = 815;
+        // let vpw = window.innerWidth;
+        // let vph = window.innerHeight;
+        // let hDiff = vph - height;
+        // let viewportHeight = (window.innerHeight - hDiff);
+        // let viewportWidth = window.innerWidth;
+        // console.log(width);
+        // console.log(height);
+        // console.log(viewportHeight);
         
         // Get the height and width of the div element
         // var height = div.offsetHeight;
