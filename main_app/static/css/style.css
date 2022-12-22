@@ -776,17 +776,22 @@ a {
 .signup-main-container {
   display: flex;
   flex-direction: row;
-  height: 100%;
-  width: 100%;
+  /* height: 100%; */
+  /* width: 100%; */
   overflow: hidden;
   position: relative;
+  /* position: absolute; */
 
   /* Enable smartResizing. */
   margin: auto;
   width: 143.2rem;
-  height: 81.5 rem;
+  height: 71.2rem;
+  box-sizing: border-box;
   border: solid 10px red;
 }
+/* margin: 1%; */
+/* width: 143.2rem;
+height: 81.5rem; */
 
 .left-signup-container {
   display: flex;

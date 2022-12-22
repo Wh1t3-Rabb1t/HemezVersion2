@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="signup-main-container">
+<div class="signup-main-container" id="signup-box">
 
     <div class="left-signup-container">
 
@@ -45,8 +45,10 @@
     <!-- Truly responsive design module. -->
     <script defer>
         
+        // const baseWidth = 1432;
+        // const baseHeight = 782;
         let manualZoomEvent = false;
-
+        
         function calculatePercentageDifference(oldValue, newValue) {
             return (newValue - oldValue) / oldValue * 100;
         };
@@ -54,23 +56,47 @@
         // Dynamic page scaling function.
         function smartResizing() {
             const root = document.querySelector(':root');
-            const baseWidth = 1432;
-            const baseHeight = 815;
+            // const baseWidth = 1432;
+            // const baseHeight = 815;
+            const baseWidth = 1432; // Container width.
+            const baseHeight = 712; // Container height excluding the menu bar.
+            let rootFontSize = 10;
             let viewportWidth = window.innerWidth;
             let viewportHeight = window.innerHeight;
-            let rootFontSize = 10;
+            let lesserDifference = 0;
+            let widthDifference = 0;
+            let heightDifference = 0;
+            
+            // Get the height and width of the div element, including margin.
+            var div = document.getElementById('signup-box');
+            var rect = div.getBoundingClientRect();
+            var width = Math.round(rect.width);
+            var height = Math.round(rect.height);
 
-            // If a zoom event is initiated manually cancel out of smartResizing to enable zoom.
-            if (manualZoomEvent == true) {
+            // let vpw = window.innerWidth;
+            // let vph = window.innerHeight;
+            // let hDiff = vph - height;
+
+            // let viewportHeight = (window.innerHeight - hDiff);
+            // let viewportWidth = window.innerWidth;
+
+            console.log(width);
+            console.log(height);
+            // console.log(viewportHeight);
+
+            // If a zoom event is initiated manually, cancel out of smartResizing to enable zoom.
+            // if (manualZoomEvent == true) {
                 // manualZoomEvent = false;
                 // console.log(manualZoomEvent);
-                return
-            };
+                // return
+            // };
 
             // If the current viewport dimensions don't match the base value, calculate the % difference.
             if (viewportWidth != baseWidth || viewportHeight != baseHeight) {
                 widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
                 heightDifference = calculatePercentageDifference(baseHeight, viewportHeight);
+                // widthDifference = calculatePercentageDifference(baseWidth, width);
+                // heightDifference = calculatePercentageDifference(baseHeight, height);
             };
 
             // Determine which difference is greater to apply the smaller value on both sides.
@@ -88,12 +114,45 @@
 
             // Write some conditionals to be applied if the view hieght is > the width.
         };
-        
         window.addEventListener('load', smartResizing);
         window.addEventListener('resize', smartResizing);
 
-        // window.addEventListener('resize', () => smartResizing());
+        function checkDivDimensions() {
+	        // Get a reference to the div element
+	        var div = document.getElementById('signup-box');
+	    
+            // Get the height and width of the div element, including margin
+            var rect = div.getBoundingClientRect();
+            var height = rect.height;
+            var width = rect.width;
+            
+	        // Output the height and width
+	        console.log(width);
+	        console.log(height);
+        };    
+        // window.addEventListener('load', checkDivDimensions);
+        // window.addEventListener('resize', checkDivDimensions);
 
+        // window.addEventListener('resize', () => smartResizing());
+        
+        // Get the height and width of the div element
+        // var height = div.offsetHeight;
+        // var width = div.offsetWidth;
+
+        // Get the computed style of the div element
+        // var style = window.getComputedStyle(div);
+        // // Get the height and width of the div element
+        // var height = style.getPropertyValue("height");
+        // var width = style.getPropertyValue("width");
+
+        // Get the height and width of the div element, excluding padding but including border
+        // var height = div.clientHeight;
+        // var width = div.clientWidth;
+        // var height = div.style.height;
+        // var width = div.style.width;
+        // console.log("Height: " + height + "px");
+        // console.log("Width: " + width + "px");
+        
         //-- Experimental zoom detection module. ----------------------------------------//
         
         // Detect a user initiated zoom event with the cmd key and mouse scroll wheel.
@@ -128,18 +187,39 @@
                 // Zoom in
             };
         });
-
-
-        //-------------------------------------------------------------------------------//
-        // Non full screen values are - 8 px.
-        // laptop width = 1440
-        // laptop height = 815
-        // monitor width = 2560
-        // monitor height = 1355
+        
+        //-- Laptop. ----------------------------------------------------------------------------//
+        // laptop width = 1440 // Full screen values.
+        // laptop height = 815 // Full screen values.
+        // laptop width = 1432 // Non full screen values.
+        // laptop height = 782 // Non full screen values.
+        //-- Monitor. ---------------------------------------------------------------------------//
+        // monitor width = 2560 // Full screen values.
+        // monitor height = 1355 // Full screen values.
+        // monitor width = 2552 // Non full screen values.
+        // monitor height = 1322 // Non full screen values.
+        //-- Proportions. -----------------------------------------------------------------------//
         // monitor width is roughly 1.77 x laptop width
         // monitor height is roughtly 1.66 x laptop height
-        //-------------------------------------------------------------------------------//
-
+        //--------------------------------------------------------------------------------------//
+        
+        // Detect a manual change in the device pixel ratio.
+        // let previousRatio = window.devicePixelRatio;
+        // window.addEventListener('resize', function() {
+            //     const currentRatio = window.devicePixelRatio;
+            //     if (currentRatio !== previousRatio) {
+                //         console.log(window.devicePixelRatio);
+                //         console.log('The zoom level has changed');
+                //         previousRatio = currentRatio;
+                //     };
+                // });
+                
+        // function vp() {
+        //     let viewportWidth = window.innerWidth;
+        //     let viewportHeight = window.innerHeight;
+        //     console.log(viewportWidth);
+        //     console.log(viewportHeight);
+        // };
     </script>
     
 </div>
@@ -186,17 +266,6 @@
         //         console.log('Scroll wheel zoom in event detected.');
         //     };
         // });
-
-        // Detect a manual change in the device pixel ratio.
-        // let previousRatio = window.devicePixelRatio;
-        // window.addEventListener('resize', function() {
-            // const currentRatio = window.devicePixelRatio;
-            // if (currentRatio !== previousRatio) {
-                //     console.log(window.devicePixelRatio);
-                //     console.log('The zoom level has changed');
-                //     previousRatio = currentRatio;
-                // };
-                // });
                 
                 // // Determine the difference in width of viewport and base value.
                 // if (viewportWidth != baseWidth) {
