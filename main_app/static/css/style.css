@@ -314,7 +314,8 @@ color: #000000;
 :root {
 
   /* font-size: 16px; */
-  font-size: 10px;
+  /* font-size: 10px; */
+  font-size: 100px;
 
   --white: white;
   --black: black;
@@ -772,6 +773,8 @@ a {
   flex-direction: column;
   overflow: hidden;
   width: 100%;
+  /* height: 100%; */
+  /* box-sizing: border-box; */
 }
 
 .signup-main-container {
@@ -781,12 +784,13 @@ a {
   width: 100%;
   overflow: hidden;
   position: relative;
-  /* position: absolute; */
 
   /* Enable smartResizing. */
   margin: auto;
-  width: 143.2rem;
-  height: 71.2rem;
+  /* width: 143.2rem;
+  height: 71.2rem; */
+  width: 14.32rem;
+  height: 7.12rem;
   box-sizing: border-box;
   border: solid 5px red;
 }
@@ -852,15 +856,15 @@ height: 81.5rem; */
 
   /* font-size: 1.25rem;  */
   /* line-height: 2.25rem; */
-  font-size: 2rem;
-  line-height: 3.6rem;
+  font-size: 0.2rem;
+  line-height: 0.36rem;
 }
 
 #signup-header {
   font-weight: 700;
 
   /* font-size: 1.5rem; */
-  font-size: 2.4rem;
+  font-size: 0.24rem;
 }
 
 /* #enclosed-signup-text {
@@ -892,16 +896,16 @@ height: 81.5rem; */
   /* font-size: 1.5rem; */
   /* border-radius: 28px; */
   /* border-radius: 1.75rem; */
-  font-size: 2.4rem;
-  line-height: 3.6rem;
-  border-radius: 2.8rem;
+  font-size: 0.24rem;
+  line-height: 0.36rem;
+  border-radius: 0.28rem;
 }
 
 .email-signup-box > button {
   padding: 2.5%;
   margin: 3% 0% 3% 0%;
   /* border-radius: 35px; */
-  border-radius: 3.5rem;
+  border-radius: 0.35rem;
   width: 30%;
   /* height: 30%; */
   font-family: 'Helvetica Neue';
@@ -910,8 +914,8 @@ height: 81.5rem; */
 
   /* line-height: 2.25rem;
   font-size: 1.5rem; */
-  font-size: 2.4rem;
-  line-height: 3.6rem;
+  font-size: 0.24rem;
+  line-height: 0.36rem;
 }
 
 .signup-icons {
@@ -931,13 +935,13 @@ height: 81.5rem; */
 #pink-circ {
   /* width: 45rem;
   height: 45rem; */
-  width: 72rem;
-  height: 72rem;
+  width: 7.2rem;
+  height: 7.2rem;
 
   left: 65%;
   top: 8%;
   background: linear-gradient(180deg, #EBA0C9 0%, rgba(235, 160, 201, 0.765543) 2.48%, rgba(235, 160, 201, 0) 77.43%);
-  box-shadow: inset 1rem 1rem 1rem rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
   border-radius:50%;
   position: absolute;
 }
@@ -945,8 +949,8 @@ height: 81.5rem; */
 #blue-circ {
   /* width: 40rem;
   height: 40rem; */
-  width: 64rem;
-  height: 64rem;
+  width: 6.4rem;
+  height: 6.4rem;
 
   left: 40%;
   top: 50%;
@@ -957,7 +961,7 @@ height: 81.5rem; */
   /* right: 30rem; */
 
   background: linear-gradient(182.16deg, #D0EBFD 1.82%, rgba(208, 235, 253, 0) 98.3%);
-  box-shadow: inset 1rem 1rem 1rem rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
   border-radius: 50%; 
   position: absolute;
 }
@@ -965,37 +969,28 @@ height: 81.5rem; */
 #purple-circ {
   /* width: 45rem;
   height: 45rem; */
-  width: 72rem;
-  height: 72rem;
+  width: 7.2rem;
+  height: 7.2rem;
 
   left: 55%;
   top: 58%;
   background: linear-gradient(220.89deg, #C79CE0 23.2%, rgba(199, 156, 224, 0.458333) 49.34%, rgba(199, 156, 224, 0) 89.82%);
-  box-shadow: inset 1rem 1rem 1rem rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
   border-radius: 50%;
   position: absolute;
 }
 
-
-
-
-/* @media screen and (min-width: 10%) {
-  :root {
-    font-size: 44px;
-  }
-} */
-
 #phone-template-effects {
   position: absolute;
   left: 49%;
-  top: 18.5%;
+  top: 19.5%;
   transform: skew(-1deg, -15deg);
   z-index: 0;
 
   /* width: 35.5rem;
   height: 29.5rem; */
-  width: 56.8rem;
-  height: 47.2rem;
+  width: 5.68rem;
+  height: 4.72rem;
 }
 
 #phone-template {
@@ -1007,21 +1002,23 @@ height: 81.5rem; */
 
   /* width: 55.5rem;
   height: 44.5rem;  */
-  width: 88.8rem;
-  height: 71.2rem;
+  width: 8.88rem;
+  height: 7.12rem;
 }
 
 #phone-screen {
   position: absolute;
-  left: 49.8%;
-  top: 19.5%;
+  left: 50%;
+  top: 20.5%;
   transform: skew(-1deg, -15deg);
   z-index: 2;
 
   /* width: 34rem;
   height: 28rem; */
-  width: 54.4rem;
-  height: 44.8rem;
+  /* width: 54.4rem;
+  height: 44.8rem; */
+  width: 5.43rem;
+  height: 4.48rem;
 }
 
 #phone-notifications-1 {
@@ -1033,8 +1030,8 @@ height: 81.5rem; */
 
   /* width: 26rem;
   height: 20rem; */
-  width: 41.6rem;
-  height: 32rem;
+  width: 4.16rem;
+  height: 3.2rem;
 }
 
 #phone-notifications-2 {
@@ -1046,8 +1043,8 @@ height: 81.5rem; */
 
   /* width: 26rem;
   height: 20rem; */
-  width: 41.6rem;
-  height: 32rem;
+  width: 4.16rem;
+  height: 3.2rem;
 }
 
 
