@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="signup-main-container" id="signup-box">
+<div class="signup-main-container" id="signup-main-container">
 
     <div class="left-signup-container">
 
@@ -102,13 +102,15 @@
             let viewportWidth = window.innerWidth;
             let viewportHeight = window.innerHeight;
             let rootFontSize = 100;
-
+            
             //-- Currently in production. -------------------------------------------------------//
-            // const div = document.getElementById('signup-box');
-            // let height = div.offsetHeight;
-            // let vph = window.innerHeight;
-            // let hDiff = vph - height;
-            // let viewportHeight = (window.innerHeight - hDiff);
+            const signupMainContainer = document.getElementById('signup-main-container');
+            const main = document.querySelector('main');
+            let height = main.offsetHeight;
+            // console.log(height);
+            // const body = document.querySelector('body');
+            // let hDiff = (viewportHeight - height);
+            // console.log(hDiff);
             // console.log(viewportHeight);
             //-----------------------------------------------------------------------------------//
 
@@ -134,6 +136,27 @@
                 // Update the :root font size to scale all elements using rem.
                 rootFontSize += Math.round(lesserDifference);
                 root.style.fontSize = rootFontSize + 'px';
+
+                // Rearrange page layout if the screens height is > the width.
+                if (viewportHeight > viewportWidth) {
+                    signupMainContainer.style.flexDirection = 'column';
+                    signupMainContainer.style.overflow = 'visible';
+
+                    // signupMainContainer.style.width = `${viewportWidth}px`;
+                    // signupMainContainer.style.height = `${height}px`;
+
+                } else if (viewportHeight < viewportWidth) {
+                    signupMainContainer.style.flexDirection = 'row';
+                    signupMainContainer.style.overflow = 'hidden';
+
+                    // signupMainContainer.style.width = `${viewportWidth}px`;
+                    // signupMainContainer.style.height = `${height}px`;
+
+                };
+
+                // signupMainContainer.style.width = `${width}rem`;
+                // signupMainContainer.style.height = `${height}rem`;
+                
             };
 
             // Write some conditionals to be applied if the view hieght is > the width.

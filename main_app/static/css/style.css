@@ -8,13 +8,16 @@ body {
   background: #F5F5F5;
   transition: background 500ms ease-in-out, color 1000ms ease-in-out;
   overflow-x: hidden;
+  position: relative;
   /* display: block; */
-  
-  /* margin: auto;
-  width: 143.2rem;
-  height: 81.5 rem;
-  border: solid 10px red;
-  box-sizing: border-box; */
+
+  /* width: 100%; */
+  /* height: 100%; */
+  /* margin: auto; */
+  /* width: 143.2rem; */
+  /* height: 81.5 rem; */
+  /* border: solid 10px red; */
+  /* box-sizing: border-box; */
 }
 
 header {
@@ -32,6 +35,21 @@ header {
   padding-bottom: 1em;
   text-align: center;
 }
+
+/* first-main */
+
+main {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  min-height: calc(100vh - 70px);
+  /* overflow: hidden; */
+  /* min-height: 100vh; */
+  /* width: 100vw; */
+}
+/* box-sizing: border-box; */
 
 .lightMode {
   --background: var(--gray0);
@@ -769,30 +787,30 @@ a {
 /*--------------------------- Signup Page ---------------------------------*/
 /*-------------------------------------------------------------------------*/
 
-.chat-box {
+/* .chat-box {
   display: flex;
   flex-direction: column;
   overflow: hidden;
   width: 100%;
-  /* height: 100%; */
-  /* box-sizing: border-box; */
-}
+  height: 100%;
+  box-sizing: border-box;
+  background-color: blueviolet;
+} */
 
 .signup-main-container {
   display: flex;
   flex-direction: row;
-  height: 100%;
-  width: 100%;
   overflow: hidden;
   position: relative;
+  /* position: absolute; */
 
   /* Enable smartResizing. */
   margin: auto;
-  /* width: 143.2rem;
-  height: 71.2rem; */
   width: 14.32rem;
   height: 7.12rem;
   box-sizing: border-box;
+
+  background-color: blueviolet;
   /* border: solid 5px red; */
 }
 /* margin: 1%; */
@@ -824,7 +842,6 @@ height: 81.5rem; */
   box-sizing: border-box;
   height: 100%;
   width: 90%;
-
   /* background-color: red; */
 }
 
@@ -930,7 +947,7 @@ height: 81.5rem; */
   width: 100%;
   position: relative;
   /* overflow: hidden; */
-  /* background-color: lightcoral; */
+  background-color: lightcoral;
 }
 
 /* Top */
@@ -1029,8 +1046,8 @@ height: 81.5rem; */
 
   /* left: 50%;
   top: 20.5%; */
-  left: 1%;
-  top: 20.5%;
+  left: 0.8%;
+  top: 20.6%;
 
   transform: skew(-1deg, -15deg);
   z-index: 2;
@@ -1152,22 +1169,6 @@ background: linear-gradient(
   width: auto;
 }
 
-.chat-box {
-  background-color: red;
-  border-radius: 15px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-  margin: 0.5%;
-  width: 98%;
-  height: 100%;
-  max-height: 350px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: linear-gradient(to right, var(--white) -24%, var(--gray1) 100%);
-} */
-
 /*-------------------------------------------------------------------------*/
 /*--------------------------- Message Page ---------------------------------*/
 /*-------------------------------------------------------------------------*/
@@ -1221,14 +1222,16 @@ a{
   text-decoration: none;
 } 
 
-main{
+/* second-main */
+
+/* main{
 display:flex;
 justify-content:center;
 width:100vw;
 overflow:hidden;
 min-height: calc( 100vh - 70px);
 
-}
+} */
 
 .left-main{
   height:100%;
