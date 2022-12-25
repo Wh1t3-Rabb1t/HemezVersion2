@@ -71,6 +71,16 @@
             // const floatingIcon1 = 'https://i.imgur.com/i5UNV2f.png';
             // const floatingIcon2 = 'https://i.imgur.com/N00lIOn.png';
             // const floatingIcon3 = 'https://i.imgur.com/dUQH6w9.png';
+
+            // Select an random icon to populate the img element.
+            // if (num == 1) {
+            //     imgElement.src = floatingIcon1;
+            // } else if (num == 2) {
+            //     imgElement.src = floatingIcon2;
+            // } else {
+            //     imgElement.src = floatingIcon3;
+            // };
+
             const floatingIcons = ['https://i.imgur.com/i5UNV2f.png', 'https://i.imgur.com/N00lIOn.png', 'https://i.imgur.com/dUQH6w9.png'];
 
             // Generate random integers, either positive or negative.
@@ -82,18 +92,9 @@
             function risingLogo() {
                 // Create a new img element and apply a random icon to it.
                 const imgElement = document.createElement('img');
-                const num = getRandomInteger(0, 2);
-                const randomIcon = floatingIcons[num];
+                let num = getRandomInteger(0, 2);
+                let randomIcon = floatingIcons[num];
                 imgElement.src = randomIcon;
-
-                // Select an random icon to populate the img element.
-                // if (num == 1) {
-                //     imgElement.src = floatingIcon1;
-                // } else if (num == 2) {
-                //     imgElement.src = floatingIcon2;
-                // } else {
-                //     imgElement.src = floatingIcon3;
-                // };
                 
                 // Retrieve the width and height of the browser window.
                 let viewportHeight = window.innerHeight + 420;
@@ -136,15 +137,15 @@
             };
 
             // This prevents a bug causing the function to overload when the browser is active but tab is unfocused.
-            var timer;
-            window.onfocus = function() {
-                timer = setInterval(function() {risingLogo()}, 2000);
-            };
+            // var timer;
+            // window.onfocus = function() {
+            //     timer = setInterval(function() {risingLogo()}, 2000);
+            // };
 
-            // Stops the animation timer when the tab is unfocused.
-            window.onblur = function() {
-                clearInterval(timer);
-            };
+            // // Stops the animation timer when the tab is unfocused.
+            // window.onblur = function() {
+            //     clearInterval(timer);
+            // };
 
             //---------------------------------------------------------------------------------------------------------//
 

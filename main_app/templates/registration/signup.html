@@ -34,11 +34,11 @@
             <div id='blue-circ'></div>
             <div id='purple-circ'></div>
         
-            <img id="phone-template" src="https://i.imgur.com/Mgr8zVE.png">
+            <!-- <img id="phone-template" src="https://i.imgur.com/Mgr8zVE.png">
             <img id="phone-screen" src="https://i.imgur.com/caZOa0E.png">
             <img id="phone-template-effects" src="https://i.imgur.com/HaDV0c8.png">
             <img id="phone-notifications-1" src="https://i.imgur.com/Jxr5NLe.png">
-            <img id="phone-notifications-2" src="https://i.imgur.com/KGE0QSw.png">
+            <img id="phone-notifications-2" src="https://i.imgur.com/KGE0QSw.png"> -->
         </div>
     </div>
 
@@ -123,7 +123,8 @@
                 // If the current viewport dimensions don't match the base value, calculate the % difference.
                 if (viewportWidth != baseWidth || viewportHeight != baseHeight) {
                     widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
-                    heightDifference = calculatePercentageDifference(baseHeight, viewportHeight);
+                    // heightDifference = calculatePercentageDifference(baseHeight, viewportHeight);
+                    heightDifference = calculatePercentageDifference(baseHeight, height);
                 };
 
                 // Determine which difference is smaller to apply that value on both sides.
@@ -142,23 +143,18 @@
                 // Rearrange page layout if the screens height is > the width.
                 if (viewportHeight > viewportWidth) {
                     signupMainContainer.style.flexDirection = 'column';
-                    signupMainContainer.style.overflow = 'visible';
+                    // signupMainContainer.style.overflow = 'visible';
 
                     // signupMainContainer.style.width = `${viewportWidth}px`;
                     // signupMainContainer.style.height = `${height}px`;
 
                 } else if (viewportHeight < viewportWidth) {
                     signupMainContainer.style.flexDirection = 'row';
-                    signupMainContainer.style.overflow = 'hidden';
+                    // signupMainContainer.style.overflow = 'hidden';
 
                     // signupMainContainer.style.width = `${viewportWidth}px`;
                     // signupMainContainer.style.height = `${height}px`;
-
                 };
-
-                // signupMainContainer.style.width = `${width}rem`;
-                // signupMainContainer.style.height = `${height}rem`;
-                
             };
 
             // Write some conditionals to be applied if the view hieght is > the width.
