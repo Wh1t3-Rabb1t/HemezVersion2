@@ -158,18 +158,24 @@
                 };
 
                 // Update the :root font size to scale all elements using rem.
-                rootFontSize += Math.round(lesserDifference);
-                root.style.fontSize = rootFontSize + 'px';
+                // rootFontSize += Math.round(lesserDifference);
+                // root.style.fontSize = rootFontSize + 'px';
 
                 // Rearrange page layout if the screens height is > the width.
                 if (viewportHeight > viewportWidth) {
                     signupMainContainer.style.flexDirection = 'column';
+                    // rootFontSize = 100;
+                    // rootFontSize += Math.round(lesserDifference);
+                    // root.style.fontSize = rootFontSize + 'px';
+
                     // signupMainContainer.style.overflow = 'visible';
                     // signupMainContainer.style.width = `${viewportWidth}px`;
                     // signupMainContainer.style.height = `${height}px`;
 
                 } else if (viewportHeight < viewportWidth) {
                     signupMainContainer.style.flexDirection = 'row';
+                    rootFontSize += Math.round(lesserDifference);
+                    root.style.fontSize = rootFontSize + 'px';
                     // signupMainContainer.style.overflow = 'hidden';
                     // signupMainContainer.style.width = `${viewportWidth}px`;
                     // signupMainContainer.style.height = `${height}px`;

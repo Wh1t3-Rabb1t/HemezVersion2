@@ -822,24 +822,23 @@ height: 81.5rem; */
 
 .left-signup-container {
   display: flex;
-  /* flex-direction: column; */
   justify-content: center;
 
   align-items: center;
+  flex: 0 0 55%;
 
   height: 100%;
   width: 100%;
   z-index: 4;
-  background-color: lightblue;
+  /* background-color: lightblue; */
 }
-/* flex: 0 0 55%; */
 /* position: relative; */
 
 .signup-box {
   display: flex;
   flex-direction: column;
   /* margin: 8% 4% 16% 16%; */
-  margin: 1%;
+  margin: 3%;
   padding: 1%;
   border: solid wheat 5px;
   border-radius: 25px;
@@ -849,8 +848,6 @@ height: 81.5rem; */
   width: 100%; */
   height: 5.5rem;
   width: 6.5rem;
-  /* width: 400px; */
-  /* padding-bottom: 75%; */
   background-color: red;
 }
 
