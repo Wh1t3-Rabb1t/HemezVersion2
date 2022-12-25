@@ -944,14 +944,14 @@ height: 81.5rem; */
 
 .right-signup-container {
   display: flex;
+  position: relative;
   /* flex-direction: column; */
   width: 100%;
   height: 100%;
-  position: relative;
   justify-content: center;
   align-items: center;
   /* overflow: hidden; */
-  background-color: lightcoral;
+  /* background-color: lightcoral; */
 }
 
 .phone-bubble-container {
@@ -960,11 +960,12 @@ height: 81.5rem; */
   width: 2rem;
   height: 2rem;
 
-  background-color: greenyellow;
+  /* background-color: greenyellow; */
 }
 
 /* Top */
 #pink-circ {
+  position: absolute;
   width: 7.2rem;
   height: 7.2rem;
   /* left: 35%;
@@ -975,11 +976,11 @@ height: 81.5rem; */
   background: linear-gradient(180deg, #EBA0C9 0%, rgba(235, 160, 201, 0.765543) 2.48%, rgba(235, 160, 201, 0) 77.43%);
   box-shadow: inset 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
   border-radius:50%;
-  position: absolute;
 }
 
 /* Bottom right */
 #purple-circ {
+  position: absolute;
   width: 6.9rem;
   height: 6.9rem;
   /* left: -5%;
@@ -990,11 +991,11 @@ height: 81.5rem; */
   background: linear-gradient(220.89deg, #C79CE0 23.2%, rgba(199, 156, 224, 0.458333) 49.34%, rgba(199, 156, 224, 0) 89.82%);
   box-shadow: inset 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
   border-radius: 50%;
-  position: absolute;
 }
 
 /* Bottom left */
 #blue-circ {
+  position: absolute;
   width: 6rem;
   height: 6rem;
   /* left: -35%;
@@ -1005,89 +1006,56 @@ height: 81.5rem; */
   background: linear-gradient(182.16deg, #D0EBFD 1.82%, rgba(208, 235, 253, 0) 98.3%);
   box-shadow: inset 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
   border-radius: 50%; 
-  position: absolute;
-}
-
-#phone-template-effects {
-  position: absolute;
-
-  /* left: -1.25%;
-  top: 19%; */
-  left: -80.25%;
-  top: 19%;
-
-  transform: skew(-1deg, -15deg);
-  z-index: 2;
-  /* width: 35.5rem;
-  height: 29.5rem; */
-  width: 5.68rem;
-  height: 4.74rem;
 }
 
 #phone-template {
   position: absolute;
-
-  /* left: 26.75%;
-  top: 1.25%; */
-  left: -350.75%;
-  top: 1.25%;
-
-  transform: skew(-1deg, -15deg);
-  z-index: 1;
-  /* width: 55.5rem;
-  height: 44.5rem;  */
   width: 8.88rem;
   height: 7.12rem;
+  left: -310.75%;
+  top: -125.25%;
+  transform: skew(-1deg, -15deg);
+  z-index: 1;
 }
 
 #phone-screen {
   position: absolute;
-
-  /* left: 50%;
-  top: 20.5%; */
-  left: 0.8%;
-  top: 20.6%;
-
-  transform: skew(-1deg, -15deg);
+  width: 5.42rem;
+  height: 4.47rem;
+  left: -144.6%;
+  top: -56.4%;
+  transform: skew(-0.5deg, -15deg);
   z-index: 2;
-  /* width: 34rem;
-  height: 28rem; */
-  /* width: 54.4rem;
-  height: 44.8rem; */
-  width: 5.43rem;
-  height: 4.48rem;
+}
+
+#phone-template-effects {
+  position: absolute;
+  width: 5.68rem;
+  height: 4.74rem;
+  left: -151.4%;
+  top: -62.5%;
+  transform: skew(-1deg, -15deg);
+  z-index: 3;
 }
 
 #phone-notifications-1 {
   position: absolute;
-
-  /* left: 57%;
-  top: 14%; */
-  left: 17%;
-  top: 14%;
-
-  transform: skewY(-15deg);
-  z-index: 3;
-  /* width: 26rem;
-  height: 20rem; */
   width: 4.16rem;
   height: 3.2rem;
+  left: -93%;
+  top: -78%;
+  transform: skewY(-15deg);
+  z-index: 4;
 }
 
 #phone-notifications-2 {
   position: absolute;
-
-  /* left: 46.5%;
-  top: 39%; */
-  left: -6.5%;
-  top: 40%;
-
-  transform: skewY(-15deg);
-  z-index: 3;
-  /* width: 26rem;
-  height: 20rem; */
   width: 4.16rem;
   height: 3.2rem;
+  left: -170.5%;
+  top: 15%;
+  transform: skewY(-15deg);
+  z-index: 4;
 }
 
 
