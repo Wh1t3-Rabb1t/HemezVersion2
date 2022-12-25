@@ -951,14 +951,14 @@ height: 81.5rem; */
   justify-content: center;
   align-items: center;
   /* overflow: hidden; */
-  /* background-color: lightcoral; */
+  background-color: lightcoral;
 }
 
 .phone-bubble-container {
   display: flex;
-  position: absolute;
-  width: 200px;
-  height: 200px;
+  position: relative;
+  width: 2rem;
+  height: 2rem;
 
   background-color: greenyellow;
 }
@@ -967,7 +967,6 @@ height: 81.5rem; */
 #pink-circ {
   width: 7.2rem;
   height: 7.2rem;
-
   /* left: 35%;
   top: 8%; */
   left: 5%;
@@ -981,11 +980,8 @@ height: 81.5rem; */
 
 /* Bottom right */
 #purple-circ {
-  /* width: 7.2rem;
-  height: 7.2rem; */
   width: 6.9rem;
   height: 6.9rem;
-  
   /* left: -5%;
   top: 58%; */
   left: -85%;
@@ -999,11 +995,8 @@ height: 81.5rem; */
 
 /* Bottom left */
 #blue-circ {
-  /* width: 6.4rem;
-  height: 6.4rem; */
   width: 6rem;
   height: 6rem;
-
   /* left: -35%;
   top: 50%; */
   left: -205%;
@@ -1036,7 +1029,7 @@ height: 81.5rem; */
 
   /* left: 26.75%;
   top: 1.25%; */
-  left: -50.75%;
+  left: -350.75%;
   top: 1.25%;
 
   transform: skew(-1deg, -15deg);
