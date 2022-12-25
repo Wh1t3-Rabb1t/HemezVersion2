@@ -8,7 +8,9 @@ body {
   background: #F5F5F5;
   transition: background 500ms ease-in-out, color 1000ms ease-in-out;
   overflow-x: hidden;
-  position: relative;
+  /* position: relative; */
+  /* position: absolute; */
+  /* position: fixed; */
   /* display: block; */
 
   /* width: 100%; */
@@ -39,9 +41,10 @@ header {
 /* first-main */
 
 main {
+  /* position: absolute; */
+  position: relative;
   width: 100%;
   height: 100%;
-  position: absolute;
   display: flex;
   justify-content: center;
   min-height: calc(100vh - 70px);
@@ -801,17 +804,15 @@ a {
   display: flex;
   flex-direction: row;
   overflow: hidden;
-  position: relative;
-  /* position: absolute; */
+  position: absolute;
 
   /* Enable smartResizing. */
   margin: auto;
-  /* width: 14.32rem;
-  height: 7.12rem; */
+  /* width: 14.32rem; */
+  /* height: 7.12rem; */
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
-
+  /* box-sizing: border-box; */
   /* background-color: blueviolet; */
   /* border: solid 5px red; */
 }
@@ -821,30 +822,36 @@ height: 81.5rem; */
 
 .left-signup-container {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: center;
+
+  align-items: center;
+
   height: 100%;
   width: 100%;
-  flex: 0 0 55%;
-  z-index: 4;  
-  /* background-color: lightblue; */
+  z-index: 4;
+  background-color: lightblue;
 }
-/* overflow: hidden; */
+/* flex: 0 0 55%; */
 /* position: relative; */
 
 .signup-box {
   display: flex;
   flex-direction: column;
-  /* margin: 8% 4% 24% 16%; */
-  margin: 8% 4% 16% 16%;
+  /* margin: 8% 4% 16% 16%; */
+  margin: 1%;
   padding: 1%;
   border: solid wheat 5px;
   border-radius: 25px;
   position: relative;
   box-sizing: border-box;
-  height: 100%;
-  width: 90%;
-  /* background-color: red; */
+  /* height: 100%;
+  width: 100%; */
+  height: 5.5rem;
+  width: 6.5rem;
+  /* width: 400px; */
+  /* padding-bottom: 75%; */
+  background-color: red;
 }
 
 .third-party-signup-box {
@@ -855,7 +862,6 @@ height: 81.5rem; */
   box-sizing: border-box;
   padding: 1% 1% 1% 1%;
   height: 100%;
-
   /* background-color: purple; */
 }
 
@@ -863,17 +869,12 @@ height: 81.5rem; */
   font-family: 'Helvetica Neue';
   font-style: normal;
   font-weight: 500;
-
-  /* font-size: 1.25rem;  */
-  /* line-height: 2.25rem; */
   font-size: 0.2rem;
   line-height: 0.36rem;
 }
 
 #signup-header {
   font-weight: 700;
-
-  /* font-size: 1.5rem; */
   font-size: 0.24rem;
 }
 
@@ -889,7 +890,6 @@ height: 81.5rem; */
   height: 100%;
   padding: 1% 1% 1% 1%;
   flex: 0 0 60%;
-  
   /* background-color: green; */
 }
 
@@ -901,11 +901,6 @@ height: 81.5rem; */
   font-family: 'Helvetica Neue';
   font-style: normal;
   font-weight: 700;
-
-  /* line-height: 2.25rem; */
-  /* font-size: 1.5rem; */
-  /* border-radius: 28px; */
-  /* border-radius: 1.75rem; */
   font-size: 0.24rem;
   line-height: 0.36rem;
   border-radius: 0.28rem;
@@ -914,16 +909,12 @@ height: 81.5rem; */
 .email-signup-box > button {
   padding: 2.5%;
   margin: 3% 0% 3% 0%;
-  /* border-radius: 35px; */
   border-radius: 0.35rem;
   width: 30%;
   /* height: 30%; */
   font-family: 'Helvetica Neue';
   font-style: normal;
   font-weight: 700;
-
-  /* line-height: 2.25rem;
-  font-size: 1.5rem; */
   font-size: 0.24rem;
   line-height: 0.36rem;
 }
@@ -934,7 +925,6 @@ height: 81.5rem; */
   align-items: center;
   justify-content: center;
   padding: 0% 2% 0% 2%;
-
   /* background-color: blue; */
 }
 
@@ -950,7 +940,6 @@ height: 81.5rem; */
   height: 100%;
   justify-content: center;
   align-items: center;
-  /* overflow: hidden; */
   /* background-color: lightcoral; */
 }
 
@@ -959,7 +948,6 @@ height: 81.5rem; */
   position: relative;
   width: 2rem;
   height: 2rem;
-
   /* background-color: greenyellow; */
 }
 
@@ -972,7 +960,6 @@ height: 81.5rem; */
   top: 8%; */
   left: 5%;
   top: -90%;
-
   background: linear-gradient(180deg, #EBA0C9 0%, rgba(235, 160, 201, 0.765543) 2.48%, rgba(235, 160, 201, 0) 77.43%);
   box-shadow: inset 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
   border-radius:50%;
@@ -987,7 +974,6 @@ height: 81.5rem; */
   top: 58%; */
   left: -85%;
   top: 70%;
-
   background: linear-gradient(220.89deg, #C79CE0 23.2%, rgba(199, 156, 224, 0.458333) 49.34%, rgba(199, 156, 224, 0) 89.82%);
   box-shadow: inset 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
   border-radius: 50%;
@@ -1002,7 +988,6 @@ height: 81.5rem; */
   top: 50%; */
   left: -205%;
   top: 30%;
-
   background: linear-gradient(182.16deg, #D0EBFD 1.82%, rgba(208, 235, 253, 0) 98.3%);
   box-shadow: inset 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
   border-radius: 50%; 

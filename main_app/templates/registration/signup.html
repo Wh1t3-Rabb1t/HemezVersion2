@@ -5,7 +5,6 @@
 <div class="signup-main-container" id="signup-main-container">
 
     <div class="left-signup-container">
-
         <div class="signup-box">
             <div class="third-party-signup-box">
                 <div id="signup-header">Create New Account</div>
@@ -25,7 +24,6 @@
                 <button id="signup-button">SignUp</button>
             </div>
         </div>
-
     </div>
 
     <div class="right-signup-container">
@@ -41,16 +39,6 @@
             <img id="phone-notifications-2" src="https://i.imgur.com/KGE0QSw.png">
         </div>
     </div>
-
-    <!-- <div id='pink-circ'></div>
-    <div id='blue-circ'></div>
-    <div id='purple-circ'></div>
-
-    <img id="phone-template" src="https://i.imgur.com/Mgr8zVE.png">
-    <img id="phone-screen" src="https://i.imgur.com/caZOa0E.png">
-    <img id="phone-template-effects" src="https://i.imgur.com/HaDV0c8.png">
-    <img id="phone-notifications-1" src="https://i.imgur.com/Jxr5NLe.png">
-    <img id="phone-notifications-2" src="https://i.imgur.com/KGE0QSw.png"> -->
     
     <!-- Truly responsive design module. -->
     <script defer>
@@ -75,10 +63,16 @@
         window.addEventListener('keydown', function(event) {
             if (event.metaKey && event.code === 'Equal') { // User has pressed cmd +.
                 manualZoomEvent = true;
-                // console.log('Cmd + zoom in event detected.');
+                // const html = document.querySelector('html');
+                // html.style = 'zoom: 1.10';
+                // calculateZoomLevel();
+                // console.log('"Cmd +" zoom in event detected.');
             } else if (event.metaKey && event.code === 'Minus') { // User has pressed cmd -.
                 manualZoomEvent = true;
-                // console.log('Cmd - zoom out event detected.');
+                // const html = document.querySelector('html');
+                // html.style = 'zoom: 0.90';
+                // calculateZoomLevel();
+                // console.log('"Cmd -" zoom out event detected.');
             };
         });
         
@@ -94,6 +88,18 @@
         function calculatePercentageDifference(oldValue, newValue) {
             return (newValue - oldValue) / oldValue * 100;
         };
+
+        // const element = document.querySelector('body');
+        // let previousWidth = element.offsetWidth;
+
+        // const observer = new ResizeObserver(entries => {
+        //     const currentWidth = element.offsetWidth;
+        //     const zoomIncrease = (currentWidth - previousWidth) / previousWidth;
+        //     // console.log(`Zoom increase: ${zoomIncrease * 100}%`);
+        //     previousWidth = currentWidth;
+        // });
+        // observer.observe(element);
+        // let scaleFactor = Math.round(zoomIncrease) * 10;
         
         //-- Dynamic page scaling. --------------------------------------------------------------//
         function smartResizing() {
@@ -109,16 +115,31 @@
             const signupMainContainer = document.getElementById('signup-main-container');
             const main = document.querySelector('main');
             let height = main.offsetHeight;
+            const body = document.querySelector('body');
             // console.log(height);
-            // const body = document.querySelector('body');
             // let hDiff = (viewportHeight - height);
             // console.log(hDiff);
             // console.log(viewportHeight);
             //-----------------------------------------------------------------------------------//
-
+            
+            // let scaleFactor = (lesserDifference / 100) + 1;
+            // console.log(scaleFactor);
+            
             // If a zoom event is initiated manually, cancel out of smartResizing to enable zoom.
             if (manualZoomEvent == true) {
                 manualZoomEvent = false;
+
+                // signupMainContainer.style.overflow = 'visible';
+                // const elements = document.querySelectorAll('main *');
+                
+                // elements.forEach(element => {
+                // element.style = 'position: absolute';
+                // });
+                
+                // body.style.position = 'fixed';
+                // console.log(scaleFactor);
+                // body.style = `transform: scale(${scaleFactor})`;
+                
             } else {
                 // If the current viewport dimensions don't match the base value, calculate the % difference.
                 if (viewportWidth != baseWidth || viewportHeight != baseHeight) {
@@ -126,7 +147,7 @@
                     // heightDifference = calculatePercentageDifference(baseHeight, viewportHeight);
                     heightDifference = calculatePercentageDifference(baseHeight, height);
                 };
-
+                
                 // Determine which difference is smaller to apply that value on both sides.
                 if (heightDifference > widthDifference) {
                     lesserDifference = widthDifference;
@@ -144,19 +165,16 @@
                 if (viewportHeight > viewportWidth) {
                     signupMainContainer.style.flexDirection = 'column';
                     // signupMainContainer.style.overflow = 'visible';
-
                     // signupMainContainer.style.width = `${viewportWidth}px`;
                     // signupMainContainer.style.height = `${height}px`;
 
                 } else if (viewportHeight < viewportWidth) {
                     signupMainContainer.style.flexDirection = 'row';
                     // signupMainContainer.style.overflow = 'hidden';
-
                     // signupMainContainer.style.width = `${viewportWidth}px`;
                     // signupMainContainer.style.height = `${height}px`;
                 };
             };
-
             // Write some conditionals to be applied if the view hieght is > the width.
         };
         window.addEventListener('load', () => smartResizing());
