@@ -103,85 +103,40 @@
         
         //-- Dynamic page scaling. --------------------------------------------------------------//
         function smartResizing() {
+            const signupMainContainer = document.getElementById('signup-main-container');
+            const main = document.querySelector('main');
             const root = document.querySelector(':root');
             const baseWidth = 1432; // Container width.
             const baseHeight = 712; // Container height excluding the menu bar.
-            let widthDifference, heightDifference, lesserDifference = 0;
+            let widthDifference, heightDifference, averageDifference = 0;
             let viewportWidth = window.innerWidth;
             let viewportHeight = window.innerHeight;
-            let rootFontSize = 100;
-            
-            //-- Currently in production. -------------------------------------------------------//
-            const signupMainContainer = document.getElementById('signup-main-container');
-            const main = document.querySelector('main');
             let height = main.offsetHeight;
-            const body = document.querySelector('body');
-            // console.log(height);
-            // let hDiff = (viewportHeight - height);
-            // console.log(hDiff);
-            // console.log(viewportHeight);
-            //-----------------------------------------------------------------------------------//
-            
-            // let scaleFactor = (lesserDifference / 100) + 1;
-            // console.log(scaleFactor);
+            let rootFontSize = 100;
             
             // If a zoom event is initiated manually, cancel out of smartResizing to enable zoom.
             if (manualZoomEvent == true) {
                 manualZoomEvent = false;
-
-                // signupMainContainer.style.overflow = 'visible';
-                // const elements = document.querySelectorAll('main *');
-                
-                // elements.forEach(element => {
-                // element.style = 'position: absolute';
-                // });
-                
-                // body.style.position = 'fixed';
-                // console.log(scaleFactor);
-                // body.style = `transform: scale(${scaleFactor})`;
-                
             } else {
                 // If the current viewport dimensions don't match the base value, calculate the % difference.
                 if (viewportWidth != baseWidth || viewportHeight != baseHeight) {
                     widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
                     // heightDifference = calculatePercentageDifference(baseHeight, viewportHeight);
                     heightDifference = calculatePercentageDifference(baseHeight, height);
-                };
-                
-                // Determine which difference is smaller to apply that value on both sides.
-                if (heightDifference > widthDifference) {
-                    lesserDifference = widthDifference;
-                } else if (heightDifference < widthDifference) {
-                    lesserDifference = heightDifference;
-                } else {
-                    lesserDifference = heightDifference;
+                    averageDifference = Math.round((widthDifference + heightDifference) / 2);
                 };
 
                 // Update the :root font size to scale all elements using rem.
-                // rootFontSize += Math.round(lesserDifference);
-                // root.style.fontSize = rootFontSize + 'px';
+                rootFontSize += averageDifference;
+                root.style.fontSize = rootFontSize + 'px';
 
                 // Rearrange page layout if the screens height is > the width.
                 if (viewportHeight > viewportWidth) {
                     signupMainContainer.style.flexDirection = 'column';
-                    // rootFontSize = 100;
-                    // rootFontSize += Math.round(lesserDifference);
-                    // root.style.fontSize = rootFontSize + 'px';
-
-                    // signupMainContainer.style.overflow = 'visible';
-                    // signupMainContainer.style.width = `${viewportWidth}px`;
-                    // signupMainContainer.style.height = `${height}px`;
-
                 } else if (viewportHeight < viewportWidth) {
                     signupMainContainer.style.flexDirection = 'row';
-                    rootFontSize += Math.round(lesserDifference);
-                    root.style.fontSize = rootFontSize + 'px';
-                    // signupMainContainer.style.overflow = 'hidden';
-                    // signupMainContainer.style.width = `${viewportWidth}px`;
-                    // signupMainContainer.style.height = `${height}px`;
                 };
             };
-            // Write some conditionals to be applied if the view hieght is > the width.
         };
         window.addEventListener('load', () => smartResizing());
         window.addEventListener('resize', () => smartResizing());
@@ -200,6 +155,40 @@
         // monitor width is roughly 1.77 x laptop width
         // monitor height is roughtly 1.66 x laptop height
         //---------------------------------------------------------------------------------------//
+
+        // let scaleFactor = (lesserDifference / 100) + 1;
+        // console.log(scaleFactor);
+
+        // signupMainContainer.style.overflow = 'visible';
+        // const elements = document.querySelectorAll('main *');        
+        // elements.forEach(element => {
+        // element.style = 'position: absolute';
+        // });
+        // body.style.position = 'fixed';
+        // console.log(scaleFactor);
+        // body.style = `transform: scale(${scaleFactor})`;
+
+        // Determine which difference is smaller to apply that value on both sides.
+        // if (heightDifference > widthDifference) {
+        //     lesserDifference = widthDifference;
+        // } else if (heightDifference < widthDifference) {
+        //     lesserDifference = heightDifference;
+        // } else {
+        //     lesserDifference = heightDifference;
+        // };
+
+        // rootFontSize += Math.round(lesserDifference);
+        // root.style.fontSize = rootFontSize + 'px';
+        // signupMainContainer.style.overflow = 'hidden';
+        // signupMainContainer.style.width = `${viewportWidth}px`;
+        // signupMainContainer.style.height = `${height}px`;
+
+        // rootFontSize = 100;
+        // rootFontSize += Math.round(lesserDifference);
+        // root.style.fontSize = rootFontSize + 'px';
+        // signupMainContainer.style.overflow = 'visible';
+        // signupMainContainer.style.width = `${viewportWidth}px`;
+        // signupMainContainer.style.height = `${height}px`;
 
         // if (viewportHeight > viewportWidth) {
         //     const div = document.getElementById('signup-box');

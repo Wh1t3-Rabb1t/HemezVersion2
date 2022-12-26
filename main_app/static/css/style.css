@@ -825,7 +825,7 @@ height: 81.5rem; */
   justify-content: center;
 
   align-items: center;
-  flex: 0 0 55%;
+  flex: 0 0 60%;
 
   height: 100%;
   width: 100%;
@@ -848,7 +848,7 @@ height: 81.5rem; */
   width: 100%; */
   height: 5.5rem;
   width: 6.5rem;
-  background-color: red;
+  /* background-color: red; */
 }
 
 .third-party-signup-box {
