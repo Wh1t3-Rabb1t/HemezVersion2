@@ -14,7 +14,7 @@
                     <div>or</div>
                     <img id="google-logo" src="https://i.imgur.com/2St3bY6.png">
                 </div>
-                <div id="enclosed-signup-text">or use your email</div>
+                <div id="enclosed-signup-text"><span>or use your email</span></div>
             </div>
 
             <div class="email-signup-box">
@@ -85,10 +85,6 @@
             };
         });
 
-        function calculatePercentageDifference(oldValue, newValue) {
-            return (newValue - oldValue) / oldValue * 100;
-        };
-
         // const element = document.querySelector('body');
         // let previousWidth = element.offsetWidth;
 
@@ -114,6 +110,11 @@
             let viewportHeight = window.innerHeight;
             let height = main.offsetHeight;
             let rootFontSize = 100;
+
+            // Handler for calculating the % difference in pixel ratios between different resolutions.
+            function calculatePercentageDifference(oldValue, newValue) {
+                return (newValue - oldValue) / oldValue * 100;
+            };
 
             // If a zoom event is initiated manually, cancel out of smartResizing to enable zoom.
             if (manualZoomEvent == true) {

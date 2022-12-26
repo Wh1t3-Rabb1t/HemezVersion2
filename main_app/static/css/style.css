@@ -819,13 +819,13 @@ a {
   flex: 0 0 60%;
   height: 100%;
   width: 100%;
-  /* background-color: lightblue; */
 }
 
 .signup-box {
   display: flex;
   flex-direction: column;
   position: relative;
+  /* position: absolute; */
   margin: 3%;
   padding: 1%;
   border-radius: 0.30rem;
@@ -836,9 +836,6 @@ a {
   background: linear-gradient(179.62deg, #D0EBFD 52.02%, rgba(208, 235, 253, 0.184324) 130.34%, rgba(208, 235, 253, 0) 163.85%);
   filter: drop-shadow(0.04rem 0.03rem 0.03rem rgba(0, 0, 0, 0.25));
 }
-/* box-shadow: 0 0.15rem 0.2rem rgba(0, 0, 0, 0.3); */
-/* border: solid wheat 5px; */
-/* background-color: red; */
 
 .third-party-signup-box {
   display: flex;
@@ -846,9 +843,8 @@ a {
   align-items: center;
   justify-content: space-evenly;
   box-sizing: border-box;
-  padding: 1% 1% 1% 1%;
+  padding: 1%;
   height: 100%;
-  /* background-color: purple; */
 }
 
 .third-party-signup-box > div {
@@ -857,6 +853,9 @@ a {
   font-weight: 500;
   font-size: 0.2rem;
   line-height: 0.36rem;
+  letter-spacing: 0.01rem;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  color: #000000;
 }
 
 #signup-header {
@@ -864,8 +863,38 @@ a {
   font-size: 0.24rem;
 }
 
-/* #enclosed-signup-text {
-} */
+#enclosed-signup-text span {
+  background: linear-gradient(179.62deg, #D0EBFD 52.02%, rgba(208, 235, 253, 0.184324) 130.34%, rgba(208, 235, 253, 0) 163.85%);
+  padding: 0 10px;
+}
+
+#enclosed-signup-text {
+  position: relative;
+  width: 90%;
+  text-align: center;
+}
+
+#enclosed-signup-text::before,
+#enclosed-signup-text::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  background-color: #C79CE0;
+}
+
+#enclosed-signup-text::before {
+  width: 80%;
+  left: 0;
+  top: 50%;
+  z-index: -1;
+}
+
+#enclosed-signup-text::after {
+  width: 80%;
+  right: 0;
+  top: 50%;
+  z-index: -1;
+}
 
 .email-signup-box {
   display: flex;
@@ -876,7 +905,6 @@ a {
   height: 100%;
   padding: 1% 1% 1% 1%;
   flex: 0 0 60%;
-  /* background-color: green; */
 }
 
 .email-signup-box > input {
@@ -891,8 +919,11 @@ a {
   line-height: 0.36rem;
   border-radius: 0.30rem;
   filter: drop-shadow(0.06rem 0.05rem 0.05rem rgba(0, 0, 0, 0.3));
-  /* background: #FFFFFF; */
-  /* outline: none !important; */
+  color: #949393;
+  letter-spacing: 0.01rem;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  border: 0;
+  background: #FFFFFF;
 }
 
 .email-signup-box > button {
@@ -908,6 +939,10 @@ a {
   line-height: 0.36rem;
   background: #C79CE0;
   filter: drop-shadow(0.06rem 0.05rem 0.05rem rgba(0, 0, 0, 0.3));
+  color: white;
+  letter-spacing: 0.01rem;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  border: 0;
 }
 
 .signup-icons {
@@ -919,7 +954,7 @@ a {
 }
 
 .signup-icons > img {
-  margin: 0% 3% 0% 3%;
+  margin: 0% 4% 0% 4%;
   width: 0.45rem;
   height: 0.45rem;
 }
