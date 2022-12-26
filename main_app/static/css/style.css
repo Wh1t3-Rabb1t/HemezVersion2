@@ -803,53 +803,42 @@ a {
 .signup-main-container {
   display: flex;
   flex-direction: row;
-  overflow: hidden;
   position: absolute;
-
-  /* Enable smartResizing. */
-  margin: auto;
-  /* width: 14.32rem; */
-  /* height: 7.12rem; */
+  overflow: hidden;
   width: 100%;
   height: 100%;
-  /* box-sizing: border-box; */
-  /* background-color: blueviolet; */
-  /* border: solid 5px red; */
 }
-/* margin: 1%; */
-/* width: 143.2rem;
-height: 81.5rem; */
+/* border: solid 5px red; */
+/* margin: auto; */
+/* box-sizing: border-box; */
 
 .left-signup-container {
   display: flex;
   justify-content: center;
-
   align-items: center;
   flex: 0 0 60%;
-
   height: 100%;
   width: 100%;
-  z-index: 4;
   /* background-color: lightblue; */
 }
-/* position: relative; */
 
 .signup-box {
   display: flex;
   flex-direction: column;
-  /* margin: 8% 4% 16% 16%; */
+  position: relative;
   margin: 3%;
   padding: 1%;
-  border: solid wheat 5px;
-  border-radius: 25px;
-  position: relative;
+  border-radius: 0.30rem;
   box-sizing: border-box;
-  /* height: 100%;
-  width: 100%; */
   height: 5.5rem;
   width: 6.5rem;
-  /* background-color: red; */
+  z-index: 5;
+  background: linear-gradient(179.62deg, #D0EBFD 52.02%, rgba(208, 235, 253, 0.184324) 130.34%, rgba(208, 235, 253, 0) 163.85%);
+  filter: drop-shadow(0.04rem 0.03rem 0.03rem rgba(0, 0, 0, 0.25));
 }
+/* box-shadow: 0 0.15rem 0.2rem rgba(0, 0, 0, 0.3); */
+/* border: solid wheat 5px; */
+/* background-color: red; */
 
 .third-party-signup-box {
   display: flex;
@@ -900,13 +889,15 @@ height: 81.5rem; */
   font-weight: 700;
   font-size: 0.24rem;
   line-height: 0.36rem;
-  border-radius: 0.28rem;
+  border-radius: 0.30rem;
+  background: #FFFFFF;
+  filter: drop-shadow(0.04rem 0.03rem 0.03rem rgba(0, 0, 0, 0.25));
 }
 
 .email-signup-box > button {
   padding: 2.5%;
   margin: 3% 0% 3% 0%;
-  border-radius: 0.35rem;
+  border-radius: 0.30rem;
   width: 30%;
   /* height: 30%; */
   font-family: 'Helvetica Neue';
@@ -914,6 +905,8 @@ height: 81.5rem; */
   font-weight: 700;
   font-size: 0.24rem;
   line-height: 0.36rem;
+  background: #C79CE0;
+  filter: drop-shadow(0.04rem 0.03rem 0.03rem rgba(0, 0, 0, 0.25));
 }
 
 .signup-icons {
@@ -922,30 +915,30 @@ height: 81.5rem; */
   align-items: center;
   justify-content: center;
   padding: 0% 2% 0% 2%;
-  /* background-color: blue; */
 }
 
 .signup-icons > img {
   margin: 0% 3% 0% 3%;
+  width: 0.45rem;
+  height: 0.45rem;
 }
+
+/* ------------------------------------------- */
 
 .right-signup-container {
   display: flex;
   position: relative;
-  /* flex-direction: column; */
   width: 100%;
   height: 100%;
   justify-content: center;
   align-items: center;
-  /* background-color: lightcoral; */
 }
 
-.phone-bubble-container {
+#phone-bubble-container {
   display: flex;
   position: relative;
   width: 2rem;
   height: 2rem;
-  /* background-color: greenyellow; */
 }
 
 /* Top */
@@ -953,8 +946,6 @@ height: 81.5rem; */
   position: absolute;
   width: 7.2rem;
   height: 7.2rem;
-  /* left: 35%;
-  top: 8%; */
   left: 5%;
   top: -90%;
   background: linear-gradient(180deg, #EBA0C9 0%, rgba(235, 160, 201, 0.765543) 2.48%, rgba(235, 160, 201, 0) 77.43%);
@@ -967,8 +958,6 @@ height: 81.5rem; */
   position: absolute;
   width: 6.9rem;
   height: 6.9rem;
-  /* left: -5%;
-  top: 58%; */
   left: -85%;
   top: 70%;
   background: linear-gradient(220.89deg, #C79CE0 23.2%, rgba(199, 156, 224, 0.458333) 49.34%, rgba(199, 156, 224, 0) 89.82%);
@@ -981,8 +970,6 @@ height: 81.5rem; */
   position: absolute;
   width: 6rem;
   height: 6rem;
-  /* left: -35%;
-  top: 50%; */
   left: -205%;
   top: 30%;
   background: linear-gradient(182.16deg, #D0EBFD 1.82%, rgba(208, 235, 253, 0) 98.3%);
