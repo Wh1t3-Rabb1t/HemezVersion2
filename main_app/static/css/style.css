@@ -890,8 +890,9 @@ a {
   font-size: 0.24rem;
   line-height: 0.36rem;
   border-radius: 0.30rem;
-  background: #FFFFFF;
-  filter: drop-shadow(0.04rem 0.03rem 0.03rem rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0.06rem 0.05rem 0.05rem rgba(0, 0, 0, 0.3));
+  /* background: #FFFFFF; */
+  /* outline: none !important; */
 }
 
 .email-signup-box > button {
@@ -899,14 +900,14 @@ a {
   margin: 3% 0% 3% 0%;
   border-radius: 0.30rem;
   width: 30%;
-  /* height: 30%; */
+  height: 30%;
   font-family: 'Helvetica Neue';
   font-style: normal;
   font-weight: 700;
   font-size: 0.24rem;
   line-height: 0.36rem;
   background: #C79CE0;
-  filter: drop-shadow(0.04rem 0.03rem 0.03rem rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0.06rem 0.05rem 0.05rem rgba(0, 0, 0, 0.3));
 }
 
 .signup-icons {
