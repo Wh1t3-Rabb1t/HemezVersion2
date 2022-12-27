@@ -389,6 +389,74 @@ color: #000000;
 }
 
 /*-------------------------------------------------------------------------*/
+/*-------------------------- Home Page ------------------------------------*/
+/*-------------------------------------------------------------------------*/
+
+.home-text-box {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  /* position: absolute; */
+  margin: 3%;
+  padding: 1%;
+  box-sizing: border-box;
+  height: 5.5rem;
+  width: 6.5rem;
+  z-index: 5;
+  border: 10px solid black;
+
+  align-items: left;
+  /* justify-content: space-evenly; */
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 1%;
+}
+
+#home-header {
+  display: flex;
+  /* position: absolute; */
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.52rem;
+  line-height: 0.63rem;
+  color: #C79CE0;
+}
+
+#home-text {
+  display: flex;
+  /* position: absolute; */
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.20rem;
+  line-height: 0.24rem;
+  color: #000000;
+}
+
+#main-button {
+  display: flex;
+  /* position: absolute; */
+  /* flex-direction: row; */
+  justify-content: center;
+  align-items: center;
+  /* padding: 12px 16px; */
+  padding: 0.12rem 0.16rem;
+  /* gap: 8px; */
+  gap: 0.08rem;
+  /* width: 142px;
+  height: 48px; */
+  width: 1.42rem;
+  height: 0.48rem;
+  /* left: calc(50% - 142px/2 - 514px);
+  top: 625px; */
+  background: #C79CE0;
+  /* border-radius: 20px; */
+  border-radius: 0.2rem;
+  color:white;
+}
+
+/*-------------------------------------------------------------------------*/
 /*-------------------------- About Page -----------------------------------*/
 /*-------------------------------------------------------------------------*/
 
@@ -1298,22 +1366,22 @@ min-height: calc( 100vh - 70px);
   
 }
 
-#main-button{
+/* #main-button{
   display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-padding: 12px 16px;
-gap: 8px;
-position: absolute;
-width: 142px;
-height: 48px;
-left: calc(50% - 142px/2 - 514px);
-top: 625px;
-background: #C79CE0;
-border-radius: 20px;
-color:white;
-}
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 16px;
+  gap: 8px;
+  position: absolute;
+  width: 142px;
+  height: 48px;
+  left: calc(50% - 142px/2 - 514px);
+  top: 625px;
+  background: #C79CE0;
+  border-radius: 20px;
+  color:white;
+} */
 
 #text-container{
   position: relative;
