@@ -129,14 +129,14 @@
                 // Rearrange page layout if the screens height is > the width.
                 if (viewportHeight > viewportWidth) {
                     aboutContainer.style.flexDirection = 'column';
-                    // cartoonPhone.style.display = 'none';
-                    cartoonPhone.style.top = '-65%';
+                    cartoonPhone.style.top = '-50%';
                     cartoonPhone.style.left = '-30%';
+                    // cartoonPhone.style.display = 'none';
                 } else if (viewportHeight < viewportWidth) {
                     aboutContainer.style.flexDirection = 'row';
-                    // cartoonPhone.style.display = 'block';
                     cartoonPhone.style.top = '-135%';
-                    cartoonPhone.style.left = '-125%';
+                    cartoonPhone.style.left = '-110%';
+                    // cartoonPhone.style.display = 'block';
                 };
             };
         };
