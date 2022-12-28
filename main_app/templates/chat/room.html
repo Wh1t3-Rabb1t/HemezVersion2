@@ -2,29 +2,85 @@
 
 
 <div class='newchat'>
-<div class='left-chat-bar'> <div >
+<div class='left-chat-bar'>
+
+{% comment %} left top logo  {% endcomment %}
+  <div id='left-top'>
+    <span class='logo-container'>     
+    <img src="https://i.imgur.com/ChgLGGA.png" class="logo-left" /> 
+    <h1 class='logo-white'>HERMES</h1></span>
+  </div>
+
+{% comment %} left all rooms button {% endcomment %}
+  <div id='left-all-rooms'>
+    <p id='p-allrooms'>All Rooms</p>
+    <img id='sort-bottom' src="https://img.icons8.com/ios-glyphs/512/sort-down.png"> </img>
+  </div>
+
+
+  <div id='left-rooms'>
  <!-- Left Verti Bar Nav -->
-  {% comment %} <nav class="vertical-navbar">
-    <div class="chat-icon-parent">
+
+    <div id='left-full-rooms'>
       {% for chatroom in chatrooms %}
-      <div></div>
-        <a class="chat-icon" href="/chat/{{chatroom.id}}">
-          <img src="{{chatroom.chat_pic}}" />
+      <div>
+        <a id='left-rooms-name'  href="/chat/{{chatroom.id}}">
+          <img id='chat-left-room-pic' src="{{chatroom.chat_pic}}" />
          {{chatroom.room_name}}
         </a>
+      </div>
       {% endfor %}
 
   
     </div>
-  </nav>  {% endcomment %}
+
   <!-- Chatroom Nav -->  
+  </div>
+
+
+  <div id='left-add-room'>
+
+      <img id='add-button-image' src="https://img.icons8.com/external-others-inmotus-design/512/external-Add-atm-others-inmotus-design.png"> </img>
+      <p style='margin-left:5%'>Add Room</p>
+  </div>
+
+
+  <div id='left-direct-message'>
+    <p id='p-allrooms'>Direct Message</p>
+    <img id='sort-bottom' src="https://img.icons8.com/ios-glyphs/512/sort-down.png"> </img>
+  </div>
+
+  <div id='left-all-users'>
+
+  </div>
+
+  <div id='left-add-teammates'>
+    <img id='add-button-image' src="https://img.icons8.com/external-others-inmotus-design/512/external-Add-atm-others-inmotus-design.png"> </img>
+    <p style='margin-left:5%'>Add Room</p>
+  </div>
+
+
+
+  <div id='left-your-chatrooms'>
+    <p id='p-allrooms'>Your Chat Rooms</p>
+    <img id='sort-bottom' src="https://img.icons8.com/ios-glyphs/512/sort-down.png"> </img>
+  </div>
+
+
+
+
+  <div id='left-bottom'></div>
+
+<div >
+
   
 </div>  
 </div>
 <div class='top-chat-bar'>
- <img style='height:10px' src={{current_room.chat_pic}}/>
-  <h3 >{{current_room}}</h3>
-  </h3> 
+    <a id='left-rooms-name'  href="/chat/{{chatroom.id}}">
+      <img id='chat-left-room-pic' src="{{current_room.chat_pic}}" />
+     {{current_room}}
+    </a>
 </div>
 
 
