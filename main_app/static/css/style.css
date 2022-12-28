@@ -930,8 +930,8 @@ a {
 /*-------------------------------------------------------------------------*/
 /*--------------------------- Signup Page ---------------------------------*/
 /*-------------------------------------------------------------------------*/
-
-/* .chat-box {
+/* 
+.chat-box {
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -1593,10 +1593,10 @@ min-height: calc( 100vh - 70px);
 
 .input-box {
   border-radius: 0px 0px 0px 0px;
-
   position: absolute;
   bottom: 0px;
-  height: 8rem;
+  /* height: 8rem; */
+  height:1.28rem;
   width: 100%;
   margin: 0;
   text-align: center;
@@ -1606,7 +1606,6 @@ min-height: calc( 100vh - 70px);
     var(--dark-purple) 90%
   );
   display: flex;
-
   background: #ffffff;
   border-top: 1px solid #cca5e3;
 }
@@ -1619,7 +1618,8 @@ min-height: calc( 100vh - 70px);
   border-radius: 0px 30px 30px 0px;
   width: 60%;
 
-  padding: 2rem 0rem 2rem 5rem;
+  /* padding: 2rem 0rem 2rem 5rem; */
+  padding: 0.32rem 0rem 0.32rem .8rem;
   font-family: "Helvetica Neue";
   font-style: normal;
   font-weight: 800;
