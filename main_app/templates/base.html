@@ -31,6 +31,7 @@
   </head>
 
   <body class="lightMode">
+    <!-- <script src="{% static 'js/script.js' %}"></script> -->
     <nav class="navbar">
       <ul class="navbar-nav">
         <li class="nav-item" id="home">
@@ -96,10 +97,10 @@
       </svg> {% endcomment %}
     </div> 
 
-  <main>
+    <main>
 
+      {% block content %} {% endblock %}
 
-      <div class="chat-box">{% block content %} {% endblock %}</div>
     </main> 
     
   </body>
@@ -118,3 +119,4 @@
     });
   </script>
 </html>
+

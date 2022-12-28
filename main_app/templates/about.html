@@ -1,46 +1,374 @@
 {% extends 'base.html' %} {% block content %}
 
-{% comment %} <div class="title-bar">
-  <h1>{{name}}</h1>
-</div> {% endcomment %}
-<div id='about-main'>
-  <div id='about-top'>
-    <div id='about-top-left'>
-      <h1 id='about-title'>HERMES MESSENGER</h1>
-      <p id='about-page'>Hermes Messenger app allows users to chat with friends in real-time by joining chatrooms, made possible with Django Channels. Start by signing up, then freely create and join chatrooms to talk or just listen in.</p>
+<div class="about-container" id="about-container">
+
+    <div id="left-about-container">
+
+        <div id="top-text-box">
+            <span id="about-header">Hermes Messenger</span>
+            <p id="about-text">
+                Hermes Messenger app allows users to chat with friends in real-time by
+                joining chatrooms, made possible with Django Channels. Start by signing up,
+                then freely create and join chatrooms to talk or just listen in.
+            </p>
+        </div>
+        
+        <div id="middle-text-box">
+            <nav id="team-header">Meet Our Team</nav>
+            <p id="team-text">This project was a collboration between the following members:</p>
+        </div>
+
+        <div id="members">
+            <div class="members-container">
+                <img class="profile-pic" src="https://i.imgur.com/ae2rHG7.png">
+                <nav class="member-links">
+                    <div>Gobi Shanthan<br><span>Developer</span></div>
+                    <img src="https://i.imgur.com/WPyPfuY.png">
+                </nav>
+            </div>
+
+            <div class="members-container">
+                <img class="profile-pic" src="https://i.imgur.com/ae2rHG7.png">
+                <nav class="member-links">
+                    <div>Till Cappel<br><span>Developer</span></div>
+                    <img src="https://i.imgur.com/WPyPfuY.png">
+                </nav>
+            </div>
+
+            <div class="members-container">
+                <img class="profile-pic" src="https://i.imgur.com/SBdTgSs.png">
+                <nav class="member-links">
+                    <div>Meenakshi<br><span>Designer</span></div>
+                    <img src="https://i.imgur.com/WPyPfuY.png">
+                </nav>
+            </div>
+        </div>
+
     </div>
-    <div id='about-top-right'></div>
-  </div>
-  <div id='about-bot'>
-    <p class="about-text" style="font-size: 20px">
-      This project was a collboration between the following members:
-    </p>
-    <ul class="members">
-      <li style="font-size: 20px">Gobi Shanthan</li>
-      <li style="font-size: 20px">Chris Morrison</li>
-      <li style="font-size: 20px">Till Cappel</li>
-      <li style="font-size: 20px">Louis Cheung</li>
-    </ul>
-    <p style="font-size: 20px">
-      Github link:
-      <a
-        style="font-size: 20px"
-        href="https://github.com/louischeung1990/Hermes-Messenger-App"
-        target="_blank"
-        >Click here</a
-      >
-    </p> 
-  </div>
+    
+    <!-- Phone and bubbles. -->
+    <div id="right-about-container">
+        <div id="about-phone-bubble-box">
+            <img id="cartoon-phone" src="https://i.imgur.com/PhLBWAj.png">
+            <div id='pink-circle'></div>
+            <div id='blue-circle'></div>
+            <div id='purple-circle'></div>
+        </div>
+    <div>
+
+    <script defer>
+
+        //-- User generated zoom event detection. -----------------------------------------------//
+        let manualZoomEvent = false;
+
+        // Detect a user initiated zoom event with the cmd key and mouse scroll wheel.
+        window.addEventListener('wheel', function(event) {
+            if (event.metaKey) { // If cmd is held down (metaKey is the cmd key on Mac).
+                if (event.deltaY > 0) { // User has zoomed out.
+                    manualZoomEvent = true;
+                } else { // User has zoom in.
+                    manualZoomEvent = true;
+                };
+            };
+        });
+
+        // Detect a user initiated zoom event using keyboard shortcuts.
+        window.addEventListener('keydown', function(event) {
+            if (event.metaKey && event.code === 'Equal') { // User has pressed cmd +.
+                manualZoomEvent = true;
+            } else if (event.metaKey && event.code === 'Minus') { // User has pressed cmd -.
+                manualZoomEvent = true;
+            };
+        });
+
+        // Detect a user initiated zoom event using a touch screen.
+        window.addEventListener('touchmove', function(event) {
+            if (event.scale < 1) { // User has zoomed out.
+                manualZoomEvent = true;
+            } else { // User has zoomed in.
+                manualZoomEvent = true;
+            };
+        });
+
+        //-- Dynamic page scaling. --------------------------------------------------------------//
+        function smartResizing() {
+            // const signupMainContainer = document.getElementById('signup-main-container');
+            // const phoneBubbleContainer = document.getElementById('phone-bubble-container');
+            const cartoonPhone = document.getElementById('cartoon-phone');
+            const aboutContainer = document.getElementById('about-container');
+            const main = document.querySelector('main');
+            const root = document.querySelector(':root');
+            const baseWidth = 1432; // Container width.
+            const baseHeight = 712; // Container height excluding the menu bar.
+            let widthDifference, heightDifference, averageDifference = 0;
+            let viewportWidth = window.innerWidth;
+            let viewportHeight = window.innerHeight;
+            let height = main.offsetHeight;
+            let rootFontSize = 100;
+
+            // Handler for calculating the % difference in pixel ratios between different resolutions.
+            function calculatePercentageDifference(oldValue, newValue) {
+                return (newValue - oldValue) / oldValue * 100;
+            };
+
+            // If a zoom event is initiated manually, cancel out of smartResizing to enable zoom.
+            if (manualZoomEvent == true) {
+                manualZoomEvent = false;
+            } else {
+                // If the current viewport dimensions don't match the base value, calculate the % difference.
+                if (viewportWidth != baseWidth || viewportHeight != baseHeight) {
+                    widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
+                    heightDifference = calculatePercentageDifference(baseHeight, height);
+                    averageDifference = Math.round((widthDifference + heightDifference) / 2);
+                };
+
+                // Update the :root font size to scale all elements using rem.
+                rootFontSize += averageDifference;
+                root.style.fontSize = rootFontSize + 'px';
+
+                // Rearrange page layout if the screens height is > the width.
+                if (viewportHeight > viewportWidth) {
+                    aboutContainer.style.flexDirection = 'column';
+                    cartoonPhone.style.top = '-50%';
+                    cartoonPhone.style.left = '-30%';
+                    // cartoonPhone.style.display = 'none';
+                } else if (viewportHeight < viewportWidth) {
+                    aboutContainer.style.flexDirection = 'row';
+                    cartoonPhone.style.top = '-135%';
+                    cartoonPhone.style.left = '-110%';
+                    // cartoonPhone.style.display = 'block';
+                };
+            };
+        };
+        window.addEventListener('load', () => smartResizing());
+        window.addEventListener('resize', () => smartResizing());
+
+
+
+        // const floatingIcon1 = 'https://i.imgur.com/i5UNV2f.png';
+        // const floatingIcon2 = 'https://i.imgur.com/N00lIOn.png';
+        // const floatingIcon3 = 'https://i.imgur.com/dUQH6w9.png';
+
+        // Select an random icon to populate the img element.
+        // if (num == 1) {
+        //     imgElement.src = floatingIcon1;
+        // } else if (num == 2) {
+        //     imgElement.src = floatingIcon2;
+        // } else {
+        //     imgElement.src = floatingIcon3;
+        // };
+
+        const floatingIcons = ['https://i.imgur.com/i5UNV2f.png', 'https://i.imgur.com/N00lIOn.png', 'https://i.imgur.com/dUQH6w9.png'];
+
+        // Generate random integers, either positive or negative.
+        function getRandomInteger(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        };
+
+        // Animation loop for the rising rain effect.
+        function risingLogo() {
+            // Create a new img element and apply a random icon to it.
+            const imgElement = document.createElement('img');
+            let num = getRandomInteger(0, 2);
+            let randomIcon = floatingIcons[num];
+            imgElement.src = randomIcon;
+            
+            // Retrieve the width and height of the browser window.
+            let viewportHeight = window.innerHeight + 420;
+            let viewportWidth = window.innerWidth - 150;
+            
+            // Set the starting position of the img element.
+            imgElement.style.position = 'absolute';
+            imgElement.style.left = `calc(${Math.random() * viewportWidth}px)`;
+            imgElement.style.bottom = '50px';
+            
+            // Randomize the img size, velocity, and angle.
+            let imgSize = getRandomInteger(1, 220) + 80;
+            let velocity = getRandomInteger(1, 8);
+            let angle = getRandomInteger(-30, 10);
+            imgElement.style.width = imgSize + 'px';
+            imgElement.style.height = imgSize + 'px';
+            imgElement.style.borderRadius = '50%';
+            // imgElement.style.zIndex = '99';
+            
+            // Append the img element to the container.
+            // const divElement = document.querySelector('.about-box-bottom');
+            const divElement = document.querySelector('.about-container');
+            divElement.appendChild(imgElement);
+
+            // Begin img element animation loop.
+            function animateImg() {
+                imgElement.style.rotate = angle + 'deg';            // Set the angle of the img.
+                const imgTop = parseInt(imgElement.style.bottom);   // Get the current position of the img element.
+                let newImgTop = imgTop + velocity;                  // Calculate the new position of the img element.
+                imgElement.style.bottom = newImgTop + 'px';         // Set the new position of the img element.
+                
+                // Once the img element travels off the screen, delete it and stop the animation loop.
+                if (newImgTop > viewportHeight) {
+                    divElement.removeChild(imgElement);
+                    return
+                };
+
+                // Call the function repeatedly on a loop.
+                requestAnimationFrame(animateImg);
+            };
+            animateImg();
+        };
+
+        // This prevents a bug causing the function to overload when the browser is active but tab is unfocused.
+        var timer;
+        window.onfocus = function() {
+            timer = setInterval(function() {risingLogo()}, 2000);
+        };
+
+        // Stops the animation timer when the tab is unfocused.
+        window.onblur = function() {
+            clearInterval(timer);
+        };
+
+        //---------------------------------------------------------------------------------------------------------//
+
+        // Floating bubble animation loop setup.
+        const purpleBubble = document.getElementById('purple-circle');
+        const blueBubble = document.getElementById('blue-circle');
+        const pinkBubble = document.getElementById('pink-circle');
+        var dx = 0.3, dy = 0.3;
+        let x = 1;
+        let y = 1;
+        let z = -1;
+        let count = 1;
+
+        // Animate bubbles with a subtle floating effect.
+        function bubbleAnimationLoop() {
+            // Increment the counter until it reaches 180 then reset back to 1 and repeat.
+            if (count < 180) {
+                count += 1;
+            } else if (count == 180) {
+                count = 1;
+            };
+            
+            // Change the purple bubbles direction when counter is within a certain range.
+            if (count <= 90) {
+                x += dx;
+            } else if (count > 90) {
+                x -= dx;
+            };
+
+            // Change the blue bubbles direction when counter is within a certain range.
+            if (count < 40 || count >= 130) {
+                y += dy;
+            } else if (count >= 40 && count < 130) {
+                y -= dy;
+            };
+
+            // Change the pink bubbles direction when counter is within a certain range.
+            if (count < 20 || count >= 110) {
+                z -= dy;
+            } else if (count >= 20 && count < 110) {
+                z += dy;
+            };
+
+            // Update the bubbles location on the respective axis.
+            purpleBubble.style.transform = `translateX(${x}px)`;
+            blueBubble.style.transform = `translateY(${y}px)`;
+            pinkBubble.style.transform = `translateX(${z}px)`;
+
+            // Call the function repeatedly on a loop.
+            requestAnimationFrame(bubbleAnimationLoop);
+        };
+        bubbleAnimationLoop();
+    </script>
+    <!-- </div> -->
 </div>
 
- {% comment %} <div class="about-box">
-  <p class="about-text" style="font-size: 20px">
-    Hermes Messenger app allows users to chat with friends in real-time by
-    joining chatrooms, made possible with Django Channels. Start by signing up,
-    then freely create and join chatrooms to talk or just listen in.
-  </p>
-
-</div> {% endcomment %}
-
-
 {% endblock %}
+
+
+<!-- 
+// Img element animation loop.
+// var animationTimer = setInterval(function animateImg() {
+//     imgElement.style.rotate = angle + 'deg';            // Set the angle of the img.
+//     const imgTop = parseInt(imgElement.style.bottom);   // Get the current position of the img element.
+//     let newImgTop = imgTop + velocity;                  // Calculate the new position of the img element.
+//     imgElement.style.bottom = newImgTop + 'px';         // Set the new position of the img element.
+
+//     num += 1;
+
+//     // Once the img element travels offscreen, delete it and stop the animation loop.
+//     if (newImgTop > viewportHeight) {
+//         divElement.removeChild(imgElement);
+//         clearInterval(animationTimer);
+//     };
+// }, 16.8); // 16 millisecond intervals is roughly equivalent to 60 frames per second. 
+-->
+
+<!--
+<div class="members-container">
+    <img class="profile-pic" src="https://i.imgur.com/ae2rHG7.png">
+    <nav class="member-links">
+        <div>Louis Cheung<br><span>Developer</span></div>
+        <img src="https://i.imgur.com/WPyPfuY.png">
+    </nav>
+</div>
+-->
+
+<!--
+<div class="members-container">
+    <img class="profile-pic" src="https://i.imgur.com/ae2rHG7.png">
+    <nav class="member-links">
+        <div>Chris Morrison<br><span>Developer</span></div>
+        <img src="https://i.imgur.com/WPyPfuY.png">
+    </nav>
+</div>
+-->
+
+<!-- <div class="about-box-top">
+        <div class="top-left-box">
+            <span id="about-header">Hermes Messenger</span>
+            <p id="about-text">
+                Hermes Messenger app allows users to chat with friends in real-time by
+                joining chatrooms, made possible with Django Channels. Start by signing up,
+                then freely create and join chatrooms to talk or just listen in.
+            </p>
+        </div>
+        
+        <div class="top-right-box">
+            <img id="cartoon-phone" src="https://i.imgur.com/PhLBWAj.png">
+            <div id='pink-circle'></div>
+            <div id='blue-circle'></div>
+            <div id='purple-circle'></div>
+        </div>
+    </div>
+    
+    <div class="about-box-bottom">
+        <div class="bottom-text-box">
+            <nav id="team-header">Meet Our Team</nav>
+            <p id="team-text">This project was a collboration between the following members:</p>
+        </div>
+
+        <div id="members">
+            <div class="members-container">
+                <img class="profile-pic" src="https://i.imgur.com/ae2rHG7.png">
+                <nav class="member-links">
+                    <div>Gobi Shanthan<br><span>Developer</span></div>
+                    <img src="https://i.imgur.com/WPyPfuY.png">
+                </nav>
+            </div>
+
+            <div class="members-container">
+                <img class="profile-pic" src="https://i.imgur.com/ae2rHG7.png">
+                <nav class="member-links">
+                    <div>Till Cappel<br><span>Developer</span></div>
+                    <img src="https://i.imgur.com/WPyPfuY.png">
+                </nav>
+            </div>
+
+            <div class="members-container">
+                <img class="profile-pic" src="https://i.imgur.com/SBdTgSs.png">
+                <nav class="member-links">
+                    <div>Meenakshi<br><span>Designer</span></div>
+                    <img src="https://i.imgur.com/WPyPfuY.png">
+                </nav>
+            </div>
+        </div>
+    <div> -->

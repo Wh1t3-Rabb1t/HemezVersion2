@@ -1,4 +1,119 @@
 {% extends 'base.html' %} {% block content %}
+
+<div class="signup-main-container" id="signup-main-container">
+    <div class="left-signup-container">
+        <div class="home-text-box">
+            <div id="home-header">Hermes Messenger</div>
+            <div id="home-text">
+                Instant Messaging Electrified! 
+                Allows users to chat with friends in real-time by joining chatrooms.
+            </div>
+            <button id='main-button'>Login</button>
+        </div>    
+    </div>
+    
+    <div class="right-signup-container">
+        <div id="phone-bubble-container">
+            <div id='pink-circ'></div>
+            <div id='blue-circ'></div>
+            <div id='purple-circ'></div>
+            <img id="phone-template" src="https://i.imgur.com/Mgr8zVE.png">
+            <img id="phone-screen" src="https://i.imgur.com/caZOa0E.png">
+            <img id="phone-template-effects" src="https://i.imgur.com/HaDV0c8.png">
+            <img id="phone-notifications-1" src="https://i.imgur.com/Jxr5NLe.png">
+            <img id="phone-notifications-2" src="https://i.imgur.com/KGE0QSw.png">
+        </div>
+    </div>
+</div>
+
+<script defer>
+//-- User generated zoom event detection. -----------------------------------------------//
+let manualZoomEvent = false;
+
+// Detect a user initiated zoom event with the cmd key and mouse scroll wheel.
+window.addEventListener('wheel', function(event) {
+    if (event.metaKey) { // If cmd is held down (metaKey is the cmd key on Mac).
+        if (event.deltaY > 0) { // User has zoomed out.
+            manualZoomEvent = true;
+        } else { // User has zoom in.
+            manualZoomEvent = true;
+        };
+    };
+});
+
+// Detect a user initiated zoom event using keyboard shortcuts.
+window.addEventListener('keydown', function(event) {
+    if (event.metaKey && event.code === 'Equal') { // User has pressed cmd +.
+        manualZoomEvent = true;
+    } else if (event.metaKey && event.code === 'Minus') { // User has pressed cmd -.
+        manualZoomEvent = true;
+    };
+});
+
+// Detect a user initiated zoom event using a touch screen.
+window.addEventListener('touchmove', function(event) {
+    if (event.scale < 1) { // User has zoomed out.
+        manualZoomEvent = true;
+    } else { // User has zoomed in.
+        manualZoomEvent = true;
+    };
+});
+
+//-- Dynamic page scaling. --------------------------------------------------------------//
+function smartResizing() {
+    const signupMainContainer = document.getElementById('signup-main-container');
+    const phoneBubbleContainer = document.getElementById('phone-bubble-container');
+    const main = document.querySelector('main');
+    const root = document.querySelector(':root');
+    const baseWidth = 1432; // Container width.
+    const baseHeight = 712; // Container height excluding the menu bar.
+    let widthDifference, heightDifference, averageDifference = 0;
+    let viewportWidth = window.innerWidth;
+    let viewportHeight = window.innerHeight;
+    let height = main.offsetHeight;
+    let rootFontSize = 100;
+
+    // Handler for calculating the % difference in pixel ratios between different resolutions.
+    function calculatePercentageDifference(oldValue, newValue) {
+        return (newValue - oldValue) / oldValue * 100;
+    };
+
+    // If a zoom event is initiated manually, cancel out of smartResizing to enable zoom.
+    if (manualZoomEvent == true) {
+        manualZoomEvent = false;
+    } else {
+        // If the current viewport dimensions don't match the base value, calculate the % difference.
+        if (viewportWidth != baseWidth || viewportHeight != baseHeight) {
+            widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
+            heightDifference = calculatePercentageDifference(baseHeight, height);
+            averageDifference = Math.round((widthDifference + heightDifference) / 2);
+        };
+
+        // Update the :root font size to scale all elements using rem.
+        rootFontSize += averageDifference;
+        root.style.fontSize = rootFontSize + 'px';
+
+        // Rearrange page layout if the screens height is > the width.
+        if (viewportHeight > viewportWidth) {
+            signupMainContainer.style.flexDirection = 'column';
+            phoneBubbleContainer.style.marginLeft = '25%';
+        } else if (viewportHeight < viewportWidth) {
+            signupMainContainer.style.flexDirection = 'row';
+            phoneBubbleContainer.style.marginLeft = '0%';
+        };
+    };
+};
+window.addEventListener('load', () => smartResizing());
+window.addEventListener('resize', () => smartResizing());
+
+</script>
+
+
+{% endblock %}
+
+
+
+<!-- 
 <div>
 <div class='left-main'>
     <h1 id='main-title'>Hermes Messenger</h1>
@@ -25,6 +140,4 @@
     </div>
   </div>
 </div>
-
-
-{% endblock %}
+-->
