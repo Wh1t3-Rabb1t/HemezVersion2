@@ -189,9 +189,11 @@
             imgElement.style.width = imgSize + 'px';
             imgElement.style.height = imgSize + 'px';
             imgElement.style.borderRadius = '50%';
+            // imgElement.style.zIndex = '99';
             
             // Append the img element to the container.
-            const divElement = document.querySelector('.about-box-bottom');
+            // const divElement = document.querySelector('.about-box-bottom');
+            const divElement = document.querySelector('.about-container');
             divElement.appendChild(imgElement);
 
             // Begin img element animation loop.
@@ -214,15 +216,15 @@
         };
 
         // This prevents a bug causing the function to overload when the browser is active but tab is unfocused.
-        // var timer;
-        // window.onfocus = function() {
-        //     timer = setInterval(function() {risingLogo()}, 2000);
-        // };
+        var timer;
+        window.onfocus = function() {
+            timer = setInterval(function() {risingLogo()}, 2000);
+        };
 
-        // // Stops the animation timer when the tab is unfocused.
-        // window.onblur = function() {
-        //     clearInterval(timer);
-        // };
+        // Stops the animation timer when the tab is unfocused.
+        window.onblur = function() {
+            clearInterval(timer);
+        };
 
         //---------------------------------------------------------------------------------------------------------//
 
@@ -274,7 +276,7 @@
             // Call the function repeatedly on a loop.
             requestAnimationFrame(bubbleAnimationLoop);
         };
-        // bubbleAnimationLoop();
+        bubbleAnimationLoop();
     </script>
     <!-- </div> -->
 </div>
