@@ -56,7 +56,7 @@ def home(request):
 
 def about(request):
     return render(request, 'about.html', {
-        'name': 'About Hermes Messenger App',
+        'name': 'Hermes Messenger',
     })
 
 

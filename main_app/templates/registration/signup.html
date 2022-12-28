@@ -2,22 +2,361 @@
 
 {% block content %}
 
-<div class="title-bar">
-  <h1>{{name}}</h1>
-</div>
+<div class="signup-main-container" id="signup-main-container">
 
-<div class="signup-box">
-  {% if error_message %}
-    <p class="red-text">{{ error_message }}</p>
-  {% endif %}
+    <div class="left-signup-container">
+        <div class="signup-box">
+            <div class="third-party-signup-box">
+                <div id="signup-header">Create New Account</div>
+                <div>SignUp with</div>
+                <div class="signup-icons">
+                    <img id="facebook-logo" src="https://i.imgur.com/nbbV2eM.png">
+                    <div>or</div>
+                    <img id="google-logo" src="https://i.imgur.com/2St3bY6.png">
+                </div>
+                <div id="enclosed-signup-text"><span>or use your email</span></div>
+            </div>
 
-  <form method="post" action="{% url 'signup' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <div class="signup-btn">
-      <input type="submit" class="btn" value="Sign Up">
+            <div class="email-signup-box">
+                <input type="text" name="user-name" placeholder="User Name">
+                <input type="text" name="password" placeholder="Password">
+                <input type="text" name="password-confirmation" placeholder="Re-enter Password">
+                <button id="signup-button">SignUp</button>
+            </div>
+        </div>
     </div>
-  </form>
+
+    <div class="right-signup-container">
+        <div id="phone-bubble-container">
+            <div id='pink-circ'></div>
+            <div id='blue-circ'></div>
+            <div id='purple-circ'></div>
+        
+            <img id="phone-template" src="https://i.imgur.com/Mgr8zVE.png">
+            <img id="phone-screen" src="https://i.imgur.com/caZOa0E.png">
+            <img id="phone-template-effects" src="https://i.imgur.com/HaDV0c8.png">
+            <img id="phone-notifications-1" src="https://i.imgur.com/Jxr5NLe.png">
+            <img id="phone-notifications-2" src="https://i.imgur.com/KGE0QSw.png">
+        </div>
+    </div>
+    
+    <!-- Truly responsive design module. -->
+    <script defer>
+        
+        //-- User generated zoom event detection. -----------------------------------------------//
+        let manualZoomEvent = false;
+        
+        // Detect a user initiated zoom event with the cmd key and mouse scroll wheel.
+        window.addEventListener('wheel', function(event) {
+            if (event.metaKey) { // If cmd is held down (metaKey is the cmd key on Mac).
+                if (event.deltaY > 0) { // User has zoomed out.
+                    manualZoomEvent = true;
+                    // console.log('Scroll wheel zoom out event detected.');
+                } else { // User has zoom in.
+                    manualZoomEvent = true;
+                    // console.log('Scroll wheel zoom in event detected.');
+                };
+            };
+        });
+        
+        // Detect a user initiated zoom event using keyboard shortcuts.
+        window.addEventListener('keydown', function(event) {
+            if (event.metaKey && event.code === 'Equal') { // User has pressed cmd +.
+                manualZoomEvent = true;
+                // const html = document.querySelector('html');
+                // html.style = 'zoom: 1.10';
+                // calculateZoomLevel();
+                // console.log('"Cmd +" zoom in event detected.');
+            } else if (event.metaKey && event.code === 'Minus') { // User has pressed cmd -.
+                manualZoomEvent = true;
+                // const html = document.querySelector('html');
+                // html.style = 'zoom: 0.90';
+                // calculateZoomLevel();
+                // console.log('"Cmd -" zoom out event detected.');
+            };
+        });
+        
+        // Detect a user initiated zoom event using a touch screen.
+        window.addEventListener('touchmove', function(event) {
+            if (event.scale < 1) { // User has zoomed out.
+                manualZoomEvent = true;
+            } else { // User has zoomed in.
+                manualZoomEvent = true;
+            };
+        });
+
+        // const element = document.querySelector('body');
+        // let previousWidth = element.offsetWidth;
+
+        // const observer = new ResizeObserver(entries => {
+        //     const currentWidth = element.offsetWidth;
+        //     const zoomIncrease = (currentWidth - previousWidth) / previousWidth;
+        //     // console.log(`Zoom increase: ${zoomIncrease * 100}%`);
+        //     previousWidth = currentWidth;
+        // });
+        // observer.observe(element);
+        // let scaleFactor = Math.round(zoomIncrease) * 10;
+        
+        //-- Dynamic page scaling. --------------------------------------------------------------//
+        function smartResizing() {
+            const signupMainContainer = document.getElementById('signup-main-container');
+            const phoneBubbleContainer = document.getElementById('phone-bubble-container');
+            const main = document.querySelector('main');
+            const root = document.querySelector(':root');
+            const baseWidth = 1432; // Container width.
+            const baseHeight = 712; // Container height excluding the menu bar.
+            let widthDifference, heightDifference, averageDifference = 0;
+            let viewportWidth = window.innerWidth;
+            let viewportHeight = window.innerHeight;
+            let height = main.offsetHeight;
+            let rootFontSize = 100;
+
+            // Handler for calculating the % difference in pixel ratios between different resolutions.
+            function calculatePercentageDifference(oldValue, newValue) {
+                return (newValue - oldValue) / oldValue * 100;
+            };
+
+            // If a zoom event is initiated manually, cancel out of smartResizing to enable zoom.
+            if (manualZoomEvent == true) {
+                manualZoomEvent = false;
+            } else {
+                // If the current viewport dimensions don't match the base value, calculate the % difference.
+                if (viewportWidth != baseWidth || viewportHeight != baseHeight) {
+                    widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
+                    heightDifference = calculatePercentageDifference(baseHeight, height);
+                    averageDifference = Math.round((widthDifference + heightDifference) / 2);
+                };
+
+                // Update the :root font size to scale all elements using rem.
+                rootFontSize += averageDifference;
+                root.style.fontSize = rootFontSize + 'px';
+
+                // Rearrange page layout if the screens height is > the width.
+                if (viewportHeight > viewportWidth) {
+                    signupMainContainer.style.flexDirection = 'column';
+                    phoneBubbleContainer.style.marginLeft = '25%';
+                } else if (viewportHeight < viewportWidth) {
+                    signupMainContainer.style.flexDirection = 'row';
+                    phoneBubbleContainer.style.marginLeft = '0%';
+                };
+            };
+        };
+        window.addEventListener('load', () => smartResizing());
+        window.addEventListener('resize', () => smartResizing());
+        
+        //-- Laptop. ----------------------------------------------------------------------------//
+        // laptop width = 1440 // Full screen values.
+        // laptop height = 815 // Full screen values.
+        // laptop width = 1432 // Non full screen values.
+        // laptop height = 782 // Non full screen values.
+        //-- Monitor. ---------------------------------------------------------------------------//
+        // monitor width = 2560 // Full screen values.
+        // monitor height = 1355 // Full screen values.
+        // monitor width = 2552 // Non full screen values.
+        // monitor height = 1322 // Non full screen values.
+        //-- Proportions. -----------------------------------------------------------------------//
+        // monitor width is roughly 1.77 x laptop width
+        // monitor height is roughtly 1.66 x laptop height
+        //---------------------------------------------------------------------------------------//
+
+        // let scaleFactor = (lesserDifference / 100) + 1;
+        // console.log(scaleFactor);
+
+        // signupMainContainer.style.overflow = 'visible';
+        // const elements = document.querySelectorAll('main *');        
+        // elements.forEach(element => {
+        // element.style = 'position: absolute';
+        // });
+        // body.style.position = 'fixed';
+        // console.log(scaleFactor);
+        // body.style = `transform: scale(${scaleFactor})`;
+
+        // Determine which difference is smaller to apply that value on both sides.
+        // if (heightDifference > widthDifference) {
+        //     lesserDifference = widthDifference;
+        // } else if (heightDifference < widthDifference) {
+        //     lesserDifference = heightDifference;
+        // } else {
+        //     lesserDifference = heightDifference;
+        // };
+
+        // rootFontSize += Math.round(lesserDifference);
+        // root.style.fontSize = rootFontSize + 'px';
+        // signupMainContainer.style.overflow = 'hidden';
+        // signupMainContainer.style.width = `${viewportWidth}px`;
+        // signupMainContainer.style.height = `${height}px`;
+
+        // rootFontSize = 100;
+        // rootFontSize += Math.round(lesserDifference);
+        // root.style.fontSize = rootFontSize + 'px';
+        // signupMainContainer.style.overflow = 'visible';
+        // signupMainContainer.style.width = `${viewportWidth}px`;
+        // signupMainContainer.style.height = `${height}px`;
+
+        // if (viewportHeight > viewportWidth) {
+        //     const div = document.getElementById('signup-box');
+        //     div.style.flexDirection = 'column';
+        // };
+        
+        // Detect a manual change in the device pixel ratio.
+        // let previousRatio = window.devicePixelRatio;
+        // window.addEventListener('resize', function() {
+            //     const currentRatio = window.devicePixelRatio;
+            //     if (currentRatio !== previousRatio) {
+                //         console.log(window.devicePixelRatio);
+                //         console.log('The zoom level has changed');
+                //         previousRatio = currentRatio;
+                //     };
+                // });
+                
+        // function vp() {
+        //     let viewportWidth = window.innerWidth;
+        //     let viewportHeight = window.innerHeight;
+        //     console.log(viewportWidth);
+        //     console.log(viewportHeight);
+        // };
+
+        // function checkDivDimensions() {
+        //     // Get a reference to the div element
+	    //     var div = document.getElementById('signup-box');
+            
+        //     // Get the height and width of the div element, including margin
+        //     var rect = div.getBoundingClientRect();
+        //     var width = Math.round(rect.width);
+        //     var height = Math.round(rect.height);
+            
+	    //     // Output the height and width
+	    //     console.log(width);
+	    //     console.log(height);
+        // };
+        // window.addEventListener('load', checkDivDimensions);
+        // window.addEventListener('resize', checkDivDimensions);
+        // window.addEventListener('load', smartResizing);
+        // window.addEventListener('resize', smartResizing);
+
+    </script>
+    
 </div>
 
 {% endblock %}
+
+
+
+
+<!--
+<div class="right-signup-container">
+    <div id='pink-circ'></div>
+    <div id='blue-circ'></div>
+    <div id='purple-circ'></div>
+</div>
+-->
+
+
+<!-- 
+<div class="title-bar">
+    <h1>{{name}}</h1>
+</div>
+
+<div class="signup-box">
+    {% if error_message %}
+        <p class="red-text">{{ error_message }}</p>
+    {% endif %}
+
+    <form method="post" action="{% url 'signup' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="signup-btn">
+            <input type="submit" class="btn" value="Sign Up">
+        </div>
+    </form>
+</div> 
+-->
+
+
+<!--
+// const baseWidth = 1432;
+// const baseHeight = 815;
+// let vpw = window.innerWidth;
+// let vph = window.innerHeight;
+// let hDiff = vph - height;
+// let viewportHeight = (window.innerHeight - hDiff);
+// let viewportWidth = window.innerWidth;
+// console.log(width);
+// console.log(height);
+// console.log(viewportHeight);
+
+// Get the height and width of the div element
+// var height = div.offsetHeight;
+// var width = div.offsetWidth;
+
+// Get the computed style of the div element
+// var style = window.getComputedStyle(div);
+// // Get the height and width of the div element
+// var height = style.getPropertyValue("height");
+// var width = style.getPropertyValue("width");
+
+// Get the height and width of the div element, excluding padding but including border
+// var height = div.clientHeight;
+// var width = div.clientWidth;
+// var height = div.style.height;
+// var width = div.style.width;
+// console.log("Height: " + height + "px");
+// console.log("Width: " + width + "px");
+-->
+
+<!-- 
+    // window.addEventListener('wheel', function(event) {
+        //     if (event.deltaY > 0) { // User has zoomed out.
+        //         console.log('Scroll wheel zoom out event detected.');
+        //     } else { // User has zoomed in.
+        //         console.log('Scroll wheel zoom in event detected.');
+        //     };
+        // });
+                
+                // // Determine the difference in width of viewport and base value.
+                // if (viewportWidth != baseWidth) {
+                    //     widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
+                    //     console.log(widthDifference);
+                    // };
+                    
+                    // // Determine the difference in height of viewport and base value.
+                    // if (viewportHeight != baseHeight) {
+                        //     heightDifference = calculatePercentageDifference(baseHeight, viewportHeight);
+                        //     console.log(heightDifference);
+                        // };
+                        
+        // if (heightDifference > widthDifference) {
+        //     lesserDifference = widthDifference;
+        //     finalSum = calculatePercentageDifference(baseWidth, viewportWidth);
+        // } else if (heightDifference < widthDifference) {
+        //     lesserDifference = heightDifference;
+        //     finalSum = calculatePercentageDifference(baseHeight, viewportHeight);
+        // };
+        
+        // num = calculatePercentageDifference(1440, 2560);
+        // console.log(num);
+
+        // if (viewportWidth >= monW) {
+        //     rootFontSize = 16.6;
+        //     root.style.fontSize = '16.6px';
+        // } else if (viewportWidth <= monW) {
+        //     rootFontSize = 10;
+        //     root.style.fontSize = '10px';
+        // };
+
+        // window.onresize = function() {
+        //     smartResizing();
+        //     console.log('onresize');
+        // };
+
+        // window.onload = function() {
+        //     smartResizing();
+        // };
+
+        // window.addEventListener('resize', function() {
+        //     smartResizing();
+        //     console.log('event listener');
+        // });
+
+        // console.log(viewportWidth);
+ -->

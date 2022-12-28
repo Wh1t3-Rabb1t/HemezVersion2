@@ -167,10 +167,10 @@
       </svg> {% endcomment %}
     </div> 
 
-  <main>
+    <main>
 
+      {% block content %} {% endblock %}
 
-      <div class="chat-box">{% block content %} {% endblock %}</div>
     </main> 
     
   </body>
@@ -190,3 +190,4 @@
     });
   </script>
 </html>
+
