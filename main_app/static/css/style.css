@@ -7,7 +7,7 @@ body {
   color: var(--text);
   background: #f5f5f5;
   transition: background 500ms ease-in-out, color 1000ms ease-in-out;
-  overflow-x: hidden;
+
   /* position: relative; */
   /* position: absolute; */
   /* position: fixed; */
@@ -22,7 +22,7 @@ body {
   /* box-sizing: border-box; */
 }
 
-header {
+/* header {
   padding: 1em;
   clip-path: polygon(
     50% 0%,
@@ -36,21 +36,17 @@ header {
   margin-bottom: 1em;
   padding-bottom: 1em;
   text-align: center;
-}
+} */
 
 /* first-main */
 
 main {
-  /* position: absolute; */
   position: relative;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height:  calc(100vh - 50px);
   display: flex;
   justify-content: center;
-  min-height: calc(100vh - 70px);
-  /* overflow: hidden; */
-  /* min-height: 100vh; */
-  /* width: 100vw; */
+
 }
 /* box-sizing: border-box; */
 
@@ -66,7 +62,7 @@ main {
   --text: var(--gray0);
 }
 
-.navbar {
+/* .navbar {
   height: 70px;
   width: 100%;
   background: #fffdfa;
@@ -77,15 +73,14 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100%;
   transition: all 0.5s ease-in-out;
   list-style-type: none;
   padding: 0;
   font-size: 0.24rem;
   margin: 0px;
-}
+} */
 
-#home-nav-signup{
+/* #home-nav-signup{
   display:flex;
   gap:10px;
   font-size: 15px;
@@ -114,14 +109,14 @@ main {
   font-weight: 700;
   font-size: 24px;
   line-height: 16px;
-  /* identical to box height, or 67% */
+
 
   color: #000000;
 }
 
 .nav-item:not(:nth-child(2)):active {
   transform: scale(1.3);
-}
+} */
 
 /* LOGO START  */
 
@@ -137,6 +132,8 @@ main {
   animation-direction: alternate;
   transition: all 0.5s ease;
 }
+
+
 .logo-title {
   color: black;
   text-decoration: none;
@@ -191,7 +188,7 @@ main {
 } */
 
 /*  ---------------------------------------------------VERTICAL BAR --------------------------------------------------- */
-.vertical-navbar {
+/* .vertical-navbar {
   background-color: azure;
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
@@ -206,21 +203,21 @@ main {
   align-items: center;
   overflow: scroll;
   margin-top: 200px;
-}
+} */
 
-.vertical-navbar::-webkit-scrollbar {
+/* .vertical-navbar::-webkit-scrollbar {
   display: none;
-  scrollbar-width: none; /* Firefox 64 */
+  scrollbar-width: none; 
   scrollbar-width: -moz-scrollbars-none;
-}
+} */
 
-@-moz-document url-prefix() {
+/* @-moz-document url-prefix() {
   .vertical-navbar {
     scrollbar-width: none;
   }
-}
+} */
 
-.chat-icon img {
+/* .chat-icon img {
   text-align: center;
   border-radius: 50%;
   height: 50px;
@@ -231,9 +228,9 @@ main {
 
 .chat-icon:hover img {
   border-radius: 25%;
-}
+} */
 
-.chatroom-box {
+/* .chatroom-box {
   background-color: azure;
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
@@ -245,7 +242,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} */
 
 .title-bar {
   text-align: center;
@@ -260,20 +257,7 @@ main {
   );
   font-size: 20px;
 }
- .live-chat {
-  border-radius: 15px;
-  min-height: 70%;
-  margin: 1%;
-  overflow-y: scroll;
-  width: 98%;
-  height: 80%;
-  background-color: red;
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-  scrollbar-width: none; /* Firefox */
-}
-.live-chat::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
-}
+
 
 .message-box {
   color: rgb(193, 192, 192);
@@ -295,7 +279,7 @@ main {
 
   /* font-size: 16px; */
   /* font-size: 10px; */
-  font-size: 100px;
+  font-size: 16px;
 
   --white: white;
   --black: black;
@@ -1507,11 +1491,10 @@ min-height: calc( 100vh - 70px);
 .newchat {
   background-color: #343434;
   width: 100vw;
-  height: 100%;
-  overflow: hidden;
+  height: (calc(100vh - 70px));
   display: grid;
   grid-template-columns: 15% 85%;
-  grid-template-rows: 10% 90%;
+  grid-template-rows: 11.5% 88.5%;
   grid-template-areas:
     "left-chat-bar top-chat-bar"
     "left-chat-bar chat-bar"
@@ -1523,10 +1506,8 @@ min-height: calc( 100vh - 70px);
   background: #343434;
   color: white;
   display: grid;
-  grid-template-rows: 1fr 9fr;
+  grid-template-rows: 1fr 10fr;
   width: 100%;
-
-  
   overflow: hidden;
   overflow-y: scroll;
   -ms-overflow-style: none; /* Internet Explorer 10+ */
@@ -1558,23 +1539,13 @@ min-height: calc( 100vh - 70px);
 
 .chat-bar {
   grid-area: chat-bar;
-  height: 85vh;
   opacity: 0.9;
   overflow: hidden;
   position: relative;
   background-color: white;
   display: flex;
   flex-direction: column;
-}
-
-.live-chat {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  overflow-y: scroll;
-  width: 100%;
-  height: 88%;
+  height: (calc(100vh -100px));
   background: linear-gradient(
     180deg,
     #dcf2ff 18.17%,
@@ -1584,6 +1555,17 @@ min-height: calc( 100vh - 70px);
     #f0e0ff 80.47%,
     rgba(199, 156, 224, 0) 106.84%
   );
+}
+
+.live-chat {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  overflow-y: scroll;
+  width: 100%;
+  height: 90%;
+  background-color: transparent;
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox */
 }
@@ -1595,16 +1577,10 @@ min-height: calc( 100vh - 70px);
   border-radius: 0px 0px 0px 0px;
   position: absolute;
   bottom: 0px;
-  /* height: 8rem; */
-  height:1.28rem;
   width: 100%;
-  margin: 0;
+  padding: 10px;
   text-align: center;
-  background: linear-gradient(
-    to right,
-    var(--white) -50%,
-    var(--dark-purple) 90%
-  );
+
   display: flex;
   background: #ffffff;
   border-top: 1px solid #cca5e3;
@@ -1681,9 +1657,8 @@ min-height: calc( 100vh - 70px);
 
 #chat-message-input {
   width: 100%;
-  height: 4.5rem;
+
   border-top: 1px solid #c79ce0;
-  color: grey;
   outline: none;
   border: none;
   font-family: "Helvetica Neue";
@@ -1691,7 +1666,7 @@ min-height: calc( 100vh - 70px);
   font-weight: 400;
   font-size: 24px;
   line-height: 24px;
-  /* identical to box height, or 100% */
+background-color: white;
 
   letter-spacing: 0.4px;
   font-feature-settings: "pnum" on, "lnum" on;
@@ -2031,18 +2006,13 @@ color: #FFFFFF;
   background: #2D2C2C;
   color:white;
   overflow-y: scroll;
-  max-height:20vh;
+  max-height:28vh;
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox */
 }
 .accordion-body::-webkit-scrollbar {
   display: none; /* Safari and Chrome */
 }
-
-
-
-
-
 
 
 

@@ -250,6 +250,73 @@
 
 
      
+
+
+
+{% comment %} //-- Dynamic page scaling. --------------------------------------------------------------//
+function smartResizing() {
+  const signupMainContainer = document.getElementById('signup-main-container');
+  const phoneBubbleContainer = document.getElementById('phone-bubble-container');
+  const main = document.querySelector('newchat');
+  const root = document.querySelector(':root');
+  const baseWidth = 1432; // Container width.
+  const baseHeight = 712; // Container height excluding the menu bar.
+  let widthDifference, heightDifference, averageDifference = 0;
+  let viewportWidth = window.innerWidth;
+  let viewportHeight = window.innerHeight;
+  let height = main.offsetHeight;
+  let rootFontSize = 100;
+
+  // Handler for calculating the % difference in pixel ratios between different resolutions.
+  function calculatePercentageDifference(oldValue, newValue) {
+      return (newValue - oldValue) / oldValue * 100;
+  };
+
+  // If a zoom event is initiated manually, cancel out of smartResizing to enable zoom.
+  if (manualZoomEvent == true) {
+      manualZoomEvent = false;
+  } else {
+      // If the current viewport dimensions don't match the base value, calculate the % difference.
+      if (viewportWidth != baseWidth || viewportHeight != baseHeight) {
+          widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
+          heightDifference = calculatePercentageDifference(baseHeight, height);
+          averageDifference = Math.round((widthDifference + heightDifference) / 2);
+      };
+
+      // Update the :root font size to scale all elements using rem.
+      rootFontSize += averageDifference;
+      root.style.fontSize = rootFontSize + 'px';
+
+      // Rearrange page layout if the screens height is > the width.
+      if (viewportHeight > viewportWidth) {
+          signupMainContainer.style.flexDirection = 'column';
+          phoneBubbleContainer.style.marginLeft = '25%';
+      } else if (viewportHeight < viewportWidth) {
+          signupMainContainer.style.flexDirection = 'row';
+          phoneBubbleContainer.style.marginLeft = '0%';
+      };
+  };
+};
+window.addEventListener('load', () => smartResizing());
+window.addEventListener('resize', () => smartResizing());
+
+
+
+
+
+ {% endcomment %}
+
+
+
+
+
+
+
+
+
+
+
+
   </script>
 </div>
  {% comment %} CHAT PART END {% endcomment %}
