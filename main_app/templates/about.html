@@ -95,6 +95,7 @@
         function smartResizing() {
             const cartoonPhone = document.getElementById('cartoon-phone');
             const aboutContainer = document.getElementById('about-container');
+            const mobileBox = document.getElementById('mobile-box');
             const main = document.querySelector('main');
             const root = document.querySelector(':root');
             const baseWidth = 1432; // Container width.
@@ -105,29 +106,37 @@
             let height = main.offsetHeight;
             let rootFontSize = 100;
 
-            let lesserDifference = 0;
-            let greaterDifference = 0;
-
+            // Handler for calculating the % difference in pixel ratios between different resolutions.
             function calculatePercentageDifference(oldValue, newValue) {
                 return (newValue - oldValue) / oldValue * 100;
             };
 
+            // If a zoom event is initiated manually, cancel out of smartResizing to enable zoom.
             if (manualZoomEvent == true) {
                 manualZoomEvent = false;
             } else {
-                if (viewportWidth != baseWidth || viewportHeight != baseHeight) {
-                    widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
-                    heightDifference = calculatePercentageDifference(baseHeight, height);
-                    // heightDifference = calculatePercentageDifference(baseHeight, viewportHeight);
-                    averageDifference = Math.round((widthDifference + heightDifference) / 2);
-                };
+                // Calculate the % difference between the base and current viewport dimensions.
+                widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
+                heightDifference = calculatePercentageDifference(baseHeight, height);
+                averageDifference = Math.round((widthDifference + heightDifference) / 2);
                 
+                // Update the :root font size to scale all elements using rem.
                 rootFontSize += averageDifference;
                 root.style.fontSize = rootFontSize + 'px';
-                
-                const leftAboutContainer = document.getElementById('left-about-container');
-                const mobileBox = document.getElementById('mobile-box');
 
+                // Detect if the bottom container is clipping off the screen.
+                const members = document.getElementById('members');
+                const rect = members.getBoundingClientRect();
+                const isClippingBottom = (rect.bottom > window.innerHeight);
+                
+                // If the bottom container is clipping show the scroll bar, hide otherwise.
+                if (isClippingBottom) {
+                    aboutContainer.style.overflowY = 'scroll';
+                } else {
+                    aboutContainer.style.overflowY = 'hidden';
+                };
+
+                // Adjust page layout for mobile.
                 if (viewportHeight < 600) {
                     mobileBox.style.flexDirection = 'row';
                     aboutContainer.style.flexDirection = 'column';
@@ -135,6 +144,7 @@
                     mobileBox.style.flexDirection = 'column';
                 };
                 
+                // Rearrange page layout if the screens height is > the width.
                 if (viewportHeight > viewportWidth) {
                     aboutContainer.style.flexDirection = 'column';
                     cartoonPhone.style.display = 'none';
@@ -161,7 +171,7 @@
             let num = getRandomInteger(0, 2);
             let randomIcon = floatingIcons[num];
             imgElement.src = randomIcon;
-            
+
             // Retrieve the width and height of the browser window.
             let viewportHeight = window.innerHeight + 420;
             let viewportWidth = window.innerWidth - 150;
@@ -193,7 +203,7 @@
                 // Once the img element travels off the screen, delete it and stop the animation loop.
                 if (newImgTop > viewportHeight) {
                     divElement.removeChild(imgElement);
-                    return
+                    return;
                 };
 
                 // Call the function repeatedly on a loop.

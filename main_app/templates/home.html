@@ -82,12 +82,10 @@ function smartResizing() {
     if (manualZoomEvent == true) {
         manualZoomEvent = false;
     } else {
-        // If the current viewport dimensions don't match the base value, calculate the % difference.
-        if (viewportWidth != baseWidth || viewportHeight != baseHeight) {
-            widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
-            heightDifference = calculatePercentageDifference(baseHeight, height);
-            averageDifference = Math.round((widthDifference + heightDifference) / 2);
-        };
+        // Calculate the % difference between the base and current viewport dimensions.
+        widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
+        heightDifference = calculatePercentageDifference(baseHeight, height);
+        averageDifference = Math.round((widthDifference + heightDifference) / 2);
 
         // Update the :root font size to scale all elements using rem.
         rootFontSize += averageDifference;

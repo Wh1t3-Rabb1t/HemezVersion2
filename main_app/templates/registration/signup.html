@@ -51,10 +51,8 @@
             if (event.metaKey) { // If cmd is held down (metaKey is the cmd key on Mac).
                 if (event.deltaY > 0) { // User has zoomed out.
                     manualZoomEvent = true;
-                    // console.log('Scroll wheel zoom out event detected.');
                 } else { // User has zoom in.
                     manualZoomEvent = true;
-                    // console.log('Scroll wheel zoom in event detected.');
                 };
             };
         });
@@ -63,16 +61,8 @@
         window.addEventListener('keydown', function(event) {
             if (event.metaKey && event.code === 'Equal') { // User has pressed cmd +.
                 manualZoomEvent = true;
-                // const html = document.querySelector('html');
-                // html.style = 'zoom: 1.10';
-                // calculateZoomLevel();
-                // console.log('"Cmd +" zoom in event detected.');
             } else if (event.metaKey && event.code === 'Minus') { // User has pressed cmd -.
                 manualZoomEvent = true;
-                // const html = document.querySelector('html');
-                // html.style = 'zoom: 0.90';
-                // calculateZoomLevel();
-                // console.log('"Cmd -" zoom out event detected.');
             };
         });
         
@@ -120,12 +110,10 @@
             if (manualZoomEvent == true) {
                 manualZoomEvent = false;
             } else {
-                // If the current viewport dimensions don't match the base value, calculate the % difference.
-                if (viewportWidth != baseWidth || viewportHeight != baseHeight) {
-                    widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
-                    heightDifference = calculatePercentageDifference(baseHeight, height);
-                    averageDifference = Math.round((widthDifference + heightDifference) / 2);
-                };
+                // Calculate the % difference between the base and current viewport dimensions.
+                widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
+                heightDifference = calculatePercentageDifference(baseHeight, height);
+                averageDifference = Math.round((widthDifference + heightDifference) / 2);
 
                 // Update the :root font size to scale all elements using rem.
                 rootFontSize += averageDifference;

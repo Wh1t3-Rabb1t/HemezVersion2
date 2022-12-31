@@ -463,13 +463,8 @@ main {
   left: 0;
   right: 0;
   bottom: 0;
-  overflow: hidden;
+  overflow-x: hidden;  
 
-  /* flex-direction: column; */
-  /* position: relative; */
-  /* overflow-y: hidden; */
-  /* flex-wrap: inherit; */
-  /* justify-content: center; */
   /* background-color: lightgray; */
 }
 
@@ -477,19 +472,13 @@ main {
   display: flex;
   position: relative;
   flex-direction: column;
-  /* justify-content: center; */
-  /* justify-content: space-between; */
   align-items: left;
   flex: 0 0 70%;
-  /* height: 100%; */
-  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 2;
-
-  /* height: 7.12rem; */
-
-  /* top: 0%;
-  left: 0%; */  
-  /* margin: auto; */
   
   /* background-color: lightslategray; */
 }
@@ -499,19 +488,18 @@ main {
   position: relative;
   justify-content: center;
   align-items: center;
-  /* left: 0; */
-  /* bottom: 0; */
-  /* box-sizing: border-box; */
-  /* overflow: hidden; */
-  
+  flex: 0 0 30%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
   /* background-color: lightgreen; */
 }
 
 #top-text-box {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  /* justify-content: left; */
   flex: 0 0 30%;
   align-items: left;
   margin: 2% 6% 2% 6%;
@@ -602,11 +590,7 @@ main {
 .members-container {
   display: flex;
   flex-direction: column;
-
   margin: 0.5% 0% 0.5% 0%;
-  /* width: 2.26rem; */
-  /* height: 2.96rem; */
-
   max-height: 100%;
   max-width: 100%;
 
@@ -616,22 +600,16 @@ main {
 .profile-pic {
   border: 0.02rem solid #C79CE0;;
   border-radius: 0.1rem;
-  z-index: 1;
-
-  /* width: 2.22rem;
-  height: 2.26rem; */
   width: 2.02rem;
   height: 2.06rem;
+  z-index: 1;
 }
 
 .member-links {
-  /* width: 2.1rem; */
   width: 1.91rem;
-
   border: 0.02rem solid #C79CE0;;
   border-radius: 0.1rem;
   padding: 2.5%;
-
   justify-content: space-between;
   align-items: center;
   display: flex;
@@ -711,54 +689,6 @@ main {
   top: -135%;
   z-index: 1;
 }
-
-
-/* #links {
-  justify-content: center;
-  align-items: center;  
-} */
-
-/* .about-box-top {
-  display: flex;
-  height: 100%;
-  width: 100%;
-} */
-/* background-color: lightseagreen; */
-
-/* .top-left-box {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
-  justify-content: center;
-  padding: 0% 8% 0% 8%;
-  box-sizing: border-box;
-} */
-/* background-color: blueviolet; */
-/* flex: 0 0 55%; */
-
-/* .top-right-box {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  box-sizing: border-box;
-  justify-content:center;
-  align-items:center;
-  position:relative;
-} */
-/* background-color: lightgreen; */
-/* flex: 0 0 45%; */
-
-/* .about-box-bottom {
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  height: 100%;
-  width: 100%;
-  justify-content: space-evenly;
-  padding: 0% 8% 0% 8%;
-} */
-/* background-color: gold; */
 
 /*-------------------------------------------------------------------------*/
 /*--------------------- Create Chatroom Page ------------------------------*/
@@ -944,31 +874,23 @@ a {
   overflow: hidden;
   width: 100%;
   height: 100%;
-
-  /* top: 0%; */
-  /* left: 0%; */
 }
-/* border: solid 5px red; */
-/* margin: auto; */
-/* box-sizing: border-box; */
 
 .left-signup-container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex: 0 0 60%;
-  height: 100%;
-  width: 100%;
 
-  /* top: 0%; */
-  /* left: 0%; */
+  /* background-color: red; */
 }
 
 .signup-box {
   display: flex;
   flex-direction: column;
   position: relative;
-  /* position: absolute; */
+  max-width: 100%;
+  max-height: 100%;
   margin: 3%;
   padding: 1%;
   border-radius: 0.30rem;
@@ -985,9 +907,11 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  box-sizing: border-box;
   padding: 1%;
-  height: 100%;
+  
+  max-width: 100%;
+  max-height: 100%;
+  /* box-sizing: border-box; */
 }
 
 .third-party-signup-box > div {
@@ -1044,10 +968,12 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
-  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   padding: 1% 1% 1% 1%;
   flex: 0 0 60%;
+
+  /* background-color: red; */
 }
 
 .email-signup-box > input {
