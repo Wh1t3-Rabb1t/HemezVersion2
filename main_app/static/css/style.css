@@ -2023,3 +2023,58 @@ color: #FFFFFF;
 .allroom-pic-name-container{
   padding:10px;
 }
+
+
+/* EMOJIESSSSSSS SSSSS */
+
+
+.emoji-drawer {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  margin-bottom: 32px;
+  transition: opacity 0.2s;
+  position: absolute;
+  bottom: 10vh;
+  z-index: 99;
+  color: white;
+  text-align: center;
+  background: linear-gradient(220.89deg, #C79CE0 23.2%, rgba(199, 156, 224, 0.458333) 49.34%, rgba(94, 17, 138, 0) 89.82%);
+  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.25);
+  border: solid 2px black;
+  max-width: 300px;
+  max-height: 300px;
+  overflow: hidden;
+}
+
+
+#emoji-container{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items:center;
+  gap: 0px;
+  margin: 0px;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+#emoji-container::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+
+.hidden {
+opacity: 0;
+}
+
+.emoji {
+  text-align: center;
+  font-size: 24px;
+  padding: 2px;
+}
+
+.emoji:hover {
+  cursor: pointer;
+  font-size: 32px;
+}

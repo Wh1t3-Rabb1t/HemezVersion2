@@ -82,6 +82,9 @@
     </div>
 </div>
 
+
+
+
 <!-- Modal Add room  -->
 <div class="modal fade" id="emojis" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -103,6 +106,12 @@
 </div>
 
 
+
+
+
+
+
+
 {% comment %} CHAT PART START {% endcomment %}
 <div class='chat-bar'>
 
@@ -116,7 +125,22 @@
     </p>
     {%endif%} {%endfor%}
   </div>
+ 
 {% comment %}--------------------------- CHAT BOX PART END--------------------------- {% endcomment %}
+
+
+
+
+<div id="drawer" class="emoji-drawer hidden "> 
+  <h2>Emoticons</h2>
+  <div id='emoji-container'>
+    {%for emoji in emoticons %}
+    <div class="emoji" onclick="addEmoji(this.innerHTML)">{{emoji}}</div>
+{%endfor%}
+    
+  </div>
+
+</div>
 
 
 
@@ -131,7 +155,6 @@
       type="text"
       size="40"
       placeholder="Type your message"
-      data-meteor-emoji="true" type="text"
     />
     <div id='bottom-input-buttons'>
       <div>
@@ -140,7 +163,7 @@
           </svg>
           
       </div>
-      <div>
+      <div onclick={toggleEmojiDrawer()}>
         <svg width="40" height="40" viewBox="0 0 29 28" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M19.0801 12.8333C20.0466 12.8333 20.8301 12.0498 20.8301 11.0833C20.8301 10.1168 20.0466 9.33331 19.0801 9.33331C18.1136 9.33331 17.3301 10.1168 17.3301 11.0833C17.3301 12.0498 18.1136 12.8333 19.0801 12.8333Z" fill="#929090"/>
           <path d="M10.9141 12.8333C11.8806 12.8333 12.6641 12.0498 12.6641 11.0833C12.6641 10.1168 11.8806 9.33331 10.9141 9.33331C9.94756 9.33331 9.16406 10.1168 9.16406 11.0833C9.16406 12.0498 9.94756 12.8333 10.9141 12.8333Z" fill="#929090"/>
@@ -170,6 +193,16 @@
 
 
 
+{% comment %}--------------------------- Emojies BOX START--------------------------- {% endcomment %}
+
+
+
+
+
+
+
+
+{% comment %}--------------------------- Emojies BOX END--------------------------- {% endcomment %}
 
 
 
@@ -253,68 +286,58 @@
 
 
 
-{% comment %} //-- Dynamic page scaling. --------------------------------------------------------------//
-function smartResizing() {
-  const signupMainContainer = document.getElementById('signup-main-container');
-  const phoneBubbleContainer = document.getElementById('phone-bubble-container');
-  const main = document.querySelector('newchat');
-  const root = document.querySelector(':root');
-  const baseWidth = 1432; // Container width.
-  const baseHeight = 712; // Container height excluding the menu bar.
-  let widthDifference, heightDifference, averageDifference = 0;
-  let viewportWidth = window.innerWidth;
-  let viewportHeight = window.innerHeight;
-  let height = main.offsetHeight;
-  let rootFontSize = 100;
 
-  // Handler for calculating the % difference in pixel ratios between different resolutions.
-  function calculatePercentageDifference(oldValue, newValue) {
-      return (newValue - oldValue) / oldValue * 100;
-  };
 
-  // If a zoom event is initiated manually, cancel out of smartResizing to enable zoom.
-  if (manualZoomEvent == true) {
-      manualZoomEvent = false;
+
+
+
+
+
+
+
+{% comment %} const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl,{
+  container: 'body',
+  html: true,
+  title:'Emoticons',
+  content: function() {
+      return document.getElementById('drawer').innerHTML;
+  },
+})) {% endcomment %}
+
+//EMOJIES 
+function addEmoji(emoji) {
+  let inputEle = document.getElementById('chat-message-input');
+  inputEle.value = inputEle.value + ' ' + emoji;
+
+
+  console.log(emoji)
+}
+
+
+function toggleEmojiDrawer() {
+  let drawer = document.getElementById('drawer');
+  
+  if (drawer.classList.contains('hidden')) {
+    drawer.classList.remove('hidden');
   } else {
-      // If the current viewport dimensions don't match the base value, calculate the % difference.
-      if (viewportWidth != baseWidth || viewportHeight != baseHeight) {
-          widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
-          heightDifference = calculatePercentageDifference(baseHeight, height);
-          averageDifference = Math.round((widthDifference + heightDifference) / 2);
-      };
-
-      // Update the :root font size to scale all elements using rem.
-      rootFontSize += averageDifference;
-      root.style.fontSize = rootFontSize + 'px';
-
-      // Rearrange page layout if the screens height is > the width.
-      if (viewportHeight > viewportWidth) {
-          signupMainContainer.style.flexDirection = 'column';
-          phoneBubbleContainer.style.marginLeft = '25%';
-      } else if (viewportHeight < viewportWidth) {
-          signupMainContainer.style.flexDirection = 'row';
-          phoneBubbleContainer.style.marginLeft = '0%';
-      };
-  };
-};
-window.addEventListener('load', () => smartResizing());
-window.addEventListener('resize', () => smartResizing());
+    drawer.classList.add('hidden');
+  }
+}
 
 
-
-
-
- {% endcomment %}
-
-
-
-
-
-
-
-
-
-
+{% comment %} var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+    const popoverId = popoverTriggerEl.attributes['data-content-id'];
+    if (popoverId) {
+        const contentEl=$(`#${popoverId.value}`).html();
+        return new bootstrap.Popover(popoverTriggerEl, {
+            content: contentEl,
+            html: true,
+        });
+    }else{//do something else cause data-content-id isn't there.
+    }
+} {% endcomment %}
 
 
   </script>
