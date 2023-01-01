@@ -27,7 +27,52 @@
 </div>
 
 <script defer>
+//-----------------------------------------------------------------------------------------------//
+//-- Animated phone layering on page load. ------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
+// const phoneTemplate = document.getElementById('phone-template');
+// phoneTemplate.style.transform = `skew(-1deg, -15deg)`;
+
+let y = 0;
+
+function phoneSlideIn() {
+    const phoneTemplate = document.getElementById('phone-template');
+    const origCoords = phoneTemplate.style.top = '160.25%';
+    phoneTemplate.style.transform = `skew(-1deg, -15deg) translateY(${y}px)`;
+    y -= 2;
+
+    let computedStyle = getComputedStyle(phoneTemplate);
+    let top = computedStyle.getPropertyValue('top');
+    console.log(y);
+
+    if (y <= -573) {
+        return;
+    };
+
+    requestAnimationFrame(phoneSlideIn);
+}
+// phoneSlideIn();
+
+// const boundingRect = phoneTemplate.getBoundingClientRect();
+// const top = boundingRect.top;
+// const viewportHeight = window.innerHeight;
+// const topInPercent = (top / viewportHeight) * 100;
+// console.log(`Top position: ${topInPercent}%`);
+
+// if (topInPercent <= -5.5) {
+//     return;
+// };
+
+// phoneTemplate.style.transform = 'translate(0, 0)';
+// phoneTemplate.style.transition = 'transform 5s ease-in-out';
+// phoneTemplate.classList.add('onscreen');
+
+// document.querySelector('main').addEventListener('DOMContentLoaded', () => {
+// });
+
+//-----------------------------------------------------------------------------------------------//
 //-- Notifications skew in relation to mouse coordinates. ---------------------------------------//
+//-----------------------------------------------------------------------------------------------//
     const phoneNotifications1 = document.getElementById('phone-notifications-1');
     const phoneNotifications2 = document.getElementById('phone-notifications-2');
     const maxSkew = 0.5; // Maximum allowed skew in degrees.
@@ -94,7 +139,9 @@
         scheduleUpdate(mPos);
     });
 
+//-----------------------------------------------------------------------------------------------//
 //-- User generated zoom event detection. -------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
     let manualZoomEvent = false;
     // Detect a user initiated zoom event with the cmd key and mouse scroll wheel.
     window.addEventListener('wheel', function(event) {
@@ -125,7 +172,9 @@
         };
     });
 
+//-----------------------------------------------------------------------------------------------//
 //-- Dynamic page scaling. ----------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
     function smartResizing() {
         const signupMainContainer = document.getElementById('signup-main-container');
         const phoneBubbleContainer = document.getElementById('phone-bubble-container');
