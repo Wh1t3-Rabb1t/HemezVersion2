@@ -124,18 +124,6 @@
                 rootFontSize += averageDifference;
                 root.style.fontSize = rootFontSize + 'px';
 
-                // Detect if the bottom container is clipping off the screen.
-                const members = document.getElementById('members');
-                const rect = members.getBoundingClientRect();
-                const isClippingBottom = (rect.bottom > window.innerHeight);
-                
-                // If the bottom container is clipping show the scroll bar, hide otherwise.
-                if (isClippingBottom) {
-                    aboutContainer.style.overflowY = 'scroll';
-                } else {
-                    aboutContainer.style.overflowY = 'hidden';
-                };
-
                 // Adjust page layout for mobile.
                 if (viewportHeight < 600) {
                     mobileBox.style.flexDirection = 'row';
@@ -152,6 +140,18 @@
                     aboutContainer.style.flexDirection = 'row';
                     cartoonPhone.style.display = 'block';
                 };
+
+                // Detect if the bottom container is clipping off the screen.
+                const members = document.getElementById('members');
+                const rect = members.getBoundingClientRect();
+                const isClippingBottom = (rect.bottom > window.innerHeight);
+                
+                // If the bottom container is clipping show the scroll bar, hide otherwise.
+                if (isClippingBottom) {
+                    aboutContainer.style.overflowY = 'scroll';
+                } else {
+                    aboutContainer.style.overflowY = 'hidden';
+                };
             };
         };
         window.addEventListener('load', () => smartResizing());
@@ -161,16 +161,14 @@
         function getRandomInteger(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         };
-
-        const floatingIcons = ['https://i.imgur.com/i5UNV2f.png', 'https://i.imgur.com/N00lIOn.png', 'https://i.imgur.com/dUQH6w9.png'];
         
         // Animation loop for the rising rain effect.
         function risingLogo() {
             // Create a new img element and apply a random icon to it.
+            const floatingIcons = ['https://i.imgur.com/i5UNV2f.png', 'https://i.imgur.com/N00lIOn.png', 'https://i.imgur.com/dUQH6w9.png'];
             const imgElement = document.createElement('img');
             let num = getRandomInteger(0, 2);
-            let randomIcon = floatingIcons[num];
-            imgElement.src = randomIcon;
+            imgElement.src = floatingIcons[num];
 
             // Retrieve the width and height of the browser window.
             let viewportHeight = window.innerHeight + 420;
@@ -182,7 +180,8 @@
             imgElement.style.bottom = '-100px';
             
             // Randomize the img size, velocity, and angle.
-            let imgSize = getRandomInteger(1, 80) + 60;
+            let imgSize = getRandomInteger(60, Math.round(window.innerWidth / 10));
+            // let imgSize = getRandomInteger(1, 80) + 60;
             let velocity = getRandomInteger(1, 7);
             let angle = getRandomInteger(-30, 10);
             imgElement.style.width = imgSize + 'px';
