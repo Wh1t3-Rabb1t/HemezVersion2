@@ -34,8 +34,8 @@
     // phoneTemplate.style.transform = `skew(-1deg, -15deg)`;
     // phoneTemplate.style.transform = `skew(-1deg, -15deg) translateY(${y}px)`;
 
-    let templatePosTop = -25;
-    let templateOpacity = 0;    
+    // let templatePosTop = -25;
+    // let templateOpacity = 0;
     function phoneTemplateSlideIn() {
         const phoneTemplate = document.getElementById('phone-template');
         
@@ -57,12 +57,12 @@
 
         requestAnimationFrame(phoneTemplateSlideIn);
     };
-    phoneTemplateSlideIn();
+    // phoneTemplateSlideIn();
 
     //-------------------------------------------------------------------------------------------//
     
-    let screenOpacity = 0;
-    let screenPosTop = -156;
+    // let screenOpacity = 0;
+    // let screenPosTop = -156;
     function phoneScreenSlideIn() {
         const phoneScreen = document.getElementById('phone-screen');
         
@@ -84,12 +84,12 @@
 
         requestAnimationFrame(phoneScreenSlideIn);
     };
-    phoneScreenSlideIn();
+    // phoneScreenSlideIn();
 
     //-------------------------------------------------------------------------------------------//
 
-    let effectsOpacity = 0;
-    let effectsPosLeft = -51;
+    // let effectsOpacity = 0;
+    // let effectsPosLeft = -51;
     function phoneEffectsSlideIn() {
         const phoneEffects = document.getElementById('phone-template-effects');
         
@@ -111,8 +111,49 @@
 
         requestAnimationFrame(phoneEffectsSlideIn);
     };
-    phoneEffectsSlideIn();
-    
+    // phoneEffectsSlideIn();
+
+//-----------------------------------------------------------------------------------------------//
+
+    // let pos = 0;
+    function phoneElementSlideIn(elementId, initialPos, axis, endPos, decimal, velocity) {
+        const element = document.getElementById(elementId);
+        const breakPoint = (endPos - initialPos) * 0.75 + initialPos;
+        let pos = initialPos;
+        let opacity = 0;
+        // opacity += 0.004;
+        // opacity += 0.025;
+        // pos += 2;
+        // pos += 0.5;
+
+        function slideIn() {
+            if (pos <= breakPoint) {
+                pos += (velocity / 4);
+                opacity += 0.025;
+            } else {
+                pos += velocity;
+                opacity += 0.004;
+            };
+
+            // console.log(breakPoint);
+            // console.log(endPos);
+            console.log(pos);
+
+            element.style[axis] = `${pos}.${decimal}%`;
+            element.style.opacity = `${opacity}`;
+            // element.style[axis] = `${pos}%`;
+
+            if (pos === endPos) {
+                return;
+            };
+
+            requestAnimationFrame(slideIn);
+        };
+        slideIn();
+    };
+    // phoneElementSlideIn('phone-template', -25, 'top', -125);
+    phoneElementSlideIn('phone-screen', -156, 'top', -56, 4, 2);
+    // phoneElementSlideIn('phone-template-effects', -51, 'left', -151, 4, -2);
 
 //-----------------------------------------------------------------------------------------------//
 //-- Notifications skew in relation to mouse coordinates. ---------------------------------------//
