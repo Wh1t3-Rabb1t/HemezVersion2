@@ -30,45 +30,89 @@
 //-----------------------------------------------------------------------------------------------//
 //-- Animated phone layering on page load. ------------------------------------------------------//
 //-----------------------------------------------------------------------------------------------//
-// const phoneTemplate = document.getElementById('phone-template');
-// phoneTemplate.style.transform = `skew(-1deg, -15deg)`;
+    // const phoneTemplate = document.getElementById('phone-template');
+    // phoneTemplate.style.transform = `skew(-1deg, -15deg)`;
+    // phoneTemplate.style.transform = `skew(-1deg, -15deg) translateY(${y}px)`;
 
-let y = 0;
+    let templatePosTop = -25;
+    let templateOpacity = 0;    
+    function phoneTemplateSlideIn() {
+        const phoneTemplate = document.getElementById('phone-template');
+        
+        if (templatePosTop <= -100) {
+            templateOpacity += 0.025;
+            templatePosTop -= 0.5;
+        } else {
+            templateOpacity += 0.004;
+            templatePosTop -= 2;
+        };
 
-function phoneSlideIn() {
-    const phoneTemplate = document.getElementById('phone-template');
-    const origCoords = phoneTemplate.style.top = '160.25%';
-    phoneTemplate.style.transform = `skew(-1deg, -15deg) translateY(${y}px)`;
-    y -= 2;
+        phoneTemplate.style.top = `${templatePosTop}.25%`;
+        phoneTemplate.style.opacity = `${templateOpacity}`;
 
-    let computedStyle = getComputedStyle(phoneTemplate);
-    let top = computedStyle.getPropertyValue('top');
-    console.log(y);
+        if (templatePosTop == -125) {
+            templatePosTop = -25;
+            return;
+        };
 
-    if (y <= -573) {
-        return;
+        requestAnimationFrame(phoneTemplateSlideIn);
     };
+    phoneTemplateSlideIn();
 
-    requestAnimationFrame(phoneSlideIn);
-}
-// phoneSlideIn();
+    //-------------------------------------------------------------------------------------------//
+    
+    let screenOpacity = 0;
+    let screenPosTop = -156;
+    function phoneScreenSlideIn() {
+        const phoneScreen = document.getElementById('phone-screen');
+        
+        if (screenPosTop <= -81) {
+            screenOpacity += 0.004;
+            screenPosTop += 2;
+        } else {
+            screenOpacity += 0.025;
+            screenPosTop += 0.5;
+        };
 
-// const boundingRect = phoneTemplate.getBoundingClientRect();
-// const top = boundingRect.top;
-// const viewportHeight = window.innerHeight;
-// const topInPercent = (top / viewportHeight) * 100;
-// console.log(`Top position: ${topInPercent}%`);
+        phoneScreen.style.top = `${screenPosTop}.4%`;
+        phoneScreen.style.opacity = `${screenOpacity}`;
 
-// if (topInPercent <= -5.5) {
-//     return;
-// };
+        if (screenPosTop == -56) {
+            screenPosTop = -156;
+            return;
+        };
 
-// phoneTemplate.style.transform = 'translate(0, 0)';
-// phoneTemplate.style.transition = 'transform 5s ease-in-out';
-// phoneTemplate.classList.add('onscreen');
+        requestAnimationFrame(phoneScreenSlideIn);
+    };
+    phoneScreenSlideIn();
 
-// document.querySelector('main').addEventListener('DOMContentLoaded', () => {
-// });
+    //-------------------------------------------------------------------------------------------//
+
+    let effectsOpacity = 0;
+    let effectsPosLeft = -51;
+    function phoneEffectsSlideIn() {
+        const phoneEffects = document.getElementById('phone-template-effects');
+        
+        if (effectsPosLeft <= -126) {
+            effectsOpacity += 0.025;
+            effectsPosLeft -= 0.5;
+        } else {
+            effectsOpacity += 0.004;
+            effectsPosLeft -= 2;
+        };
+
+        phoneEffects.style.left = `${effectsPosLeft}.4%`;
+        phoneEffects.style.opacity = `${effectsOpacity}`;
+
+        if (effectsPosLeft == -151) {
+            effectsPosLeft = -51;
+            return;
+        };
+
+        requestAnimationFrame(phoneEffectsSlideIn);
+    };
+    phoneEffectsSlideIn();
+    
 
 //-----------------------------------------------------------------------------------------------//
 //-- Notifications skew in relation to mouse coordinates. ---------------------------------------//
