@@ -1045,7 +1045,7 @@ a {
   display: flex;
   position: relative;
   width: 2rem;
-  height: 2rem;
+  height: 2rem; */
 }
 
 /* Top */
@@ -1100,7 +1100,8 @@ a {
   width: 5.42rem;
   height: 4.47rem;
   left: -144.6%;
-  top: -56.4%;
+  bottom: -67.4%;
+  /* top: -56.4%; */
   transform: skew(-0.5deg, -15deg);
   z-index: 2;
 }

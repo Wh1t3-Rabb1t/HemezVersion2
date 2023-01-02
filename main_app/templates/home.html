@@ -36,95 +36,91 @@
 
     // let templatePosTop = -25;
     // let templateOpacity = 0;
-    function phoneTemplateSlideIn() {
-        const phoneTemplate = document.getElementById('phone-template');
+    // function phoneTemplateSlideIn() {
+    //     const phoneTemplate = document.getElementById('phone-template');
         
-        if (templatePosTop <= -100) {
-            templateOpacity += 0.025;
-            templatePosTop -= 0.5;
-        } else {
-            templateOpacity += 0.004;
-            templatePosTop -= 2;
-        };
+    //     if (templatePosTop <= -100) {
+    //         templateOpacity += 0.025;
+    //         templatePosTop -= 0.5;
+    //     } else {
+    //         templateOpacity += 0.004;
+    //         templatePosTop -= 2;
+    //     };
 
-        phoneTemplate.style.top = `${templatePosTop}.25%`;
-        phoneTemplate.style.opacity = `${templateOpacity}`;
+    //     phoneTemplate.style.top = `${templatePosTop}.25%`;
+    //     phoneTemplate.style.opacity = `${templateOpacity}`;
 
-        if (templatePosTop == -125) {
-            templatePosTop = -25;
-            return;
-        };
+    //     if (templatePosTop == -125) {
+    //         templatePosTop = -25;
+    //         return;
+    //     };
 
-        requestAnimationFrame(phoneTemplateSlideIn);
-    };
+    //     requestAnimationFrame(phoneTemplateSlideIn);
+    // };
     // phoneTemplateSlideIn();
 
     //-------------------------------------------------------------------------------------------//
     
     // let screenOpacity = 0;
     // let screenPosTop = -156;
-    function phoneScreenSlideIn() {
-        const phoneScreen = document.getElementById('phone-screen');
+    // function phoneScreenSlideIn() {
+    //     const phoneScreen = document.getElementById('phone-screen');
         
-        if (screenPosTop <= -81) {
-            screenOpacity += 0.004;
-            screenPosTop += 2;
-        } else {
-            screenOpacity += 0.025;
-            screenPosTop += 0.5;
-        };
+    //     if (screenPosTop <= -81) {
+    //         screenOpacity += 0.004;
+    //         screenPosTop += 2;
+    //     } else {
+    //         screenOpacity += 0.025;
+    //         screenPosTop += 0.5;
+    //     };
 
-        phoneScreen.style.top = `${screenPosTop}.4%`;
-        phoneScreen.style.opacity = `${screenOpacity}`;
+    //     phoneScreen.style.top = `${screenPosTop}.4%`;
+    //     phoneScreen.style.opacity = `${screenOpacity}`;
 
-        if (screenPosTop == -56) {
-            screenPosTop = -156;
-            return;
-        };
+    //     if (screenPosTop == -56) {
+    //         screenPosTop = -156;
+    //         return;
+    //     };
 
-        requestAnimationFrame(phoneScreenSlideIn);
-    };
+    //     requestAnimationFrame(phoneScreenSlideIn);
+    // };
     // phoneScreenSlideIn();
 
     //-------------------------------------------------------------------------------------------//
 
     // let effectsOpacity = 0;
     // let effectsPosLeft = -51;
-    function phoneEffectsSlideIn() {
-        const phoneEffects = document.getElementById('phone-template-effects');
+    // function phoneEffectsSlideIn() {
+    //     const phoneEffects = document.getElementById('phone-template-effects');
         
-        if (effectsPosLeft <= -126) {
-            effectsOpacity += 0.025;
-            effectsPosLeft -= 0.5;
-        } else {
-            effectsOpacity += 0.004;
-            effectsPosLeft -= 2;
-        };
+    //     if (effectsPosLeft <= -126) {
+    //         effectsOpacity += 0.025;
+    //         effectsPosLeft -= 0.5;
+    //     } else {
+    //         effectsOpacity += 0.004;
+    //         effectsPosLeft -= 2;
+    //     };
 
-        phoneEffects.style.left = `${effectsPosLeft}.4%`;
-        phoneEffects.style.opacity = `${effectsOpacity}`;
+    //     phoneEffects.style.left = `${effectsPosLeft}.4%`;
+    //     phoneEffects.style.opacity = `${effectsOpacity}`;
 
-        if (effectsPosLeft == -151) {
-            effectsPosLeft = -51;
-            return;
-        };
+    //     if (effectsPosLeft == -151) {
+    //         effectsPosLeft = -51;
+    //         return;
+    //     };
 
-        requestAnimationFrame(phoneEffectsSlideIn);
-    };
+    //     requestAnimationFrame(phoneEffectsSlideIn);
+    // };
     // phoneEffectsSlideIn();
 
 //-----------------------------------------------------------------------------------------------//
 
-    // let pos = 0;
+    // The almighty hydra function, behold its divine beauty.
     function phoneElementSlideIn(elementId, initialPos, axis, endPos, decimal, velocity) {
         const element = document.getElementById(elementId);
         const breakPoint = (endPos - initialPos) * 0.75 + initialPos;
         let pos = initialPos;
         let opacity = 0;
-        // opacity += 0.004;
-        // opacity += 0.025;
-        // pos += 2;
-        // pos += 0.5;
 
         function slideIn() {
             if (pos <= breakPoint) {
@@ -135,13 +131,8 @@
                 opacity += 0.004;
             };
 
-            // console.log(breakPoint);
-            // console.log(endPos);
-            console.log(pos);
-
             element.style[axis] = `${pos}.${decimal}%`;
             element.style.opacity = `${opacity}`;
-            // element.style[axis] = `${pos}%`;
 
             if (pos === endPos) {
                 return;
@@ -151,9 +142,11 @@
         };
         slideIn();
     };
-    // phoneElementSlideIn('phone-template', -25, 'top', -125);
-    phoneElementSlideIn('phone-screen', -156, 'top', -56, 4, 2);
-    // phoneElementSlideIn('phone-template-effects', -51, 'left', -151, 4, -2);
+    phoneElementSlideIn('phone-template', -25, 'top', -125, 25, -2);
+    phoneElementSlideIn('phone-screen', 33, 'bottom', -67, 4, -2);
+    phoneElementSlideIn('phone-template-effects', -51, 'left', -151, 4, -2);
+    
+    // phoneElementSlideIn('phone-screen', -156, 'top', -56, 4, 2);
 
 //-----------------------------------------------------------------------------------------------//
 //-- Notifications skew in relation to mouse coordinates. ---------------------------------------//
