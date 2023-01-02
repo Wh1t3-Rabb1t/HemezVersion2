@@ -59,9 +59,9 @@ window.addEventListener('touchmove', function(event) {
     };
 });
 
-{% comment %} //-- Dynamic page scaling. --------------------------------------------------------------//
+ //-- Dynamic page scaling. --------------------------------------------------------------//
 function smartResizing() {
-    const signupMainContainer = document.getElementById('signup-main-container');
+
     const phoneBubbleContainer = document.getElementById('phone-bubble-container');
     const main = document.querySelector('main');
     const root = document.querySelector(':root');
@@ -95,17 +95,16 @@ function smartResizing() {
 
         // Rearrange page layout if the screens height is > the width.
         if (viewportHeight > viewportWidth) {
-            signupMainContainer.style.flexDirection = 'column';
+       
             phoneBubbleContainer.style.marginLeft = '25%';
         } else if (viewportHeight < viewportWidth) {
-            signupMainContainer.style.flexDirection = 'row';
+
             phoneBubbleContainer.style.marginLeft = '0%';
         };
     };
 };
 window.addEventListener('load', () => smartResizing());
-window.addEventListener('resize', () => smartResizing()); {% endcomment %}
-
+window.addEventListener('resize', () => smartResizing()); 
 
 
 
