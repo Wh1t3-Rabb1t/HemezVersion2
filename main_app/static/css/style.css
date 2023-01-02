@@ -1045,7 +1045,7 @@ a {
   display: flex;
   position: relative;
   width: 2rem;
-  height: 2rem; */
+  height: 2rem;
 }
 
 /* Top */
@@ -1090,8 +1090,9 @@ a {
   width: 8.88rem;
   height: 7.12rem;
   left: -310.75%;
-  top: -125.25%;
-  transform: skew(-1deg, -15deg);
+  /* top: -125.25%; */
+  /* transform: skewY(-15deg); */
+  opacity: 0;
   z-index: 1;
 }
 
@@ -1099,10 +1100,10 @@ a {
   position: absolute;
   width: 5.42rem;
   height: 4.47rem;
-  left: -144.6%;
-  bottom: -67.4%;
-  /* top: -56.4%; */
-  transform: skew(-0.5deg, -15deg);
+  left: -143.6%;
+  /* bottom: -67.4%; */
+  /* transform: skewY(-15deg); */
+  opacity: 0;
   z-index: 2;
 }
 
@@ -1110,9 +1111,10 @@ a {
   position: absolute;
   width: 5.68rem;
   height: 4.74rem;
-  left: -151.4%;
   top: -62.5%;
-  transform: skew(-1deg, -15deg);
+  /* left: -150.2%; */
+  /* transform: skewY(-15deg); */
+  opacity: 0;
   z-index: 3;
 }
 

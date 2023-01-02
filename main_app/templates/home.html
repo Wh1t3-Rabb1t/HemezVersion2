@@ -20,8 +20,8 @@
             <img id="phone-template" src="https://i.imgur.com/Mgr8zVE.png">
             <img id="phone-screen" src="https://i.imgur.com/caZOa0E.png">
             <img id="phone-template-effects" src="https://i.imgur.com/HaDV0c8.png">
-            <img id="phone-notifications-1" src="https://i.imgur.com/Jxr5NLe.png">
-            <img id="phone-notifications-2" src="https://i.imgur.com/KGE0QSw.png">
+            <!-- <img id="phone-notifications-1" src="https://i.imgur.com/Jxr5NLe.png"> -->
+            <!-- <img id="phone-notifications-2" src="https://i.imgur.com/KGE0QSw.png"> -->
         </div>
     </div>
 </div>
@@ -30,123 +30,54 @@
 //-----------------------------------------------------------------------------------------------//
 //-- Animated phone layering on page load. ------------------------------------------------------//
 //-----------------------------------------------------------------------------------------------//
-    // const phoneTemplate = document.getElementById('phone-template');
     // phoneTemplate.style.transform = `skew(-1deg, -15deg)`;
     // phoneTemplate.style.transform = `skew(-1deg, -15deg) translateY(${y}px)`;
 
-    // let templatePosTop = -25;
-    // let templateOpacity = 0;
-    // function phoneTemplateSlideIn() {
-    //     const phoneTemplate = document.getElementById('phone-template');
-        
-    //     if (templatePosTop <= -100) {
-    //         templateOpacity += 0.025;
-    //         templatePosTop -= 0.5;
-    //     } else {
-    //         templateOpacity += 0.004;
-    //         templatePosTop -= 2;
-    //     };
-
-    //     phoneTemplate.style.top = `${templatePosTop}.25%`;
-    //     phoneTemplate.style.opacity = `${templateOpacity}`;
-
-    //     if (templatePosTop == -125) {
-    //         templatePosTop = -25;
-    //         return;
-    //     };
-
-    //     requestAnimationFrame(phoneTemplateSlideIn);
-    // };
-    // phoneTemplateSlideIn();
-
-    //-------------------------------------------------------------------------------------------//
-    
-    // let screenOpacity = 0;
-    // let screenPosTop = -156;
-    // function phoneScreenSlideIn() {
-    //     const phoneScreen = document.getElementById('phone-screen');
-        
-    //     if (screenPosTop <= -81) {
-    //         screenOpacity += 0.004;
-    //         screenPosTop += 2;
-    //     } else {
-    //         screenOpacity += 0.025;
-    //         screenPosTop += 0.5;
-    //     };
-
-    //     phoneScreen.style.top = `${screenPosTop}.4%`;
-    //     phoneScreen.style.opacity = `${screenOpacity}`;
-
-    //     if (screenPosTop == -56) {
-    //         screenPosTop = -156;
-    //         return;
-    //     };
-
-    //     requestAnimationFrame(phoneScreenSlideIn);
-    // };
-    // phoneScreenSlideIn();
-
-    //-------------------------------------------------------------------------------------------//
-
-    // let effectsOpacity = 0;
-    // let effectsPosLeft = -51;
-    // function phoneEffectsSlideIn() {
-    //     const phoneEffects = document.getElementById('phone-template-effects');
-        
-    //     if (effectsPosLeft <= -126) {
-    //         effectsOpacity += 0.025;
-    //         effectsPosLeft -= 0.5;
-    //     } else {
-    //         effectsOpacity += 0.004;
-    //         effectsPosLeft -= 2;
-    //     };
-
-    //     phoneEffects.style.left = `${effectsPosLeft}.4%`;
-    //     phoneEffects.style.opacity = `${effectsOpacity}`;
-
-    //     if (effectsPosLeft == -151) {
-    //         effectsPosLeft = -51;
-    //         return;
-    //     };
-
-    //     requestAnimationFrame(phoneEffectsSlideIn);
-    // };
-    // phoneEffectsSlideIn();
-
-//-----------------------------------------------------------------------------------------------//
-
-    // The almighty hydra function, behold its divine beauty.
+    // The almighty majestic hydra function, behold its divine beauty.
     function phoneElementSlideIn(elementId, initialPos, axis, endPos, decimal, velocity) {
         const element = document.getElementById(elementId);
         const breakPoint = (endPos - initialPos) * 0.75 + initialPos;
+        const skewBreakPoint = (endPos - initialPos) * 0.525 + initialPos;
+        let skewAngle = 0;
         let pos = initialPos;
         let opacity = 0;
 
         function slideIn() {
+            // Decrease velocity and increase opacity when nearing destination.
             if (pos <= breakPoint) {
                 pos += (velocity / 4);
-                opacity += 0.025;
+                opacity += 0.02;
             } else {
                 pos += velocity;
-                opacity += 0.004;
+                opacity += 0.005;
             };
 
+            // Begin skew transition when nearing destination.
+            if (pos <= skewBreakPoint) {
+                skewAngle -= 0.25;
+                element.style.transform = `skewY(${skewAngle}deg)`;
+            };
+
+            // Update phone component position and opacity.
             element.style[axis] = `${pos}.${decimal}%`;
             element.style.opacity = `${opacity}`;
 
+            // If end position has been reached cancel out of the animation loop.
             if (pos === endPos) {
                 return;
             };
 
+            // Call slideIn at 60 fps to animate the phone fade in effect.
             requestAnimationFrame(slideIn);
         };
         slideIn();
     };
-    phoneElementSlideIn('phone-template', -25, 'top', -125, 25, -2);
-    phoneElementSlideIn('phone-screen', 33, 'bottom', -67, 4, -2);
-    phoneElementSlideIn('phone-template-effects', -51, 'left', -151, 4, -2);
-    
-    // phoneElementSlideIn('phone-screen', -156, 'top', -56, 4, 2);
+    setTimeout(() => phoneElementSlideIn('phone-template', -25, 'top', -125, 25, -2), 200);
+    setTimeout(() => phoneElementSlideIn('phone-screen', 33, 'bottom', -67, 4, -2), 859);
+    setTimeout(() => phoneElementSlideIn('phone-template-effects', -50, 'left', -150, 2, -2), 1218);
+
+    // Animation duration is 1436 milliseconds.
+    // 1436 * 0.25 = 359
 
 //-----------------------------------------------------------------------------------------------//
 //-- Notifications skew in relation to mouse coordinates. ---------------------------------------//
