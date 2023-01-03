@@ -17,7 +17,7 @@
     <div class="accordion-item">
       <h2 class="accordion-header" id="panelsStayOpen-headingOne">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
-          <p style='margin-left:5%'>All Rooms</p>
+          All Rooms
         </button>
       </h2>
       <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
@@ -35,11 +35,11 @@
       </div>
     </div>
 
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="modal" data-bs-target="#emojis" >
+    <div class="accordion-item" >
+      <h2 class="accordion-header"  id="panelsStayOpen-headingTwo">
+        <button  class="accordion-button collapsed" type="button" data-bs-toggle="modal" data-bs-target="#emojis" >
           <img id='add-button-image' src="https://img.icons8.com/external-others-inmotus-design/512/external-Add-atm-others-inmotus-design.png"> </img>
-          <p style='margin-left:5%'>Add Room</p>
+         Add Room
         </button>
       </h2>
     </div>
@@ -47,7 +47,7 @@
     <div class="accordion-item">
       <h2 class="accordion-header" id="panelsStayOpen-headingThree">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-          <p style='margin-left:5%'>Direct Message</p>
+          Direct Message
         </button>
       </h2>
       <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
@@ -60,7 +60,7 @@
       <h2 class="accordion-header" id="panelsStayOpen-headingFour">
         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="true" aria-controls="panelsStayOpen-collapseFour">
           <img id='add-button-image' src="https://img.icons8.com/external-others-inmotus-design/512/external-Add-atm-others-inmotus-design.png"> </img>
-          <p style='margin-left:5%'>Add Room</p>
+          Add Room
         </button>
       </h2>
       <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingFour">
@@ -69,7 +69,7 @@
         </div>
       </div>
     </div>
-    <button onclick={switchChat()}>CHAT </button>
+    <button id='mobile-switch-button' onclick={switchChat()}>CHAT </button>
   </div>
 
 <div >
@@ -78,7 +78,7 @@
 </div>  
 </div>
 <div class='top-chat-bar'>
-    <div id='left-rooms-name'>
+    <div id='top-rooms-name'>
       <img id='chat-left-room-pic-title' src="{{current_room.chat_pic}}" />
     <h2 id='room-name-id'> {{current_room}}</h2>
     </div>
@@ -290,7 +290,7 @@
 
     const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
-    //ADD WS FOR LOCAL ANS WSS FOR ONLINE
+    //ADD WS FOR LOCAL ANS WSS FOR ONLINE ADD WSS FOR ONLINE USE
     const chatSocket = new WebSocket(
         'ws://'
         + window.location.host
