@@ -9,67 +9,68 @@
     <span class='logo-container'>     
     <img src="https://i.imgur.com/ChgLGGA.png" class="logo-left" /> 
     <h1 class='logo-white'>HERMES</h1></span>
-  </div>
 
-{% comment %} left all rooms button {% endcomment %}
-  <div id='left-all-rooms'>
-    <p id='p-allrooms'>All Rooms</p>
-    <img id='sort-bottom' src="https://img.icons8.com/ios-glyphs/512/sort-down.png"> </img>
   </div>
 
 
-  <div id='left-rooms'>
- <!-- Left Verti Bar Nav -->
-
-    <div id='left-full-rooms'>
-      {% for chatroom in chatrooms %}
-      <div>
-        <a id='left-rooms-name'  href="/chat/{{chatroom.id}}">
-          <img id='chat-left-room-pic' src="{{chatroom.chat_pic}}" />
-         {{chatroom.room_name}}
-        </a>
+  <div id='left-all-rooms'  class="accordion" >
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+          All Rooms
+        </button>
+      </h2>
+      <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
+        <div class="accordion-body">
+          {% for chatroom in chatrooms %}
+          <div class='allroom-pic-name-container'>
+            <a  class='all-room-a-tag' href="/chat/{{chatroom.id}}">
+              <img id='chat-left-room-pic' src="{{chatroom.chat_pic}}" />
+             {{chatroom.room_name}}
+            </a>
+          </div>
+        
+          {% endfor %}
+        </div>
       </div>
-      {% endfor %}
-
-  
     </div>
 
-  <!-- Chatroom Nav -->  
+    <div class="accordion-item" >
+      <h2 class="accordion-header"  id="panelsStayOpen-headingTwo">
+        <button  class="accordion-button collapsed" type="button" data-bs-toggle="modal" data-bs-target="#emojis" >
+          <img id='add-button-image' src="https://img.icons8.com/external-others-inmotus-design/512/external-Add-atm-others-inmotus-design.png"> </img>
+         Add Room
+        </button>
+      </h2>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+          Direct Message
+        </button>
+      </h2>
+      <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+        <div class="accordion-body">
+          <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="true" aria-controls="panelsStayOpen-collapseFour">
+          <img id='add-button-image' src="https://img.icons8.com/external-others-inmotus-design/512/external-Add-atm-others-inmotus-design.png"> </img>
+          Add Room
+        </button>
+      </h2>
+      <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingFour">
+        <div class="accordion-body">
+          <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+        </div>
+      </div>
+    </div>
+    <button id='mobile-switch-button' onclick={switchChat()}>CHAT </button>
   </div>
-
-
-  <div id='left-add-room'>
-
-      <img id='add-button-image' src="https://img.icons8.com/external-others-inmotus-design/512/external-Add-atm-others-inmotus-design.png"> </img>
-      <p style='margin-left:5%'>Add Room</p>
-  </div>
-
-
-  <div id='left-direct-message'>
-    <p id='p-allrooms'>Direct Message</p>
-    <img id='sort-bottom' src="https://img.icons8.com/ios-glyphs/512/sort-down.png"> </img>
-  </div>
-
-  <div id='left-all-users'>
-
-  </div>
-
-  <div id='left-add-teammates'>
-    <img id='add-button-image' src="https://img.icons8.com/external-others-inmotus-design/512/external-Add-atm-others-inmotus-design.png"> </img>
-    <p style='margin-left:5%'>Add Room</p>
-  </div>
-
-
-
-  <div id='left-your-chatrooms'>
-    <p id='p-allrooms'>Your Chat Rooms</p>
-    <img id='sort-bottom' src="https://img.icons8.com/ios-glyphs/512/sort-down.png"> </img>
-  </div>
-
-
-
-
-  <div id='left-bottom'></div>
 
 <div >
 
@@ -77,11 +78,38 @@
 </div>  
 </div>
 <div class='top-chat-bar'>
-    <a id='left-rooms-name'  href="/chat/{{chatroom.id}}">
-      <img id='chat-left-room-pic' src="{{current_room.chat_pic}}" />
-     {{current_room}}
-    </a>
+    <div id='top-rooms-name'>
+      <img id='chat-left-room-pic-title' src="{{current_room.chat_pic}}" />
+    <h2 id='room-name-id'> {{current_room}}</h2>
+    </div>
 </div>
+
+
+
+
+<!-- Modal Add room  -->
+<div class="modal fade" id="emojis" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Room</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
 
 
 
@@ -99,29 +127,144 @@
     </p>
     {%endif%} {%endfor%}
   </div>
+ 
 {% comment %}--------------------------- CHAT BOX PART END--------------------------- {% endcomment %}
 
 
 
 
 
+
+
 {% comment %}--------------------------- CHAT INPUT BOX START--------------------------- {% endcomment %}
-  <div class="input-box">
-    <input
+<div class="input-box">
+  <div id='chat-input-container'>
+    <div id='text-and-buttons'>
+      <input
       id="chat-message-input"
       type="text"
       size="40"
       placeholder="Type your message"
-    /><br />
-    <input id="chat-message-submit" type="button" value="Send" />
-  </div>  
+
+    />
+    <div id='bottom-input-buttons'>
+      <div>
+        <svg width="35" height="35" viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3.00788 12.547L11.0491 4.50403C11.7876 3.7656 12.7891 3.35076 13.8334 3.35076C14.8777 3.35076 15.8792 3.7656 16.6176 4.50403C17.3561 5.24246 17.7709 6.24398 17.7709 7.28828C17.7709 8.33258 17.3561 9.3341 16.6176 10.0725L7.33913 19.3528C7.21811 19.4782 7.07333 19.5782 6.91324 19.6471C6.75314 19.716 6.58093 19.7523 6.40666 19.7539C6.23239 19.7555 6.05954 19.7223 5.89821 19.6564C5.73688 19.5905 5.59029 19.4931 5.467 19.3699C5.34371 19.2467 5.24618 19.1003 5.18011 18.939C5.11404 18.7777 5.08075 18.6049 5.08218 18.4306C5.08362 18.2564 5.11974 18.0841 5.18845 17.924C5.25716 17.7638 5.35708 17.6189 5.48238 17.4978L14.7626 8.21578C14.9945 7.96697 15.1207 7.63789 15.1147 7.29787C15.1087 6.95784 14.9709 6.63341 14.7305 6.39294C14.49 6.15247 14.1656 6.01472 13.8255 6.00872C13.4855 6.00272 13.1564 6.12894 12.9076 6.36078L3.62563 15.641C2.8872 16.3795 2.47236 17.381 2.47236 18.4253C2.47236 19.4696 2.8872 20.4711 3.62563 21.2095C4.36406 21.948 5.36558 22.3628 6.40988 22.3628C7.45418 22.3628 8.4557 21.948 9.19413 21.2095L18.4761 11.9293C19.707 10.6984 20.3985 9.02899 20.3985 7.28828C20.3985 5.54757 19.707 3.87815 18.4761 2.64728C17.2453 1.41641 15.5758 0.724915 13.8351 0.724915C12.0944 0.724915 10.425 1.41641 9.19413 2.64728L1.15113 10.6903C1.02572 10.8113 0.925661 10.9561 0.8568 11.1162C0.787939 11.2763 0.751651 11.4485 0.750055 11.6227C0.748459 11.797 0.781587 11.9699 0.847504 12.1312C0.913422 12.2925 1.01081 12.4391 1.13398 12.5624C1.25716 12.6857 1.40366 12.7832 1.56493 12.8493C1.7262 12.9154 1.89901 12.9487 2.07328 12.9472C2.24755 12.9458 2.4198 12.9097 2.57996 12.841C2.74012 12.7722 2.885 12.6723 3.00613 12.547H3.00788Z" fill="#929090"/>
+          </svg>
+          
+      </div>
+      <div onclick={toggleEmojiDrawer()} >
+        <svg width="40" height="40" viewBox="0 0 29 28" id='emojisss' fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19.0801 12.8333C20.0466 12.8333 20.8301 12.0498 20.8301 11.0833C20.8301 10.1168 20.0466 9.33331 19.0801 9.33331C18.1136 9.33331 17.3301 10.1168 17.3301 11.0833C17.3301 12.0498 18.1136 12.8333 19.0801 12.8333Z" fill="#929090"/>
+          <path d="M10.9141 12.8333C11.8806 12.8333 12.6641 12.0498 12.6641 11.0833C12.6641 10.1168 11.8806 9.33331 10.9141 9.33331C9.94756 9.33331 9.16406 10.1168 9.16406 11.0833C9.16406 12.0498 9.94756 12.8333 10.9141 12.8333Z" fill="#929090"/>
+          <path d="M14.9974 21C17.6574 21 19.9207 19.0633 20.8307 16.3333H9.16406C10.0741 19.0633 12.3374 21 14.9974 21Z" fill="#929090"/>
+          <path d="M14.9851 2.33331C8.54508 2.33331 3.33008 7.55998 3.33008 14C3.33008 20.44 8.54508 25.6666 14.9851 25.6666C21.4367 25.6666 26.6634 20.44 26.6634 14C26.6634 7.55998 21.4367 2.33331 14.9851 2.33331ZM14.9967 23.3333C9.84008 23.3333 5.66341 19.1566 5.66341 14C5.66341 8.84331 9.84008 4.66665 14.9967 4.66665C20.1534 4.66665 24.3301 8.84331 24.3301 14C24.3301 19.1566 20.1534 23.3333 14.9967 23.3333Z" fill="#929090"/>
+          </svg>
+          
+      </div>
+      <div>
+        <svg width="35" height="35" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9.99642 0.666687C4.85025 0.666687 0.663086 4.85385 0.663086 10C0.663086 15.1462 4.85025 19.3334 9.99642 19.3334C11.6379 19.3334 13.2514 18.9017 14.6643 18.085L13.4964 16.0632C12.4323 16.6774 11.2251 17.0005 9.99642 17C6.13592 17 2.99642 13.8605 2.99642 10C2.99642 6.13952 6.13592 3.00002 9.99642 3.00002C13.8569 3.00002 16.9964 6.13952 16.9964 10V11.0162C16.9964 11.7792 16.5064 12.3334 15.8298 12.3334C15.1869 12.3334 14.6631 11.8095 14.6631 11.1667V6.50002H13.0508C12.2085 5.75239 11.1226 5.33758 9.99642 5.33335C7.42275 5.33335 5.32975 7.42635 5.32975 10C5.32975 12.5737 7.42275 14.6667 9.99642 14.6667C11.2214 14.6667 12.3298 14.1825 13.1628 13.4067C13.4878 13.7993 13.8952 14.1157 14.3561 14.3334C14.8169 14.5512 15.32 14.6649 15.8298 14.6667C17.7921 14.6667 19.3298 13.0637 19.3298 11.0162V10C19.3298 4.85385 15.1426 0.666687 9.99642 0.666687ZM9.99642 12.3334C8.70959 12.3334 7.66309 11.2869 7.66309 10C7.66309 8.71319 8.70959 7.66669 9.99642 7.66669C11.2833 7.66669 12.3298 8.71319 12.3298 10C12.3298 11.2869 11.2833 12.3334 9.99642 12.3334Z" fill="#929090"/>
+          </svg>
+          
+      </div>
+    </div>
+    </div>
+  
+<div id='send-icon'>
+  <button id='chat-message-submit'> <svg width="40" height="40" viewBox="0 0 29 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0.0546875 26.1221V1.87822C0.0546875 1.19442 0.295514 0.673487 0.777168 0.315424C1.25882 -0.0413966 1.76723 -0.0954797 2.3024 0.153175L27.0273 12.2751C27.6963 12.617 28.0307 13.192 28.0307 14.0002C28.0307 14.8083 27.6963 15.3833 27.0273 15.7252L2.3024 27.8471C1.76723 28.0958 1.25882 28.0411 0.777168 27.683C0.295514 27.3262 0.0546875 26.8059 0.0546875 26.1221ZM3.26571 23.3247L22.291 14.0002L3.26571 4.67559V11.2028L12.8988 14.0002L3.26571 16.7975V23.3247ZM3.26571 14.0002V4.67559V23.3247V14.0002Z" fill="#929090"/>
+    </svg>
+    </button>
+</div>
+</div>
+</div>   
+
 {% comment %}--------------------------- CHAT INPUT BOX END--------------------------- {% endcomment %}
 
 
 
 
+{% comment %}--------------------------- CHAT MOBILE INPUT BOX START--------------------------- {% endcomment %}
+<div class="mobile-input-box">
+  <div id='chat-input-container'>
+    <div id='text-and-buttons'>
+
+<div id='smile'>
+  <div onclick={toggleEmojiDrawer()} >
+    <svg width="40" height="40" viewBox="0 0 29 28" id='emojisss' fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M19.0801 12.8333C20.0466 12.8333 20.8301 12.0498 20.8301 11.0833C20.8301 10.1168 20.0466 9.33331 19.0801 9.33331C18.1136 9.33331 17.3301 10.1168 17.3301 11.0833C17.3301 12.0498 18.1136 12.8333 19.0801 12.8333Z" fill="#929090"/>
+      <path d="M10.9141 12.8333C11.8806 12.8333 12.6641 12.0498 12.6641 11.0833C12.6641 10.1168 11.8806 9.33331 10.9141 9.33331C9.94756 9.33331 9.16406 10.1168 9.16406 11.0833C9.16406 12.0498 9.94756 12.8333 10.9141 12.8333Z" fill="#929090"/>
+      <path d="M14.9974 21C17.6574 21 19.9207 19.0633 20.8307 16.3333H9.16406C10.0741 19.0633 12.3374 21 14.9974 21Z" fill="#929090"/>
+      <path d="M14.9851 2.33331C8.54508 2.33331 3.33008 7.55998 3.33008 14C3.33008 20.44 8.54508 25.6666 14.9851 25.6666C21.4367 25.6666 26.6634 20.44 26.6634 14C26.6634 7.55998 21.4367 2.33331 14.9851 2.33331ZM14.9967 23.3333C9.84008 23.3333 5.66341 19.1566 5.66341 14C5.66341 8.84331 9.84008 4.66665 14.9967 4.66665C20.1534 4.66665 24.3301 8.84331 24.3301 14C24.3301 19.1566 20.1534 23.3333 14.9967 23.3333Z" fill="#929090"/>
+      </svg>
+      
+  </div>
+</div>
+      <input
+      id="chat-message-input"
+      type="text"
+      size="40"
+      placeholder="Type your msg"
+    />
+    <div id='bottom-input-buttons'>
+      <div >
+        <svg  width="35" height="35" viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3.00788 12.547L11.0491 4.50403C11.7876 3.7656 12.7891 3.35076 13.8334 3.35076C14.8777 3.35076 15.8792 3.7656 16.6176 4.50403C17.3561 5.24246 17.7709 6.24398 17.7709 7.28828C17.7709 8.33258 17.3561 9.3341 16.6176 10.0725L7.33913 19.3528C7.21811 19.4782 7.07333 19.5782 6.91324 19.6471C6.75314 19.716 6.58093 19.7523 6.40666 19.7539C6.23239 19.7555 6.05954 19.7223 5.89821 19.6564C5.73688 19.5905 5.59029 19.4931 5.467 19.3699C5.34371 19.2467 5.24618 19.1003 5.18011 18.939C5.11404 18.7777 5.08075 18.6049 5.08218 18.4306C5.08362 18.2564 5.11974 18.0841 5.18845 17.924C5.25716 17.7638 5.35708 17.6189 5.48238 17.4978L14.7626 8.21578C14.9945 7.96697 15.1207 7.63789 15.1147 7.29787C15.1087 6.95784 14.9709 6.63341 14.7305 6.39294C14.49 6.15247 14.1656 6.01472 13.8255 6.00872C13.4855 6.00272 13.1564 6.12894 12.9076 6.36078L3.62563 15.641C2.8872 16.3795 2.47236 17.381 2.47236 18.4253C2.47236 19.4696 2.8872 20.4711 3.62563 21.2095C4.36406 21.948 5.36558 22.3628 6.40988 22.3628C7.45418 22.3628 8.4557 21.948 9.19413 21.2095L18.4761 11.9293C19.707 10.6984 20.3985 9.02899 20.3985 7.28828C20.3985 5.54757 19.707 3.87815 18.4761 2.64728C17.2453 1.41641 15.5758 0.724915 13.8351 0.724915C12.0944 0.724915 10.425 1.41641 9.19413 2.64728L1.15113 10.6903C1.02572 10.8113 0.925661 10.9561 0.8568 11.1162C0.787939 11.2763 0.751651 11.4485 0.750055 11.6227C0.748459 11.797 0.781587 11.9699 0.847504 12.1312C0.913422 12.2925 1.01081 12.4391 1.13398 12.5624C1.25716 12.6857 1.40366 12.7832 1.56493 12.8493C1.7262 12.9154 1.89901 12.9487 2.07328 12.9472C2.24755 12.9458 2.4198 12.9097 2.57996 12.841C2.74012 12.7722 2.885 12.6723 3.00613 12.547H3.00788Z" fill="#929090"/>
+          </svg>
+          
+      </div>
+      <div onclick={toggleEmojiDrawer()} >
+        <svg width="40" height="40" viewBox="0 0 29 28" id='emojisss' fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19.0801 12.8333C20.0466 12.8333 20.8301 12.0498 20.8301 11.0833C20.8301 10.1168 20.0466 9.33331 19.0801 9.33331C18.1136 9.33331 17.3301 10.1168 17.3301 11.0833C17.3301 12.0498 18.1136 12.8333 19.0801 12.8333Z" fill="#929090"/>
+          <path d="M10.9141 12.8333C11.8806 12.8333 12.6641 12.0498 12.6641 11.0833C12.6641 10.1168 11.8806 9.33331 10.9141 9.33331C9.94756 9.33331 9.16406 10.1168 9.16406 11.0833C9.16406 12.0498 9.94756 12.8333 10.9141 12.8333Z" fill="#929090"/>
+          <path d="M14.9974 21C17.6574 21 19.9207 19.0633 20.8307 16.3333H9.16406C10.0741 19.0633 12.3374 21 14.9974 21Z" fill="#929090"/>
+          <path d="M14.9851 2.33331C8.54508 2.33331 3.33008 7.55998 3.33008 14C3.33008 20.44 8.54508 25.6666 14.9851 25.6666C21.4367 25.6666 26.6634 20.44 26.6634 14C26.6634 7.55998 21.4367 2.33331 14.9851 2.33331ZM14.9967 23.3333C9.84008 23.3333 5.66341 19.1566 5.66341 14C5.66341 8.84331 9.84008 4.66665 14.9967 4.66665C20.1534 4.66665 24.3301 8.84331 24.3301 14C24.3301 19.1566 20.1534 23.3333 14.9967 23.3333Z" fill="#929090"/>
+          </svg>
+          
+      </div>
+      <div>
+        <svg width="35" height="35" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9.99642 0.666687C4.85025 0.666687 0.663086 4.85385 0.663086 10C0.663086 15.1462 4.85025 19.3334 9.99642 19.3334C11.6379 19.3334 13.2514 18.9017 14.6643 18.085L13.4964 16.0632C12.4323 16.6774 11.2251 17.0005 9.99642 17C6.13592 17 2.99642 13.8605 2.99642 10C2.99642 6.13952 6.13592 3.00002 9.99642 3.00002C13.8569 3.00002 16.9964 6.13952 16.9964 10V11.0162C16.9964 11.7792 16.5064 12.3334 15.8298 12.3334C15.1869 12.3334 14.6631 11.8095 14.6631 11.1667V6.50002H13.0508C12.2085 5.75239 11.1226 5.33758 9.99642 5.33335C7.42275 5.33335 5.32975 7.42635 5.32975 10C5.32975 12.5737 7.42275 14.6667 9.99642 14.6667C11.2214 14.6667 12.3298 14.1825 13.1628 13.4067C13.4878 13.7993 13.8952 14.1157 14.3561 14.3334C14.8169 14.5512 15.32 14.6649 15.8298 14.6667C17.7921 14.6667 19.3298 13.0637 19.3298 11.0162V10C19.3298 4.85385 15.1426 0.666687 9.99642 0.666687ZM9.99642 12.3334C8.70959 12.3334 7.66309 11.2869 7.66309 10C7.66309 8.71319 8.70959 7.66669 9.99642 7.66669C11.2833 7.66669 12.3298 8.71319 12.3298 10C12.3298 11.2869 11.2833 12.3334 9.99642 12.3334Z" fill="#929090"/>
+          </svg>
+          
+      </div>
+    </div>
+    </div>
+{% comment %} DESKTOP  {% endcomment %}
+<div id='send-icon'>
+  <button id='chat-message-submit'> <svg id='send-svg' viewBox="0 0 29 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0.0546875 26.1221V1.87822C0.0546875 1.19442 0.295514 0.673487 0.777168 0.315424C1.25882 -0.0413966 1.76723 -0.0954797 2.3024 0.153175L27.0273 12.2751C27.6963 12.617 28.0307 13.192 28.0307 14.0002C28.0307 14.8083 27.6963 15.3833 27.0273 15.7252L2.3024 27.8471C1.76723 28.0958 1.25882 28.0411 0.777168 27.683C0.295514 27.3262 0.0546875 26.8059 0.0546875 26.1221ZM3.26571 23.3247L22.291 14.0002L3.26571 4.67559V11.2028L12.8988 14.0002L3.26571 16.7975V23.3247ZM3.26571 14.0002V4.67559V23.3247V14.0002Z" fill="#929090"/>
+    </svg>
+    </button>
+</div>
+</div>
+</div>   
+
+{% comment %}--------------------------- CHAT MOBILE INPUT BOX END--------------------------- {% endcomment %}
 
 
+
+
+
+
+{% comment %}--------------------------- Emojies BOX START--------------------------- {% endcomment %}
+
+<div id="drawer" class="emoji-drawer hidden "> 
+  <div class='top-drawer'>
+    <h2 id='drawer-title'>Emoticons</h2>
+    <h3 id='delete-x' onclick={closeEmoji()} >X</h3>
+  </div>
+  
+  <div id='emoji-container'>
+    {%for emoji in emoticons %}
+    <div class="emoji"  onclick="addEmoji(this.innerHTML)">{{emoji}}</div>
+    {%endfor%} 
+  </div>
+</div>
+
+{% comment %}--------------------------- Emojies BOX END--------------------------- {% endcomment %}
 
 
 
@@ -147,8 +290,9 @@
 
     const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
+    //ADD WS FOR LOCAL ANS WSS FOR ONLINE ADD WSS FOR ONLINE USE
     const chatSocket = new WebSocket(
-        'wss://'
+        'ws://'
         + window.location.host
         + '/ws/chat/'
         + roomName
@@ -161,13 +305,11 @@
         //create div element
         function createMenuItem(match,name,message) {
             let div = document.createElement('div');
-            div.style.margin='20px'
             div.style.display='flex'
-            div.width ='100%'
-            div.innerHTML = match === name ?  `<p id='user-message'>${name} says: ${message}</p>` :  `<p id="not-user-message"> ${name} says: ${message}</p>`
+            div.innerHTML = match === name ?  `<p id='user-message' >${name} says: ${message}</p>` :  `<p id="not-user-message"> ${name} says: ${message}</p>`
             return div;
-
         }
+    
         {% comment %} document.querySelector('#chatbox').appendChild(createMenuItem(data.user + data.message + '\n')) {% endcomment %}
         document.querySelector('#chatbox').appendChild(createMenuItem(username,data.user,data.message))
         scrollToBottom();
@@ -181,6 +323,7 @@
     document.querySelector('#chat-message-input').onkeyup = function(e) {
         if (e.keyCode === 13) {  // enter, return
             document.querySelector('#chat-message-submit').click();
+            document.querySelector('#chat-message-submit').touchStart();
 
         }
     };
@@ -200,11 +343,92 @@
         }));
         messageInputDom.value = '';
     };
+
+
+
+{% comment %} const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl,{
+  container: 'body',
+  html: true,
+  title:'Emoticons',
+  content: function() {
+      return document.getElementById('drawer').innerHTML;
+  },
+})) {% endcomment %}
+
+
+
+
+//OPEN EMOJI WINDOW 
+function addEmoji(emoji) {
+  console.log(emoji)
+  let inputEle = document.getElementById('chat-message-input');
+  inputEle.value = inputEle.value + ' ' + emoji;
+}
+
+
+
+
+// TOGGLE EMOJI SWITCH ON AND OFF THROUGH SMILEY FACE EMOJI
+let drawer = document.getElementById('drawer');
+
+// CLOSE BUTTON
+function closeEmoji(){
+  drawer.classList.add('hidden')
+}
+
+// TOGGLE EMOJI DRAWER OPEN AND CLOSE
+function toggleEmojiDrawer() {
+  if (drawer.classList.contains('hidden')) {
+    drawer.classList.remove('hidden');
+  } else {
+    drawer.classList.add('hidden');
+  }
+}
+
+
+//SWITCH TO THE CHAT SECTION
+let leftSideChat = document.querySelector('.left-chat-bar');
+let topSideChat = document.querySelector('.top-chat-bar');
+let chatBar = document.querySelector('.chat-bar');
+
+
+function switchChat(){
+topSideChat.style.display ='flex'
+chatBar.style.display ='initial';
+leftSideChat.style.display ='none'
+}
+
+
+//TOUCH START
+
+
+
+{% comment %} var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+    const popoverId = popoverTriggerEl.attributes['data-content-id'];
+    if (popoverId) {
+        const contentEl=$(`#${popoverId.value}`).html();
+        return new bootstrap.Popover(popoverTriggerEl, {
+            content: contentEl,
+            html: true,
+        });
+    }else{//do something else cause data-content-id isn't there.
+    }
+} {% endcomment %}
+
+
+
+
+
+
   </script>
 </div>
- {% comment %} CHAT PART END {% endcomment %}
+
 </div>
  
 
 
 {% endblock %}
+
+

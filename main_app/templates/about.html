@@ -109,6 +109,7 @@
             // Handler for calculating the % difference in pixel ratios between different resolutions.
             function calculatePercentageDifference(oldValue, newValue) {
                 return (newValue - oldValue) / oldValue * 100;
+
             };
 
             // If a zoom event is initiated manually, cancel out of smartResizing to enable zoom.
@@ -215,7 +216,8 @@
         window.onfocus = function() {
             timer = setInterval(function() {risingLogo()}, 2000);
         };
-
+        
+        
         // Stops the animation timer when the tab is unfocused.
         window.onblur = function() {
             clearInterval(timer);
