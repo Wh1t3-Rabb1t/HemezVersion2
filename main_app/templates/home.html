@@ -20,8 +20,18 @@
             <img id="phone-template" src="https://i.imgur.com/Mgr8zVE.png">
             <img id="phone-screen" src="https://i.imgur.com/caZOa0E.png">
             <img id="phone-template-effects" src="https://i.imgur.com/HaDV0c8.png">
-            <img id="phone-notifications-1" src="https://i.imgur.com/Jxr5NLe.png">
-            <img id="phone-notifications-2" src="https://i.imgur.com/KGE0QSw.png">
+
+
+            <img id="phone-notifications-1" src="https://i.imgur.com/BrPXBeY.png">
+            <img id="phone-notifications-2" src="https://i.imgur.com/VDhy9gb.png">
+            <img id="phone-notifications-3" src="https://i.imgur.com/vY9UBkI.png">
+
+            <img id="phone-notifications-4" src="https://i.imgur.com/BrPXBeY.png">
+            <img id="phone-notifications-5" src="https://i.imgur.com/VDhy9gb.png">
+            <img id="phone-notifications-6" src="https://i.imgur.com/vY9UBkI.png">
+
+            <!-- <img id="phone-notifications-a" src="https://i.imgur.com/Jxr5NLe.png"> -->
+            <!-- <img id="phone-notifications-b" src="https://i.imgur.com/KGE0QSw.png"> -->
         </div>
     </div>
 </div>
@@ -35,9 +45,9 @@
         const element = document.getElementById(elementId);
         const breakPoint = (endPos - initialPos) * 0.75 + initialPos;
         const skewBreakPoint = (endPos - initialPos) * 0.525 + initialPos;
+        let pos = initialPos;
         let skewAngle = 0;
         let opacity = 0;
-        let pos = initialPos;
 
         function slideIn() {
             // Decrease velocity and increase opacity when nearing destination.

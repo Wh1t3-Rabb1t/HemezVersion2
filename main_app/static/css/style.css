@@ -53,6 +53,7 @@ main {
   color: black;
   text-decoration: none;
   padding-top: 0.3rem;
+  font-size: 0.30rem;
 }
 
 /* LOGO END  */
@@ -948,25 +949,89 @@ a {
   /* opacity: 0; */
 }
 
-#phone-notifications-1 {
+/* #phone-notifications-a {
   position: absolute;
   width: 4.16rem;
   height: 3.2rem;
   left: -93%;
   top: -78%;
   transform: skewY(-15deg);
-  z-index: 4;
-}
+  z-index: 3;
+} */
 
-#phone-notifications-2 {
+#phone-notifications-b {
   position: absolute;
   width: 4.16rem;
   height: 3.2rem;
   left: -170.5%;
   top: 15%;
   transform: skewY(-15deg);
+  z-index: 3;
+}
+
+#phone-notifications-1 {
+  position: absolute;
+  width: 2.55rem;
+  height: 2.55rem;
+  left: -38%;
+  top: -88%;
+  transform: skewY(-15deg);
   z-index: 4;
 }
+
+#phone-notifications-2 {
+  position: absolute;
+  width: 2.55rem;
+  height: 2.55rem;
+  left: -42%;
+  top: -56%;
+  transform: skewY(-15deg);
+  z-index: 4;
+}
+
+#phone-notifications-3 {
+  position: absolute;
+  width: 2.55rem;
+  height: 2.55rem;
+  left: -76%;
+  top: -27%;
+  transform: skewY(-15deg);
+  z-index: 4;
+}
+
+#phone-notifications-4 {
+  position: absolute;
+  width: 2.55rem;
+  height: 2.55rem;
+  left: -115%;
+  top: 5%;
+  transform: skewY(-15deg);
+  z-index: 4;
+}
+
+#phone-notifications-5 {
+  position: absolute;
+  width: 2.55rem;
+  height: 2.55rem;
+  left: -119%;
+  top: 36%;
+  transform: skewY(-15deg);
+  z-index: 4;
+}
+
+#phone-notifications-6 {
+  position: absolute;
+  width: 2.55rem;
+  height: 2.55rem;
+  left: -153%;
+  top: 66%;
+  transform: skewY(-15deg);
+  z-index: 4;
+}
+
+
+
+
 
 /* .rectangle {
   transform: matrix3d(
