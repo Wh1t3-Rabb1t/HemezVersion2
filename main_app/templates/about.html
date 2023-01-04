@@ -3,7 +3,6 @@
 <div class="about-container" id="about-container">
 
     <div id="left-about-container">
-
         <div id="top-text-box">
             <span id="about-header">Hermes Messenger</span>
             <p id="about-text">
@@ -13,40 +12,42 @@
             </p>
         </div>
         
-        <div id="middle-text-box">
-            <nav id="team-header">Meet Our Team</nav>
-            <p id="team-text">This project was a collboration between the following members:</p>
+        <div id="mobile-box">
+
+            <div id="middle-text-box">
+                <div id="team-header">Meet Our Team</div>
+                <p id="team-text">This project was a collaboration between the following members:</p>
+            </div>
+
+            <div id="members">
+                <div class="members-container">
+                    <img class="profile-pic" src="https://i.imgur.com/ae2rHG7.png">
+                    <div class="member-links">
+                        <div>Gobi Shanthan<br><span>Developer</span></div>
+                        <img src="https://i.imgur.com/WPyPfuY.png">
+                    </div>
+                </div>
+
+                <div class="members-container">
+                    <img class="profile-pic" src="https://i.imgur.com/ae2rHG7.png">
+                    <div class="member-links">
+                        <div>Till Cappel<br><span>Developer</span></div>
+                        <img src="https://i.imgur.com/WPyPfuY.png">
+                    </div>
+                </div>
+
+                <div class="members-container">
+                    <img class="profile-pic" src="https://i.imgur.com/SBdTgSs.png">
+                    <div class="member-links">
+                        <div>Meenakshi<br><span>Designer</span></div>
+                        <img src="https://i.imgur.com/WPyPfuY.png">
+                    </div>
+                </div>
+            </div>
+
         </div>
-
-        <div id="members">
-            <div class="members-container">
-                <img class="profile-pic" src="https://i.imgur.com/ae2rHG7.png">
-                <nav class="member-links">
-                    <div>Gobi Shanthan<br><span>Developer</span></div>
-                    <img src="https://i.imgur.com/WPyPfuY.png">
-                </nav>
-            </div>
-
-            <div class="members-container">
-                <img class="profile-pic" src="https://i.imgur.com/ae2rHG7.png">
-                <nav class="member-links">
-                    <div>Till Cappel<br><span>Developer</span></div>
-                    <img src="https://i.imgur.com/WPyPfuY.png">
-                </nav>
-            </div>
-
-            <div class="members-container">
-                <img class="profile-pic" src="https://i.imgur.com/SBdTgSs.png">
-                <nav class="member-links">
-                    <div>Meenakshi<br><span>Designer</span></div>
-                    <img src="https://i.imgur.com/WPyPfuY.png">
-                </nav>
-            </div>
-        </div>
-
     </div>
     
-    <!-- Phone and bubbles. -->
     <div id="right-about-container">
         <div id="about-phone-bubble-box">
             <img id="cartoon-phone" src="https://i.imgur.com/PhLBWAj.png">
@@ -92,10 +93,9 @@
 
         //-- Dynamic page scaling. --------------------------------------------------------------//
         function smartResizing() {
-            // const signupMainContainer = document.getElementById('signup-main-container');
-            // const phoneBubbleContainer = document.getElementById('phone-bubble-container');
             const cartoonPhone = document.getElementById('cartoon-phone');
             const aboutContainer = document.getElementById('about-container');
+            const mobileBox = document.getElementById('mobile-box');
             const main = document.querySelector('main');
             const root = document.querySelector(':root');
             const baseWidth = 1432; // Container width.
@@ -116,64 +116,61 @@
             if (manualZoomEvent == true) {
                 manualZoomEvent = false;
             } else {
-                // If the current viewport dimensions don't match the base value, calculate the % difference.
-                if (viewportWidth != baseWidth || viewportHeight != baseHeight) {
-                    widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
-                    heightDifference = calculatePercentageDifference(baseHeight, height);
-                    averageDifference = Math.round((widthDifference + heightDifference) / 2);
-                };
-
+                // Calculate the % difference between the base and current viewport dimensions.
+                widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
+                heightDifference = calculatePercentageDifference(baseHeight, height);
+                averageDifference = Math.round((widthDifference + heightDifference) / 2);
+                
                 // Update the :root font size to scale all elements using rem.
                 rootFontSize += averageDifference;
                 root.style.fontSize = rootFontSize + 'px';
 
+                // Adjust page layout for mobile.
+                if (viewportHeight < 600) {
+                    mobileBox.style.flexDirection = 'row';
+                    aboutContainer.style.flexDirection = 'column';
+                } else {
+                    mobileBox.style.flexDirection = 'column';
+                };
+                
                 // Rearrange page layout if the screens height is > the width.
                 if (viewportHeight > viewportWidth) {
                     aboutContainer.style.flexDirection = 'column';
-                    cartoonPhone.style.top = '-50%';
-                    cartoonPhone.style.left = '-30%';
-                    // cartoonPhone.style.display = 'none';
-                } else if (viewportHeight < viewportWidth) {
+                    cartoonPhone.style.display = 'none';
+                } else if (viewportHeight < viewportWidth && viewportHeight > 600) {
                     aboutContainer.style.flexDirection = 'row';
-                    cartoonPhone.style.top = '-135%';
-                    cartoonPhone.style.left = '-110%';
-                    // cartoonPhone.style.display = 'block';
+                    cartoonPhone.style.display = 'block';
+                };
+
+                // Detect if the bottom container is clipping off the screen.
+                const members = document.getElementById('members');
+                const rect = members.getBoundingClientRect();
+                const isClippingBottom = (rect.bottom > window.innerHeight);
+                
+                // If the bottom container is clipping show the scroll bar, hide otherwise.
+                if (isClippingBottom) {
+                    aboutContainer.style.overflowY = 'scroll';
+                } else {
+                    aboutContainer.style.overflowY = 'hidden';
                 };
             };
         };
         window.addEventListener('load', () => smartResizing());
         window.addEventListener('resize', () => smartResizing());
 
-
-
-        // const floatingIcon1 = 'https://i.imgur.com/i5UNV2f.png';
-        // const floatingIcon2 = 'https://i.imgur.com/N00lIOn.png';
-        // const floatingIcon3 = 'https://i.imgur.com/dUQH6w9.png';
-
-        // Select an random icon to populate the img element.
-        // if (num == 1) {
-        //     imgElement.src = floatingIcon1;
-        // } else if (num == 2) {
-        //     imgElement.src = floatingIcon2;
-        // } else {
-        //     imgElement.src = floatingIcon3;
-        // };
-
-        const floatingIcons = ['https://i.imgur.com/i5UNV2f.png', 'https://i.imgur.com/N00lIOn.png', 'https://i.imgur.com/dUQH6w9.png'];
-
         // Generate random integers, either positive or negative.
         function getRandomInteger(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         };
-
+        
         // Animation loop for the rising rain effect.
         function risingLogo() {
             // Create a new img element and apply a random icon to it.
+            const floatingIcons = ['https://i.imgur.com/i5UNV2f.png', 'https://i.imgur.com/N00lIOn.png', 'https://i.imgur.com/dUQH6w9.png'];
             const imgElement = document.createElement('img');
             let num = getRandomInteger(0, 2);
-            let randomIcon = floatingIcons[num];
-            imgElement.src = randomIcon;
-            
+            imgElement.src = floatingIcons[num];
+
             // Retrieve the width and height of the browser window.
             let viewportHeight = window.innerHeight + 420;
             let viewportWidth = window.innerWidth - 150;
@@ -181,19 +178,17 @@
             // Set the starting position of the img element.
             imgElement.style.position = 'absolute';
             imgElement.style.left = `calc(${Math.random() * viewportWidth}px)`;
-            imgElement.style.bottom = '50px';
+            imgElement.style.bottom = '-100px';
             
             // Randomize the img size, velocity, and angle.
-            let imgSize = getRandomInteger(1, 220) + 80;
-            let velocity = getRandomInteger(1, 8);
+            let imgSize = getRandomInteger(60, Math.round(window.innerWidth / 10));
+            let velocity = getRandomInteger(1, 7);
             let angle = getRandomInteger(-30, 10);
             imgElement.style.width = imgSize + 'px';
             imgElement.style.height = imgSize + 'px';
             imgElement.style.borderRadius = '50%';
-            // imgElement.style.zIndex = '99';
             
             // Append the img element to the container.
-            // const divElement = document.querySelector('.about-box-bottom');
             const divElement = document.querySelector('.about-container');
             divElement.appendChild(imgElement);
 
@@ -207,7 +202,7 @@
                 // Once the img element travels off the screen, delete it and stop the animation loop.
                 if (newImgTop > viewportHeight) {
                     divElement.removeChild(imgElement);
-                    return
+                    return;
                 };
 
                 // Call the function repeatedly on a loop.
@@ -285,6 +280,21 @@
 
 {% endblock %}
 
+<!-- 
+    // // var div = document.getElementById('members');
+    // var container = document.getElementById('members');
+    // var items = document.querySelectorAll('.members-container');
+    // var containerRect = container.getBoundingClientRect();
+    // var itemRect = items[2].getBoundingClientRect();
+    // if (itemRect.right > containerRect.right) {
+    //     console.log('Items are wrapping onto a new line');
+    // } else {
+    //     console.log('Items are not wrapping onto a new line');
+    // }
+    // var div = document.getElementById('members');
+    // var divHeight = div.clientHeight;
+    // console.log(divHeight); // Outputs the height of the div element
+ -->
 
 <!-- 
 // Img element animation loop.

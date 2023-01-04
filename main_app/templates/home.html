@@ -27,138 +27,205 @@
 </div>
 
 <script defer>
-//-- User generated zoom event detection. -----------------------------------------------//
-let manualZoomEvent = false;
+//-----------------------------------------------------------------------------------------------//
+//-- Animated phone layering on page load. ------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
+    // The almighty majestic hydra function, behold its divine beauty.
+    function phoneElementSlideIn(elementId, initialPos, axis, endPos, decimal, velocity) {
+        const element = document.getElementById(elementId);
+        const breakPoint = (endPos - initialPos) * 0.75 + initialPos;
+        const skewBreakPoint = (endPos - initialPos) * 0.525 + initialPos;
+        let skewAngle = 0;
+        let opacity = 0;
+        let pos = initialPos;
 
-// Detect a user initiated zoom event with the cmd key and mouse scroll wheel.
-window.addEventListener('wheel', function(event) {
-    if (event.metaKey) { // If cmd is held down (metaKey is the cmd key on Mac).
-        if (event.deltaY > 0) { // User has zoomed out.
+        function slideIn() {
+            // Decrease velocity and increase opacity when nearing destination.
+            if (pos <= breakPoint) {
+                pos += (velocity / 4);
+                opacity += 0.02;
+            } else {
+                pos += velocity;
+                opacity += 0.005;
+            };
+
+            // Begin skew transition when nearing destination.
+            if (pos <= skewBreakPoint) {
+                skewAngle -= 0.25;
+                element.style.transform = `skewY(${skewAngle}deg)`;
+            };
+
+            // Update phone component position and opacity.
+            element.style[axis] = `${pos}.${decimal}%`;
+            element.style.opacity = `${opacity}`;
+
+            // If end position has been reached cancel out of the animation loop.
+            if (pos === endPos) {
+                return;
+            };
+
+            // Call slideIn at 60 fps to animate the phone fade in effect.
+            requestAnimationFrame(slideIn);
+        };
+        slideIn();
+    };
+    // setTimeout(() => phoneElementSlideIn('phone-template', -25, 'top', -125, 25, -2), 200);
+    // setTimeout(() => phoneElementSlideIn('phone-screen', 33, 'bottom', -67, 4, -2), 959);
+    // setTimeout(() => phoneElementSlideIn('phone-template-effects', -50, 'left', -150, 2, -2), 959);
+    // setTimeout(() => phoneElementSlideIn('phone-template-effects', -50, 'left', -150, 2, -2), 1218);
+    
+    // Animation duration is 1436 milliseconds.
+    // 1436 * 0.25 = 359
+
+//-----------------------------------------------------------------------------------------------//
+//-- Notifications skew in relation to mouse coordinates. ---------------------------------------//
+//-----------------------------------------------------------------------------------------------//
+    // const phoneNotifications1 = document.getElementById('phone-notifications-1');
+    // const phoneNotifications2 = document.getElementById('phone-notifications-2');
+    // const maxSkew = 0.5; // Maximum allowed skew in degrees.
+    // const perspective = 1000; // Intensity of the skew.
+    // const easing = 'cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+    // const updateInterval = 1000 / 60; // 60 updates per second.
+
+    // // Get the cursors current x and y coordinates.
+    // const getMousePos = (evt) => {
+    //     const pos = evt.currentTarget.getBoundingClientRect();
+    //     return {
+    //         x: evt.clientX - pos.left,
+    //         y: evt.clientY - pos.top
+    //     };
+    // };
+
+    // // Get the central coordinates of a selected item.
+    // const getElementCenter = (element) => {
+    //     const rect = element.getBoundingClientRect();
+    //     return {
+    //         x: rect.left + rect.width / 2,
+    //         y: rect.top + rect.height / 2
+    //     };
+    // };
+
+    // // Calculate the angle between two points in a 2d coordinate system.
+    // const getAngle = (x1, y1, x2, y2) => {
+    //     const dx = x2 - x1;
+    //     const dy = y2 - y1;
+    //     return Math.atan2(dy, dx);
+    // };
+
+    // // Update the skew % of a selected element in relation to the cursor coordinates.
+    // let mPos;
+    // let timer;
+    // const updateSkew = () => {
+    //     timer = null;
+    //     const center1 = getElementCenter(phoneNotifications1);
+    //     const angle1 = getAngle(center1.x, center1.y, mPos.x, mPos.y);
+    //     const center2 = getElementCenter(phoneNotifications2);
+    //     const angle2 = getAngle(center2.x, center2.y, mPos.x, mPos.y);
+    //     const skewX = 0;
+    //     let skewY1 = Math.min(maxSkew, Math.abs(angle1)) * Math.sign(angle1);
+    //     let skewY2 = Math.min(maxSkew, Math.abs(angle2)) * Math.sign(angle2);
+    //     skewY1 += -15;
+    //     skewY2 += -15;
+    //     phoneNotifications1.style.transitionTimingFunction = easing;
+    //     phoneNotifications1.style.transform = `perspective(${perspective}px) skewX(${skewX}deg) skewY(${skewY1}deg)`;
+    //     phoneNotifications2.style.transitionTimingFunction = easing;
+    //     phoneNotifications2.style.transform = `perspective(${perspective}px) skewX(${skewX}deg) skewY(${skewY2}deg)`;
+    // };
+
+    // // Call the update skew function at 60 fps while the cursor is being moved.
+    // const scheduleUpdate = (pos) => {
+    //     if (!timer) {
+    //         mPos = pos;
+    //         timer = setTimeout(updateSkew, updateInterval);
+    //     };
+    // };
+
+    // // Listen for a mouse move event to begin animating the skew effect.
+    // document.querySelector('main').addEventListener('mousemove', (evt) => {
+    //     const mPos = getMousePos(evt);
+    //     scheduleUpdate(mPos);
+    // });
+
+//-----------------------------------------------------------------------------------------------//
+//-- User generated zoom event detection. -------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
+    let manualZoomEvent = false;
+    // Detect a user initiated zoom event with the cmd key and mouse scroll wheel.
+    window.addEventListener('wheel', function(event) {
+        if (event.metaKey) { // If cmd is held down (metaKey is the cmd key on Mac).
+            if (event.deltaY > 0) { // User has zoomed out.
+                manualZoomEvent = true;
+            } else { // User has zoom in.
+                manualZoomEvent = true;
+            };
+        };
+    });
+
+    // Detect a user initiated zoom event using keyboard shortcuts.
+    window.addEventListener('keydown', function(event) {
+        if (event.metaKey && event.code === 'Equal') { // User has pressed cmd +.
             manualZoomEvent = true;
-        } else { // User has zoom in.
+        } else if (event.metaKey && event.code === 'Minus') { // User has pressed cmd -.
             manualZoomEvent = true;
         };
-    };
-});
+    });
 
-// Detect a user initiated zoom event using keyboard shortcuts.
-window.addEventListener('keydown', function(event) {
-    if (event.metaKey && event.code === 'Equal') { // User has pressed cmd +.
-        manualZoomEvent = true;
-    } else if (event.metaKey && event.code === 'Minus') { // User has pressed cmd -.
-        manualZoomEvent = true;
-    };
-});
+    // Detect a user initiated zoom event using a touch screen.
+    window.addEventListener('touchmove', function(event) {
+        if (event.scale < 1) { // User has zoomed out.
+            manualZoomEvent = true;
+        } else { // User has zoomed in.
+            manualZoomEvent = true;
+        };
+    });
 
-// Detect a user initiated zoom event using a touch screen.
-window.addEventListener('touchmove', function(event) {
-    if (event.scale < 1) { // User has zoomed out.
-        manualZoomEvent = true;
-    } else { // User has zoomed in.
-        manualZoomEvent = true;
-    };
-});
+//-----------------------------------------------------------------------------------------------//
+//-- Dynamic page scaling. ----------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
+    function smartResizing() {
+        const signupMainContainer = document.getElementById('signup-main-container');
+        const phoneBubbleContainer = document.getElementById('phone-bubble-container');
+        const main = document.querySelector('main');
+        const root = document.querySelector(':root');
+        const baseWidth = 1432; // Container width.
+        const baseHeight = 712; // Container height excluding the menu bar.
+        let widthDifference, heightDifference, averageDifference = 0;
+        let viewportWidth = window.innerWidth;
+        let viewportHeight = window.innerHeight;
+        let height = main.offsetHeight;
+        let rootFontSize = 100;
 
- //-- Dynamic page scaling. --------------------------------------------------------------//
-function smartResizing() {
+        // Handler for calculating the % difference in pixel ratios between different resolutions.
+        function calculatePercentageDifference(oldValue, newValue) {
+            return (newValue - oldValue) / oldValue * 100;
+        };
 
-    const phoneBubbleContainer = document.getElementById('phone-bubble-container');
-    const main = document.querySelector('main');
-    const root = document.querySelector(':root');
-    const baseWidth = 1432; // Container width.
-    const baseHeight = 712; // Container height excluding the menu bar.
-    let widthDifference, heightDifference, averageDifference = 0;
-    let viewportWidth = window.innerWidth;
-    let viewportHeight = window.innerHeight;
-    let height = main.offsetHeight;
-    let rootFontSize = 100;
-
-    // Handler for calculating the % difference in pixel ratios between different resolutions.
-    function calculatePercentageDifference(oldValue, newValue) {
-        return (newValue - oldValue) / oldValue * 100;
-    };
-
-    // If a zoom event is initiated manually, cancel out of smartResizing to enable zoom.
-    if (manualZoomEvent == true) {
-        manualZoomEvent = false;
-    } else {
-        // If the current viewport dimensions don't match the base value, calculate the % difference.
-        if (viewportWidth != baseWidth || viewportHeight != baseHeight) {
+        // If a zoom event is initiated manually, cancel out of smartResizing to enable zoom.
+        if (manualZoomEvent == true) {
+            manualZoomEvent = false;
+        } else {
+            // Calculate the % difference between the base and current viewport dimensions.
             widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
             heightDifference = calculatePercentageDifference(baseHeight, height);
             averageDifference = Math.round((widthDifference + heightDifference) / 2);
-        };
 
-        // Update the :root font size to scale all elements using rem.
-        rootFontSize += averageDifference;
-        root.style.fontSize = rootFontSize + 'px';
+            // Update the :root font size to scale all elements using rem.
+            rootFontSize += averageDifference;
+            root.style.fontSize = rootFontSize + 'px';
 
-        // Rearrange page layout if the screens height is > the width.
-        if (viewportHeight > viewportWidth) {
-       
-            phoneBubbleContainer.style.marginLeft = '25%';
-        } else if (viewportHeight < viewportWidth) {
-
-            phoneBubbleContainer.style.marginLeft = '0%';
+            // Rearrange page layout if the screens height is > the width.
+            if (viewportHeight > viewportWidth) {
+                signupMainContainer.style.flexDirection = 'column';
+                phoneBubbleContainer.style.marginLeft = '25%';
+            } else if (viewportHeight < viewportWidth) {
+                signupMainContainer.style.flexDirection = 'row';
+                phoneBubbleContainer.style.marginLeft = '0%';
+            };
         };
     };
-};
-window.addEventListener('load', () => smartResizing());
-window.addEventListener('resize', () => smartResizing()); 
-
-
-
-        // Floating bubble animation loop setup.
-        const purpleBubble = document.getElementById('purple-circ');
-        const blueBubble = document.getElementById('blue-circ');
-        const pinkBubble = document.getElementById('pink-circ');
-        var dx = 2, dy = 2;
-        let x = 1;
-        let y = 1;
-        let z = -1;
-        let count = 1;
-
-        // Animate bubbles with a subtle floating effect.
-        function bubbleAnimationLoop() {
-            // Increment the counter until it reaches 180 then reset back to 1 and repeat.
-            if (count < 180) {
-                count += 1;
-            } else if (count == 180) {
-                count = 1;
-            };
-            
-            // Change the purple bubbles direction when counter is within a certain range.
-            if (count <= 90) {
-                x += dx;
-            } else if (count > 90) {
-                x -= dx;
-            };
-
-            // Change the blue bubbles direction when counter is within a certain range.
-            if (count < 40 || count >= 130) {
-                y += dy;
-            } else if (count >= 40 && count < 130) {
-                y -= dy;
-            };
-
-            // Change the pink bubbles direction when counter is within a certain range.
-            if (count < 20 || count >= 110) {
-                z -= dy;
-            } else if (count >= 20 && count < 110) {
-                z += dy;
-            };
-
-            // Update the bubbles location on the respective axis.
-            purpleBubble.style.transform = `translateX(${x}px)`;
-            blueBubble.style.transform = `translateY(${y}px)`;
-            pinkBubble.style.transform = `translateX(${z}px)`;
-
-            // Call the function repeatedly on a loop.
-            requestAnimationFrame(bubbleAnimationLoop);
-        };
-        bubbleAnimationLoop();
+    window.addEventListener('load', () => smartResizing());
+    window.addEventListener('resize', () => smartResizing());
 </script>
-
 
 {% endblock %}
 
