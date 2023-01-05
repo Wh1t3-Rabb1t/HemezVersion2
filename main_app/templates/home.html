@@ -86,44 +86,17 @@
     setTimeout(() => phoneElementSlideIn('phone-template', -25, 'top', -125, 25, -2, '<='), 200);
     setTimeout(() => phoneElementSlideIn('phone-screen', 33, 'bottom', -67, 4, -2, '<='), 959);
     setTimeout(() => phoneElementSlideIn('phone-template-effects', -50, 'left', -150, 2, -2, '<='), 959);
-    // setTimeout(() => phoneElementSlideIn('phone-template-effects', -50, 'left', -150, 2, -2, '<='), 1218);
-
     setTimeout(() => phoneElementSlideIn('phone-notifications-1', -488, 'top', -88, 0, 8, '>='), 1359);
     setTimeout(() => phoneElementSlideIn('phone-notifications-2', -456, 'top', -56, 0, 8, '>='), 1559);
     setTimeout(() => phoneElementSlideIn('phone-notifications-3', -427, 'top', -27, 0, 8, '>='), 1759);
     setTimeout(() => phoneElementSlideIn('phone-notifications-4', -395, 'top', 5, 0, 8, '>='), 1959);
     setTimeout(() => phoneElementSlideIn('phone-notifications-5', -364, 'top', 36, 0, 8, '>='), 2159);
     setTimeout(() => phoneElementSlideIn('phone-notifications-6', -334, 'top', 66, 0, 8, '>='), 2359);
-
-
-
-    // setTimeout(() => phoneElementSlideIn('phone-notifications-1', -188, 'top', -88, 0, 2, '>='), 1159);
-    // setTimeout(() => phoneElementSlideIn('phone-notifications-2', -156, 'top', -56, 0, 2, '>='), 1359);
-    // setTimeout(() => phoneElementSlideIn('phone-notifications-3', -127, 'top', -27, 0, 2, '>='), 1559);
-    // setTimeout(() => phoneElementSlideIn('phone-notifications-4', -95, 'top', 5, 0, 2, '>='), 1759);
-    // setTimeout(() => phoneElementSlideIn('phone-notifications-5', -64, 'top', 36, 0, 2, '>='), 1959);
-    // setTimeout(() => phoneElementSlideIn('phone-notifications-6', -34, 'top', 66, 0, 2, '>='), 2159);
-
-    // setTimeout(() => phoneElementSlideIn('phone-notifications-1', -288, 'top', -88, 0, 4, '>='), 1159);
-    // setTimeout(() => phoneElementSlideIn('phone-notifications-2', -256, 'top', -56, 0, 4, '>='), 1359);
-    // setTimeout(() => phoneElementSlideIn('phone-notifications-3', -227, 'top', -27, 0, 4, '>='), 1559);
-    // setTimeout(() => phoneElementSlideIn('phone-notifications-4', -195, 'top', 5, 0, 4, '>='), 1759);
-    // setTimeout(() => phoneElementSlideIn('phone-notifications-5', -164, 'top', 36, 0, 4, '>='), 1959);
-    // setTimeout(() => phoneElementSlideIn('phone-notifications-6', -134, 'top', 66, 0, 4, '>='), 2159);
-
     
     // Animation duration is 1436 milliseconds.
     // 1436 * 0.25 = 359
-
-
-
-    // if (pos <= breakPoint) {
-    //     pos += (velocity / 4);
-    //     opacity += 0.02;
-    // } else {
-    //     pos += velocity;
-    //     opacity += 0.005;
-    // };
+    
+    // setTimeout(() => phoneElementSlideIn('phone-template-effects', -50, 'left', -150, 2, -2, '<='), 1218);
 //-----------------------------------------------------------------------------------------------//
 //-- Notifications skew in relation to mouse coordinates. ---------------------------------------//
 //-----------------------------------------------------------------------------------------------//
@@ -169,48 +142,25 @@
     const updateSkew = () => {
         timer = null;
         const skewX = 0;
+        const skewY = -15;
 
-        const center1 = getElementCenter(phoneNotifications1);
-        const center2 = getElementCenter(phoneNotifications2);
-        const center3 = getElementCenter(phoneNotifications3);
-        const center4 = getElementCenter(phoneNotifications4);
-        const center5 = getElementCenter(phoneNotifications5);
-        const center6 = getElementCenter(phoneNotifications6);
+        const elements = [
+            phoneNotifications1,
+            phoneNotifications2,
+            phoneNotifications3,
+            phoneNotifications4,
+            phoneNotifications5,
+            phoneNotifications6
+        ];
 
-        const angle1 = getAngle(center1.x, center1.y, mPos.x, mPos.y);
-        const angle2 = getAngle(center2.x, center2.y, mPos.x, mPos.y);
-        const angle3 = getAngle(center3.x, center3.y, mPos.x, mPos.y);
-        const angle4 = getAngle(center4.x, center4.y, mPos.x, mPos.y);
-        const angle5 = getAngle(center5.x, center5.y, mPos.x, mPos.y);
-        const angle6 = getAngle(center6.x, center6.y, mPos.x, mPos.y);
+        const centers = elements.map(getElementCenter);
+        const angles = centers.map((center) => getAngle(center.x, center.y, mPos.x, mPos.y));
+        const skews = angles.map((angle) => skewY + Math.min(maxSkew, Math.abs(angle)) * Math.sign(angle));
 
-        let skewY1 = Math.min(maxSkew, Math.abs(angle1)) * Math.sign(angle1);
-        let skewY2 = Math.min(maxSkew, Math.abs(angle2)) * Math.sign(angle2);
-        let skewY3 = Math.min(maxSkew, Math.abs(angle3)) * Math.sign(angle3);
-        let skewY4 = Math.min(maxSkew, Math.abs(angle4)) * Math.sign(angle4);
-        let skewY5 = Math.min(maxSkew, Math.abs(angle5)) * Math.sign(angle5);
-        let skewY6 = Math.min(maxSkew, Math.abs(angle6)) * Math.sign(angle6);
-
-        skewY1 += -15;
-        skewY2 += -15;
-        skewY3 += -15;
-        skewY4 += -15;
-        skewY5 += -15;
-        skewY6 += -15;
-
-        phoneNotifications1.style.transitionTimingFunction = easing;
-        phoneNotifications2.style.transitionTimingFunction = easing;
-        phoneNotifications3.style.transitionTimingFunction = easing;
-        phoneNotifications4.style.transitionTimingFunction = easing;
-        phoneNotifications5.style.transitionTimingFunction = easing;
-        phoneNotifications6.style.transitionTimingFunction = easing;
-        
-        phoneNotifications1.style.transform = `perspective(${perspective}px) skewX(${skewX}deg) skewY(${skewY1}deg)`;
-        phoneNotifications2.style.transform = `perspective(${perspective}px) skewX(${skewX}deg) skewY(${skewY2}deg)`;
-        phoneNotifications3.style.transform = `perspective(${perspective}px) skewX(${skewX}deg) skewY(${skewY3}deg)`;
-        phoneNotifications4.style.transform = `perspective(${perspective}px) skewX(${skewX}deg) skewY(${skewY4}deg)`;
-        phoneNotifications5.style.transform = `perspective(${perspective}px) skewX(${skewX}deg) skewY(${skewY5}deg)`;
-        phoneNotifications6.style.transform = `perspective(${perspective}px) skewX(${skewX}deg) skewY(${skewY6}deg)`;
+        elements.forEach((element, i) => {
+            element.style.transitionTimingFunction = easing;
+            element.style.transform = `perspective(${perspective}px) skewX(${skewX}deg) skewY(${skews[i]}deg)`;
+        });
     };
 
     // Call the update skew function at 60 fps while the cursor is being moved.
@@ -313,6 +263,86 @@
 
 
 <!-- 
+    // setTimeout(() => phoneElementSlideIn('phone-notifications-1', -288, 'top', -88, 0, 4, '>='), 1159);
+    // setTimeout(() => phoneElementSlideIn('phone-notifications-2', -256, 'top', -56, 0, 4, '>='), 1359);
+    // setTimeout(() => phoneElementSlideIn('phone-notifications-3', -227, 'top', -27, 0, 4, '>='), 1559);
+    // setTimeout(() => phoneElementSlideIn('phone-notifications-4', -195, 'top', 5, 0, 4, '>='), 1759);
+    // setTimeout(() => phoneElementSlideIn('phone-notifications-5', -164, 'top', 36, 0, 4, '>='), 1959);
+    // setTimeout(() => phoneElementSlideIn('phone-notifications-6', -134, 'top', 66, 0, 4, '>='), 2159);
+
+    // const updateSkew = () => {
+    //     timer = null;
+    //     const skewX = 0;
+
+    //     const elements = [
+    //         phoneNotifications1,
+    //         phoneNotifications2,
+    //         phoneNotifications3,
+    //         phoneNotifications4,
+    //         phoneNotifications5,
+    //         phoneNotifications6
+    //     ];
+
+    //     const centers = elements.map(getElementCenter);
+    //     const angles = centers.map((center) => getAngle(center.x, center.y, mPos.x, mPos.y));
+    //     const skews = angles.map((angle) => Math.min(maxSkew, Math.abs(angle)) * Math.sign(angle));
+
+    //     elements.forEach((element, i) => {
+    //         element.style.transitionTimingFunction = easing;
+    //         element.style.transform = `perspective(${perspective}px) skewX(${skewX}deg) skewY(${skews[i]}deg)`;
+    //     });
+    // };
+
+
+    // let mPos;
+    // let timer;
+    // const updateSkew = () => {
+    //     timer = null;
+    //     const skewX = 0;
+
+    //     const center1 = getElementCenter(phoneNotifications1);
+    //     const center2 = getElementCenter(phoneNotifications2);
+    //     const center3 = getElementCenter(phoneNotifications3);
+    //     const center4 = getElementCenter(phoneNotifications4);
+    //     const center5 = getElementCenter(phoneNotifications5);
+    //     const center6 = getElementCenter(phoneNotifications6);
+
+    //     const angle1 = getAngle(center1.x, center1.y, mPos.x, mPos.y);
+    //     const angle2 = getAngle(center2.x, center2.y, mPos.x, mPos.y);
+    //     const angle3 = getAngle(center3.x, center3.y, mPos.x, mPos.y);
+    //     const angle4 = getAngle(center4.x, center4.y, mPos.x, mPos.y);
+    //     const angle5 = getAngle(center5.x, center5.y, mPos.x, mPos.y);
+    //     const angle6 = getAngle(center6.x, center6.y, mPos.x, mPos.y);
+
+    //     let skewY1 = Math.min(maxSkew, Math.abs(angle1)) * Math.sign(angle1);
+    //     let skewY2 = Math.min(maxSkew, Math.abs(angle2)) * Math.sign(angle2);
+    //     let skewY3 = Math.min(maxSkew, Math.abs(angle3)) * Math.sign(angle3);
+    //     let skewY4 = Math.min(maxSkew, Math.abs(angle4)) * Math.sign(angle4);
+    //     let skewY5 = Math.min(maxSkew, Math.abs(angle5)) * Math.sign(angle5);
+    //     let skewY6 = Math.min(maxSkew, Math.abs(angle6)) * Math.sign(angle6);
+
+    //     skewY1 += -15;
+    //     skewY2 += -15;
+    //     skewY3 += -15;
+    //     skewY4 += -15;
+    //     skewY5 += -15;
+    //     skewY6 += -15;
+
+    //     phoneNotifications1.style.transitionTimingFunction = easing;
+    //     phoneNotifications2.style.transitionTimingFunction = easing;
+    //     phoneNotifications3.style.transitionTimingFunction = easing;
+    //     phoneNotifications4.style.transitionTimingFunction = easing;
+    //     phoneNotifications5.style.transitionTimingFunction = easing;
+    //     phoneNotifications6.style.transitionTimingFunction = easing;
+
+    //     phoneNotifications1.style.transform = `perspective(${perspective}px) skewX(${skewX}deg) skewY(${skewY1}deg)`;
+    //     phoneNotifications2.style.transform = `perspective(${perspective}px) skewX(${skewX}deg) skewY(${skewY2}deg)`;
+    //     phoneNotifications3.style.transform = `perspective(${perspective}px) skewX(${skewX}deg) skewY(${skewY3}deg)`;
+    //     phoneNotifications4.style.transform = `perspective(${perspective}px) skewX(${skewX}deg) skewY(${skewY4}deg)`;
+    //     phoneNotifications5.style.transform = `perspective(${perspective}px) skewX(${skewX}deg) skewY(${skewY5}deg)`;
+    //     phoneNotifications6.style.transform = `perspective(${perspective}px) skewX(${skewX}deg) skewY(${skewY6}deg)`;
+    // };
+
 <div>
 <div class='left-main'>
     <h1 id='main-title'>Hermes Messenger</h1>
