@@ -21,11 +21,9 @@
             <img id="phone-screen" src="https://i.imgur.com/caZOa0E.png">
             <img id="phone-template-effects" src="https://i.imgur.com/HaDV0c8.png">
 
-
             <img id="phone-notifications-1" src="https://i.imgur.com/BrPXBeY.png">
             <img id="phone-notifications-2" src="https://i.imgur.com/VDhy9gb.png">
             <img id="phone-notifications-3" src="https://i.imgur.com/vY9UBkI.png">
-
             <img id="phone-notifications-4" src="https://i.imgur.com/BrPXBeY.png">
             <img id="phone-notifications-5" src="https://i.imgur.com/VDhy9gb.png">
             <img id="phone-notifications-6" src="https://i.imgur.com/vY9UBkI.png">
@@ -41,7 +39,7 @@
 //-- Animated phone layering on page load. ------------------------------------------------------//
 //-----------------------------------------------------------------------------------------------//
     // The almighty majestic hydra function, behold its divine beauty.
-    function phoneElementSlideIn(elementId, initialPos, axis, endPos, decimal, velocity) {
+    function phoneElementSlideIn(elementId, initialPos, axis, endPos, decimal, velocity, operator) {
         const element = document.getElementById(elementId);
         const breakPoint = (endPos - initialPos) * 0.75 + initialPos;
         const skewBreakPoint = (endPos - initialPos) * 0.525 + initialPos;
@@ -49,9 +47,14 @@
         let skewAngle = 0;
         let opacity = 0;
 
+        // Handler for dynamically applying an operator.
+        function applyOperator(x, mathOperator, y) {
+            return new Function(`return ${x} ${mathOperator} ${y}`)();
+        };
+
         function slideIn() {
             // Decrease velocity and increase opacity when nearing destination.
-            if (pos <= breakPoint) {
+            if (applyOperator(pos, operator, breakPoint)) {
                 pos += (velocity / 4);
                 opacity += 0.02;
             } else {
@@ -60,7 +63,7 @@
             };
 
             // Begin skew transition when nearing destination.
-            if (pos <= skewBreakPoint) {
+            if (applyOperator(pos, operator, skewBreakPoint)) {
                 skewAngle -= 0.25;
                 element.style.transform = `skewY(${skewAngle}deg)`;
             };
@@ -79,82 +82,150 @@
         };
         slideIn();
     };
-    // setTimeout(() => phoneElementSlideIn('phone-template', -25, 'top', -125, 25, -2), 200);
-    // setTimeout(() => phoneElementSlideIn('phone-screen', 33, 'bottom', -67, 4, -2), 959);
-    // setTimeout(() => phoneElementSlideIn('phone-template-effects', -50, 'left', -150, 2, -2), 959);
-    // setTimeout(() => phoneElementSlideIn('phone-template-effects', -50, 'left', -150, 2, -2), 1218);
+
+    setTimeout(() => phoneElementSlideIn('phone-template', -25, 'top', -125, 25, -2, '<='), 200);
+    setTimeout(() => phoneElementSlideIn('phone-screen', 33, 'bottom', -67, 4, -2, '<='), 959);
+    setTimeout(() => phoneElementSlideIn('phone-template-effects', -50, 'left', -150, 2, -2, '<='), 959);
+    // setTimeout(() => phoneElementSlideIn('phone-template-effects', -50, 'left', -150, 2, -2, '<='), 1218);
+
+    setTimeout(() => phoneElementSlideIn('phone-notifications-1', -488, 'top', -88, 0, 8, '>='), 1359);
+    setTimeout(() => phoneElementSlideIn('phone-notifications-2', -456, 'top', -56, 0, 8, '>='), 1559);
+    setTimeout(() => phoneElementSlideIn('phone-notifications-3', -427, 'top', -27, 0, 8, '>='), 1759);
+    setTimeout(() => phoneElementSlideIn('phone-notifications-4', -395, 'top', 5, 0, 8, '>='), 1959);
+    setTimeout(() => phoneElementSlideIn('phone-notifications-5', -364, 'top', 36, 0, 8, '>='), 2159);
+    setTimeout(() => phoneElementSlideIn('phone-notifications-6', -334, 'top', 66, 0, 8, '>='), 2359);
+
+
+
+    // setTimeout(() => phoneElementSlideIn('phone-notifications-1', -188, 'top', -88, 0, 2, '>='), 1159);
+    // setTimeout(() => phoneElementSlideIn('phone-notifications-2', -156, 'top', -56, 0, 2, '>='), 1359);
+    // setTimeout(() => phoneElementSlideIn('phone-notifications-3', -127, 'top', -27, 0, 2, '>='), 1559);
+    // setTimeout(() => phoneElementSlideIn('phone-notifications-4', -95, 'top', 5, 0, 2, '>='), 1759);
+    // setTimeout(() => phoneElementSlideIn('phone-notifications-5', -64, 'top', 36, 0, 2, '>='), 1959);
+    // setTimeout(() => phoneElementSlideIn('phone-notifications-6', -34, 'top', 66, 0, 2, '>='), 2159);
+
+    // setTimeout(() => phoneElementSlideIn('phone-notifications-1', -288, 'top', -88, 0, 4, '>='), 1159);
+    // setTimeout(() => phoneElementSlideIn('phone-notifications-2', -256, 'top', -56, 0, 4, '>='), 1359);
+    // setTimeout(() => phoneElementSlideIn('phone-notifications-3', -227, 'top', -27, 0, 4, '>='), 1559);
+    // setTimeout(() => phoneElementSlideIn('phone-notifications-4', -195, 'top', 5, 0, 4, '>='), 1759);
+    // setTimeout(() => phoneElementSlideIn('phone-notifications-5', -164, 'top', 36, 0, 4, '>='), 1959);
+    // setTimeout(() => phoneElementSlideIn('phone-notifications-6', -134, 'top', 66, 0, 4, '>='), 2159);
+
     
     // Animation duration is 1436 milliseconds.
     // 1436 * 0.25 = 359
 
+
+
+    // if (pos <= breakPoint) {
+    //     pos += (velocity / 4);
+    //     opacity += 0.02;
+    // } else {
+    //     pos += velocity;
+    //     opacity += 0.005;
+    // };
 //-----------------------------------------------------------------------------------------------//
 //-- Notifications skew in relation to mouse coordinates. ---------------------------------------//
 //-----------------------------------------------------------------------------------------------//
-    // const phoneNotifications1 = document.getElementById('phone-notifications-1');
-    // const phoneNotifications2 = document.getElementById('phone-notifications-2');
-    // const maxSkew = 0.5; // Maximum allowed skew in degrees.
-    // const perspective = 1000; // Intensity of the skew.
-    // const easing = 'cubic-bezier(0.68, -0.55, 0.265, 1.55)';
-    // const updateInterval = 1000 / 60; // 60 updates per second.
+    const phoneNotifications1 = document.getElementById('phone-notifications-1');
+    const phoneNotifications2 = document.getElementById('phone-notifications-2');
+    const phoneNotifications3 = document.getElementById('phone-notifications-3');
+    const phoneNotifications4 = document.getElementById('phone-notifications-4');
+    const phoneNotifications5 = document.getElementById('phone-notifications-5');
+    const phoneNotifications6 = document.getElementById('phone-notifications-6');
+    const maxSkew = 1; // Maximum allowed skew in degrees.
+    const perspective = 1000; // Intensity of the skew.
+    const easing = 'cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+    const updateInterval = 1000 / 60; // 60 updates per second.
 
-    // // Get the cursors current x and y coordinates.
-    // const getMousePos = (evt) => {
-    //     const pos = evt.currentTarget.getBoundingClientRect();
-    //     return {
-    //         x: evt.clientX - pos.left,
-    //         y: evt.clientY - pos.top
-    //     };
-    // };
+    // Get the cursors current x and y coordinates.
+    const getMousePos = (evt) => {
+        const pos = evt.currentTarget.getBoundingClientRect();
+        return {
+            x: evt.clientX - pos.left,
+            y: evt.clientY - pos.top
+        };
+    };
 
-    // // Get the central coordinates of a selected item.
-    // const getElementCenter = (element) => {
-    //     const rect = element.getBoundingClientRect();
-    //     return {
-    //         x: rect.left + rect.width / 2,
-    //         y: rect.top + rect.height / 2
-    //     };
-    // };
+    // Get the central coordinates of a selected item.
+    const getElementCenter = (element) => {
+        const rect = element.getBoundingClientRect();
+        return {
+            x: rect.left + rect.width / 2,
+            y: rect.top + rect.height / 2
+        };
+    };
 
-    // // Calculate the angle between two points in a 2d coordinate system.
-    // const getAngle = (x1, y1, x2, y2) => {
-    //     const dx = x2 - x1;
-    //     const dy = y2 - y1;
-    //     return Math.atan2(dy, dx);
-    // };
+    // Calculate the angle between two points in a 2d coordinate system.
+    const getAngle = (x1, y1, x2, y2) => {
+        const dx = x2 - x1;
+        const dy = y2 - y1;
+        return Math.atan2(dy, dx);
+    };
 
-    // // Update the skew % of a selected element in relation to the cursor coordinates.
-    // let mPos;
-    // let timer;
-    // const updateSkew = () => {
-    //     timer = null;
-    //     const center1 = getElementCenter(phoneNotifications1);
-    //     const angle1 = getAngle(center1.x, center1.y, mPos.x, mPos.y);
-    //     const center2 = getElementCenter(phoneNotifications2);
-    //     const angle2 = getAngle(center2.x, center2.y, mPos.x, mPos.y);
-    //     const skewX = 0;
-    //     let skewY1 = Math.min(maxSkew, Math.abs(angle1)) * Math.sign(angle1);
-    //     let skewY2 = Math.min(maxSkew, Math.abs(angle2)) * Math.sign(angle2);
-    //     skewY1 += -15;
-    //     skewY2 += -15;
-    //     phoneNotifications1.style.transitionTimingFunction = easing;
-    //     phoneNotifications1.style.transform = `perspective(${perspective}px) skewX(${skewX}deg) skewY(${skewY1}deg)`;
-    //     phoneNotifications2.style.transitionTimingFunction = easing;
-    //     phoneNotifications2.style.transform = `perspective(${perspective}px) skewX(${skewX}deg) skewY(${skewY2}deg)`;
-    // };
+    // Update the skew % of a selected element in relation to the cursor coordinates.
+    let mPos;
+    let timer;
+    const updateSkew = () => {
+        timer = null;
+        const skewX = 0;
 
-    // // Call the update skew function at 60 fps while the cursor is being moved.
-    // const scheduleUpdate = (pos) => {
-    //     if (!timer) {
-    //         mPos = pos;
-    //         timer = setTimeout(updateSkew, updateInterval);
-    //     };
-    // };
+        const center1 = getElementCenter(phoneNotifications1);
+        const center2 = getElementCenter(phoneNotifications2);
+        const center3 = getElementCenter(phoneNotifications3);
+        const center4 = getElementCenter(phoneNotifications4);
+        const center5 = getElementCenter(phoneNotifications5);
+        const center6 = getElementCenter(phoneNotifications6);
 
-    // // Listen for a mouse move event to begin animating the skew effect.
-    // document.querySelector('main').addEventListener('mousemove', (evt) => {
-    //     const mPos = getMousePos(evt);
-    //     scheduleUpdate(mPos);
-    // });
+        const angle1 = getAngle(center1.x, center1.y, mPos.x, mPos.y);
+        const angle2 = getAngle(center2.x, center2.y, mPos.x, mPos.y);
+        const angle3 = getAngle(center3.x, center3.y, mPos.x, mPos.y);
+        const angle4 = getAngle(center4.x, center4.y, mPos.x, mPos.y);
+        const angle5 = getAngle(center5.x, center5.y, mPos.x, mPos.y);
+        const angle6 = getAngle(center6.x, center6.y, mPos.x, mPos.y);
+
+        let skewY1 = Math.min(maxSkew, Math.abs(angle1)) * Math.sign(angle1);
+        let skewY2 = Math.min(maxSkew, Math.abs(angle2)) * Math.sign(angle2);
+        let skewY3 = Math.min(maxSkew, Math.abs(angle3)) * Math.sign(angle3);
+        let skewY4 = Math.min(maxSkew, Math.abs(angle4)) * Math.sign(angle4);
+        let skewY5 = Math.min(maxSkew, Math.abs(angle5)) * Math.sign(angle5);
+        let skewY6 = Math.min(maxSkew, Math.abs(angle6)) * Math.sign(angle6);
+
+        skewY1 += -15;
+        skewY2 += -15;
+        skewY3 += -15;
+        skewY4 += -15;
+        skewY5 += -15;
+        skewY6 += -15;
+
+        phoneNotifications1.style.transitionTimingFunction = easing;
+        phoneNotifications2.style.transitionTimingFunction = easing;
+        phoneNotifications3.style.transitionTimingFunction = easing;
+        phoneNotifications4.style.transitionTimingFunction = easing;
+        phoneNotifications5.style.transitionTimingFunction = easing;
+        phoneNotifications6.style.transitionTimingFunction = easing;
+        
+        phoneNotifications1.style.transform = `perspective(${perspective}px) skewX(${skewX}deg) skewY(${skewY1}deg)`;
+        phoneNotifications2.style.transform = `perspective(${perspective}px) skewX(${skewX}deg) skewY(${skewY2}deg)`;
+        phoneNotifications3.style.transform = `perspective(${perspective}px) skewX(${skewX}deg) skewY(${skewY3}deg)`;
+        phoneNotifications4.style.transform = `perspective(${perspective}px) skewX(${skewX}deg) skewY(${skewY4}deg)`;
+        phoneNotifications5.style.transform = `perspective(${perspective}px) skewX(${skewX}deg) skewY(${skewY5}deg)`;
+        phoneNotifications6.style.transform = `perspective(${perspective}px) skewX(${skewX}deg) skewY(${skewY6}deg)`;
+    };
+
+    // Call the update skew function at 60 fps while the cursor is being moved.
+    const scheduleUpdate = (pos) => {
+        if (!timer) {
+            mPos = pos;
+            timer = setTimeout(updateSkew, updateInterval);
+        };
+    };
+
+    // Listen for a mouse move event to begin animating the skew effect.
+    document.querySelector('main').addEventListener('mousemove', (evt) => {
+        const mPos = getMousePos(evt);
+        scheduleUpdate(mPos);
+    });
 
 //-----------------------------------------------------------------------------------------------//
 //-- User generated zoom event detection. -------------------------------------------------------//
