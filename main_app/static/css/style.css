@@ -265,7 +265,6 @@ main {
   overflow-x: hidden;
   overflow-y: hidden;
 
-
   /* background-color: lightgray; */
 }
 
@@ -336,7 +335,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: left;
-  margin: 0% 0% 0% 6%;
+  margin: 0% 0% 5% 6%;
   flex: 0 0 15%;
   flex-grow: 1;
 
@@ -401,7 +400,7 @@ main {
 .profile-pic {
   border: 0.02rem solid #c79ce0;
   border-radius: 0.1rem;
-  width: 2.02rem;
+  width: 1.92rem;
   height: 2.06rem;
   z-index: 1;
 }
@@ -969,7 +968,7 @@ a {
   left: -42%;
   /* top: -56%; */
   /* transform: skewY(-15deg); */
-  z-index: 4;
+  z-index: 5;
   opacity: 0;
 }
 
@@ -980,7 +979,7 @@ a {
   left: -76%;
   /* top: -27%; */
   /* transform: skewY(-15deg); */
-  z-index: 4;
+  z-index: 6;
   opacity: 0;
 }
 
@@ -991,7 +990,7 @@ a {
   left: -115%;
   /* top: 5%; */
   /* transform: skewY(-15deg); */
-  z-index: 4;
+  z-index: 7;
   opacity: 0;
 }
 
@@ -1002,7 +1001,7 @@ a {
   left: -119%;
   /* top: 36%; */
   /* transform: skewY(-15deg); */
-  z-index: 4;
+  z-index: 8;
   opacity: 0;
 }
 
@@ -1013,7 +1012,7 @@ a {
   left: -153%;
   /* top: 66%; */
   /* transform: skewY(-15deg); */
-  z-index: 4;
+  z-index: 9;
   opacity: 0;
 }
 

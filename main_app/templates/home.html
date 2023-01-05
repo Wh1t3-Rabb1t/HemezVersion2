@@ -83,15 +83,16 @@
         slideIn();
     };
 
+    // Stagger the initiation of the phone element slide in animation.
     setTimeout(() => phoneElementSlideIn('phone-template', -25, 'top', -125, 25, -2, '<='), 200);
     setTimeout(() => phoneElementSlideIn('phone-screen', 33, 'bottom', -67, 4, -2, '<='), 959);
     setTimeout(() => phoneElementSlideIn('phone-template-effects', -50, 'left', -150, 2, -2, '<='), 959);
     setTimeout(() => phoneElementSlideIn('phone-notifications-1', -488, 'top', -88, 0, 8, '>='), 1359);
-    setTimeout(() => phoneElementSlideIn('phone-notifications-2', -456, 'top', -56, 0, 8, '>='), 1559);
-    setTimeout(() => phoneElementSlideIn('phone-notifications-3', -427, 'top', -27, 0, 8, '>='), 1759);
-    setTimeout(() => phoneElementSlideIn('phone-notifications-4', -395, 'top', 5, 0, 8, '>='), 1959);
-    setTimeout(() => phoneElementSlideIn('phone-notifications-5', -364, 'top', 36, 0, 8, '>='), 2159);
-    setTimeout(() => phoneElementSlideIn('phone-notifications-6', -334, 'top', 66, 0, 8, '>='), 2359);
+    setTimeout(() => phoneElementSlideIn('phone-notifications-2', -456, 'top', -56, 0, 8, '>='), 1759);
+    setTimeout(() => phoneElementSlideIn('phone-notifications-3', -427, 'top', -27, 0, 8, '>='), 2159);
+    setTimeout(() => phoneElementSlideIn('phone-notifications-4', -395, 'top', 5, 0, 8, '>='), 2559);
+    setTimeout(() => phoneElementSlideIn('phone-notifications-5', -364, 'top', 36, 0, 8, '>='), 2959);
+    setTimeout(() => phoneElementSlideIn('phone-notifications-6', -334, 'top', 66, 0, 8, '>='), 3159);
     
     // Animation duration is 1436 milliseconds.
     // 1436 * 0.25 = 359
