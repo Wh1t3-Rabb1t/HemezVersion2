@@ -24,7 +24,7 @@
         <div class="accordion-body">
           {% for chatroom in chatrooms %}
           <div class='allroom-pic-name-container'>
-            <a  class='all-room-a-tag' href="/chat/{{chatroom.id}}">
+            <a  class='all-room-a-tag'  onclick={chatRoomChange({{chatroom.id}})} >
               <img id='chat-left-room-pic' src="{{chatroom.chat_pic}}" />
              {{chatroom.room_name}}
             </a>
@@ -393,10 +393,15 @@ let topSideChat = document.querySelector('.top-chat-bar');
 let chatBar = document.querySelector('.chat-bar');
 
 
+//SWITCH TO CHAT FUNCTION 
 function switchChat(){
-topSideChat.style.display ='flex'
-chatBar.style.display ='initial';
-leftSideChat.style.display ='none'
+
+    console.log('ran it')
+    topSideChat.style.display ='flex'
+    chatBar.style.display ='initial';
+    leftSideChat.style.display ='none'
+
+
 }
 
 
@@ -418,9 +423,57 @@ var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
 } {% endcomment %}
 
 
+//-----------------------------------------------------------------------------------------------//
+//-- Dynamic page scaling. ----------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
+function smartResizing() {
+  const signupMainContainer = document.getElementById('signup-main-container');
+  const phoneBubbleContainer = document.getElementById('phone-bubble-container');
+  const main = document.querySelector('main');
+  const root = document.querySelector(':root');
+  const baseWidth = 1432; // Container width.
+  const baseHeight = 712; // Container height excluding the menu bar.
+  let widthDifference, heightDifference, averageDifference = 0;
+  let viewportWidth = window.innerWidth;
+  let viewportHeight = window.innerHeight;
+  let height = main.offsetHeight;
+  let rootFontSize = 100;
+
+  // Handler for calculating the % difference in pixel ratios between different resolutions.
+  function calculatePercentageDifference(oldValue, newValue) {
+      return (newValue - oldValue) / oldValue * 100;
+  };
+
+  // If a zoom event is initiated manually, cancel out of smartResizing to enable zoom.
+  if (manualZoomEvent == true) {
+      manualZoomEvent = false;
+  } else {
+      // Calculate the % difference between the base and current viewport dimensions.
+      widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
+      heightDifference = calculatePercentageDifference(baseHeight, height);
+      averageDifference = Math.round((widthDifference + heightDifference) / 2);
+
+      // Update the :root font size to scale all elements using rem.
+      rootFontSize += averageDifference;
+      root.style.fontSize = rootFontSize + 'px';
+
+      // Rearrange page layout if the screens height is > the width.
+      if (viewportHeight > viewportWidth) {
+          signupMainContainer.style.flexDirection = 'column';
+          phoneBubbleContainer.style.marginLeft = '25%';
+      } else if (viewportHeight < viewportWidth) {
+          signupMainContainer.style.flexDirection = 'row';
+          phoneBubbleContainer.style.marginLeft = '0%';
+      };
+  };
+};
+window.addEventListener('load', () => smartResizing());
+window.addEventListener('resize', () => smartResizing());
 
 
-
+function chatRoomChange(roomId){
+  history.replaceState({},'',`/chat/${roomId}/`)
+}
 
   </script>
 </div>

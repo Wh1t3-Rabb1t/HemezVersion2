@@ -479,6 +479,7 @@ main {
   border-radius: 50%;
 }
 
+
 /* Bottom left */
 #blue-circle {
   position: absolute;
@@ -1285,7 +1286,7 @@ min-height: calc( 100vh - 70px);
   height: calc(100vh - 0.8rem);
   display: grid;
   grid-template-columns: 2fr 8fr;
-  grid-template-rows: 2.5fr 16.5fr;
+  grid-template-rows: 2.2fr 17.8fr;
   grid-template-areas:
     "left-chat-bar top-chat-bar"
     "left-chat-bar chat-bar"
@@ -1297,7 +1298,7 @@ min-height: calc( 100vh - 70px);
   background: #343434;
   color: white;
   display: grid;
-  grid-template-rows: 2.5fr 16.5fr;
+  grid-template-rows: 2.2fr 17.8fr;
   width: 100%;
   overflow: hidden;
   overflow-y: scroll;
@@ -1319,8 +1320,9 @@ min-height: calc( 100vh - 70px);
   background: #343434;
   border: 1px solid #c79ce0;
   box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.25);
-  line-height: 309px;
+  line-height: 1rem;
 }
+
 #top-rooms-name {
   display: flex;
   align-items: center;
@@ -1369,13 +1371,12 @@ min-height: calc( 100vh - 70px);
   position: absolute;
   bottom: 0px;
   width: 100%;
-  padding: 10px;
+  padding: .1rem;
   text-align: center;
   display: flex;
   background: #ffffff;
   border-top: 1px solid #cca5e3;
-
-  height: 1.2rem;
+  height: 1rem;
 }
 /*-------------------------------------------------------------------------*/
 /*--------------------------- Chat page ---------------------------------*/
@@ -1487,7 +1488,7 @@ min-height: calc( 100vh - 70px);
 #bottom-input-buttons {
   display: flex;
   width: 100%;
-  height: 0.9rem;
+  height: 0.6rem;
   gap: 0.2rem;
   align-items: center;
   text-align: center;
@@ -1645,8 +1646,7 @@ min-height: calc( 100vh - 70px);
 }
 
 .logo-left {
-  width: 0.8rem;
-
+  width: 0.9rem;
   animation: color-rotate 0.7s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
@@ -1668,8 +1668,8 @@ min-height: calc( 100vh - 70px);
 }
 
 #chat-left-room-pic-title {
-  width: 70px;
-  height: 70px;
+  width: 0.7rem;
+  height: 0.7rem;
   border-radius: 50%;
 }
 
@@ -1906,6 +1906,11 @@ min-height: calc( 100vh - 70px);
   /* bootstrap styling theme */
   --bs-navbar-padding-y: 0rem;
 }
+.mobile-navbar{
+  display: none;
+}
+
+
 .navbar-nav{
   width: 100%;
   justify-content: space-between;
@@ -1928,11 +1933,18 @@ min-height: calc( 100vh - 70px);
     height: calc(100vh - .8rem);
   }
   .navbar {
+    display: none;
+  }
+  .mobile-navbar{
     background: #fffdfa;
-    box-shadow: 10px 10px 10px rgb(0 0 0 / 25%);
-    height: .8rem;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+    height: 0.8rem;
+    display: flex;
+    justify-content: flex-end;
+    /* bootstrap styling theme */
     --bs-navbar-padding-y: 0rem;
   }
+
   .newchat {
     width: 100vw;
     height:calc(100vh - 0.8rem);
