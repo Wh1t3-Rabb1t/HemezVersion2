@@ -47,7 +47,7 @@
         let skewAngle = 0;
         let opacity = 0;
 
-        // Handler for dynamically applying an operator.
+        // Handler for dynamically applying a mathemetical operator.
         function applyOperator(x, mathOperator, y) {
             return new Function(`return ${x} ${mathOperator} ${y}`)();
         };
@@ -107,7 +107,7 @@
     const phoneNotifications4 = document.getElementById('phone-notifications-4');
     const phoneNotifications5 = document.getElementById('phone-notifications-5');
     const phoneNotifications6 = document.getElementById('phone-notifications-6');
-    const maxSkew = 1; // Maximum allowed skew in degrees.
+    const maxSkew = -1.5; // Maximum allowed skew in degrees.
     const perspective = 1000; // Intensity of the skew.
     const easing = 'cubic-bezier(0.68, -0.55, 0.265, 1.55)';
     const updateInterval = 1000 / 60; // 60 updates per second.
@@ -143,7 +143,7 @@
     const updateSkew = () => {
         timer = null;
         const skewX = 0;
-        const skewY = -15;
+        const skewY = -16.5;
 
         const elements = [
             phoneNotifications1,
