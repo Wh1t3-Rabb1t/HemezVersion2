@@ -956,9 +956,10 @@ a {
   height: 2.55rem;
   left: -38%;
   /* top: -88%; */
+  /* bottom: 61%; */
   /* transform: skewY(-15deg); */
-  z-index: 4;
   opacity: 0;
+  z-index: 4;
 }
 
 #phone-notifications-2 {
@@ -967,9 +968,10 @@ a {
   height: 2.55rem;
   left: -42%;
   /* top: -56%; */
+  /* bottom: 29%; */
   /* transform: skewY(-15deg); */
-  z-index: 5;
   opacity: 0;
+  z-index: 5;
 }
 
 #phone-notifications-3 {
@@ -978,9 +980,10 @@ a {
   height: 2.55rem;
   left: -76%;
   /* top: -27%; */
+  /* bottom: -1%; */
   /* transform: skewY(-15deg); */
-  z-index: 6;
   opacity: 0;
+  z-index: 6;
 }
 
 #phone-notifications-4 {
@@ -989,9 +992,10 @@ a {
   height: 2.55rem;
   left: -115%;
   /* top: 5%; */
+  /* bottom: -32%; */
   /* transform: skewY(-15deg); */
-  z-index: 7;
   opacity: 0;
+  z-index: 7;
 }
 
 #phone-notifications-5 {
@@ -1000,9 +1004,10 @@ a {
   height: 2.55rem;
   left: -119%;
   /* top: 36%; */
+  /* bottom: -64%; */
   /* transform: skewY(-15deg); */
-  z-index: 8;
   opacity: 0;
+  z-index: 8;
 }
 
 #phone-notifications-6 {
@@ -1011,9 +1016,10 @@ a {
   height: 2.55rem;
   left: -153%;
   /* top: 66%; */
+  /* bottom: -94%; */
   /* transform: skewY(-15deg); */
-  z-index: 9;
   opacity: 0;
+  z-index: 9;
 }
 
 /* #phone-notifications-a {
