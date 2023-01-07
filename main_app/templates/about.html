@@ -47,16 +47,17 @@
 
         </div>
     </div>
-    
+
     <div id="right-about-container">
+
         <div id="about-phone-bubble-box">
             <img id="cartoon-phone" src="https://i.imgur.com/PhLBWAj.png">
             <div id='pink-circle'></div>
             <div id='blue-circle'></div>
             <div id='purple-circle'></div>
         </div>
-    <div>
-
+    </div>
+</div>
     <script defer>
 
         //-- User generated zoom event detection. -----------------------------------------------//
@@ -92,7 +93,7 @@
         });
 
         //-- Dynamic page scaling. --------------------------------------------------------------//
-        function smartResizing() {
+    function smartResizing() {
             const cartoonPhone = document.getElementById('cartoon-phone');
             const aboutContainer = document.getElementById('about-container');
             const mobileBox = document.getElementById('mobile-box');
@@ -156,7 +157,7 @@
             };
         };
         window.addEventListener('load', () => smartResizing());
-        window.addEventListener('resize', () => smartResizing());
+        window.addEventListener('resize', () => smartResizing()); 
 
         // Generate random integers, either positive or negative.
         function getRandomInteger(min, max) {
@@ -212,7 +213,16 @@
         };
 
         // This prevents a bug causing the function to overload when the browser is active but tab is unfocused.
-        var timer;
+
+            //NEW FIX
+            // This prevents a bug causing the function to overload when the browser is active but tab is unfocused.
+            function working(){
+                setInterval(function() {risingLogo()},1500);
+            }
+               
+            working()
+            
+        {% comment %} var timer;
         window.onfocus = function() {
             timer = setInterval(function() {risingLogo()}, 2000);
         };
@@ -221,7 +231,7 @@
         // Stops the animation timer when the tab is unfocused.
         window.onblur = function() {
             clearInterval(timer);
-        };
+        }; {% endcomment %}
 
         //---------------------------------------------------------------------------------------------------------//
 

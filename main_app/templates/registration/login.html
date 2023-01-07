@@ -1,18 +1,43 @@
-{% extends 'base.html' %}
+{% extends 'home.html' %}
 
-{% block content %}
+{% block auth %}
 
-<div class="title-bar">
+
+
+<div class="left-signup-container">
+  <div class="signup-box">
+      <div class="third-party-signup-box">
+          <div id="signup-header">LOGIN</div>
+          <div>Login</div>
+          <div class="signup-icons">
+              <img id="facebook-logo" src="https://i.imgur.com/nbbV2eM.png">
+              <div>or</div>
+              <img id="google-logo" src="https://i.imgur.com/2St3bY6.png">
+          </div>
+          <div id="enclosed-signup-text"><span>or use your email</span></div>
+      </div>
+
+      <div class="email-signup-box">
+          {% comment %} <input type="text" name="user-name" placeholder="User Name">
+          <input type="text" name="password" placeholder="Password">
+          <input type="text" name="password-confirmation" placeholder="Re-enter Password">
+          <button id="signup-button">Login</button> {% endcomment %}
+          <form style='font-size:0.2rem' method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="login-btn" value="Login">
+            <input type="hidden" name="next" value="{{ next }}">
+          </form>
+      </div>
+  </div>
+</div>
+
+{% comment %} <div class="title-bar">
   <h1>Login Here</h1>
 </div>
 
 <nav class="login-nav">
-<form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" class="login-btn" value="Login">
-    <input type="hidden" name="next" value="{{ next }}">
-  </form>
-</nav>
+
+</nav> {% endcomment %}
 
 {% endblock %}
