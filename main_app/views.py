@@ -152,7 +152,7 @@ def signup(request):
             user = form.save()
             # This is how we log a user in via code
             login(request, user)
-            return redirect('/')
+            return redirect('/chat/1/')
         else:
             print(form.errors)
             error_message = 'Invalid sign up - try again'

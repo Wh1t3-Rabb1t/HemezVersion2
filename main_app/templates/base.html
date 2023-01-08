@@ -41,8 +41,9 @@
 
   <body class="lightMode">
 
+    <div class='header'>
     {% comment %} DESKTOP NAVBAR START {% endcomment %}
-    <nav id='nav-id' class="navbar navbar-expand-lg ">
+    <nav id='nav-id' class="navbar ">
       {% if user.is_authenticated %}
       <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,33 +77,33 @@
         </div>
       </div>
       {% else %}
-      <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'home' %}"><span class='logo-container'>      <img src="https://i.imgur.com/ChgLGGA.png" class="logo" /> <h1 class='logo-title'>HERMES</h1></span></a
-          ></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-           
-            <svg width="72" height="34" viewBox="0 0 72 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="70.2653" y="32.0877" width="68.2667" height="29.8667" rx="14.9333" transform="rotate(-179.741 70.2653 32.0877)" fill="white" stroke="black" stroke-width="2.13333"/>
-              <circle cx="53.2665" cy="17.0772" r="10.6667" transform="rotate(-179.741 53.2665 17.0772)" fill="black"/>
-              <path d="M25.1967 9.09L22.433 11.03L23.427 14.09L20.5541 12.28L17.6812 14.09L18.6752 11.03L15.9115 9.09L19.3962 9L20.5541 6L21.712 9L25.1967 9.09ZM29.02 16L27.2285 17.25L27.873 19.23L26.016 18.06L24.1589 19.23L24.8034 17.25L23.0119 16L25.2622 15.95L26.016 14L26.7697 15.95L29.02 16ZM26.5294 20.95C27.4361 20.87 28.4083 22.05 27.8293 22.8C27.4798 23.25 27.1083 23.67 26.6495 24.07C22.3784 28 15.4636 28 11.2034 24.07C6.9322 20.17 6.9322 13.83 11.2034 9.93C11.6403 9.53 12.0991 9.17 12.5907 8.85C13.41 8.32 14.699 9.21 14.6116 10.04C14.3167 12.9 15.3653 15.87 17.7686 18.06C18.9042 19.1052 20.2791 19.9066 21.7941 20.4064C23.3092 20.9062 24.9265 21.0918 26.5294 20.95ZM24.7379 22.97C21.531 22.8012 18.5015 21.5675 16.2174 19.5C13.8469 17.31 12.5798 14.5 12.405 11.68C9.33543 14.82 9.45559 19.64 12.7436 22.66C16.0426 25.67 21.3078 25.78 24.7379 22.97V22.97Z" fill="black"/>
-              </svg>
+      <div style='height:0.8rem'>
+
+          <ul class="navbar-ul">
+           <li>              <a href="{% url 'home' %}"><span class='logo-container'>      <img src="https://i.imgur.com/ChgLGGA.png" class="logo" /> <h1 class='logo-title'>HERMES</h1></span></a
+            ></a></li>
+ 
+
+  
               
-            <li class="nav-item"><a href="{% url 'about' %}">About US</a></li>
             <div id='home-nav-signup'>
+              <li>
+                <svg width="72" height="34" viewBox="0 0 72 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="70.2653" y="32.0877" width="68.2667" height="29.8667" rx="14.9333" transform="rotate(-179.741 70.2653 32.0877)" fill="white" stroke="black" stroke-width="2.13333"/>
+                  <circle cx="53.2665" cy="17.0772" r="10.6667" transform="rotate(-179.741 53.2665 17.0772)" fill="black"/>
+                  <path d="M25.1967 9.09L22.433 11.03L23.427 14.09L20.5541 12.28L17.6812 14.09L18.6752 11.03L15.9115 9.09L19.3962 9L20.5541 6L21.712 9L25.1967 9.09ZM29.02 16L27.2285 17.25L27.873 19.23L26.016 18.06L24.1589 19.23L24.8034 17.25L23.0119 16L25.2622 15.95L26.016 14L26.7697 15.95L29.02 16ZM26.5294 20.95C27.4361 20.87 28.4083 22.05 27.8293 22.8C27.4798 23.25 27.1083 23.67 26.6495 24.07C22.3784 28 15.4636 28 11.2034 24.07C6.9322 20.17 6.9322 13.83 11.2034 9.93C11.6403 9.53 12.0991 9.17 12.5907 8.85C13.41 8.32 14.699 9.21 14.6116 10.04C14.3167 12.9 15.3653 15.87 17.7686 18.06C18.9042 19.1052 20.2791 19.9066 21.7941 20.4064C23.3092 20.9062 24.9265 21.0918 26.5294 20.95ZM24.7379 22.97C21.531 22.8012 18.5015 21.5675 16.2174 19.5C13.8469 17.31 12.5798 14.5 12.405 11.68C9.33543 14.82 9.45559 19.64 12.7436 22.66C16.0426 25.67 21.3078 25.78 24.7379 22.97V22.97Z" fill="black"/>
+                  </svg>
+              </li>
               <li class="nav-item"><a href="{% url 'about' %}">About Us</a></li>
-              <li class="nav-item"><a href="{% url 'signup' %}">Sign In</a></li>
+              <li class="nav-item"><a href="{% url 'signup' %}">Sign Up</a></li>
             </div>
            
            
             
           </ul>
 
-        </div>
       </div>
+
 
       {% endif %}
     </nav>
@@ -163,7 +164,7 @@
       {% endif %}
     </nav>
     {% comment %} MOBILE NAVBAR END {% endcomment %}
-
+  </div>
     <main>
 
       {% block content %}
@@ -173,8 +174,8 @@
     
   </body>
 
-  <!-- <script>
-    const darkMode = document.getElementById("moon");
+ <script>
+    {% comment %} const darkMode = document.getElementById("moon");
     const lightMode = document.getElementById("sun");
 
     darkMode.addEventListener("click", function () {
@@ -184,7 +185,57 @@
 
     lightMode.addEventListener("click", function () {
       document.body.classList.replace("darkMode", "lightMode");
-    });
-  </script> -->
+    }); {% endcomment %}
+
+    //-----------------------------------------------------------------------------------------------//
+//-- Dynamic page scaling. ----------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
+function smartResizing() {
+  const signupMainContainer = document.getElementById('signup-main-container');
+  const phoneBubbleContainer = document.getElementById('phone-bubble-container');
+  const main = document.querySelector('main');
+  const root = document.querySelector(':root');
+  const baseWidth = 1432; // Container width.
+  const baseHeight = 712; // Container height excluding the menu bar.
+  let widthDifference, heightDifference, averageDifference = 0;
+  let viewportWidth = window.innerWidth;
+  let viewportHeight = window.innerHeight;
+  let height = main.offsetHeight;
+  let rootFontSize = 100;
+
+  // Handler for calculating the % difference in pixel ratios between different resolutions.
+  function calculatePercentageDifference(oldValue, newValue) {
+      return (newValue - oldValue) / oldValue * 100;
+  };
+
+  // If a zoom event is initiated manually, cancel out of smartResizing to enable zoom.
+  if (manualZoomEvent == true) {
+      manualZoomEvent = false;
+  } else {
+      // Calculate the % difference between the base and current viewport dimensions.
+      widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
+      heightDifference = calculatePercentageDifference(baseHeight, height);
+      averageDifference = Math.round((widthDifference + heightDifference) / 2);
+
+      // Update the :root font size to scale all elements using rem.
+      rootFontSize += averageDifference;
+      root.style.fontSize = rootFontSize + 'px';
+
+      // Rearrange page layout if the screens height is > the width.
+      if (viewportHeight > viewportWidth) {
+          signupMainContainer.style.flexDirection = 'column';
+          phoneBubbleContainer.style.marginLeft = '25%';
+      } else if (viewportHeight < viewportWidth) {
+          signupMainContainer.style.flexDirection = 'row';
+          phoneBubbleContainer.style.marginLeft = '0%';
+      };
+  };
+};
+{% comment %} window.addEventListener('load', () => smartResizing()); {% endcomment %}
+{% comment %} window.addEventListener('load', () => smartResizing()); {% endcomment %}
+{% comment %} window.addEventListener('resize', () => smartResizing());  {% endcomment %}
+window.addEventListener('resize', () => smartResizing()); 
+
+  </script> 
 </html>
 

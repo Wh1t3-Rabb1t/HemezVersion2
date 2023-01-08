@@ -216,14 +216,19 @@
 
             //NEW FIX
             // This prevents a bug causing the function to overload when the browser is active but tab is unfocused.
-            function working(){
+            {% comment %} function working(){
                 setInterval(function() {risingLogo()},1500);
             }
                
-            working()
+            working() {% endcomment %}
             
-        {% comment %} var timer;
+        var timer;
         window.onfocus = function() {
+            timer = setInterval(function() {risingLogo()}, 2000);
+        };
+        
+      
+        window.onload = function() {
             timer = setInterval(function() {risingLogo()}, 2000);
         };
         
@@ -231,7 +236,7 @@
         // Stops the animation timer when the tab is unfocused.
         window.onblur = function() {
             clearInterval(timer);
-        }; {% endcomment %}
+        }; 
 
         //---------------------------------------------------------------------------------------------------------//
 
