@@ -1,44 +1,49 @@
-{% extends 'home.html' %}
+{% extends 'base.html' %}
 
-{% block auth %}
+{% block content %}
 
-
-
-<div class="left-signup-container">
+<div class="auth-container">
   
-  <div class="signup-box-main">
-      <div class="third-party-signup-box">
-          <div id="signup-header">SignUp</div>
-          <div>SignUp</div>
-          <div class="signup-icons">
-              <img id="facebook-logo" src="https://i.imgur.com/nbbV2eM.png">
-              <div>or</div>
-              <img id="google-logo" src="https://i.imgur.com/2St3bY6.png">
-          </div>
-          <div id="enclosed-signup-text"><span>or use your email</span></div>
+  <div class="auth-box">
+    <div class="third-party-signup-box">
+      <div id="signup-header">Create New Account</div>
+      <div>SignUp with</div>
+      <div class="signup-icons">
+          <img id="facebook-logo" src="https://i.imgur.com/nbbV2eM.png">
+          <div>or</div>
+          <img id="google-logo" src="https://i.imgur.com/2St3bY6.png">
       </div>
-
-      <div class="email-signup-box">
-        <form class ='form-signup' style='font-size:0.2rem' method="post" action="{% url 'signup' %}">
-            {% csrf_token %}
-            {{ form.as_p }}
-          <input type="submit" class="signup-btn" value="Signup">
-          <input type="hidden" name="next" value="{{ next }}">
-        </form>
-      </div>
+      <div id="enclosed-signup-text"><span>or use your email</span></div>
   </div>
+  <form class ='form-signup' style='font-size:0.2rem' method="post" action="{% url 'signup' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+  <input type="submit" class="signup-btn" value="Signup">
+  <input type="hidden" name="next" value="{{ next }}">
+</form>
+  </div>
+<div class='auth-signup-pic'>
+<div class='corner-desktop'>
 </div>
+</div>
+</div>
+
+
+
 
 
 <script defer>
   let usernameInput = document.getElementById('id_username')
   usernameInput.setAttribute("placeholder", "User Name")
+  usernameInput.style.backgroundColor ='#ECE1F2'
 
   let passwordInput = document.getElementById('id_password1')
   passwordInput.setAttribute("placeholder", "Password")
+  passwordInput.style.backgroundColor ='#ECE1F2'
 
   let password2Input = document.getElementById('id_password2')
   password2Input.setAttribute("placeholder", "Confirm Password")
+  password2Input.style.backgroundColor ='#ECE1F2'
 
 </script>
 

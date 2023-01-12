@@ -1,13 +1,22 @@
-{% extends 'home.html' %}
+{% extends 'base.html' %}
 
-{% block auth %}
+{% block content %}
 
 
 
-<div class="left-signup-container">
-  <div class="signup-box">
-
-      <div class="email-signup-box">
+<div class="auth-container">
+  
+      <div class="auth-box">
+        <div class="third-party-signup-box">
+          <div id="signup-header">Login to Your Account</div>
+          <div>SignUp with</div>
+          <div class="signup-icons">
+              <img id="facebook-logo" src="https://i.imgur.com/nbbV2eM.png">
+              <div>or</div>
+              <img id="google-logo" src="https://i.imgur.com/2St3bY6.png">
+          </div>
+          <div id="enclosed-signup-text"><span>or use your email</span></div>
+      </div>
           <form class ='form-login' style='font-size:0.2rem' method="post" action="{% url 'login' %}">
             {% csrf_token %}
             {{ form.as_p }}
@@ -15,6 +24,9 @@
             <input type="hidden" name="next" value="{{ next }}">
           </form>
       </div>
+  <div class='auth-login-pic'>
+    <div class='corner-desktop'>
+      <div/>
   </div>
 </div>
 

@@ -187,54 +187,12 @@
       document.body.classList.replace("darkMode", "lightMode");
     }); {% endcomment %}
 
-    //-----------------------------------------------------------------------------------------------//
-//-- Dynamic page scaling. ----------------------------------------------------------------------//
-//-----------------------------------------------------------------------------------------------//
-function smartResizing() {
-  const signupMainContainer = document.getElementById('signup-main-container');
-  const phoneBubbleContainer = document.getElementById('phone-bubble-container');
-  const main = document.querySelector('main');
-  const root = document.querySelector(':root');
-  const baseWidth = 1432; // Container width.
-  const baseHeight = 712; // Container height excluding the menu bar.
-  let widthDifference, heightDifference, averageDifference = 0;
-  let viewportWidth = window.innerWidth;
-  let viewportHeight = window.innerHeight;
-  let height = main.offsetHeight;
-  let rootFontSize = 100;
 
-  // Handler for calculating the % difference in pixel ratios between different resolutions.
-  function calculatePercentageDifference(oldValue, newValue) {
-      return (newValue - oldValue) / oldValue * 100;
-  };
 
-  // If a zoom event is initiated manually, cancel out of smartResizing to enable zoom.
-  if (manualZoomEvent == true) {
-      manualZoomEvent = false;
-  } else {
-      // Calculate the % difference between the base and current viewport dimensions.
-      widthDifference = calculatePercentageDifference(baseWidth, viewportWidth);
-      heightDifference = calculatePercentageDifference(baseHeight, height);
-      averageDifference = Math.round((widthDifference + heightDifference) / 2);
+  //-- Dynamic page scaling. ----------------------------------------------------------------------//
+  //-----------------------------------------------------------------------------------------------//
 
-      // Update the :root font size to scale all elements using rem.
-      rootFontSize += averageDifference;
-      root.style.fontSize = rootFontSize + 'px';
 
-      // Rearrange page layout if the screens height is > the width.
-      if (viewportHeight > viewportWidth) {
-          signupMainContainer.style.flexDirection = 'column';
-          phoneBubbleContainer.style.marginLeft = '25%';
-      } else if (viewportHeight < viewportWidth) {
-          signupMainContainer.style.flexDirection = 'row';
-          phoneBubbleContainer.style.marginLeft = '0%';
-      };
-  };
-};
-{% comment %} window.addEventListener('load', () => smartResizing()); {% endcomment %}
-{% comment %} window.addEventListener('load', () => smartResizing()); {% endcomment %}
-{% comment %} window.addEventListener('resize', () => smartResizing());  {% endcomment %}
-window.addEventListener('resize', () => smartResizing()); 
 
   </script> 
 </html>
