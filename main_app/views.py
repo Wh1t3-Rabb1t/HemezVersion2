@@ -47,12 +47,42 @@ def room(request, room_name):
 
     messages = Message.objects.all().filter(chat_id_id=room_name)
 
+    if request.method == "POST":
+        chatroom_form = ChatroomForm(request.POST)
+        photo_file = request.FILES.get('photo-file', None)
+        if photo_file:
+            s3 = boto3.client('s3')
+            key = uuid.uuid4().hex[:6] + \
+                photo_file.name[photo_file.name.rfind('.'):]
+            try:
+                s3.upload_fileobj(photo_file, BUCKET, key)
+                url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            except:
+                print('An error occurred uploading file to S3')
+        else:
+            url = 'https://i.imgur.com/efLA0Or.jpeg'
+        if chatroom_form.is_valid():
+            new_chatroom = chatroom_form.save(commit=False)
+            new_chatroom.host_id = request.user.id
+            new_chatroom.chat_pic = url
+            new_chatroom.save()
+            return redirect('lobby')
+        else:
+            print(chatroom_form.errors)
+    # the following is for GET requests
+    chatroom_form = ChatroomForm()
+    chatrooms = Chatroom.objects.all()
+
+
     return render(request, 'chat/room.html', {
         'room_name': room_name,
         'chatrooms': chatrooms,
         'current_room': chatroom,
         'messages': messages,
-        'emoticons':emoticons
+        'emoticons':emoticons,
+        'chatrooms': chatrooms,
+        'chatroom_form': chatroom_form,
+        'name': 'Create Chatroom'
     })
 
 
