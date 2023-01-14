@@ -31,6 +31,47 @@ BUCKET = 'hermes-messenger'
 
 
 # Create your views here.
+@login_required
+def home(request):
+    chatrooms = Chatroom.objects.all()
+    user = request.user
+
+    user_form = UserForm(initial={
+        'email': request.user.email,
+        'first_name': request.user.first_name,
+        'last_name': request.user.last_name,
+        
+    }, instance=request.user)
+
+    profile_form = ProfileForm(initial={
+        'bio': request.user.profile.bio,
+    }, instance=request.user)
+
+    if request.method == "POST":
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            return redirect('profile')
+        else:
+            print(user_form.errors)
+            print(profile_form.errors)
+  
+
+
+
+    return render(request, 'home.html', {
+        'name':'Home',
+        'chatrooms': chatrooms,
+        'user': user,
+        'user_form': user_form,
+        'profile_form': profile_form,
+    })
+
+
+
+
 
 @login_required
 def room(request, room_name):
@@ -86,10 +127,11 @@ def room(request, room_name):
     })
 
 
-def home(request):
-    return render(request, 'home.html', {
-        'name': 'Home'
-    })
+# def home(request):
+#     return render(request, 'home.html', {
+#         'name': 'Home',
+        
+#     })
 
 
 def about(request):
@@ -124,7 +166,7 @@ def profile(request):
     profile_form = ProfileForm(initial={
         'bio': request.user.profile.bio,
     }, instance=request.user)
-    return render(request, 'profile.html', {
+    return render(request, 'base.html', {
         'chatrooms': chatrooms,
         'name': 'User Profile',
         'user': user,

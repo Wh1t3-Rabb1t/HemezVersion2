@@ -46,12 +46,6 @@
     <nav id='nav-id' class="navbar ">
       {% if user.is_authenticated %}
       <div style='height:0.8rem'>
-
-
-
-
-
-
           <ul class="navbar-ul">
             <li>
               <svg width="72" height="34" viewBox="0 0 72 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -178,14 +172,58 @@
     {% comment %} MOBILE NAVBAR END {% endcomment %}
   </div>
     <main>
+
+      {% comment %}  DRAWER MENU START {% endcomment %}
       <div id="drawer-user"  class="user-menu hidden"> 
         <div class='top-drawer-menu'>
          <div class='menu-item-top'>{{user.username}}</div>
-         <div id='profile' class='menu-item'>Profile</div>
+         <div  id='profile' class='menu-item' type='button' onclick={toggleProfile()}>
+         Profile
+          </div>
          <div id='chat-background-img' class='menu-item'>Change Background</div>
          <div class='menu-item-bottom'>Logout</div>
         </div>
+    
       </div>
+        {% comment %} DRAWER MENU START
+
+        {% comment %}  USERPAGE MENU START {% endcomment %}
+  <!-- Modal -->
+
+  <div class='userpage-card' id='edit-profile' >
+
+    <form class='edit-profile-form-input' action="{% url 'user_update' user.id %}" method="POST">
+      <div class='edit-profile-title'>Edit Your Profile</div>
+      {% csrf_token %} {{ user_form.as_p}} {{ profile_form.as_p }}
+      <div display='flex'>
+        <input type="submit" class="upload-profile-input"  value="Save" />
+        <input id='cancel-user-page' onclick={cancelProfile()} type="button" class="upload-profile-input-cancel"  value="Cancel" />
+      </div>
+    </form>
+    <form
+    class='edit-profile-form-pic'
+    action="{% url 'add_profile_pic' user.id %}"
+    enctype="multipart/form-data"
+    method="POST"
+  >
+  <div id='modal-image-profile'>
+  </div>
+    {% csrf_token %}
+    <label class="custom-profile-file-upload" style="font-size:.2rem">
+      Upload Photo
+      <input type="file" class="file-button" name="photo-file" />
+    </label>
+    <br /><br />
+    <input type="submit" class="upload-profile-pic" value="Upload Profile Pic" />
+  </form>
+  </div>
+
+
+        {% comment %}  USERPAGE MENU END {% endcomment %} 
+
+
+
+
       {% block content %}
        {% endblock %}
 
@@ -210,6 +248,58 @@ function toggleUserMenu() {
     drawerUser.classList.add('hidden');
   }
 }
+
+
+
+
+//EDIT PROFIL MODAL
+let drawerUserProfile = document.getElementById('edit-profile');
+function closeProfile(){
+  drawerUserProfile.classList.add('hidden')
+}
+
+// TOGGLE EMOJI DRAWER OPEN AND CLOSE
+function toggleProfile() {
+  
+  if (drawerUserProfile.style.display === 'flex'){
+    drawerUserProfile.style.display ='none'
+  }else{
+    drawerUserProfile.style.display ='flex'
+    drawerUser.classList.add('hidden')
+
+  }
+}
+
+
+
+function cancelProfile(){
+  drawerUserProfile.style.display ='none'
+}
+
+
+// CLICK OUTSIDE USERPAGE TO CLOSE THE BOX
+function clickoutside(){
+  
+    document.body.addEventListener('click', function( event ){
+      if(drawerUserProfile.style.display ==='flex'){
+        if( drawerUserProfile.contains( event.target ) || drawerUser.contains(event.target)  ){
+          // do nothing, click was inside container
+          drawerUserProfile.style.display = 'display'
+          
+        } else {
+          drawerUserProfile.style.display = 'none'
+        }
+      }
+
+    });
+}
+
+clickoutside()
+
+
+
+
+
 
 //Change Background
 

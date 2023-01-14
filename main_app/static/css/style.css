@@ -148,6 +148,17 @@ li {
 
   color: #c79ce0;
 }
+#modal-image-profile{
+width: 2rem;
+height: 2rem;
+background: url("https://i.imgur.com/Aju14oZ.png");
+border: solid 2px #c79ce0;
+border-radius: 0.5rem;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
 
 #modal-image-container {
   position: absolute;
@@ -155,13 +166,73 @@ li {
   right: 37.66%;
   top: 16.62%;
   bottom: 62.94%;
-
   background: url("https://i.imgur.com/Aju14oZ.png");
-
   border: solid 2px #c79ce0;
   border-radius: 0.5rem;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.upload-profile-pic{
+  width: .96rem;
+height: .30rem;
+background: #64B962;
+border: 1px solid #64B962;
+border-radius: 20px;
+font-family: 'Helvetica Neue';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 16px;
+/* identical to box height, or 89% */
+
+
+color: #FFFFFF;
+
 }
 
+.upload-profile-input{
+  width: .96rem;
+height: .30rem;
+background: #64B962;
+border: 1px solid #64B962;
+border-radius: 20px;
+font-family: 'Helvetica Neue';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 16px;
+/* identical to box height, or 89% */
+color: #FFFFFF;
+}
+
+.upload-profile-input-cancel{
+  width: .96rem;
+height: .30rem;
+  background: #FFFFFF;
+  border: 1px solid #EBA0C9;
+  border-radius: 20px;
+  font-family: 'Helvetica Neue';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 16px;
+}
+
+
+
+
+.custom-profile-file-upload{
+  margin-top:.2rem;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background: #FFFFFF;
+border: 1px solid #EBA0C9;
+box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+border-radius: 20px;
+}
 .create-chatroom-form {
   font-size: 0.2rem;
 }
@@ -798,7 +869,12 @@ p:empty {
   height: 6.4rem;
   left: 5%;
   top: -90%;
-  background: linear-gradient(180deg, #EBA0C9 0%, #F8AED6 19.36%, #FAF2F6 77.43%);
+  background: linear-gradient(
+    180deg,
+    #eba0c9 0%,
+    #f8aed6 19.36%,
+    #faf2f6 77.43%
+  );
   box-shadow: inset 9.26229px 9.26229px 9.26229px rgba(0, 0, 0, 0.25);
   border-radius: 50%;
 }
@@ -810,7 +886,12 @@ p:empty {
   height: 6.4rem;
   left: -35%;
   top: 70%;
-  background: linear-gradient(177.62deg, #C79CE0 10.09%, #DCBAEF 23.61%, #FFFFFF 62.83%);
+  background: linear-gradient(
+    177.62deg,
+    #c79ce0 10.09%,
+    #dcbaef 23.61%,
+    #ffffff 62.83%
+  );
   box-shadow: inset 9.26229px 9.26229px 9.26229px rgba(0, 0, 0, 0.25);
   border-radius: 50%;
 }
@@ -822,8 +903,8 @@ p:empty {
   height: 5.4rem;
   left: -135%;
   top: 30%;
-  background: linear-gradient(182.16deg, #D0EBFD 1.82%, #FAFDFF 98.3%);
-box-shadow: inset 9.26229px 9.26229px 9.26229px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(182.16deg, #d0ebfd 1.82%, #fafdff 98.3%);
+  box-shadow: inset 9.26229px 9.26229px 9.26229px rgba(0, 0, 0, 0.25);
   border-radius: 50%;
 }
 
@@ -1273,7 +1354,12 @@ a {
   height: 7.2rem;
   left: 5%;
   top: -90%;
-  background: linear-gradient(180deg, #EBA0C9 0%, #F8AED6 19.36%, #FAF2F6 77.43%);
+  background: linear-gradient(
+    180deg,
+    #eba0c9 0%,
+    #f8aed6 19.36%,
+    #faf2f6 77.43%
+  );
   box-shadow: inset 9.26229px 9.26229px 9.26229px rgba(0, 0, 0, 0.25);
   border-radius: 50%;
 }
@@ -1286,7 +1372,12 @@ a {
   left: -85%;
   top: 70%;
 
-  background: linear-gradient(177.62deg, #C79CE0 10.09%, #DCBAEF 23.61%, #FFFFFF 62.83%);
+  background: linear-gradient(
+    177.62deg,
+    #c79ce0 10.09%,
+    #dcbaef 23.61%,
+    #ffffff 62.83%
+  );
   box-shadow: inset 9.26229px 9.26229px 9.26229px rgba(0, 0, 0, 0.25);
   border-radius: 50%;
 }
@@ -1298,7 +1389,7 @@ a {
   height: 6rem;
   left: -205%;
   top: 30%;
-  background: linear-gradient(182.16deg, #D0EBFD 1.82%, #FAFDFF 98.3%);
+  background: linear-gradient(182.16deg, #d0ebfd 1.82%, #fafdff 98.3%);
   box-shadow: inset 9.26229px 9.26229px 9.26229px rgba(0, 0, 0, 0.25);
   border-radius: 50%;
 }
@@ -2239,7 +2330,7 @@ min-height: calc( 100vh - 70px);
   max-height: 4rem;
   overflow: hidden;
 }
-#userpic-li{
+#userpic-li {
   cursor: pointer;
 }
 .user-menu {
@@ -2247,12 +2338,12 @@ min-height: calc( 100vh - 70px);
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: -.1rem;
-  right: .5rem;
+  top: -0.1rem;
+  right: 0.5rem;
   z-index: 99;
   color: black;
   text-align: center;
-  opacity: 0.9;
+  opacity: 1;
   /* background: linear-gradient(
     220.89deg,
     #c79ce0 23.2%,
@@ -2265,7 +2356,7 @@ min-height: calc( 100vh - 70px);
   overflow: hidden;
   width: 100%;
   height: 100%;
-  transition: ease-in .5s;
+  transition: ease-in 0.5s;
 }
 .top-drawer-menu {
   text-align: center;
@@ -2291,9 +2382,10 @@ min-height: calc( 100vh - 70px);
   line-height: 0.16rem;
   /* identical to box height, or 89% */
   color: #000000;
-  padding: .2rem;
+  padding: 0.2rem;
   cursor: pointer;
 }
+
 .menu-item {
   width: 3rem;
   height: 0.56rem;
@@ -2307,7 +2399,7 @@ min-height: calc( 100vh - 70px);
   font-weight: 700;
   font-size: 0.18rem;
   line-height: 0.16rem;
-  padding: .2rem;
+  padding: 0.2rem;
   /* identical to box height, or 89% */
   cursor: pointer;
 
@@ -2330,10 +2422,119 @@ min-height: calc( 100vh - 70px);
   line-height: 0.16rem;
   /* identical to box height, or 89% */
   color: #000000;
-  padding: .2rem;
+  padding: 0.2rem;
   cursor: pointer;
 }
 
+/* USERPAGE MENU START */
+.userpage-card {
+  display: none;
+  position: absolute;
+  width: 7.88rem;
+  height: 5rem;
+  right: 1rem;
+  top: 1.6rem;
+  background: #FFFFFF;
+  border-radius: 30px;
+  z-index: 999;
+  transition: 1.2s ease-in-out;
+  flex-direction: row;
+  flex: 1fr;
+}
+.edit-profile-title {
+  position: absolute;
+  left: 0.66rem;
+  top: 0.65rem;
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.22rem;
+  line-height: 0.16rem;
+  margin-bottom: .2rem;
+  /* identical to box height, or 50% */
+  color: #eba0c9;
+}
+.edit-profile-pic-title {
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.22rem;
+  line-height: 0.16rem;
+}
+.edit-profile-form-input {
+  font-size: 0.1rem;
+  background-color: red;
+  width: 100%;
+  
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: center;
+  align-items: center;
+  margin-top:.5rem;
+  background-color: transparent;
+}
+
+.edit-profile-form-pic {
+  font-size: 0.1rem;
+  background-color: blue;
+  width: 100%;
+  padding-top: 0rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  margin-top: .5rem;
+}
+.edit-profile-form-input p {
+  margin-bottom: 0.2rem;
+  padding: 10px;
+}
+
+#id_email {
+  width: 372px;
+  height: 56px;
+  background: #ffffff;
+  border: 1px solid #eba0c9;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  padding: 0;
+  margin: 0;
+}
+#id_first_name {
+  width: 372px;
+  height: 56px;
+  background: #ffffff;
+  border: 1px solid #eba0c9;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+
+
+}
+
+#id_last_name {
+  width: 372px;
+  height: 56px;
+  background: #ffffff;
+  border: 1px solid #eba0c9;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+
+}
+#id_bio {
+  width: 372px;
+  height: 56px;
+  background: #ffffff;
+  border: 1px solid #eba0c9;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+
+}
+/* USERPAGE MENU END */
+
+/* EMOJI CONTAINER START */
 #emoji-container {
   padding-left: 0.2rem;
   padding-right: 0.2rem;
@@ -2354,6 +2555,7 @@ min-height: calc( 100vh - 70px);
   display: none;
   /* Safari and Chrome */
 }
+/* EMOJI CONTAINER END */
 
 .top-drawer {
   text-align: center;
