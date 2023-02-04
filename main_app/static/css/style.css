@@ -2027,9 +2027,6 @@ a {
 .accordion {
   --bs-accordion-color: var(--bs-body-color);
   --bs-accordion-bg: var(--bs-body-bg);
-  --bs-accordion-transition: color 0.15s ease-in-out,
-    background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
-    box-shadow 0.15s ease-in-out, border-radius 0.15s ease;
   --bs-accordion-border-color: var(--bs-border-color);
   --bs-accordion-border-width: var(--bs-border-width);
   --bs-accordion-border-radius: var(0px);
@@ -2375,7 +2372,7 @@ a {
 
 #emoji-container::-webkit-scrollbar {
   display: none;
-  /* Safari and Chrome */
+
 }
 /* EMOJI CONTAINER END */
 
@@ -2434,7 +2431,6 @@ a {
   height: 0.8rem;
   display: flex;
   justify-content: flex-end;
-  /* bootstrap styling theme */
   --bs-navbar-padding-y: 0rem;
 }
 
@@ -2458,6 +2454,9 @@ a {
 #mobile-smile {
   display: none;
 }
+
+
+
 
 @media only screen and (max-width: 1000px) {
   main {
@@ -2724,8 +2723,6 @@ a {
     font-weight: 700;
     font-size: 0.2rem;
     line-height: 16px;
-    /* identical to box height, or 50% */
-
     color: #eba0c9;
   }
 
@@ -2799,7 +2796,6 @@ a {
     font-weight: 700;
     font-size: 0.24rem;
     line-height: 0.12rem;
-    /* identical to box height, or 49% */
 
     color: #c79ce0;
   }
@@ -2840,7 +2836,6 @@ a {
     font-weight: 500;
     font-size: 18px;
     line-height: 16px;
-    /* identical to box height, or 89% */
 
     color: #ffffff;
   }
@@ -2856,7 +2851,7 @@ a {
     font-weight: 500;
     font-size: 18px;
     line-height: 16px;
-    /* identical to box height, or 89% */
+
     color: #ffffff;
   }
 
@@ -2975,7 +2970,7 @@ a {
 
   .newchat {
     width: 100vw;
-    height: calc(100vh - 0.5rem);
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -3009,7 +3004,7 @@ a {
 
   .left-chat-bar::-webkit-scrollbar {
     display: none;
-    /* Safari and Chrome */
+
   }
 
   /* TOP CHAT BAR  */
@@ -3048,14 +3043,14 @@ a {
     width: 100%;
     background-color: transparent;
     -ms-overflow-style: none;
-    /* Internet Explorer 10+ */
+
     scrollbar-width: none;
-    /* Firefox */
+
   }
 
   .live-chat::-webkit-scrollbar {
     display: none;
-    /* Safari and Chrome */
+
   }
 
   .input-box {
@@ -3122,7 +3117,7 @@ a {
     background: #ffffff;
     border-radius: 0px 0.1rem 0.1rem 0px;
     width: 60%;
-    /* padding: 2rem 0rem 2rem 5rem; */
+
     padding: 0.12rem 0rem 0.12rem 0.4rem;
     font-family: "Helvetica Neue";
     font-style: normal;
@@ -3173,9 +3168,7 @@ a {
   .accordion {
     --bs-accordion-color: var(--bs-body-color);
     --bs-accordion-bg: var(--bs-body-bg);
-    --bs-accordion-transition: color 0.15s ease-in-out,
-      background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
-      box-shadow 0.15s ease-in-out, border-radius 0.15s ease;
+    --bs-accordion-transition: color 0.15s ease-in-out;
     --bs-accordion-border-color: var(--bs-border-color);
     --bs-accordion-border-width: var(--bs-border-width);
     --bs-accordion-border-radius: var(0px);
@@ -3257,14 +3250,12 @@ a {
     margin: 0px;
     gap: 0.1rem;
     -ms-overflow-style: none;
-    /* Internet Explorer 10+ */
     scrollbar-width: none;
-    /* Firefox */
   }
 
   .accordion-body::-webkit-scrollbar {
     display: none;
-    /* Safari and Chrome */
+
   }
 
   .chat-bar {
@@ -3275,6 +3266,7 @@ a {
 
   .top-chat-bar {
     max-height: 0.8rem;
+    width: 100%;
   }
 
   #chat-message-input {
@@ -3325,3 +3317,4 @@ a {
     background-color: green;
   }
 }
+

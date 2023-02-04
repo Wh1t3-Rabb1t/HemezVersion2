@@ -408,22 +408,21 @@ let backgroundPic = document.getElementById('bg-pic')
 let currBackground = document.querySelector('.chat-bar')
 
 
+
+//BACKGROUND CHANGE FUNCTION 
 function changeBackground(data){
  currBackground.style.background =`url(${data.getAttribute('src')})`
  currBackground.style.backgroundSize='cover'
  currBackground.style.backgroundRepeat='no-repeat'
  currBackground.style.backgroundPosition='50% 50%'
  currBackground.style.overflow='hidden'
- console.log(currBackground,'<------------dsadsadsadsadsa')
-
 }
 
 
+//CLOSE BACKGROUND MODAL
 function cancelBackGround(){
   backgroundModal.style.display='none'
 }
-
-
 
 
 
@@ -458,6 +457,7 @@ let topSideChat = document.querySelector('.top-chat-bar');
 let chatBar = document.querySelector('.chat-bar');
 
 
+//RESIZE WINDOW FUNCTION 
 window.onresize = function(event) {
   if(window.innerWidth < 1000){
     if(localStorage.getItem('chat')){
@@ -467,13 +467,6 @@ window.onresize = function(event) {
     }  
   }
 }; 
-
-
-
-
-
-
-
 
 
 //SWITCH TO CHAT FUNCTION 
