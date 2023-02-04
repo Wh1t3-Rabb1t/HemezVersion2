@@ -77,6 +77,9 @@ def home(request):
 def room(request, room_name):
     chatrooms = Chatroom.objects.all()
     chatroom = Chatroom.objects.all().filter(id = room_name)[0]
+
+
+
     emoticons = [
         '😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '🥲', '🥹', '😊', '😇', '🙂', '🙃', '😉','😌', '😍', '😀','😃' ,'😄', '😁',
         '😆', '😅', '😂','🤣', '🥲', '🥹', '😊', '😇', '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😗', '😙', '😚', '😋', '😛', '😝',
@@ -85,6 +88,30 @@ def room(request, room_name):
         '🤭', '🤫', '🤥','😶', '😶‍🌫️', '😐', '😑', '😬', '🫠', '🙄', '😯', '😦', '😧', '😮', '😲', '🥱', '😴', '🤤', '😪', '😵', '😵‍💫',
         '🫥','🤐', '🥴', '🤢', '🤮', '🤧', '😷', '🤒', '🤕', '🤑', '🤠', '😈', '👿', '👹', '👺', '🤡', '💩', '👻','💀','👽','👾','🤖', 
         '🎃', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '😾']
+
+
+    backgrounds=[
+        'https://images.pexels.com/photos/19670/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        'https://images.pexels.com/photos/547114/pexels-photo-547114.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        'https://images.pexels.com/photos/1114690/pexels-photo-1114690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        'https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        'https://images.pexels.com/photos/220182/pexels-photo-220182.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        'https://images.pexels.com/photos/243971/pexels-photo-243971.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        'https://images.pexels.com/photos/220072/pexels-photo-220072.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        'https://images.pexels.com/photos/1631677/pexels-photo-1631677.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        'https://images.pexels.com/photos/531756/pexels-photo-531756.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        'https://images.pexels.com/photos/14397098/pexels-photo-14397098.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        'https://i.gifer.com/n4V.gif',
+        "https://i.gifer.com/F4kC.gif",
+        'https://i.gifer.com/6BCY.gif',
+        'https://i.gifer.com/v4.gif',
+        'https://i.gifer.com/6D.gif'
+        ]
+
+
+
+
+
 
     messages = Message.objects.all().filter(chat_id_id=room_name)
 
@@ -123,7 +150,8 @@ def room(request, room_name):
         'emoticons':emoticons,
         'chatrooms': chatrooms,
         'chatroom_form': chatroom_form,
-        'name': 'Create Chatroom'
+        'name': 'Create Chatroom',
+        'backgrounds':backgrounds
     })
 
 

@@ -6,9 +6,9 @@
 
 {% comment %} left top logo  {% endcomment %}
   <div id='left-top'>
-    <span class='logo-container'>     
+    <a class='logo-container'  href="{% url 'home' %}" >     
     <img src="https://i.imgur.com/ChgLGGA.png" class="logo-left" /> 
-    <h1 class='logo-white'>HERMES</h1></span>
+    <h1 class='logo-white'>HERMES</h1></a>
   </div>
 
 
@@ -19,11 +19,11 @@
           All Rooms
         </button>
       </h2>
-      <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
+      <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
         <div class="accordion-body">
           {% for chatroom in chatrooms %}
           <div class='allroom-pic-name-container'>
-            <a  class='all-room-a-tag'  onclick={chatRoomChange({{chatroom.id}})} >
+            <a  class='all-room-a-tag' href='/chat/{{chatroom.id}}'>
               <img id='chat-left-room-pic' src="{{chatroom.chat_pic}}" />
              {{chatroom.room_name}}
             </a>
@@ -57,12 +57,12 @@
     </div>
     <div class="accordion-item">
       <h2 class="accordion-header" id="panelsStayOpen-headingFour">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="true" aria-controls="panelsStayOpen-collapseFour">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="" aria-controls="panelsStayOpen-collapseFour">
           <img id='add-button-image' src="https://img.icons8.com/external-others-inmotus-design/512/external-Add-atm-others-inmotus-design.png"> </img>
           Add Friends
         </button>
       </h2>
-      <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingFour">
+      <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse " aria-labelledby="panelsStayOpen-headingFour">
         <div class="accordion-body">
           <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
         </div>
@@ -71,10 +71,7 @@
     <button id='mobile-switch-button' onclick={switchChat()}>CHAT </button>
   </div>
 
-<div >
 
-  
-</div>  
 </div>
 <div class='top-chat-bar'>
     <div id='top-rooms-name'>
@@ -86,11 +83,20 @@
 
 
 
+
+
+
+
+
+
+
+
+
  <!-- Modal Add room  -->
 <div class="modal fade addRoom" id="emojis" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div  class="modal-dialog modal-dialog-centered" role="document">
     <div class='modal-content'>
-   <div class='modal-card'>
+ <div class='modal-card'>
     <h1 id='modal-tilte'>Add Room</h1>
     <div id='modal-image-container'>
     </div>
@@ -109,23 +115,38 @@
       </label>
         
         {{ chatroom_form.as_p }}
+        <div class='button-container'>
         <input type="submit" value="Save" class="btn-create-room" />
      
         <button type="button" class="btn-cancel" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
           Cancel
         </button>
-
+      </div>
       </form>
     </div> 
-   </div>
-  </div>
+   </div> 
+  </div> 
   </div>
 </div>
 
 
 
+      {% comment %} CHANGE BACKGROUND MODAL START{% endcomment %}
 
+      <div class='change-background-container'>
+        <div id='background-modal-title'>Select Background</div>
+
+        <div class='background-modal-pic-container'>
+          {%for bg in backgrounds %}
+          <img class='background-pic-item' src={{bg}}  onclick="changeBackground(this)"></img>
+          {%endfor%} 
+      </div>
+        
+        <div class='background-modal-button-container'>
+          <input id='cancel-user-page' onclick={cancelBackGround()} type="button" class="upload-profile-input-cancel"  value="Cancel" />
+        </div>
+      </div>
+      {% comment %} CHANGE BACKGROUND MODAL END {% endcomment %}
 
 
 
@@ -270,7 +291,7 @@
 <div id="drawer" class="emoji-drawer hidden "> 
   <div class='top-drawer'>
     <h2 id='drawer-title'>Emoticons</h2>
-    <h3 id='delete-x' onclick={closeEmoji()} >X</h3>
+    <h3 id='delete-x' onclick={closeEmoji()}>X</h3>
   </div>
   
   <div id='emoji-container'>
@@ -295,6 +316,11 @@
 
   {{ room_name|json_script:"room-name" }}
 
+
+
+
+
+  {% comment %}----------------------------------------------- SCRIPT ----------------------------------------------- {% endcomment %}
   <script>
     function scrollToBottom() {
         let objDiv = document.getElementById("chatbox");
@@ -359,9 +385,12 @@
         }));
         messageInputDom.value = '';
     };
+{% comment %} 
 
-
-
+    function chatRoomChange(roomId){
+      history.replaceState({},'',`/chat/${roomId}/`)
+    } {% endcomment %}
+    
 {% comment %} const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
 const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl,{
   container: 'body',
@@ -374,10 +403,32 @@ const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstra
 
 
 
+//BACKGROUND PIC FUNCTION
+let backgroundPic = document.getElementById('bg-pic')
+let currBackground = document.querySelector('.chat-bar')
+
+
+function changeBackground(data){
+ currBackground.style.background =`url(${data.getAttribute('src')})`
+ currBackground.style.backgroundSize='cover'
+ currBackground.style.backgroundRepeat='no-repeat'
+ currBackground.style.backgroundPosition='50% 50%'
+ currBackground.style.overflow='hidden'
+ console.log(currBackground,'<------------dsadsadsadsadsa')
+
+}
+
+
+function cancelBackGround(){
+  backgroundModal.style.display='none'
+}
+
+
+
+
 
 //OPEN EMOJI WINDOW 
 function addEmoji(emoji) {
-  console.log(emoji)
   let inputEle = document.getElementById('chat-message-input');
   inputEle.value = inputEle.value + ' ' + emoji;
 }
@@ -387,6 +438,7 @@ let drawer = document.getElementById('drawer');
 
 // CLOSE BUTTON
 function closeEmoji(){
+  console.log('deleted')
   drawer.classList.add('hidden')
 }
 
@@ -406,11 +458,30 @@ let topSideChat = document.querySelector('.top-chat-bar');
 let chatBar = document.querySelector('.chat-bar');
 
 
+window.onresize = function(event) {
+  if(window.innerWidth < 1000){
+    if(localStorage.getItem('chat')){
+      topSideChat.style.display ='flex'
+      chatBar.style.display ='initial';
+      leftSideChat.style.display ='none'
+    }  
+  }
+}; 
+
+
+
+
+
+
+
+
+
 //SWITCH TO CHAT FUNCTION 
 function switchChat(){
-    topSideChat.style.display ='flex'
-    chatBar.style.display ='initial';
-    leftSideChat.style.display ='none'
+  localStorage.setItem('chat',true)
+  topSideChat.style.display ='flex'
+  chatBar.style.display ='initial';
+  leftSideChat.style.display ='none'
 }
 
 
@@ -436,11 +507,10 @@ var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
 //-- Dynamic page scaling. ----------------------------------------------------------------------//
 //-----------------------------------------------------------------------------------------------//
 function smartResizing() {
-  const newchatContainer = document.getElementById('newchat');
   const main = document.querySelector('main');
   const root = document.querySelector(':root');
-  const baseWidth = 1432; // Container width.
-  const baseHeight = 712; // Container height excluding the menu bar.
+  const baseWidth = 1920; // Container width.
+  const baseHeight = 1080; // Container height excluding the menu bar.
   let widthDifference, heightDifference, averageDifference = 0;
   let viewportWidth = window.innerWidth;
   let viewportHeight = window.innerHeight;
@@ -478,9 +548,14 @@ window.addEventListener('load', () => smartResizing());
 window.addEventListener('resize', () => smartResizing());
 
 
-function chatRoomChange(roomId){
-  history.replaceState({},'',`/chat/${roomId}/`)
-}
+
+
+
+
+
+
+
+
 
   </script>
 </div>

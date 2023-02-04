@@ -58,10 +58,10 @@
   
              <div id='home-nav-signup'>
 
-              <li class="nav-item"><a href="{% url 'about' %}" class='nav-about'>About Us</a></li>
+              <li class="nav-item"><a href="{% url 'about' %}" class='nav-about'>About</a></li>
               <li class="nav-item"><a href="/chat/1/" class='nav-about'>Chat</a></li>
-              <li id='userpic-li' onclick={toggleUserMenu()}>
-                <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <li id='userpic-li' >
+                <svg id='svg-user' onclick={toggleUserMenu()} width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                   <rect width="50" height="50" fill="url(#pattern0)"/>
                   <defs>
                   <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
@@ -113,89 +113,40 @@
 
       {% endif %}
     </nav>
-    {% comment %} DESKTOP NAVBAR END {% endcomment %}
 
-
-
-    {% comment %} MOBILE NAVBAR START {% endcomment %}
-    <nav  class="mobile-navbar ">
-      {% if user.is_authenticated %}
-          <ul class='ul-mobile-menu'>
-
-             <a href="{% url 'home' %}"><span class='logo-container'>      <img src="https://i.imgur.com/ChgLGGA.png" class="logo" /> <h1 class='logo-title'>HERMES</h1></span></a
-              ></a>
-              <li class="nav-item">
-                <a href="{% url 'about' %}" class='nav-about'>About</a>
-                <svg width="72" height="34" viewBox="0 0 72 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="70.2653" y="32.0877" width="68.2667" height="29.8667" rx="14.9333" transform="rotate(-179.741 70.2653 32.0877)" fill="white" stroke="black" stroke-width="2.13333"/>
-                  <circle cx="53.2665" cy="17.0772" r="10.6667" transform="rotate(-179.741 53.2665 17.0772)" fill="black"/>
-                  <path d="M25.1967 9.09L22.433 11.03L23.427 14.09L20.5541 12.28L17.6812 14.09L18.6752 11.03L15.9115 9.09L19.3962 9L20.5541 6L21.712 9L25.1967 9.09ZM29.02 16L27.2285 17.25L27.873 19.23L26.016 18.06L24.1589 19.23L24.8034 17.25L23.0119 16L25.2622 15.95L26.016 14L26.7697 15.95L29.02 16ZM26.5294 20.95C27.4361 20.87 28.4083 22.05 27.8293 22.8C27.4798 23.25 27.1083 23.67 26.6495 24.07C22.3784 28 15.4636 28 11.2034 24.07C6.9322 20.17 6.9322 13.83 11.2034 9.93C11.6403 9.53 12.0991 9.17 12.5907 8.85C13.41 8.32 14.699 9.21 14.6116 10.04C14.3167 12.9 15.3653 15.87 17.7686 18.06C18.9042 19.1052 20.2791 19.9066 21.7941 20.4064C23.3092 20.9062 24.9265 21.0918 26.5294 20.95ZM24.7379 22.97C21.531 22.8012 18.5015 21.5675 16.2174 19.5C13.8469 17.31 12.5798 14.5 12.405 11.68C9.33543 14.82 9.45559 19.64 12.7436 22.66C16.0426 25.67 21.3078 25.78 24.7379 22.97V22.97Z" fill="black"/>
-                  </svg>
-                  
-              </li>
-
-            </div> 
-          </ul>
-
-   
-      {% else %}
-      <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'home' %}"><span class='logo-container'>      <img src="https://i.imgur.com/ChgLGGA.png" class="logo" /> <h1 class='logo-title'>HERMES</h1></span></a
-          ></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-           
-            <svg width="72" height="34" viewBox="0 0 72 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="70.2653" y="32.0877" width="68.2667" height="29.8667" rx="14.9333" transform="rotate(-179.741 70.2653 32.0877)" fill="white" stroke="black" stroke-width="2.13333"/>
-              <circle cx="53.2665" cy="17.0772" r="10.6667" transform="rotate(-179.741 53.2665 17.0772)" fill="black"/>
-              <path d="M25.1967 9.09L22.433 11.03L23.427 14.09L20.5541 12.28L17.6812 14.09L18.6752 11.03L15.9115 9.09L19.3962 9L20.5541 6L21.712 9L25.1967 9.09ZM29.02 16L27.2285 17.25L27.873 19.23L26.016 18.06L24.1589 19.23L24.8034 17.25L23.0119 16L25.2622 15.95L26.016 14L26.7697 15.95L29.02 16ZM26.5294 20.95C27.4361 20.87 28.4083 22.05 27.8293 22.8C27.4798 23.25 27.1083 23.67 26.6495 24.07C22.3784 28 15.4636 28 11.2034 24.07C6.9322 20.17 6.9322 13.83 11.2034 9.93C11.6403 9.53 12.0991 9.17 12.5907 8.85C13.41 8.32 14.699 9.21 14.6116 10.04C14.3167 12.9 15.3653 15.87 17.7686 18.06C18.9042 19.1052 20.2791 19.9066 21.7941 20.4064C23.3092 20.9062 24.9265 21.0918 26.5294 20.95ZM24.7379 22.97C21.531 22.8012 18.5015 21.5675 16.2174 19.5C13.8469 17.31 12.5798 14.5 12.405 11.68C9.33543 14.82 9.45559 19.64 12.7436 22.66C16.0426 25.67 21.3078 25.78 24.7379 22.97V22.97Z" fill="black"/>
-              </svg>
-              
-            <li class="nav-item"><a href="{% url 'about' %}">About US</a></li>
-            <div id='home-nav-signup'>
-              <li class="nav-item"><a href="{% url 'about' %}">About Us</a></li>
-              <li class="nav-item"><a href="{% url 'signup' %}">Sign In</a></li>
-            </div>
-           
-           
-            
-          </ul>
-
-        </div>
-      </div>
-
-      {% endif %}
-    </nav>
-    {% comment %} MOBILE NAVBAR END {% endcomment %}
   </div>
     <main>
 
       {% comment %}  DRAWER MENU START {% endcomment %}
-      <div id="drawer-user"  class="user-menu hidden"> 
+      <div id="drawer-user"  class="user-menu "> 
         <div class='top-drawer-menu'>
          <div class='menu-item-top'>{{user.username}}</div>
          <div  id='profile' class='menu-item' type='button' onclick={toggleProfile()}>
          Profile
           </div>
-         <div id='chat-background-img' class='menu-item'>Change Background</div>
-         <div class='menu-item-bottom'>Logout</div>
+
+         <div id='chat-background-img' type='button' onclick={toggleBackGround()} class='menu-item'>Change Background</div>
+
+         <div class='menu-item-bottom'><a  href="{% url 'logout' %}">Logout</a></div>
         </div>
     
       </div>
-        {% comment %} DRAWER MENU START
+        
+ {% comment %}  DRAWER MENU END {% endcomment %}
 
+
+
+
+ 
         {% comment %}  USERPAGE MENU START {% endcomment %}
   <!-- Modal -->
-
+  {% if user.is_authenticated %}
   <div class='userpage-card' id='edit-profile' >
 
     <form class='edit-profile-form-input' action="{% url 'user_update' user.id %}" method="POST">
       <div class='edit-profile-title'>Edit Your Profile</div>
       {% csrf_token %} {{ user_form.as_p}} {{ profile_form.as_p }}
-      <div display='flex'>
+      <div style='display:flex'>
         <input type="submit" class="upload-profile-input"  value="Save" />
         <input id='cancel-user-page' onclick={cancelProfile()} type="button" class="upload-profile-input-cancel"  value="Cancel" />
       </div>
@@ -217,6 +168,8 @@
     <input type="submit" class="upload-profile-pic" value="Upload Profile Pic" />
   </form>
   </div>
+
+  {% endif %}
 
 
         {% comment %}  USERPAGE MENU END {% endcomment %} 
@@ -242,10 +195,10 @@ function closeEmoji(){
 
 // TOGGLE EMOJI DRAWER OPEN AND CLOSE
 function toggleUserMenu() {
-  if (drawerUser.classList.contains('hidden')) {
-    drawerUser.classList.remove('hidden');
-  } else {
-    drawerUser.classList.add('hidden');
+  if (drawerUser.style.display === 'flex'){
+    drawerUser.style.display ='none'
+  }else{
+    drawerUser.style.display ='flex'
   }
 }
 
@@ -254,8 +207,9 @@ function toggleUserMenu() {
 
 //EDIT PROFIL MODAL
 let drawerUserProfile = document.getElementById('edit-profile');
+
 function closeProfile(){
-  drawerUserProfile.classList.add('hidden')
+  drawerUser.style.display ='none'
 }
 
 // TOGGLE EMOJI DRAWER OPEN AND CLOSE
@@ -265,7 +219,8 @@ function toggleProfile() {
     drawerUserProfile.style.display ='none'
   }else{
     drawerUserProfile.style.display ='flex'
-    drawerUser.classList.add('hidden')
+    drawerUserProfile.style.flexDirection = 'column'
+    drawerUser.style.display ='none'
 
   }
 }
@@ -284,7 +239,6 @@ function clickoutside(){
       if(drawerUserProfile.style.display ==='flex'){
         if( drawerUserProfile.contains( event.target ) || drawerUser.contains(event.target)  ){
           // do nothing, click was inside container
-          drawerUserProfile.style.display = 'display'
           
         } else {
           drawerUserProfile.style.display = 'none'
@@ -296,10 +250,44 @@ function clickoutside(){
 
 clickoutside()
 
+let backgroundModal = document.querySelector('.change-background-container')
 
+//CLICK OUTSIDE FOR BACKGROUND MODAL 
 
+function toggleBackGround(){
+  console.log('toggle background......')
+  if (backgroundModal.style.display === 'flex'){
+    backgroundModal.style.display ='none'
+    drawerUser.style.display ='none'
+  }else{
+    backgroundModal.style.display ='flex'
+    drawerUser.style.display ='none'
+  }
+}
 
+console.log(window.location.href.split('/')[3])
+let chatBgLink = document.getElementById('chat-background-img')
 
+if(window.location.href.split('/')[3] !=='chat'){
+  chatBgLink.style.display ='none'
+}
+
+// CLICK OUTSIDE USERPAGE TO CLOSE THE BOX
+function clickOutSideBackground(){
+  document.body.addEventListener('click', function( event ){
+    if(backgroundModal.style.display ==='flex'){
+      if( backgroundModal.contains( event.target ) || drawerUser.contains(event.target)  ){
+        // do nothing, click was inside container
+      
+        
+      } else {
+        backgroundModal.style.display = 'none'
+      }
+    }
+  });
+}
+
+clickOutSideBackground() 
 
 //Change Background
 

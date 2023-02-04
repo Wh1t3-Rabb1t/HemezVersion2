@@ -2,22 +2,25 @@
 
 <div class="signup-main-container" id="signup-main-container">
   <div class="left-signup-container">
- 
     <div class="home-text-box">
       <div id="home-header">Hermes Messenger</div>
-      <div id='home-sub-title'>Instant Messaging Electrified!</div>
-      
+      <div id="home-sub-title">Instant Messaging Electrified!</div>
+
       <div id="home-text">
-        Allows users to chat with friends in real-time by joining chatrooms. 
-        Hermes allows you to communicate with your customers in web chat rooms. 
-        It enables you to send and receive messages. 
-        This apps make it easier, simpler, and faster to connect with everyone and it is also easy to use.
+        Allows users to chat with friends in real-time by joining chatrooms.
+        Hermes allows you to communicate with your customers in web chat rooms.
+        It enables you to send and receive messages. This apps make it easier,
+        simpler, and faster to connect with everyone and it is also easy to use.
       </div>
-      <button id="main-button">
+ 
+        {%if user%}
+        {%else%}
+        <button id="main-button">
         <a class="a-login" href="{% url 'login' %}">Login</a>
       </button>
-    </div>
+        {%endif%}
 
+    </div>
   </div>
 
   <div class="right-signup-container">
