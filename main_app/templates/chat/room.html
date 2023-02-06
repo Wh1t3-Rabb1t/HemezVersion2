@@ -23,7 +23,7 @@
         <div class="accordion-body">
           {% for chatroom in chatrooms %}
           <div class='allroom-pic-name-container'>
-            <a  class='all-room-a-tag' href='/chat/{{chatroom.id}}'>
+            <a  class='all-room-a-tag' onclick={switchChat()} href='/chat/{{chatroom.id}}'>
               <img id='chat-left-room-pic' src="{{chatroom.chat_pic}}" />
              {{chatroom.room_name}}
             </a>
@@ -36,7 +36,7 @@
 
     <div class="accordion-item" >
       <h2 class="accordion-header"  id="panelsStayOpen-headingTwo">
-        <button  class="accordion-button collapsed" type="button" data-bs-toggle="modal" data-bs-target="#emojis" >
+        <button id='add-room' class="accordion-button collapsed" type="button" data-bs-toggle="modal" data-bs-target="#emojis" >
           <img id='add-button-image' src="https://img.icons8.com/external-others-inmotus-design/512/external-Add-atm-others-inmotus-design.png"> </img>
          Add Room
         </button>
@@ -45,28 +45,19 @@
 
     <div class="accordion-item">
       <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+        <button id='add-room' class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
           Direct Message
         </button>
       </h2>
-      <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-        <div class="accordion-body">
-          <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-        </div>
-      </div>
+
     </div>
     <div class="accordion-item">
       <h2 class="accordion-header" id="panelsStayOpen-headingFour">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="" aria-controls="panelsStayOpen-collapseFour">
+        <button id='add-room' class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="" aria-controls="panelsStayOpen-collapseFour">
           <img id='add-button-image' src="https://img.icons8.com/external-others-inmotus-design/512/external-Add-atm-others-inmotus-design.png"> </img>
           Add Friends
         </button>
       </h2>
-      <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse " aria-labelledby="panelsStayOpen-headingFour">
-        <div class="accordion-body">
-          <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-        </div>
-      </div>
     </div>
     <button id='mobile-switch-button' onclick={switchChat()}>CHAT </button>
   </div>
@@ -467,6 +458,15 @@ window.onresize = function(event) {
     }  
   }
 }; 
+
+if(window.innerWidth < 1000){
+  if(localStorage.getItem('chat')){
+    topSideChat.style.display ='flex'
+    chatBar.style.display ='initial';
+    leftSideChat.style.display ='none'
+  } 
+}
+ 
 
 
 //SWITCH TO CHAT FUNCTION 

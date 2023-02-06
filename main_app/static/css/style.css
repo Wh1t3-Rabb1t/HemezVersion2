@@ -1806,6 +1806,7 @@ a {
   gap: 0.2rem;
   align-items: center;
   text-align: center;
+  padding-bottom:12px;
 }
 
 #room-name-id {
@@ -2021,6 +2022,8 @@ a {
   width: 35px;
   height: 35px;
   filter: invert(1);
+  margin:20px;
+
 }
 
 /* BOOTSTRAP  */
@@ -2455,6 +2458,9 @@ a {
   display: none;
 }
 
+#add-room::after {
+ display: none;
+}
 
 
 
