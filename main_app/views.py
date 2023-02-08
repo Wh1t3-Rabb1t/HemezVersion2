@@ -166,6 +166,7 @@ def about(request):
     return render(request, 'about.html', {
         'name': 'Hermes Messenger',
     })
+
 def bubble(request):
     return render(request, 'bubbles.html', {
         'name': 'Hermes Messenger',

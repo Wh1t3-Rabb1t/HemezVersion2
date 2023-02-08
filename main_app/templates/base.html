@@ -253,7 +253,6 @@ clickoutside()
 let backgroundModal = document.querySelector('.change-background-container')
 
 //CLICK OUTSIDE FOR BACKGROUND MODAL 
-
 function toggleBackGround(){
   console.log('toggle background......')
   if (backgroundModal.style.display === 'flex'){
@@ -265,11 +264,17 @@ function toggleBackGround(){
   }
 }
 
-console.log(window.location.href.split('/')[3])
-let chatBgLink = document.getElementById('chat-background-img')
+
+//REMOVE SUBNAVBAR HEADING ON URL PAGES
+const chatBgLink = document.getElementById('chat-background-img')
+const profileLink = document.getElementById('profile')
 
 if(window.location.href.split('/')[3] !=='chat'){
   chatBgLink.style.display ='none'
+}
+
+if(window.location.href.split('/')[3] ==='chat'){
+  profileLink.style.display ='none'
 }
 
 // CLICK OUTSIDE USERPAGE TO CLOSE THE BOX

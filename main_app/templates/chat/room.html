@@ -448,7 +448,7 @@ let topSideChat = document.querySelector('.top-chat-bar');
 let chatBar = document.querySelector('.chat-bar');
 
 
-//RESIZE WINDOW FUNCTION 
+//RESIZE WINDOW FUNCTION  on resize
 window.onresize = function(event) {
   if(window.innerWidth < 1000){
     if(localStorage.getItem('chat')){
@@ -459,13 +459,17 @@ window.onresize = function(event) {
   }
 }; 
 
-if(window.innerWidth < 1000){
-  if(localStorage.getItem('chat')){
-    topSideChat.style.display ='flex'
-    chatBar.style.display ='initial';
-    leftSideChat.style.display ='none'
-  } 
+//resize window function on load 
+window.onload = function(event){
+  if(window.innerWidth < 1000){
+    if(localStorage.getItem('chat')){
+      topSideChat.style.display ='flex'
+      chatBar.style.display ='initial';
+      leftSideChat.style.display ='none'
+    } 
+  }
 }
+
  
 
 
