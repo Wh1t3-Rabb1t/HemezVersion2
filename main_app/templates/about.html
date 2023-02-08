@@ -4,6 +4,8 @@
 
     <div id="left-about-container">
         <div id="top-text-box">
+            <div>
+
             <span id="about-header">Hermes Messenger</span>
             <div id="about-text">
                 Hermes Messenger app allows users to chat with friends in real-time by
@@ -11,13 +13,12 @@
                 then freely create and join chatrooms to talk or just listen in.
             </div>
         </div>
-        
-        <div id="mobile-box">
+        <div>
+            <div id="team-header">Meet Our Team</div>
+            <div id="team-text">This project was a collaboration between the following members:</div>
 
-            <div id="middle-text-box">
-                <div id="team-header">Meet Our Team</div>
-                <div id="team-text">This project was a collaboration between the following members:</div>
-            </div>
+        </div>
+            
 
             <div id="members">
                 <div class="members-container">
@@ -44,19 +45,21 @@
                     </div>
                 </div>
             </div>
-
         </div>
-    </div>
-    
-    <div id="right-about-container">
+        
+
+
         <div id="about-phone-bubble-box">
-            <img id="cartoon-phone" src="https://i.imgur.com/PhLBWAj.png">
-            <div id='pink-circle'></div>
             <div id='blue-circle'></div>
+            <div id='pink-circle'></div>
             <div id='purple-circle'></div>
         </div>
-    <div>
+    </div>
 
+ 
+
+
+</div>
     <script defer>
 
         //-- User generated zoom event detection. -----------------------------------------------//
@@ -92,7 +95,7 @@
         });
 
         //-- Dynamic page scaling. --------------------------------------------------------------//
-        function smartResizing() {
+    function smartResizing() {
             const cartoonPhone = document.getElementById('cartoon-phone');
             const aboutContainer = document.getElementById('about-container');
             const mobileBox = document.getElementById('mobile-box');
@@ -156,7 +159,7 @@
             };
         };
         window.addEventListener('load', () => smartResizing());
-        window.addEventListener('resize', () => smartResizing());
+        window.addEventListener('resize', () => smartResizing()); 
 
         // Generate random integers, either positive or negative.
         function getRandomInteger(min, max) {
@@ -212,8 +215,22 @@
         };
 
         // This prevents a bug causing the function to overload when the browser is active but tab is unfocused.
+
+            //NEW FIX
+            // This prevents a bug causing the function to overload when the browser is active but tab is unfocused.
+            {% comment %} function working(){
+                setInterval(function() {risingLogo()},1500);
+            }
+               
+            working() {% endcomment %}
+            
         var timer;
         window.onfocus = function() {
+            timer = setInterval(function() {risingLogo()}, 2000);
+        };
+        
+      
+        window.onload = function() {
             timer = setInterval(function() {risingLogo()}, 2000);
         };
         
@@ -221,7 +238,7 @@
         // Stops the animation timer when the tab is unfocused.
         window.onblur = function() {
             clearInterval(timer);
-        };
+        }; 
 
         //---------------------------------------------------------------------------------------------------------//
 

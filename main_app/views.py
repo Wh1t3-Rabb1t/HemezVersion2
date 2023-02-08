@@ -31,11 +31,55 @@ BUCKET = 'hermes-messenger'
 
 
 # Create your views here.
+@login_required
+def home(request):
+    chatrooms = Chatroom.objects.all()
+    user = request.user
+
+    user_form = UserForm(initial={
+        'email': request.user.email,
+        'first_name': request.user.first_name,
+        'last_name': request.user.last_name,
+        
+    }, instance=request.user)
+
+    profile_form = ProfileForm(initial={
+        'bio': request.user.profile.bio,
+    }, instance=request.user)
+
+    if request.method == "POST":
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            return redirect('profile')
+        else:
+            print(user_form.errors)
+            print(profile_form.errors)
+  
+
+
+
+    return render(request, 'home.html', {
+        'name':'Home',
+        'chatrooms': chatrooms,
+        'user': user,
+        'user_form': user_form,
+        'profile_form': profile_form,
+    })
+
+
+
+
 
 @login_required
 def room(request, room_name):
     chatrooms = Chatroom.objects.all()
     chatroom = Chatroom.objects.all().filter(id = room_name)[0]
+
+
+
     emoticons = [
         '😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '🥲', '🥹', '😊', '😇', '🙂', '🙃', '😉','😌', '😍', '😀','😃' ,'😄', '😁',
         '😆', '😅', '😂','🤣', '🥲', '🥹', '😊', '😇', '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😗', '😙', '😚', '😋', '😛', '😝',
@@ -45,25 +89,86 @@ def room(request, room_name):
         '🫥','🤐', '🥴', '🤢', '🤮', '🤧', '😷', '🤒', '🤕', '🤑', '🤠', '😈', '👿', '👹', '👺', '🤡', '💩', '👻','💀','👽','👾','🤖', 
         '🎃', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '😾']
 
+
+    backgrounds=[
+        'https://images.pexels.com/photos/19670/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        'https://images.pexels.com/photos/547114/pexels-photo-547114.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        'https://images.pexels.com/photos/1114690/pexels-photo-1114690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        'https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        'https://images.pexels.com/photos/220182/pexels-photo-220182.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        'https://images.pexels.com/photos/243971/pexels-photo-243971.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        'https://images.pexels.com/photos/220072/pexels-photo-220072.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        'https://images.pexels.com/photos/1631677/pexels-photo-1631677.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        'https://images.pexels.com/photos/531756/pexels-photo-531756.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        'https://images.pexels.com/photos/14397098/pexels-photo-14397098.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        'https://i.gifer.com/n4V.gif',
+        "https://i.gifer.com/F4kC.gif",
+        'https://i.gifer.com/6BCY.gif',
+        'https://i.gifer.com/v4.gif',
+        'https://i.gifer.com/6D.gif'
+        ]
+
+
+
+
+
+
     messages = Message.objects.all().filter(chat_id_id=room_name)
+
+    if request.method == "POST":
+        chatroom_form = ChatroomForm(request.POST)
+        photo_file = request.FILES.get('photo-file', None)
+        if photo_file:
+            s3 = boto3.client('s3')
+            key = uuid.uuid4().hex[:6] + \
+                photo_file.name[photo_file.name.rfind('.'):]
+            try:
+                s3.upload_fileobj(photo_file, BUCKET, key)
+                url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            except:
+                print('An error occurred uploading file to S3')
+        else:
+            url = 'https://i.imgur.com/efLA0Or.jpeg'
+        if chatroom_form.is_valid():
+            new_chatroom = chatroom_form.save(commit=False)
+            new_chatroom.host_id = request.user.id
+            new_chatroom.chat_pic = url
+            new_chatroom.save()
+            return redirect('lobby')
+        else:
+            print(chatroom_form.errors)
+    # the following is for GET requests
+    chatroom_form = ChatroomForm()
+    chatrooms = Chatroom.objects.all()
+
 
     return render(request, 'chat/room.html', {
         'room_name': room_name,
         'chatrooms': chatrooms,
         'current_room': chatroom,
         'messages': messages,
-        'emoticons':emoticons
+        'emoticons':emoticons,
+        'chatrooms': chatrooms,
+        'chatroom_form': chatroom_form,
+        'name': 'Create Chatroom',
+        'backgrounds':backgrounds
     })
 
 
-def home(request):
-    return render(request, 'home.html', {
-        'name': 'Home'
-    })
+# def home(request):
+#     return render(request, 'home.html', {
+#         'name': 'Home',
+        
+#     })
 
 
 def about(request):
     return render(request, 'about.html', {
+        'name': 'Hermes Messenger',
+    })
+
+def bubble(request):
+    return render(request, 'bubbles.html', {
         'name': 'Hermes Messenger',
     })
 
@@ -90,7 +195,7 @@ def profile(request):
     profile_form = ProfileForm(initial={
         'bio': request.user.profile.bio,
     }, instance=request.user)
-    return render(request, 'profile.html', {
+    return render(request, 'base.html', {
         'chatrooms': chatrooms,
         'name': 'User Profile',
         'user': user,
@@ -148,7 +253,7 @@ def signup(request):
             user = form.save()
             # This is how we log a user in via code
             login(request, user)
-            return redirect('/')
+            return redirect('/chat/1/')
         else:
             print(form.errors)
             error_message = 'Invalid sign up - try again'
