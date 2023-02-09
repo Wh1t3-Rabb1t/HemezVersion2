@@ -2622,7 +2622,7 @@ a {
 
   }
 
-  
+
 
   #id_email {
     width: 80vw;
@@ -3300,10 +3300,10 @@ a {
     border: 0.3px solid #C79CE0;
     letter-spacing: 0.00594667rem;
     font-feature-settings: "pnum" on, "lnum" on;
-  
+
     color: #949393;
   }
-  
+
   #id_password {
     background: transparent;
     border-radius: 36.7992px;
@@ -3316,14 +3316,14 @@ a {
     font-weight: 700;
     font-size: 0.2rem;
     border: 0.3px solid #C79CE0;
-  
+
     /* identical to box height, or 149% */
-  
+
     letter-spacing: 0.00594667rem;
     font-feature-settings: "pnum" on, "lnum" on;
     color: #949393;
   }
-  
+
   #id_password1 {
     background: transparent;
     border-radius: 36.7992px;
@@ -3339,13 +3339,13 @@ a {
     font-size: 0.2rem;
     border: 0.3px solid #C79CE0;
     /* identical to box height, or 149% */
-  
+
     letter-spacing: 0.00594667rem;
     font-feature-settings: "pnum" on, "lnum" on;
-  
+
     color: #949393;
   }
-  
+
   #id_password2 {
     background: transparent;
     border-radius: 36.7992px;
@@ -3359,10 +3359,10 @@ a {
     font-size: 0.2rem;
     border: 0.3px solid #C79CE0;
     /* identical to box height, or 149% */
-  
+
     letter-spacing: 0.00594667rem;
     font-feature-settings: "pnum" on, "lnum" on;
-  
+
     color: #949393;
   }
   .auth-login-pic{
@@ -3388,7 +3388,7 @@ a {
     margin: 0% 0% 10% -10%;
     flex-grow: 1;
     z-index: 99;
-  
+
     /* background-color: lightgreen; */
   }
   .profile-pic {
