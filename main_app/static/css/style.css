@@ -2145,9 +2145,11 @@ a {
   max-height: 4rem;
   overflow: hidden;
 }
+
 #userpic-li {
   cursor: pointer;
 }
+
 .user-menu {
   position: absolute;
   display: flex;
